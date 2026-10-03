@@ -1599,13 +1599,14 @@ git commit -m "feat: Claude 调用封装（pause_turn 续跑、拒答回退）�
 
 ### Task 4: 前提闸门——GitHub 仓库与 Actions 探针
 
-这个任务不写流水线代码。它回答三个问题，答案决定后面的任务还做不做：
+这个任务不写流水线代码。它回答四个问题，答案决定后面的任务还做不做：
 
 | 闸门 | 问题 | 不通过时 |
 |---|---|---|
 | A | GitHub Actions 的机房 IP 能不能访问 Cineplex 网站和接口？ | **停。** 报告用户。退路是抓取改到本机跑（spec 第 17 节），需要改计划 |
 | B | `llm.call` 的请求形状在真实 API 上能不能跑通（结构化输出一次，联网搜索一次）？ | 按下面 Step 7 的规则处理，处理不了就停 |
 | C | 机器人开的 Issue，用户收不收得到邮件和手机推送？ | 报告用户，由用户决定换通知方式 |
+| D | 私有仓库能不能开 GitHub Pages（账号套餐是否支持）？ | **停。** 报告用户，由用户在升级套餐、改回公开仓库、换托管方式里选（见 Step 4a） |
 
 顺带产出一份真实的联网搜索响应，存成任务 7 的测试数据。
 
@@ -1774,20 +1775,36 @@ Expected: 打印的 JSON 里 `cineplex.ok` 为 `true`，`movies` 在 200 上下�
 
 如果 `cineplex.ok` 是 `false`：Cineplex 的接口或前端结构变了。对照 `tests/fixtures/cineplex/README.md` 和报错信息定位，先修任务 2 的客户端与夹具，再继续。
 
-- [ ] **Step 4: 提交、建公开仓库并推送**
+- [ ] **Step 4: 提交、建私有仓库并推送**
 
 ```bash
 git add scripts/probe.py .github/workflows/probe.yml
 git commit -m "chore: 前提探针脚本与工作流"
-gh repo create AKASHA-R/film-radar --public --source . --remote origin --push \
+git branch -f main feat/film-radar
+gh repo create AKASHA-R/film-radar --private --source . --remote origin \
   --description "多伦多院线双周推荐"
+git push -u origin main
 gh label create edition --repo AKASHA-R/film-radar --color 1f6feb --description "每期推荐"
 gh label create failure --repo AKASHA-R/film-radar --color d1242f --description "运行失败"
 ```
 
-Expected: `gh repo view AKASHA-R/film-radar --json visibility -q .visibility` 输出 `PUBLIC`。
+Expected: `gh repo view AKASHA-R/film-radar --json visibility,defaultBranchRef -q '.visibility + " " + .defaultBranchRef.name'` 输出 `PRIVATE main`。
 
-仓库公开是用户在设计阶段确认过的决定（spec 第 2 节）。
+仓库私有是用户 2026-10-03 执行计划时改选的决定（spec 第 2 节已更新，原定公开）。
+
+**为什么先 `git branch -f main feat/film-radar`：** 本计划在 `feat/film-radar` 上执行，但 `workflow_dispatch` 要求工作流文件在远端默认分支上，所以要把没有分叉的本地 `main` 快进到当前提交再推。远端 `main` 因此会在最终审查之前就带着任务 1–4（私有仓库，可接受）。
+
+- [ ] **Step 4a: 验证私有仓库能开 Pages（spec 第 17 节前提 3）**
+
+```bash
+gh api -X POST repos/AKASHA-R/film-radar/pages -f build_type=workflow -q '.build_type + " " + .html_url'
+```
+
+Expected: `workflow https://akasha-r.github.io/film-radar/`。这一步只设置 Pages 的发布来源，不会产生任何可访问的内容。
+
+如果返回 422 或 403，且消息提到套餐（`plan`、`upgrade`、`not supported`）：**停止执行本计划**，把原文报告用户，请用户在"升级套餐 / 改回公开仓库 / 换托管方式"里选。不要自行改回公开。
+
+返回 409 说明 Pages 已开过，不是失败，当作通过。任务 11 Step 5 对同一条命令有同样的处理。
 
 - [ ] **Step 5: 用户录入 API 密钥（需要用户操作）**
 
