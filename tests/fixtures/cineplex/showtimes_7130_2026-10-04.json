@@ -1,0 +1,300 @@
+[
+ {
+  "theatre": "Cineplex Cinemas Yonge-Dundas and VIP",
+  "theatreId": 7130,
+  "dates": [
+   {
+    "startDate": "2026-10-04T00:00:00",
+    "movies": [
+     {
+      "id": 38459,
+      "presentationType": "Film Presentation",
+      "name": "Digger",
+      "filmUrl": "digger",
+      "isEvent": false,
+      "runtimeInMinutes": 129,
+      "smallPosterImageUrl": "https://mediafiles.cineplex.com/Central/Film/Posters/38459_130_193.jpg",
+      "mediumPosterImageUrl": "https://mediafiles.cineplex.com/Central/Film/Posters/38459_320_470.jpg",
+      "largePosterImageUrl": "https://mediafiles.cineplex.com/Central/Film/Posters/38459_768_1024.jpg",
+      "genres": [
+       "Comedy",
+       "Drama"
+      ],
+      "experiences": [
+       {
+        "experienceTypes": [
+         "UltraAVX",
+         "D-BOX",
+         "Dolby Atmos",
+         "Laser Projection"
+        ],
+        "order": 2,
+        "isCcEnabled": true,
+        "isDsEnabled": true,
+        "sessions": [
+         {
+          "seatMapUrl": "https://www.cineplex.com/en-Mobile/ticketing/preview?theatreId=7130&showtimeId=450488&dbox=True",
+          "ticketingUrl": "https://apis.cineplex.com/prod/ticketing/api/v1/routing/redirect-to-ticketing?VistaSessionId=450488&VISTAHOCategoryCode=0000000004&LocationId=7130&IsSeriesShowtime=False",
+          "ticketingRedesignUrl": "https://apis.cineplex.com/prod/ticketing/api/v1/routing/redirect-to-ticketing?VistaSessionId=450488&VISTAHOCategoryCode=0000000004&LocationId=7130&IsSeriesShowtime=False",
+          "getTicketingUrlApi": "https://apis.cineplex.com/prod/ticketing/api/v1/routing/ticketing-url?VistaSessionId=450488&VISTAHOCategoryCode=0000000004&LocationId=7130&IsSeriesShowtime=False",
+          "deeplinkUrl": "https://apis.cineplex.com/prod/cpx/theatrical/deeplink?s=450488&a=0000000004&l=7130&m=digger&ss=False",
+          "showtimeShareKey": "v:450488_t:7130_a:0000000004",
+          "vistaSessionId": 450488,
+          "areaCode": "0000000004",
+          "showStartDateTime": "2026-10-04T12:30:00",
+          "showStartDateTimeUtc": "2026-10-04T16:30:00Z",
+          "isInThePast": false,
+          "isReservedSeating": true,
+          "isShowtimeEnabledOnline": true,
+          "seatsRemaining": 397,
+          "isSoldOut": false,
+          "auditorium": "AVX #7"
+         }
+        ]
+       }
+      ],
+      "brightcoveVideoId": "ref:Digger EN Trailer 2",
+      "localRating": "14A",
+      "ratingDescription": "Suitable for persons 14 years of age or older. Persons under 14 must be accompanied by an adult.",
+      "warnings": [
+       "Coarse Language"
+      ],
+      "languageCode": "EN",
+      "language": "English",
+      "subtitleLanguage": "",
+      "marketLanguageCode": "EN",
+      "detailPageUrl": "https://www.cineplex.com/Movie/digger",
+      "passesAllowed": true,
+      "hasPosterImage": true
+     },
+     {
+      "id": 38401,
+      "presentationType": "Film Presentation",
+      "name": "Verity",
+      "filmUrl": "verity",
+      "isEvent": false,
+      "runtimeInMinutes": 117,
+      "smallPosterImageUrl": "https://mediafiles.cineplex.com/Central/Film/Posters/38401_130_193.jpg",
+      "mediumPosterImageUrl": "https://mediafiles.cineplex.com/Central/Film/Posters/38401_320_470.jpg",
+      "largePosterImageUrl": "https://mediafiles.cineplex.com/Central/Film/Posters/38401_768_1024.jpg",
+      "genres": [
+       "Thriller"
+      ],
+      "experiences": [
+       {
+        "experienceTypes": [
+         "Regular"
+        ],
+        "order": 2,
+        "isCcEnabled": true,
+        "isDsEnabled": true,
+        "sessions": [
+         {
+          "seatMapUrl": "https://www.cineplex.com/en-Mobile/ticketing/preview?theatreId=7130&showtimeId=449247&dbox=False",
+          "ticketingUrl": "https://apis.cineplex.com/prod/ticketing/api/v1/routing/redirect-to-ticketing?VistaSessionId=449247&VISTAHOCategoryCode=0000000001&LocationId=7130&IsSeriesShowtime=False",
+          "ticketingRedesignUrl": "https://apis.cineplex.com/prod/ticketing/api/v1/routing/redirect-to-ticketing?VistaSessionId=449247&VISTAHOCategoryCode=0000000001&LocationId=7130&IsSeriesShowtime=False",
+          "getTicketingUrlApi": "https://apis.cineplex.com/prod/ticketing/api/v1/routing/ticketing-url?VistaSessionId=449247&VISTAHOCategoryCode=0000000001&LocationId=7130&IsSeriesShowtime=False",
+          "deeplinkUrl": "https://apis.cineplex.com/prod/cpx/theatrical/deeplink?s=449247&a=0000000001&l=7130&m=verity&ss=False",
+          "showtimeShareKey": "v:449247_t:7130_a:0000000001",
+          "vistaSessionId": 449247,
+          "areaCode": "0000000001",
+          "showStartDateTime": "2026-10-04T13:20:00",
+          "showStartDateTimeUtc": "2026-10-04T17:20:00Z",
+          "isInThePast": false,
+          "isReservedSeating": true,
+          "isShowtimeEnabledOnline": true,
+          "seatsRemaining": 238,
+          "isSoldOut": false,
+          "auditorium": "Aud #10"
+         }
+        ]
+       }
+      ],
+      "brightcoveVideoId": "ref:Verity EN Trailer 4",
+      "localRating": "14A",
+      "ratingDescription": "Suitable for persons 14 years of age or older. Persons under 14 must be accompanied by an adult.",
+      "warnings": [
+       "Sexually suggestive scenes"
+      ],
+      "languageCode": "EN",
+      "language": "English",
+      "subtitleLanguage": "",
+      "marketLanguageCode": "EN",
+      "detailPageUrl": "https://www.cineplex.com/Movie/verity",
+      "passesAllowed": false,
+      "hasPosterImage": true
+     },
+     {
+      "id": 37885,
+      "presentationType": "Film Presentation",
+      "name": "Resident Evil",
+      "filmUrl": "resident-evil-2026",
+      "isEvent": false,
+      "runtimeInMinutes": 94,
+      "smallPosterImageUrl": "https://mediafiles.cineplex.com/Central/Film/Posters/37885_130_193.jpg",
+      "mediumPosterImageUrl": "https://mediafiles.cineplex.com/Central/Film/Posters/37885_320_470.jpg",
+      "largePosterImageUrl": "https://mediafiles.cineplex.com/Central/Film/Posters/37885_768_1024.jpg",
+      "genres": [
+       "Horror"
+      ],
+      "experiences": [
+       {
+        "experienceTypes": [
+         "VIP 19+"
+        ],
+        "order": 2,
+        "isCcEnabled": true,
+        "isDsEnabled": true,
+        "sessions": [
+         {
+          "seatMapUrl": "https://www.cineplex.com/en-Mobile/ticketing/preview?theatreId=7130&showtimeId=451191&dbox=False",
+          "ticketingUrl": "https://apis.cineplex.com/prod/ticketing/api/v1/routing/redirect-to-ticketing?VistaSessionId=451191&VISTAHOCategoryCode=0000000001&LocationId=7130&IsSeriesShowtime=False",
+          "ticketingRedesignUrl": "https://apis.cineplex.com/prod/ticketing/api/v1/routing/redirect-to-ticketing?VistaSessionId=451191&VISTAHOCategoryCode=0000000001&LocationId=7130&IsSeriesShowtime=False",
+          "getTicketingUrlApi": "https://apis.cineplex.com/prod/ticketing/api/v1/routing/ticketing-url?VistaSessionId=451191&VISTAHOCategoryCode=0000000001&LocationId=7130&IsSeriesShowtime=False",
+          "deeplinkUrl": "https://apis.cineplex.com/prod/cpx/theatrical/deeplink?s=451191&a=0000000001&l=7130&m=resident-evil-2026&ss=False",
+          "showtimeShareKey": "v:451191_t:7130_a:0000000001",
+          "vistaSessionId": 451191,
+          "areaCode": "0000000001",
+          "showStartDateTime": "2026-10-04T14:00:00",
+          "showStartDateTimeUtc": "2026-10-04T18:00:00Z",
+          "isInThePast": false,
+          "isReservedSeating": true,
+          "isShowtimeEnabledOnline": true,
+          "seatsRemaining": 71,
+          "isSoldOut": false,
+          "auditorium": "VIP 1 (19+)"
+         }
+        ]
+       }
+      ],
+      "brightcoveVideoId": "ref:Resident Evil EN Trailer 4",
+      "localRating": "14A",
+      "ratingDescription": "Suitable for persons 14 years of age or older. Persons under 14 must be accompanied by an adult.",
+      "warnings": [
+       "Violence",
+       "Disturbing Content",
+       "Coarse Language"
+      ],
+      "languageCode": "EN",
+      "language": "English",
+      "subtitleLanguage": "",
+      "marketLanguageCode": "EN",
+      "detailPageUrl": "https://www.cineplex.com/Movie/resident-evil-2026",
+      "passesAllowed": false,
+      "hasPosterImage": true
+     },
+     {
+      "id": 61994,
+      "presentationType": "FRCE Feature Release",
+      "name": "Ninja Scroll 4K",
+      "filmUrl": "ninja-scroll-4k",
+      "isEvent": false,
+      "runtimeInMinutes": 94,
+      "smallPosterImageUrl": "https://mediafiles.cineplex.com/Central/Film/Posters/61994_130_193.jpg",
+      "mediumPosterImageUrl": "https://mediafiles.cineplex.com/Central/Film/Posters/61994_320_470.jpg",
+      "largePosterImageUrl": "https://mediafiles.cineplex.com/Central/Film/Posters/61994_768_1024.jpg",
+      "genres": [
+       "Anime"
+      ],
+      "experiences": [
+       {
+        "experienceTypes": [
+         "Regular"
+        ],
+        "order": 2,
+        "isCcEnabled": false,
+        "isDsEnabled": false,
+        "sessions": [
+         {
+          "seatMapUrl": "https://www.cineplex.com/en-Mobile/ticketing/preview?theatreId=7130&showtimeId=449734&dbox=False",
+          "ticketingUrl": "https://apis.cineplex.com/prod/ticketing/api/v1/routing/redirect-to-ticketing?VistaSessionId=449734&VISTAHOCategoryCode=0000000001&LocationId=7130&IsSeriesShowtime=False",
+          "ticketingRedesignUrl": "https://apis.cineplex.com/prod/ticketing/api/v1/routing/redirect-to-ticketing?VistaSessionId=449734&VISTAHOCategoryCode=0000000001&LocationId=7130&IsSeriesShowtime=False",
+          "getTicketingUrlApi": "https://apis.cineplex.com/prod/ticketing/api/v1/routing/ticketing-url?VistaSessionId=449734&VISTAHOCategoryCode=0000000001&LocationId=7130&IsSeriesShowtime=False",
+          "deeplinkUrl": "https://apis.cineplex.com/prod/cpx/theatrical/deeplink?s=449734&a=0000000001&l=7130&m=ninja-scroll-4k&ss=False",
+          "showtimeShareKey": "v:449734_t:7130_a:0000000001",
+          "vistaSessionId": 449734,
+          "areaCode": "0000000001",
+          "showStartDateTime": "2026-10-04T12:30:00",
+          "showStartDateTimeUtc": "2026-10-04T16:30:00Z",
+          "isInThePast": false,
+          "isReservedSeating": true,
+          "isShowtimeEnabledOnline": true,
+          "seatsRemaining": 90,
+          "isSoldOut": false,
+          "auditorium": "Aud #14"
+         }
+        ]
+       }
+      ],
+      "brightcoveVideoId": "",
+      "localRating": null,
+      "ratingDescription": null,
+      "warnings": null,
+      "languageCode": "EN",
+      "language": "English",
+      "subtitleLanguage": "",
+      "marketLanguageCode": "EN",
+      "detailPageUrl": "https://www.cineplex.com/Movie/ninja-scroll-4k",
+      "passesAllowed": true,
+      "hasPosterImage": true
+     },
+     {
+      "id": 61995,
+      "presentationType": "FRCE Feature Release",
+      "name": "Ninja Scroll 4K (Japanese w.e.s.t.)",
+      "filmUrl": "ninja-scroll-4k-japanese-west",
+      "isEvent": false,
+      "runtimeInMinutes": 94,
+      "smallPosterImageUrl": "https://mediafiles.cineplex.com/Central/Film/Posters/61995_130_193.jpg",
+      "mediumPosterImageUrl": "https://mediafiles.cineplex.com/Central/Film/Posters/61995_320_470.jpg",
+      "largePosterImageUrl": "https://mediafiles.cineplex.com/Central/Film/Posters/61995_768_1024.jpg",
+      "genres": [
+       "Anime"
+      ],
+      "experiences": [
+       {
+        "experienceTypes": [
+         "Regular"
+        ],
+        "order": 2,
+        "isCcEnabled": false,
+        "isDsEnabled": false,
+        "sessions": [
+         {
+          "seatMapUrl": "https://www.cineplex.com/en-Mobile/ticketing/preview?theatreId=7130&showtimeId=449735&dbox=False",
+          "ticketingUrl": "https://apis.cineplex.com/prod/ticketing/api/v1/routing/redirect-to-ticketing?VistaSessionId=449735&VISTAHOCategoryCode=0000000001&LocationId=7130&IsSeriesShowtime=False",
+          "ticketingRedesignUrl": "https://apis.cineplex.com/prod/ticketing/api/v1/routing/redirect-to-ticketing?VistaSessionId=449735&VISTAHOCategoryCode=0000000001&LocationId=7130&IsSeriesShowtime=False",
+          "getTicketingUrlApi": "https://apis.cineplex.com/prod/ticketing/api/v1/routing/ticketing-url?VistaSessionId=449735&VISTAHOCategoryCode=0000000001&LocationId=7130&IsSeriesShowtime=False",
+          "deeplinkUrl": "https://apis.cineplex.com/prod/cpx/theatrical/deeplink?s=449735&a=0000000001&l=7130&m=ninja-scroll-4k-japanese-west&ss=False",
+          "showtimeShareKey": "v:449735_t:7130_a:0000000001",
+          "vistaSessionId": 449735,
+          "areaCode": "0000000001",
+          "showStartDateTime": "2026-10-04T19:00:00",
+          "showStartDateTimeUtc": "2026-10-04T23:00:00Z",
+          "isInThePast": false,
+          "isReservedSeating": true,
+          "isShowtimeEnabledOnline": true,
+          "seatsRemaining": 83,
+          "isSoldOut": false,
+          "auditorium": "Aud #14"
+         }
+        ]
+       }
+      ],
+      "brightcoveVideoId": "",
+      "localRating": null,
+      "ratingDescription": null,
+      "warnings": null,
+      "languageCode": "JA",
+      "language": "Japanese",
+      "subtitleLanguage": "English",
+      "marketLanguageCode": "EN",
+      "detailPageUrl": "https://www.cineplex.com/Movie/ninja-scroll-4k-japanese-west",
+      "passesAllowed": true,
+      "hasPosterImage": true
+     }
+    ]
+   }
+  ]
+ }
+]

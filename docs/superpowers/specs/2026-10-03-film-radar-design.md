@@ -84,6 +84,8 @@ publish       提交当期数据 → 部署 Pages → 开 Issue
 | `assemble.py` | 程序侧规则与总数核对 | 候选、判定、卡片、上一期数据 | 当期数据（edition） | 无 |
 | `render.py` | 渲染 HTML | 全部 edition 数据 | `site/` 目录 | 无 |
 | `main.py` | 串联、双周门控、用量汇总、退出码 | 环境变量、配置 | 写文件、退出码 | 以上全部 |
+| `llm.py` | 唯一调用 anthropic SDK 的地方：`pause_turn` 续跑、异常归一 | 提示词、schema、工具 | 停止原因、文本、内容块、token 数 | Claude API |
+| `schema.py` | 极小的 JSON Schema 校验器，对模型输出在本地再校验一遍 | 值、schema | 通过或抛错 | 无 |
 
 ### 目录
 
@@ -139,7 +141,7 @@ Cineplex 没有公开 RSS，也没有官方开放 API。网站前端调用 `apis
 
 1. `GET /v2/movies?language=en` → 全量片单。用 v2 而不是 v1，因为只有 v2 带 `filmCategories` 字段，第 6 节区分"电影"与"非电影活动"要靠它。
 2. `GET /v1/theatres?language=en&latitude=..&longitude=..&range=..` → 全部影院及各自到中心点的距离（`location.distanceToOriginInMeters`）。取距离不超过 `radius_km` 的为 GTA 影院。
-3. 对每家 GTA 影院，先 `GET /v1/dates/bookable?language=en&locationId=<id>` 取该店已开放排片的日期，与"运行当天起 `showtime_days` 天"的窗口取交集；再对交集里的每一天 `GET /v1/showtimes?language=en&locationId=<id>&date=MM/DD/YYYY` → 该店当日在映影片。
+3. 对每家 GTA 影院，先 `GET /v1/dates/bookable?language=en&locationId=<id>` 取该店已开放排片的日期，与"运行当天起 `showtime_days` 天"的窗口取交集；再对交集里的每一天 `GET /v1/showtimes?language=en&locationId=<id>&date=MM/DD/YYYY` → 该店当日在映影片。没有排片的日期返回 HTTP 204、响应体为空，按"当天无排片"处理，不算错误。
 
    **`showtime_days` 必须不小于两期的间隔（14 天）。** 天天有场的普通片查 7 天就够，但经典重映、限定放映这类零星放映的片不行：窗口只有 7 天时，一场排在第 10 天的放映在本期查不到，到下一期又已经放完，两期都漏。先查可订票日期再查排片，是为了不对还没开放排片的日期发空请求。
 4. 过滤出候选后，对每部候选抓 `https://www.cineplex.com/movie/<filmUrl>`，解析 `__NEXT_DATA__` 里的 `props.pageProps.movieDetails` → 简介、导演、主演。
@@ -171,6 +173,10 @@ Cineplex 没有公开 RSS，也没有官方开放 API。网站前端调用 `apis
    - **近期上映**：`isComingSoon == true`，且上映日期晚于运行日期、不超过运行日期后 `coming_soon_days` 天（第 14 天算，第 15 天不算）。
 
 入选条件只决定进不进候选，不决定状态。状态取自 Cineplex 自己的标记，这样已开提前场但尚未正式上映的片不会被误标成在映。
+
+**是否活动场一律以片单为准。** 排片接口里每部片也带 `isEvent`，但它不可信：实测 `Ninja Scroll 4K` 在片单里是 `true`，在排片里是 `false`。
+
+**排片里出现、片单里却没有的影片 id 要报出来。** 按 id 去片单里找不到的片无法进入候选，如果不声不响地跳过，就是一部正在 GTA 放映的片从页面上消失。这些 id 记入当期数据的 `orphan_ids` 并在页脚显示。2026-10-03 实测没有这种情况。
 
 每部候选携带由程序计算的事实字段：
 
@@ -238,7 +244,7 @@ reason    str            一句中文理由
 
 ## 9. 精评（`review.py`）
 
-对每部入围片**各一次调用**，带联网搜索工具 `web_search_20260209`，`max_uses` 取 `search_max_uses`。一部失败不影响其他片。
+对每部入围片**两次调用**：第一次带联网搜索工具 `web_search_20260209`（`max_uses` 取 `search_max_uses`），写一份带来源的中文调查笔记；第二次不带工具，把笔记整理成结构化卡片。一部失败不影响其他片。
 
 输入：口味档案、该片的全部元数据、粗筛给的类别与理由。
 
@@ -269,7 +275,7 @@ sources          [{title, url}]
 
 模型的文字无法由程序逐句核对。程序能守住的是：**凡是可核对的声明都必须挂一个来源，而来源必须真的出现在那次调用的搜索结果里。**
 
-1. **来源白名单**：收集该次调用里所有搜索结果块返回的 URL，作为白名单（比较前去掉 fragment 与末尾斜杠）。
+1. **来源白名单**：取调查那次调用里全部**工具结果块**（类型以 `_tool_result` 结尾）中出现的网址，加上 API 附在文本块上的引用网址（比较前去掉 fragment、末尾斜杠与末尾标点，协议与域名转小写）。模型自己写的正文和它发出的搜索请求不算——取了等于让模型给自己作证。白名单为空即判该片精评失败。
 2. `sources` 里不在白名单的条目丢弃，卡片记 `sources_dropped` 计数。
 3. `scores` 里 `source_url` 不在白名单的条目丢弃。
 4. `title_zh_source` 不在白名单 → `title_zh` 置空。
@@ -279,14 +285,17 @@ sources          [{title, url}]
 
 提示词另外要求：评分数字只在搜索结果里出现时才写；中文片名只写搜得到的通行译名，不自行翻译；评论稀少时 `evidence` 填 `thin` 并在 `reception` 里明说依据是什么。
 
-### 联网搜索与结构化输出的组合
+### 为什么是两次调用
 
-实施时先验证同一请求里能否同时使用联网搜索工具和结构化输出（`output_config.format`）。
+最初的设计是先验证"同一请求里能否同时用联网搜索和结构化输出"，能就一次调用，不能再拆。写实施计划时改为**直接采用两次调用，不做那项验证**：
 
-- 能：一次调用完成。
-- 不能：拆成两次调用。第一次带搜索工具，输出带来源的自由文本；第二次不带工具，把第一次的文本整理成结构化卡片。白名单取自第一次调用的搜索结果块。
+- 结构化输出与引用不兼容，而搜索结果自带引用。两次调用在任何情况下都成立。
+- 计划里不必留一条"验证不通过就重写"的分支。
+- 调查与整理分开后，第二次调用只看笔记和白名单，接触不到网页原文，少一条被网页内容带偏的路。
 
-两种实现对 `review.py` 的调用方接口相同。
+代价是每部片多一次很便宜的调用（输入只有笔记和白名单）。
+
+第二次调用时把白名单原样列给模型，要求来源只能从中挑选；模型返回后程序再按白名单过一遍。
 
 ### 失败判定
 
@@ -320,6 +329,7 @@ sources          [{title, url}]
 - `settings` 快照（半径、窗口、名额）
 - `films`：每部候选一条，含 Cineplex 事实字段、粗筛判定、卡片或失败记录、最终去向（`must` / `ok` / `skip` / `review_failed`）及去向理由
 - `filtered_events`：被第 6 节规则 1 过滤掉的非电影活动，每条含片名与命中的类别。它们不是候选，不计入总数核对
+- `orphan_ids`：排片里出现但片单里没有的影片 id（见第 6 节）
 - `usage`：各次调用的输入输出 token 数与搜索次数；token 部分按配置里的单价折算出估算费用，搜索只记次数
 - `counts`：各去向的数量
 
@@ -343,7 +353,9 @@ sources          [{title, url}]
 
 **视觉**：灰白极简，手机优先（通知会在手机上点开），徽标文字不小于 10.5px。
 
-**安全**：所有来自模型和 Cineplex 的文本做 HTML 转义后再写入页面；链接只接受 `http`/`https` 协议。
+**安全**：所有来自模型和 Cineplex 的文本做 HTML 转义后再写入页面；链接只接受 `http`/`https` 协议。Issue 的标题和正文里，`@` 后面插一个零宽空格，避免模型写的文字通知到不相干的 GitHub 用户。
+
+**海报**：片单里约四成的片没有海报（实测 258 条里 97 条为空）。没有海报或海报地址失效时显示灰色占位块，不显示破图标。
 
 **产物**：`site/index.html`（最新一期）、`site/editions/<id>.html`（每期一页）。
 
@@ -420,6 +432,7 @@ sources          [{title, url}]
 | `model` | `claude-opus-5-5` | 模型 |
 | `price_input_per_mtok` / `price_output_per_mtok` | 4.00 / 20.00 | 费用估算用的 token 单价（美元） |
 | `timezone` | `America/Toronto` | 期号与日期计算所用时区 |
+| `page_url` | `https://akasha-r.github.io/film-radar/` | 写进 Issue 正文的页面地址 |
 
 ## 16. 测试策略
 
@@ -445,7 +458,9 @@ sources          [{title, url}]
 | 1 | GitHub Actions 的机房 IP 能访问 Cineplex 网站与接口 | **未验证**。只在用户本机测过 | 抓取改在本机 launchd 执行，把原始数据推到仓库，由 Actions 接手后半段 |
 | 2 | Actions 机器人开的 Issue 会给仓库所有者发邮件与 App 推送 | **未验证** | 改用邮件直发，或在 Issue 里 @ 用户 |
 | 3 | 用户的 GitHub 套餐允许公开仓库使用 Pages 与定时 Actions | 公开仓库免费可用，属常识但未在本账号实测 | 无需退路，首次部署即可确认 |
-| 4 | 联网搜索与结构化输出可在同一请求中使用 | **未验证** | 第 9 节已定义两次调用的实现 |
+| 4 | 联网搜索与结构化输出可在同一请求中使用 | **不再需要验证**：直接采用两次调用（第 9 节） | — |
+| 6 | `llm.py` 的请求形状（流式、结构化输出、拒答回退 beta、联网搜索工具）在真实 API 上可用 | **未验证**。写计划时本机没有 API 密钥 | 实施计划任务 4 的闸门 B 列了逐项处理规则 |
+| 7 | 联网搜索的真实响应里，结果网址落在工具结果块或引用里 | **未验证** | 任务 4 抓回一份真实响应做测试数据；提取不到就按真实形状改提取逻辑，不放宽白名单 |
 | 5 | 联网搜索对新片、华语片能搜到足够的评论 | **未验证** | `evidence` 机制已覆盖评论稀少的情况；若普遍稀少，需重新评估精评的价值 |
 
 已实测通过的前提见附录 A。
@@ -505,3 +520,12 @@ sources          [{title, url}]
 **详情页 `https://www.cineplex.com/movie/<filmUrl>`** → HTML 内 `<script id="__NEXT_DATA__">`，路径 `props.pageProps.movieDetails`。字段含 `id`、`parentFilmId`、`isParentFilm`、`name`、`synopsis`、`starring`、`director`、`producers`、`writers`、`genres`、`distributor`、`movieLanguage`、`movieSubtitleLanguage`、`releaseDate`、`runtimeInMinutes`、`isNowPlaying`、`isComingSoon`、`hasShowtimes`、`slug`。实测 `producers`、`writers` 可能为空串。
 
 **走不通的路**：首页 `__NEXT_DATA__` 里的 `initialPostersV2` 片单为空（片单由浏览器端调接口加载），不能靠解析首页 HTML 拿片单。`/movies`、`/now-playing` 等路径返回 404。
+
+**写实施计划时补充的实测（2026-10-03）**
+
+- `/v1/showtimes` 查一个没有排片的日期：返回 **HTTP 204、响应体为空**，不是空数组。
+- `/v1/showtimes` 不带 `filmId` 时会包含活动场影片；但其中每部片的 `isEvent` 不可信（`Ninja Scroll 4K` 两个版本在片单里是 `true`，在排片里都是 `false`）。排片里出现的 id 全部能在片单里找到。
+- `/v1/dates/bookable` 对影院 7130 返回 92 个日期，最远到 2027-06-26，且中间有空档。未来 14 天全部可订票。所以必须与排片窗口取交集，不能直接全查。
+- 片单 258 条里，24 个字段每条都有；类型不稳定的只有三个海报字段，97 条为 `null`。`releaseDate` 一律是 `YYYY-MM-DDT00:00:00`。只有 62 条带安省分级。
+- 首页的脚本标签 `src` 是绝对地址，形如 `https://www.cineplex.com/next-static-files/_next/static/chunks/….js`，共 15 个。
+- 40 公里边界：`Cineplex Odeon Ajax Cinemas` 37801.9 米在内，`Cineplex Odeon Aurora Cinemas` 40002.2 米在外。

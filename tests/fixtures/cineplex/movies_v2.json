@@ -1,0 +1,2008 @@
+{
+ "items": [
+  {
+   "filmCategories": [
+    "Comedy",
+    "Drama",
+    "Film Presentation"
+   ],
+   "id": 38459,
+   "releaseDate": "2026-10-02T00:00:00",
+   "name": "Digger",
+   "runtimeInMinutes": 129,
+   "filmUrl": "digger",
+   "smallPosterImageUrl": "https://mediafiles.cineplex.com/Central/Film/Posters/38459_130_193.jpg",
+   "mediumPosterImageUrl": "https://mediafiles.cineplex.com/Central/Film/Posters/38459_320_470.jpg",
+   "largePosterImageUrl": "https://mediafiles.cineplex.com/Central/Film/Posters/38459_768_1024.jpg",
+   "brightcoveVideoId": "ref:Digger EN Trailer 2",
+   "language": "English",
+   "subtitleLanguage": "",
+   "marketLanguageCode": "EN",
+   "genres": [
+    "Comedy",
+    "Drama"
+   ],
+   "ratings": [
+    {
+     "provinceCode": "AB",
+     "warnings": [
+      "Coarse Language"
+     ],
+     "rating": "14A",
+     "ratingDescription": "Suitable for viewing by persons 14 years of age or older."
+    },
+    {
+     "provinceCode": "BC",
+     "warnings": [
+      "Coarse Language"
+     ],
+     "rating": "14A",
+     "ratingDescription": "Suitable for persons 14 years of age or older."
+    },
+    {
+     "provinceCode": "MB",
+     "warnings": [
+      "Coarse Language"
+     ],
+     "rating": "14A",
+     "ratingDescription": "Suitable for persons 14 years of age and older."
+    },
+    {
+     "provinceCode": "NB",
+     "warnings": [
+      "Coarse Language"
+     ],
+     "rating": "14A",
+     "ratingDescription": "Suitable for persons 14+.  Persons under 14 must be accompanied by a person 19+."
+    },
+    {
+     "provinceCode": "NL",
+     "warnings": [
+      "Coarse Language"
+     ],
+     "rating": "14A",
+     "ratingDescription": "Suitable for persons 14+.  Persons under 14 must be accompanied by a person 19+."
+    },
+    {
+     "provinceCode": "NS",
+     "warnings": [
+      "Coarse Language"
+     ],
+     "rating": "14A",
+     "ratingDescription": "Suitable for persons 14+.  Persons under 14 must be accompanied by a person 19+."
+    },
+    {
+     "provinceCode": "ON",
+     "warnings": [
+      "Coarse Language"
+     ],
+     "rating": "14A",
+     "ratingDescription": "Suitable for persons 14 years of age or older. Persons under 14 must be accompanied by an adult."
+    },
+    {
+     "provinceCode": "PE",
+     "warnings": [
+      "Coarse Language"
+     ],
+     "rating": "14A",
+     "ratingDescription": "Suitable for persons 14+.  Persons under 14 must be accompanied by a person 19+."
+    },
+    {
+     "provinceCode": "QC",
+     "warnings": [
+      "Not Recommended for Young Children"
+     ],
+     "rating": "G",
+     "ratingDescription": "May be viewed by persons of all ages."
+    },
+    {
+     "provinceCode": "SK",
+     "warnings": [
+      "Coarse Language"
+     ],
+     "rating": "14A",
+     "ratingDescription": "Suitable for persons 14 years of age or older. Persons under 14 must be accompanied by an adult."
+    }
+   ],
+   "distributor": "Warner Bros Entertainment Canada Inc",
+   "detailPageUrl": "https://www.cineplex.com/Movie/digger",
+   "hasPosterImage": true,
+   "isNowPlaying": true,
+   "isRelevant": true,
+   "isComingSoon": false,
+   "hasShowtimes": true,
+   "isEvent": false,
+   "isEarlyAccess": false
+  },
+  {
+   "filmCategories": [
+    "Thriller",
+    "Film Presentation"
+   ],
+   "id": 38401,
+   "releaseDate": "2026-10-02T00:00:00",
+   "name": "Verity",
+   "runtimeInMinutes": 117,
+   "filmUrl": "verity",
+   "smallPosterImageUrl": "https://mediafiles.cineplex.com/Central/Film/Posters/38401_130_193.jpg",
+   "mediumPosterImageUrl": "https://mediafiles.cineplex.com/Central/Film/Posters/38401_320_470.jpg",
+   "largePosterImageUrl": "https://mediafiles.cineplex.com/Central/Film/Posters/38401_768_1024.jpg",
+   "brightcoveVideoId": "ref:Verity EN Trailer 4",
+   "language": "English",
+   "subtitleLanguage": "",
+   "marketLanguageCode": "EN",
+   "genres": [
+    "Thriller"
+   ],
+   "ratings": [
+    {
+     "provinceCode": "AB",
+     "warnings": [
+      "Sexual Content"
+     ],
+     "rating": "14A",
+     "ratingDescription": "Suitable for viewing by persons 14 years of age or older."
+    },
+    {
+     "provinceCode": "BC",
+     "warnings": [
+      "Sexually suggestive scenes"
+     ],
+     "rating": "14A",
+     "ratingDescription": "Suitable for persons 14 years of age or older."
+    },
+    {
+     "provinceCode": "MB",
+     "warnings": [
+      "Sexually suggestive scenes"
+     ],
+     "rating": "14A",
+     "ratingDescription": "Suitable for persons 14 years of age and older."
+    },
+    {
+     "provinceCode": "NB",
+     "warnings": [
+      "Disturbing Content",
+      "Sexual Content"
+     ],
+     "rating": "14A",
+     "ratingDescription": "Suitable for persons 14+.  Persons under 14 must be accompanied by a person 19+."
+    },
+    {
+     "provinceCode": "NL",
+     "warnings": [
+      "Disturbing Content",
+      "Sexual Content"
+     ],
+     "rating": "14A",
+     "ratingDescription": "Suitable for persons 14+.  Persons under 14 must be accompanied by a person 19+."
+    },
+    {
+     "provinceCode": "NS",
+     "warnings": [
+      "Disturbing Content",
+      "Sexual Content"
+     ],
+     "rating": "14A",
+     "ratingDescription": "Suitable for persons 14+.  Persons under 14 must be accompanied by a person 19+."
+    },
+    {
+     "provinceCode": "ON",
+     "warnings": [
+      "Sexually suggestive scenes"
+     ],
+     "rating": "14A",
+     "ratingDescription": "Suitable for persons 14 years of age or older. Persons under 14 must be accompanied by an adult."
+    },
+    {
+     "provinceCode": "PE",
+     "warnings": [
+      "Disturbing Content",
+      "Sexual Content"
+     ],
+     "rating": "14A",
+     "ratingDescription": "Suitable for persons 14+.  Persons under 14 must be accompanied by a person 19+."
+    },
+    {
+     "provinceCode": "QC",
+     "warnings": [
+      "Erotism"
+     ],
+     "rating": "13ans+",
+     "ratingDescription": "May be viewed by persons 13 years of age or over. Persons under 13 must be accompanied by an adult."
+    },
+    {
+     "provinceCode": "SK",
+     "warnings": [
+      "Sexually suggestive scenes"
+     ],
+     "rating": "14A",
+     "ratingDescription": "Suitable for persons 14 years of age or older. Persons under 14 must be accompanied by an adult."
+    }
+   ],
+   "distributor": "14051483 CANADA INC dba IMMINA FILMS",
+   "detailPageUrl": "https://www.cineplex.com/Movie/verity",
+   "hasPosterImage": true,
+   "isNowPlaying": true,
+   "isRelevant": true,
+   "isComingSoon": false,
+   "hasShowtimes": true,
+   "isEvent": false,
+   "isEarlyAccess": false
+  },
+  {
+   "filmCategories": [
+    "Horror",
+    "Film Presentation"
+   ],
+   "id": 37885,
+   "releaseDate": "2026-09-18T00:00:00",
+   "name": "Resident Evil",
+   "runtimeInMinutes": 94,
+   "filmUrl": "resident-evil-2026",
+   "smallPosterImageUrl": "https://mediafiles.cineplex.com/Central/Film/Posters/37885_130_193.jpg",
+   "mediumPosterImageUrl": "https://mediafiles.cineplex.com/Central/Film/Posters/37885_320_470.jpg",
+   "largePosterImageUrl": "https://mediafiles.cineplex.com/Central/Film/Posters/37885_768_1024.jpg",
+   "brightcoveVideoId": "ref:Resident Evil EN Trailer 4",
+   "language": "English",
+   "subtitleLanguage": "",
+   "marketLanguageCode": "EN",
+   "genres": [
+    "Horror"
+   ],
+   "ratings": [
+    {
+     "provinceCode": "AB",
+     "warnings": [
+      "Disturbing Content",
+      "Frightening Scenes",
+      "Gory violence"
+     ],
+     "rating": "14A",
+     "ratingDescription": "Suitable for viewing by persons 14 years of age or older."
+    },
+    {
+     "provinceCode": "BC",
+     "warnings": [
+      "Frightening Scenes",
+      "Coarse Language",
+      "Gory violence"
+     ],
+     "rating": "14A",
+     "ratingDescription": "Suitable for persons 14 years of age or older."
+    },
+    {
+     "provinceCode": "MB",
+     "warnings": [
+      "Frightening Scenes",
+      "Coarse Language",
+      "Gory violence"
+     ],
+     "rating": "14A",
+     "ratingDescription": "Suitable for persons 14 years of age and older."
+    },
+    {
+     "provinceCode": "NB",
+     "warnings": [
+      "Violence",
+      "Disturbing Content",
+      "Coarse Language"
+     ],
+     "rating": "14A",
+     "ratingDescription": "Suitable for persons 14+.  Persons under 14 must be accompanied by a person 19+."
+    },
+    {
+     "provinceCode": "NL",
+     "warnings": [
+      "Violence",
+      "Disturbing Content",
+      "Coarse Language"
+     ],
+     "rating": "14A",
+     "ratingDescription": "Suitable for persons 14+.  Persons under 14 must be accompanied by a person 19+."
+    },
+    {
+     "provinceCode": "NS",
+     "warnings": [
+      "Violence",
+      "Disturbing Content",
+      "Coarse Language"
+     ],
+     "rating": "14A",
+     "ratingDescription": "Suitable for persons 14+.  Persons under 14 must be accompanied by a person 19+."
+    },
+    {
+     "provinceCode": "ON",
+     "warnings": [
+      "Violence",
+      "Disturbing Content",
+      "Coarse Language"
+     ],
+     "rating": "14A",
+     "ratingDescription": "Suitable for persons 14 years of age or older. Persons under 14 must be accompanied by an adult."
+    },
+    {
+     "provinceCode": "PE",
+     "warnings": [
+      "Violence",
+      "Disturbing Content",
+      "Coarse Language"
+     ],
+     "rating": "14A",
+     "ratingDescription": "Suitable for persons 14+.  Persons under 14 must be accompanied by a person 19+."
+    },
+    {
+     "provinceCode": "QC",
+     "warnings": [
+      "Violence",
+      "Horror"
+     ],
+     "rating": "13ans+",
+     "ratingDescription": "May be viewed by persons 13 years of age or over. Persons under 13 must be accompanied by an adult."
+    },
+    {
+     "provinceCode": "SK",
+     "warnings": [
+      "Violence",
+      "Disturbing Content",
+      "Coarse Language"
+     ],
+     "rating": "14A",
+     "ratingDescription": "Suitable for persons 14 years of age or older. Persons under 14 must be accompanied by an adult."
+    }
+   ],
+   "distributor": "Sony Pictures Entertainment Canada Ltd.",
+   "detailPageUrl": "https://www.cineplex.com/Movie/resident-evil-2026",
+   "hasPosterImage": true,
+   "isNowPlaying": true,
+   "isRelevant": true,
+   "isComingSoon": false,
+   "hasShowtimes": true,
+   "isEvent": false,
+   "isEarlyAccess": false
+  },
+  {
+   "filmCategories": [
+    "Film Presentation"
+   ],
+   "id": 61548,
+   "releaseDate": "2026-09-25T00:00:00",
+   "name": "Heart of the Beast",
+   "runtimeInMinutes": 101,
+   "filmUrl": "heart-of-the-beast",
+   "smallPosterImageUrl": "https://mediafiles.cineplex.com/Central/Film/Posters/61548_130_193.jpg",
+   "mediumPosterImageUrl": "https://mediafiles.cineplex.com/Central/Film/Posters/61548_320_470.jpg",
+   "largePosterImageUrl": "https://mediafiles.cineplex.com/Central/Film/Posters/61548_768_1024.jpg",
+   "brightcoveVideoId": "ref:Heart of the Beast EN Trailer 1",
+   "language": "English",
+   "subtitleLanguage": "",
+   "marketLanguageCode": "EN",
+   "genres": [],
+   "ratings": [
+    {
+     "provinceCode": "AB",
+     "warnings": [
+      "Not Recommended for Young Children"
+     ],
+     "rating": "PG",
+     "ratingDescription": "Parental guidance is advised."
+    },
+    {
+     "provinceCode": "BC",
+     "warnings": [
+      "Violence",
+      "Coarse Language"
+     ],
+     "rating": "PG",
+     "ratingDescription": "Parental guidance advised."
+    },
+    {
+     "provinceCode": "MB",
+     "warnings": [
+      "Violence",
+      "Coarse Language"
+     ],
+     "rating": "PG",
+     "ratingDescription": "Parental guidance advised."
+    },
+    {
+     "provinceCode": "NB",
+     "warnings": [
+      "Violence",
+      "Mature Theme"
+     ],
+     "rating": "PG",
+     "ratingDescription": "Parental guidance is advised."
+    },
+    {
+     "provinceCode": "NL",
+     "warnings": [
+      "Violence",
+      "Mature Theme"
+     ],
+     "rating": "PG",
+     "ratingDescription": "Parental guidance is advised."
+    },
+    {
+     "provinceCode": "NS",
+     "warnings": [
+      "Violence",
+      "Mature Theme"
+     ],
+     "rating": "PG",
+     "ratingDescription": "Parental guidance is advised."
+    },
+    {
+     "provinceCode": "ON",
+     "warnings": [
+      "Violence",
+      "Coarse Language"
+     ],
+     "rating": "PG",
+     "ratingDescription": "Parental guidance advised."
+    },
+    {
+     "provinceCode": "PE",
+     "warnings": [
+      "Violence",
+      "Mature Theme"
+     ],
+     "rating": "PG",
+     "ratingDescription": "Parental guidance is advised."
+    },
+    {
+     "provinceCode": "QC",
+     "warnings": [],
+     "rating": "G",
+     "ratingDescription": "May be viewed by persons of all ages."
+    },
+    {
+     "provinceCode": "SK",
+     "warnings": [
+      "Violence",
+      "Coarse Language"
+     ],
+     "rating": "PG",
+     "ratingDescription": "Parental guidance advised."
+    }
+   ],
+   "distributor": "PARAMOUNT ENTERTAINMENT CANADA ULC. ",
+   "detailPageUrl": "https://www.cineplex.com/Movie/heart-of-the-beast",
+   "hasPosterImage": true,
+   "isNowPlaying": true,
+   "isRelevant": true,
+   "isComingSoon": false,
+   "hasShowtimes": true,
+   "isEvent": false,
+   "isEarlyAccess": false
+  },
+  {
+   "filmCategories": [
+    "Thriller",
+    "Suspense",
+    "Film Presentation"
+   ],
+   "id": 61936,
+   "releaseDate": "2026-09-25T00:00:00",
+   "name": "Primetime",
+   "runtimeInMinutes": 110,
+   "filmUrl": "primetime",
+   "smallPosterImageUrl": "https://mediafiles.cineplex.com/Central/Film/Posters/61936_130_193.jpg",
+   "mediumPosterImageUrl": "https://mediafiles.cineplex.com/Central/Film/Posters/61936_320_470.jpg",
+   "largePosterImageUrl": "https://mediafiles.cineplex.com/Central/Film/Posters/61936_768_1024.jpg",
+   "brightcoveVideoId": "ref:Primetime EN Trailer 1",
+   "language": "English",
+   "subtitleLanguage": "",
+   "marketLanguageCode": "EN",
+   "genres": [
+    "Thriller",
+    "Suspense"
+   ],
+   "ratings": [
+    {
+     "provinceCode": "AB",
+     "warnings": [
+      "Not Recommended for Children",
+      "Nudity",
+      "Mature Subject Matter"
+     ],
+     "rating": "14A",
+     "ratingDescription": "Suitable for viewing by persons 14 years of age or older."
+    },
+    {
+     "provinceCode": "BC",
+     "warnings": [
+      "Nudity",
+      "Coarse & sexual language"
+     ],
+     "rating": "14A",
+     "ratingDescription": "Suitable for persons 14 years of age or older."
+    },
+    {
+     "provinceCode": "MB",
+     "warnings": [
+      "Nudity",
+      "Coarse & sexual language"
+     ],
+     "rating": "14A",
+     "ratingDescription": "Suitable for persons 14 years of age and older."
+    },
+    {
+     "provinceCode": "NB",
+     "warnings": [
+      "Sexual Content",
+      "Coarse Language"
+     ],
+     "rating": "14A",
+     "ratingDescription": "Suitable for persons 14+.  Persons under 14 must be accompanied by a person 19+."
+    },
+    {
+     "provinceCode": "NL",
+     "warnings": [
+      "Sexual Content",
+      "Coarse Language"
+     ],
+     "rating": "14A",
+     "ratingDescription": "Suitable for persons 14+.  Persons under 14 must be accompanied by a person 19+."
+    },
+    {
+     "provinceCode": "NS",
+     "warnings": [
+      "Sexual Content",
+      "Coarse Language"
+     ],
+     "rating": "14A",
+     "ratingDescription": "Suitable for persons 14+.  Persons under 14 must be accompanied by a person 19+."
+    },
+    {
+     "provinceCode": "ON",
+     "warnings": [
+      "Nudity",
+      "Coarse & sexual language"
+     ],
+     "rating": "14A",
+     "ratingDescription": "Suitable for persons 14 years of age or older. Persons under 14 must be accompanied by an adult."
+    },
+    {
+     "provinceCode": "PE",
+     "warnings": [
+      "Sexual Content",
+      "Coarse Language"
+     ],
+     "rating": "14A",
+     "ratingDescription": "Suitable for persons 14+.  Persons under 14 must be accompanied by a person 19+."
+    },
+    {
+     "provinceCode": "QC",
+     "warnings": [],
+     "rating": "13ans+",
+     "ratingDescription": "May be viewed by persons 13 years of age or over. Persons under 13 must be accompanied by an adult."
+    },
+    {
+     "provinceCode": "SK",
+     "warnings": [
+      "Nudity",
+      "Coarse & sexual language"
+     ],
+     "rating": "14A",
+     "ratingDescription": "Suitable for persons 14 years of age or older. Persons under 14 must be accompanied by an adult."
+    }
+   ],
+   "distributor": "ELEVATION PICTURES CORP.",
+   "detailPageUrl": "https://www.cineplex.com/Movie/primetime",
+   "hasPosterImage": true,
+   "isNowPlaying": true,
+   "isRelevant": true,
+   "isComingSoon": false,
+   "hasShowtimes": true,
+   "isEvent": false,
+   "isEarlyAccess": false
+  },
+  {
+   "filmCategories": [
+    "Horror",
+    "Suspense",
+    "Film Presentation"
+   ],
+   "id": 61889,
+   "releaseDate": "2026-10-02T00:00:00",
+   "name": "Beware Boiúna",
+   "runtimeInMinutes": 104,
+   "filmUrl": "beware-boiuna",
+   "smallPosterImageUrl": "https://mediafiles.cineplex.com/Central/Film/Posters/61889_130_193.jpg",
+   "mediumPosterImageUrl": "https://mediafiles.cineplex.com/Central/Film/Posters/61889_320_470.jpg",
+   "largePosterImageUrl": "https://mediafiles.cineplex.com/Central/Film/Posters/61889_768_1024.jpg",
+   "brightcoveVideoId": "ref:Beware Boiuna EN Trailer 1",
+   "language": "English",
+   "subtitleLanguage": "",
+   "marketLanguageCode": "EN",
+   "genres": [
+    "Horror",
+    "Suspense"
+   ],
+   "ratings": [
+    {
+     "provinceCode": "AB",
+     "warnings": [
+      "Violence",
+      "Frightening Scenes"
+     ],
+     "rating": "14A",
+     "ratingDescription": "Suitable for viewing by persons 14 years of age or older."
+    },
+    {
+     "provinceCode": "BC",
+     "warnings": [
+      "Violence",
+      "Frightening Scenes"
+     ],
+     "rating": "14A",
+     "ratingDescription": "Suitable for persons 14 years of age or older."
+    },
+    {
+     "provinceCode": "MB",
+     "warnings": [
+      "Violence",
+      "Frightening Scenes"
+     ],
+     "rating": "14A",
+     "ratingDescription": "Suitable for persons 14 years of age and older."
+    },
+    {
+     "provinceCode": "NB",
+     "warnings": [
+      "Violence",
+      "Gory Scenes"
+     ],
+     "rating": "14A",
+     "ratingDescription": "Suitable for persons 14+.  Persons under 14 must be accompanied by a person 19+."
+    },
+    {
+     "provinceCode": "NL",
+     "warnings": [
+      "Violence",
+      "Gory Scenes"
+     ],
+     "rating": "14A",
+     "ratingDescription": "Suitable for persons 14+.  Persons under 14 must be accompanied by a person 19+."
+    },
+    {
+     "provinceCode": "NS",
+     "warnings": [
+      "Violence",
+      "Gory Scenes"
+     ],
+     "rating": "14A",
+     "ratingDescription": "Suitable for persons 14+.  Persons under 14 must be accompanied by a person 19+."
+    },
+    {
+     "provinceCode": "ON",
+     "warnings": [
+      "Violence",
+      "Frightening Scenes"
+     ],
+     "rating": "14A",
+     "ratingDescription": "Suitable for persons 14 years of age or older. Persons under 14 must be accompanied by an adult."
+    },
+    {
+     "provinceCode": "PE",
+     "warnings": [
+      "Violence",
+      "Gory Scenes"
+     ],
+     "rating": "14A",
+     "ratingDescription": "Suitable for persons 14+.  Persons under 14 must be accompanied by a person 19+."
+    },
+    {
+     "provinceCode": "QC",
+     "warnings": [
+      "Violence",
+      "Horror"
+     ],
+     "rating": "13ans+",
+     "ratingDescription": "May be viewed by persons 13 years of age or over. Persons under 13 must be accompanied by an adult."
+    },
+    {
+     "provinceCode": "SK",
+     "warnings": [
+      "Violence",
+      "Frightening Scenes"
+     ],
+     "rating": "14A",
+     "ratingDescription": "Suitable for persons 14 years of age or older. Persons under 14 must be accompanied by an adult."
+    }
+   ],
+   "distributor": "CINEPLEX PICTURES",
+   "detailPageUrl": "https://www.cineplex.com/Movie/beware-boiuna",
+   "hasPosterImage": true,
+   "isNowPlaying": true,
+   "isRelevant": true,
+   "isComingSoon": false,
+   "hasShowtimes": true,
+   "isEvent": false,
+   "isEarlyAccess": false
+  },
+  {
+   "filmCategories": [
+    "Film Presentation"
+   ],
+   "id": 62083,
+   "releaseDate": "2026-10-02T00:00:00",
+   "name": "Sacrifice",
+   "runtimeInMinutes": 104,
+   "filmUrl": "sacrifice",
+   "smallPosterImageUrl": "https://mediafiles.cineplex.com/Central/Film/Posters/62083_130_193.jpg",
+   "mediumPosterImageUrl": "https://mediafiles.cineplex.com/Central/Film/Posters/62083_320_470.jpg",
+   "largePosterImageUrl": "https://mediafiles.cineplex.com/Central/Film/Posters/62083_768_1024.jpg",
+   "brightcoveVideoId": "ref:Sacrifice EN Trailer 1",
+   "language": "English",
+   "subtitleLanguage": "",
+   "marketLanguageCode": "EN",
+   "genres": [],
+   "ratings": [
+    {
+     "provinceCode": "AB",
+     "warnings": [
+      "Coarse Language"
+     ],
+     "rating": "14A",
+     "ratingDescription": "Suitable for viewing by persons 14 years of age or older."
+    },
+    {
+     "provinceCode": "BC",
+     "warnings": [
+      "Violence",
+      "Coarse Language"
+     ],
+     "rating": "14A",
+     "ratingDescription": "Suitable for persons 14 years of age or older."
+    },
+    {
+     "provinceCode": "MB",
+     "warnings": [
+      "Violence",
+      "Coarse Language"
+     ],
+     "rating": "14A",
+     "ratingDescription": "Suitable for persons 14 years of age and older."
+    },
+    {
+     "provinceCode": "NB",
+     "warnings": [
+      "Violence",
+      "Coarse Language"
+     ],
+     "rating": "14A",
+     "ratingDescription": "Suitable for persons 14+.  Persons under 14 must be accompanied by a person 19+."
+    },
+    {
+     "provinceCode": "NL",
+     "warnings": [
+      "Violence",
+      "Coarse Language"
+     ],
+     "rating": "14A",
+     "ratingDescription": "Suitable for persons 14+.  Persons under 14 must be accompanied by a person 19+."
+    },
+    {
+     "provinceCode": "NS",
+     "warnings": [
+      "Violence",
+      "Coarse Language"
+     ],
+     "rating": "14A",
+     "ratingDescription": "Suitable for persons 14+.  Persons under 14 must be accompanied by a person 19+."
+    },
+    {
+     "provinceCode": "ON",
+     "warnings": [
+      "Violence",
+      "Coarse Language"
+     ],
+     "rating": "14A",
+     "ratingDescription": "Suitable for persons 14 years of age or older. Persons under 14 must be accompanied by an adult."
+    },
+    {
+     "provinceCode": "PE",
+     "warnings": [
+      "Violence",
+      "Coarse Language"
+     ],
+     "rating": "14A",
+     "ratingDescription": "Suitable for persons 14+.  Persons under 14 must be accompanied by a person 19+."
+    },
+    {
+     "provinceCode": "QC",
+     "warnings": [],
+     "rating": "STC",
+     "ratingDescription": "Subject to classification."
+    },
+    {
+     "provinceCode": "SK",
+     "warnings": [
+      "Violence",
+      "Coarse Language"
+     ],
+     "rating": "14A",
+     "ratingDescription": "Suitable for persons 14 years of age or older. Persons under 14 must be accompanied by an adult."
+    }
+   ],
+   "distributor": "ELEVATION PICTURES CORP.",
+   "detailPageUrl": "https://www.cineplex.com/Movie/sacrifice",
+   "hasPosterImage": true,
+   "isNowPlaying": true,
+   "isRelevant": true,
+   "isComingSoon": false,
+   "hasShowtimes": true,
+   "isEvent": false,
+   "isEarlyAccess": false
+  },
+  {
+   "filmCategories": [
+    "Action",
+    "Film Presentation"
+   ],
+   "id": 60710,
+   "releaseDate": "2026-11-06T00:00:00",
+   "name": "Godzilla Minus Zero (Japanese w/e.s.t.)",
+   "runtimeInMinutes": 135,
+   "filmUrl": "godzilla-minus-zero-japanese-west",
+   "smallPosterImageUrl": "https://mediafiles.cineplex.com/Central/Film/Posters/60710_130_193.jpg",
+   "mediumPosterImageUrl": "https://mediafiles.cineplex.com/Central/Film/Posters/60710_320_470.jpg",
+   "largePosterImageUrl": "https://mediafiles.cineplex.com/Central/Film/Posters/60710_768_1024.jpg",
+   "brightcoveVideoId": "ref:Godzilla Minus Zero EN Trailer 1",
+   "language": "Japanese",
+   "subtitleLanguage": "English",
+   "marketLanguageCode": "EN",
+   "genres": [
+    "Action"
+   ],
+   "ratings": [],
+   "distributor": "CINEPLEX PICTURES",
+   "detailPageUrl": "https://www.cineplex.com/Movie/godzilla-minus-zero-japanese-west",
+   "hasPosterImage": true,
+   "isNowPlaying": false,
+   "isRelevant": true,
+   "isComingSoon": true,
+   "hasShowtimes": false,
+   "isEvent": false,
+   "isEarlyAccess": false
+  },
+  {
+   "filmCategories": [
+    "Drama",
+    "Mystery",
+    "Television Event",
+    "Event"
+   ],
+   "id": 62088,
+   "releaseDate": "2026-11-23T00:00:00",
+   "name": "Doctor Who: The Satan Pit",
+   "runtimeInMinutes": 120,
+   "filmUrl": "doctor-who-the-satan-pit",
+   "smallPosterImageUrl": "https://mediafiles.cineplex.com/Central/Film/Posters/62088_130_193.jpg",
+   "mediumPosterImageUrl": "https://mediafiles.cineplex.com/Central/Film/Posters/62088_320_470.jpg",
+   "largePosterImageUrl": "https://mediafiles.cineplex.com/Central/Film/Posters/62088_768_1024.jpg",
+   "brightcoveVideoId": "",
+   "language": "English",
+   "subtitleLanguage": "",
+   "marketLanguageCode": "EN",
+   "genres": [
+    "Drama",
+    "Mystery"
+   ],
+   "ratings": [],
+   "distributor": "CinemaLive Pty Limited.",
+   "detailPageUrl": "https://www.cineplex.com/Movie/doctor-who-the-satan-pit",
+   "hasPosterImage": true,
+   "isNowPlaying": false,
+   "isRelevant": true,
+   "isComingSoon": true,
+   "hasShowtimes": true,
+   "isEvent": true,
+   "isEarlyAccess": false
+  },
+  {
+   "filmCategories": [
+    "Anime",
+    "FRCE Feature Release",
+    "Event"
+   ],
+   "id": 61994,
+   "releaseDate": "2026-10-04T00:00:00",
+   "name": "Ninja Scroll 4K",
+   "runtimeInMinutes": 94,
+   "filmUrl": "ninja-scroll-4k",
+   "smallPosterImageUrl": "https://mediafiles.cineplex.com/Central/Film/Posters/61994_130_193.jpg",
+   "mediumPosterImageUrl": "https://mediafiles.cineplex.com/Central/Film/Posters/61994_320_470.jpg",
+   "largePosterImageUrl": "https://mediafiles.cineplex.com/Central/Film/Posters/61994_768_1024.jpg",
+   "brightcoveVideoId": "",
+   "language": "English",
+   "subtitleLanguage": "",
+   "marketLanguageCode": "EN",
+   "genres": [
+    "Anime"
+   ],
+   "ratings": [],
+   "distributor": "Iconic Events Releasing LLC",
+   "detailPageUrl": "https://www.cineplex.com/Movie/ninja-scroll-4k",
+   "hasPosterImage": true,
+   "isNowPlaying": false,
+   "isRelevant": true,
+   "isComingSoon": true,
+   "hasShowtimes": true,
+   "isEvent": true,
+   "isEarlyAccess": false
+  },
+  {
+   "filmCategories": [
+    "Anime",
+    "FRCE Feature Release",
+    "Event"
+   ],
+   "id": 61995,
+   "releaseDate": "2026-10-04T00:00:00",
+   "name": "Ninja Scroll 4K (Japanese w.e.s.t.)",
+   "runtimeInMinutes": 94,
+   "filmUrl": "ninja-scroll-4k-japanese-west",
+   "smallPosterImageUrl": "https://mediafiles.cineplex.com/Central/Film/Posters/61995_130_193.jpg",
+   "mediumPosterImageUrl": "https://mediafiles.cineplex.com/Central/Film/Posters/61995_320_470.jpg",
+   "largePosterImageUrl": "https://mediafiles.cineplex.com/Central/Film/Posters/61995_768_1024.jpg",
+   "brightcoveVideoId": "",
+   "language": "Japanese",
+   "subtitleLanguage": "English",
+   "marketLanguageCode": "EN",
+   "genres": [
+    "Anime"
+   ],
+   "ratings": [],
+   "distributor": "Iconic Events Releasing LLC",
+   "detailPageUrl": "https://www.cineplex.com/Movie/ninja-scroll-4k-japanese-west",
+   "hasPosterImage": true,
+   "isNowPlaying": false,
+   "isRelevant": true,
+   "isComingSoon": true,
+   "hasShowtimes": true,
+   "isEvent": true,
+   "isEarlyAccess": false
+  },
+  {
+   "filmCategories": [
+    "Anime",
+    "FRCE Feature Release",
+    "Event"
+   ],
+   "id": 62180,
+   "releaseDate": "2026-11-16T00:00:00",
+   "name": "Dive in Wonderland (Japanese w.e.s.t)",
+   "runtimeInMinutes": 97,
+   "filmUrl": "dive-in-wonderland-japanese-west",
+   "smallPosterImageUrl": "https://mediafiles.cineplex.com/Central/Film/Posters/62180_130_193.jpg",
+   "mediumPosterImageUrl": "https://mediafiles.cineplex.com/Central/Film/Posters/62180_320_470.jpg",
+   "largePosterImageUrl": "https://mediafiles.cineplex.com/Central/Film/Posters/62180_768_1024.jpg",
+   "brightcoveVideoId": "",
+   "language": "Japanese",
+   "subtitleLanguage": "English",
+   "marketLanguageCode": "EN",
+   "genres": [
+    "Anime"
+   ],
+   "ratings": [],
+   "distributor": "Sony Pictures Entertainment Canada Ltd.",
+   "detailPageUrl": "https://www.cineplex.com/Movie/dive-in-wonderland-japanese-west",
+   "hasPosterImage": true,
+   "isNowPlaying": false,
+   "isRelevant": true,
+   "isComingSoon": true,
+   "hasShowtimes": true,
+   "isEvent": true,
+   "isEarlyAccess": false
+  },
+  {
+   "filmCategories": [
+    "Anime",
+    "Film Presentation"
+   ],
+   "id": 62112,
+   "releaseDate": "2026-10-19T00:00:00",
+   "name": "Yuri!!! on ICE 10th Anniversary (Japanese w.e.s.t)",
+   "runtimeInMinutes": 120,
+   "filmUrl": "yuri-on-ice-10th-anniversary-japanese-west",
+   "smallPosterImageUrl": "https://mediafiles.cineplex.com/Central/Film/Posters/62112_130_193.jpg",
+   "mediumPosterImageUrl": "https://mediafiles.cineplex.com/Central/Film/Posters/62112_320_470.jpg",
+   "largePosterImageUrl": "https://mediafiles.cineplex.com/Central/Film/Posters/62112_768_1024.jpg",
+   "brightcoveVideoId": "",
+   "language": "Japanese",
+   "subtitleLanguage": "English",
+   "marketLanguageCode": "EN",
+   "genres": [
+    "Anime"
+   ],
+   "ratings": [],
+   "distributor": "Sony Pictures Entertainment Canada Ltd.",
+   "detailPageUrl": "https://www.cineplex.com/Movie/yuri-on-ice-10th-anniversary-japanese-west",
+   "hasPosterImage": true,
+   "isNowPlaying": false,
+   "isRelevant": true,
+   "isComingSoon": true,
+   "hasShowtimes": true,
+   "isEvent": false,
+   "isEarlyAccess": false
+  },
+  {
+   "filmCategories": [
+    "Horror",
+    "FRCE Feature Release",
+    "Event"
+   ],
+   "id": 62181,
+   "releaseDate": "2026-10-15T00:00:00",
+   "name": "Fresh Meat",
+   "runtimeInMinutes": 110,
+   "filmUrl": "fresh-meat",
+   "smallPosterImageUrl": "https://mediafiles.cineplex.com/Central/Film/Posters/62181_130_193.jpg",
+   "mediumPosterImageUrl": "https://mediafiles.cineplex.com/Central/Film/Posters/62181_320_470.jpg",
+   "largePosterImageUrl": "https://mediafiles.cineplex.com/Central/Film/Posters/62181_768_1024.jpg",
+   "brightcoveVideoId": "ref:Fresh Meat",
+   "language": "English",
+   "subtitleLanguage": "",
+   "marketLanguageCode": "EN",
+   "genres": [
+    "Horror"
+   ],
+   "ratings": [],
+   "distributor": "DeVuono Releasing ",
+   "detailPageUrl": "https://www.cineplex.com/Movie/fresh-meat",
+   "hasPosterImage": true,
+   "isNowPlaying": false,
+   "isRelevant": true,
+   "isComingSoon": true,
+   "hasShowtimes": true,
+   "isEvent": true,
+   "isEarlyAccess": false
+  },
+  {
+   "filmCategories": [
+    "Comedy",
+    "Drama",
+    "Film Presentation"
+   ],
+   "id": 62194,
+   "releaseDate": "2026-10-05T00:00:00",
+   "name": "Digger (Dubbed in Spanish)",
+   "runtimeInMinutes": 129,
+   "filmUrl": "digger-dubbed-in-spanish",
+   "smallPosterImageUrl": "https://mediafiles.cineplex.com/Central/Film/Posters/62194_130_193.jpg",
+   "mediumPosterImageUrl": "https://mediafiles.cineplex.com/Central/Film/Posters/62194_320_470.jpg",
+   "largePosterImageUrl": "https://mediafiles.cineplex.com/Central/Film/Posters/62194_768_1024.jpg",
+   "brightcoveVideoId": "",
+   "language": "Spanish (Dubbed)",
+   "subtitleLanguage": "",
+   "marketLanguageCode": "EN",
+   "genres": [
+    "Comedy",
+    "Drama"
+   ],
+   "ratings": [
+    {
+     "provinceCode": "AB",
+     "warnings": [],
+     "rating": "STC",
+     "ratingDescription": "Subject to Classification"
+    },
+    {
+     "provinceCode": "BC",
+     "warnings": [],
+     "rating": "STC",
+     "ratingDescription": "Subject to classification"
+    },
+    {
+     "provinceCode": "MB",
+     "warnings": [],
+     "rating": "STC",
+     "ratingDescription": "Subject to classification."
+    },
+    {
+     "provinceCode": "NB",
+     "warnings": [],
+     "rating": "STC",
+     "ratingDescription": "Subject to classification"
+    },
+    {
+     "provinceCode": "NL",
+     "warnings": [],
+     "rating": "STC",
+     "ratingDescription": "Subject to classification."
+    },
+    {
+     "provinceCode": "NS",
+     "warnings": [],
+     "rating": "STC",
+     "ratingDescription": "Subject to classification"
+    },
+    {
+     "provinceCode": "ON",
+     "warnings": [
+      "Coarse Language"
+     ],
+     "rating": "14A",
+     "ratingDescription": "Suitable for persons 14 years of age or older. Persons under 14 must be accompanied by an adult."
+    },
+    {
+     "provinceCode": "PE",
+     "warnings": [],
+     "rating": "STC",
+     "ratingDescription": "Subject to classification."
+    },
+    {
+     "provinceCode": "QC",
+     "warnings": [
+      "Not Recommended for Young Children"
+     ],
+     "rating": "G",
+     "ratingDescription": "May be viewed by persons of all ages."
+    },
+    {
+     "provinceCode": "SK",
+     "warnings": [],
+     "rating": "STC",
+     "ratingDescription": "Subject to classification."
+    }
+   ],
+   "distributor": "Warner Bros Entertainment Canada Inc",
+   "detailPageUrl": "https://www.cineplex.com/Movie/digger-dubbed-in-spanish",
+   "hasPosterImage": true,
+   "isNowPlaying": false,
+   "isRelevant": true,
+   "isComingSoon": true,
+   "hasShowtimes": true,
+   "isEvent": false,
+   "isEarlyAccess": false
+  },
+  {
+   "filmCategories": [
+    "Comedy",
+    "International",
+    "Film Presentation"
+   ],
+   "id": 61890,
+   "releaseDate": "2026-08-14T00:00:00",
+   "name": "All Wishes Come True! (Mandarin w/Chinese and e.s.t.)",
+   "runtimeInMinutes": 143,
+   "filmUrl": "all-wishes-come-true-mandarin-wchi",
+   "smallPosterImageUrl": "https://mediafiles.cineplex.com/Central/Film/Posters/61890_130_193.jpg",
+   "mediumPosterImageUrl": "https://mediafiles.cineplex.com/Central/Film/Posters/61890_320_470.jpg",
+   "largePosterImageUrl": "https://mediafiles.cineplex.com/Central/Film/Posters/61890_768_1024.jpg",
+   "brightcoveVideoId": "",
+   "language": "Chinese",
+   "subtitleLanguage": "English",
+   "marketLanguageCode": "EN",
+   "genres": [
+    "Comedy",
+    "International"
+   ],
+   "ratings": [
+    {
+     "provinceCode": "AB",
+     "warnings": [
+      "Violence"
+     ],
+     "rating": "PG",
+     "ratingDescription": "Parental guidance is advised."
+    },
+    {
+     "provinceCode": "BC",
+     "warnings": [
+      "Violence"
+     ],
+     "rating": "PG",
+     "ratingDescription": "Parental guidance advised."
+    },
+    {
+     "provinceCode": "MB",
+     "warnings": [
+      "Violence"
+     ],
+     "rating": "PG",
+     "ratingDescription": "Parental guidance advised."
+    },
+    {
+     "provinceCode": "NB",
+     "warnings": [
+      "Not Recommended for Young Children"
+     ],
+     "rating": "PG",
+     "ratingDescription": "Parental guidance is advised."
+    },
+    {
+     "provinceCode": "NL",
+     "warnings": [
+      "Not Recommended for Young Children"
+     ],
+     "rating": "PG",
+     "ratingDescription": "Parental guidance is advised."
+    },
+    {
+     "provinceCode": "NS",
+     "warnings": [
+      "Not Recommended for Young Children"
+     ],
+     "rating": "PG",
+     "ratingDescription": "Parental guidance is advised."
+    },
+    {
+     "provinceCode": "ON",
+     "warnings": [
+      "Violence"
+     ],
+     "rating": "PG",
+     "ratingDescription": "Parental guidance advised."
+    },
+    {
+     "provinceCode": "PE",
+     "warnings": [
+      "Not Recommended for Young Children"
+     ],
+     "rating": "PG",
+     "ratingDescription": "Parental guidance is advised."
+    },
+    {
+     "provinceCode": "QC",
+     "warnings": [
+      "Not Recommended for Young Children"
+     ],
+     "rating": "G",
+     "ratingDescription": "May be viewed by persons of all ages."
+    },
+    {
+     "provinceCode": "SK",
+     "warnings": [
+      "Violence"
+     ],
+     "rating": "PG",
+     "ratingDescription": "Parental guidance advised."
+    }
+   ],
+   "distributor": "CMC FILMS INC.",
+   "detailPageUrl": "https://www.cineplex.com/Movie/all-wishes-come-true-mandarin-wchi",
+   "hasPosterImage": true,
+   "isNowPlaying": true,
+   "isRelevant": true,
+   "isComingSoon": false,
+   "hasShowtimes": true,
+   "isEvent": false,
+   "isEarlyAccess": false
+  },
+  {
+   "filmCategories": [
+    "Adventure",
+    "Comedy",
+    "Family",
+    "Science Fiction",
+    "Classic",
+    "Film Presentation"
+   ],
+   "id": 60161,
+   "releaseDate": "2025-10-31T00:00:00",
+   "name": "Back To The Future: 40th Anniversary",
+   "runtimeInMinutes": 116,
+   "filmUrl": "back-to-the-future-40th-anniversary",
+   "smallPosterImageUrl": "https://mediafiles.cineplex.com/Central/Film/Posters/60161_130_193.jpg",
+   "mediumPosterImageUrl": "https://mediafiles.cineplex.com/Central/Film/Posters/60161_320_470.jpg",
+   "largePosterImageUrl": "https://mediafiles.cineplex.com/Central/Film/Posters/60161_768_1024.jpg",
+   "brightcoveVideoId": "",
+   "language": "English",
+   "subtitleLanguage": "",
+   "marketLanguageCode": "EN",
+   "genres": [
+    "Adventure",
+    "Comedy",
+    "Family",
+    "Science Fiction",
+    "Classic"
+   ],
+   "ratings": [
+    {
+     "provinceCode": "AB",
+     "warnings": [],
+     "rating": "PG",
+     "ratingDescription": "Parental guidance is advised."
+    },
+    {
+     "provinceCode": "BC",
+     "warnings": [
+      "Coarse Language"
+     ],
+     "rating": "PG",
+     "ratingDescription": "Parental guidance advised."
+    },
+    {
+     "provinceCode": "MB",
+     "warnings": [],
+     "rating": "PG",
+     "ratingDescription": "Parental guidance advised."
+    },
+    {
+     "provinceCode": "NB",
+     "warnings": [
+      "Coarse Language"
+     ],
+     "rating": "PG",
+     "ratingDescription": "Parental guidance is advised."
+    },
+    {
+     "provinceCode": "NL",
+     "warnings": [
+      "Coarse Language"
+     ],
+     "rating": "PG",
+     "ratingDescription": "Parental guidance is advised."
+    },
+    {
+     "provinceCode": "NS",
+     "warnings": [
+      "Coarse Language"
+     ],
+     "rating": "PG",
+     "ratingDescription": "Parental guidance is advised."
+    },
+    {
+     "provinceCode": "ON",
+     "warnings": [
+      "Coarse Language"
+     ],
+     "rating": "PG",
+     "ratingDescription": "Parental guidance advised."
+    },
+    {
+     "provinceCode": "PE",
+     "warnings": [
+      "Coarse Language"
+     ],
+     "rating": "PG",
+     "ratingDescription": "Parental guidance is advised."
+    },
+    {
+     "provinceCode": "QC",
+     "warnings": [],
+     "rating": "G",
+     "ratingDescription": "May be viewed by persons of all ages."
+    },
+    {
+     "provinceCode": "SK",
+     "warnings": [
+      "Coarse Language"
+     ],
+     "rating": "PG",
+     "ratingDescription": "Parental guidance advised."
+    }
+   ],
+   "distributor": "Universal Film Exchange",
+   "detailPageUrl": "https://www.cineplex.com/Movie/back-to-the-future-40th-anniversary",
+   "hasPosterImage": true,
+   "isNowPlaying": true,
+   "isRelevant": true,
+   "isComingSoon": false,
+   "hasShowtimes": true,
+   "isEvent": false,
+   "isEarlyAccess": false
+  },
+  {
+   "filmCategories": [
+    "Adventure",
+    "Comedy",
+    "Family",
+    "Science Fiction",
+    "Classic",
+    "Film Presentation"
+   ],
+   "id": 32584,
+   "releaseDate": "2020-07-10T00:00:00",
+   "name": "Back To The Future",
+   "runtimeInMinutes": 116,
+   "filmUrl": "back-to-the-future-2020",
+   "smallPosterImageUrl": "https://mediafiles.cineplex.com/Central/Film/Posters/32584_130_193.jpg",
+   "mediumPosterImageUrl": "https://mediafiles.cineplex.com/Central/Film/Posters/32584_320_470.jpg",
+   "largePosterImageUrl": "https://mediafiles.cineplex.com/Central/Film/Posters/32584_768_1024.jpg",
+   "brightcoveVideoId": "",
+   "language": "English",
+   "subtitleLanguage": "",
+   "marketLanguageCode": "EN",
+   "genres": [
+    "Adventure",
+    "Comedy",
+    "Family",
+    "Science Fiction",
+    "Classic"
+   ],
+   "ratings": [
+    {
+     "provinceCode": "AB",
+     "warnings": [],
+     "rating": "PG",
+     "ratingDescription": "Parental guidance is advised."
+    },
+    {
+     "provinceCode": "BC",
+     "warnings": [
+      "Coarse Language"
+     ],
+     "rating": "PG",
+     "ratingDescription": "Parental guidance advised."
+    },
+    {
+     "provinceCode": "MB",
+     "warnings": [],
+     "rating": "PG",
+     "ratingDescription": "Parental guidance advised."
+    },
+    {
+     "provinceCode": "NB",
+     "warnings": [
+      "Coarse Language"
+     ],
+     "rating": "PG",
+     "ratingDescription": "Parental guidance is advised."
+    },
+    {
+     "provinceCode": "NL",
+     "warnings": [
+      "Coarse Language"
+     ],
+     "rating": "PG",
+     "ratingDescription": "Parental guidance is advised."
+    },
+    {
+     "provinceCode": "NS",
+     "warnings": [
+      "Coarse Language"
+     ],
+     "rating": "PG",
+     "ratingDescription": "Parental guidance is advised."
+    },
+    {
+     "provinceCode": "ON",
+     "warnings": [
+      "Coarse Language"
+     ],
+     "rating": "PG",
+     "ratingDescription": "Parental guidance advised."
+    },
+    {
+     "provinceCode": "PE",
+     "warnings": [
+      "Coarse Language"
+     ],
+     "rating": "PG",
+     "ratingDescription": "Parental guidance is advised."
+    },
+    {
+     "provinceCode": "QC",
+     "warnings": [],
+     "rating": "G",
+     "ratingDescription": "May be viewed by persons of all ages."
+    },
+    {
+     "provinceCode": "SK",
+     "warnings": [
+      "Coarse Language"
+     ],
+     "rating": "PG",
+     "ratingDescription": "Parental guidance advised."
+    }
+   ],
+   "distributor": "Universal Film Exchange",
+   "detailPageUrl": "https://www.cineplex.com/Movie/back-to-the-future-2020",
+   "hasPosterImage": true,
+   "isNowPlaying": true,
+   "isRelevant": true,
+   "isComingSoon": false,
+   "hasShowtimes": true,
+   "isEvent": false,
+   "isEarlyAccess": false
+  },
+  {
+   "filmCategories": [
+    "Adventure",
+    "Drama",
+    "Family",
+    "Classic",
+    "Alt Prog Film Event",
+    "Event"
+   ],
+   "id": 30989,
+   "releaseDate": "2019-06-22T00:00:00",
+   "name": "E.T. the Extra-Terrestrial - Family Favourites",
+   "runtimeInMinutes": 115,
+   "filmUrl": "et-the-extraterrestrial-family-favourites-2019",
+   "smallPosterImageUrl": "https://mediafiles.cineplex.com/Central/Film/Posters/30989_130_193.jpg",
+   "mediumPosterImageUrl": "https://mediafiles.cineplex.com/Central/Film/Posters/30989_320_470.jpg",
+   "largePosterImageUrl": "https://mediafiles.cineplex.com/Central/Film/Posters/30989_768_1024.jpg",
+   "brightcoveVideoId": "",
+   "language": "English",
+   "subtitleLanguage": "",
+   "marketLanguageCode": "EN",
+   "genres": [
+    "Adventure",
+    "Drama",
+    "Family",
+    "Classic"
+   ],
+   "ratings": [
+    {
+     "provinceCode": "AB",
+     "warnings": [],
+     "rating": "PG",
+     "ratingDescription": "Parental guidance is advised"
+    },
+    {
+     "provinceCode": "BC",
+     "warnings": [],
+     "rating": "G",
+     "ratingDescription": "Suitable for viewing by persons of all ages"
+    },
+    {
+     "provinceCode": "MB",
+     "warnings": [],
+     "rating": "G",
+     "ratingDescription": "General Viewing.  Suitable of all audiences."
+    },
+    {
+     "provinceCode": "NB",
+     "warnings": [],
+     "rating": "G",
+     "ratingDescription": "Suitable for viewers of all ages."
+    },
+    {
+     "provinceCode": "NL",
+     "warnings": [],
+     "rating": "G",
+     "ratingDescription": "Suitable for viewers of all ages."
+    },
+    {
+     "provinceCode": "NS",
+     "warnings": [],
+     "rating": "G",
+     "ratingDescription": "Suitable for viewers of all ages."
+    },
+    {
+     "provinceCode": "ON",
+     "warnings": [],
+     "rating": "PG",
+     "ratingDescription": "Parental Guidance Advised"
+    },
+    {
+     "provinceCode": "PE",
+     "warnings": [],
+     "rating": "G",
+     "ratingDescription": "Suitable for viewers of all ages."
+    },
+    {
+     "provinceCode": "QC",
+     "warnings": [],
+     "rating": "G",
+     "ratingDescription": "May be viewed by persons of all ages."
+    },
+    {
+     "provinceCode": "SK",
+     "warnings": [],
+     "rating": "G",
+     "ratingDescription": "Acceptable for all age groups."
+    }
+   ],
+   "distributor": "Universal Film Exchange",
+   "detailPageUrl": "https://www.cineplex.com/Movie/et-the-extraterrestrial-family-favourites-2019",
+   "hasPosterImage": true,
+   "isNowPlaying": true,
+   "isRelevant": true,
+   "isComingSoon": false,
+   "hasShowtimes": true,
+   "isEvent": true,
+   "isEarlyAccess": false
+  },
+  {
+   "filmCategories": [
+    "International",
+    "Drama",
+    "Film Presentation"
+   ],
+   "id": 62163,
+   "releaseDate": "2026-10-09T00:00:00",
+   "name": "Once Upon a Time in the Middle East (Mandarin w/Chinese and e.s.t.)",
+   "runtimeInMinutes": 141,
+   "filmUrl": "once-upon-a-time-in-the-middle-east-mandarin-wchinese-and-est",
+   "smallPosterImageUrl": null,
+   "mediumPosterImageUrl": null,
+   "largePosterImageUrl": null,
+   "brightcoveVideoId": "",
+   "language": "Mandarin",
+   "subtitleLanguage": "English",
+   "marketLanguageCode": "EN",
+   "genres": [
+    "International",
+    "Drama"
+   ],
+   "ratings": [],
+   "distributor": "WELL GO USA, INC.",
+   "detailPageUrl": "https://www.cineplex.com/Movie/once-upon-a-time-in-the-middle-east-mandarin-wchinese-and-est",
+   "hasPosterImage": false,
+   "isNowPlaying": false,
+   "isRelevant": false,
+   "isComingSoon": true,
+   "hasShowtimes": false,
+   "isEvent": false,
+   "isEarlyAccess": false
+  },
+  {
+   "filmCategories": [
+    "Crime",
+    "Drama",
+    "International",
+    "Film Presentation"
+   ],
+   "id": 62103,
+   "releaseDate": "2026-10-09T00:00:00",
+   "name": "V (Cantonese w/Chinese and e.s.t.)",
+   "runtimeInMinutes": 160,
+   "filmUrl": "v-cantonese-wchinese-and-est",
+   "smallPosterImageUrl": null,
+   "mediumPosterImageUrl": null,
+   "largePosterImageUrl": null,
+   "brightcoveVideoId": "",
+   "language": "Cantonese",
+   "subtitleLanguage": "English",
+   "marketLanguageCode": "EN",
+   "genres": [
+    "Crime",
+    "Drama",
+    "International"
+   ],
+   "ratings": [
+    {
+     "provinceCode": "AB",
+     "warnings": [
+      "Violence"
+     ],
+     "rating": "14A",
+     "ratingDescription": "Suitable for viewing by persons 14 years of age or older."
+    },
+    {
+     "provinceCode": "BC",
+     "warnings": [
+      "Violence"
+     ],
+     "rating": "14A",
+     "ratingDescription": "Suitable for persons 14 years of age or older."
+    },
+    {
+     "provinceCode": "MB",
+     "warnings": [
+      "Violence"
+     ],
+     "rating": "14A",
+     "ratingDescription": "Suitable for persons 14 years of age and older."
+    },
+    {
+     "provinceCode": "NB",
+     "warnings": [
+      "Violence"
+     ],
+     "rating": "14A",
+     "ratingDescription": "Suitable for persons 14+.  Persons under 14 must be accompanied by a person 19+."
+    },
+    {
+     "provinceCode": "NL",
+     "warnings": [
+      "Violence"
+     ],
+     "rating": "14A",
+     "ratingDescription": "Suitable for persons 14+.  Persons under 14 must be accompanied by a person 19+."
+    },
+    {
+     "provinceCode": "NS",
+     "warnings": [
+      "Violence"
+     ],
+     "rating": "14A",
+     "ratingDescription": "Suitable for persons 14+.  Persons under 14 must be accompanied by a person 19+."
+    },
+    {
+     "provinceCode": "ON",
+     "warnings": [
+      "Violence"
+     ],
+     "rating": "14A",
+     "ratingDescription": "Suitable for persons 14 years of age or older. Persons under 14 must be accompanied by an adult."
+    },
+    {
+     "provinceCode": "PE",
+     "warnings": [
+      "Violence"
+     ],
+     "rating": "14A",
+     "ratingDescription": "Suitable for persons 14+.  Persons under 14 must be accompanied by a person 19+."
+    },
+    {
+     "provinceCode": "QC",
+     "warnings": [
+      "Violence"
+     ],
+     "rating": "13ans+",
+     "ratingDescription": "May be viewed by persons 13 years of age or over. Persons under 13 must be accompanied by an adult."
+    },
+    {
+     "provinceCode": "SK",
+     "warnings": [
+      "Violence"
+     ],
+     "rating": "14A",
+     "ratingDescription": "Suitable for persons 14 years of age or older. Persons under 14 must be accompanied by an adult."
+    }
+   ],
+   "distributor": "CMC FILMS INC.",
+   "detailPageUrl": "https://www.cineplex.com/Movie/v-cantonese-wchinese-and-est",
+   "hasPosterImage": false,
+   "isNowPlaying": false,
+   "isRelevant": false,
+   "isComingSoon": true,
+   "hasShowtimes": false,
+   "isEvent": false,
+   "isEarlyAccess": false
+  },
+  {
+   "filmCategories": [
+    "International",
+    "Drama",
+    "Film Presentation"
+   ],
+   "id": 62154,
+   "releaseDate": "2026-10-16T00:00:00",
+   "name": "Keep Real (Mandarin w/Chinese and e.s.t.)",
+   "runtimeInMinutes": 121,
+   "filmUrl": "keep-real-mandarin-wchinese-and-est",
+   "smallPosterImageUrl": "https://mediafiles.cineplex.com/Central/Film/Posters/62154_130_193.jpg",
+   "mediumPosterImageUrl": "https://mediafiles.cineplex.com/Central/Film/Posters/62154_320_470.jpg",
+   "largePosterImageUrl": "https://mediafiles.cineplex.com/Central/Film/Posters/62154_768_1024.jpg",
+   "brightcoveVideoId": "",
+   "language": "Mandarin",
+   "subtitleLanguage": "English",
+   "marketLanguageCode": "EN",
+   "genres": [
+    "International",
+    "Drama"
+   ],
+   "ratings": [],
+   "distributor": "NIU VISION MEDIA LTD",
+   "detailPageUrl": "https://www.cineplex.com/Movie/keep-real-mandarin-wchinese-and-est",
+   "hasPosterImage": true,
+   "isNowPlaying": false,
+   "isRelevant": true,
+   "isComingSoon": true,
+   "hasShowtimes": false,
+   "isEvent": false,
+   "isEarlyAccess": false
+  },
+  {
+   "filmCategories": [
+    "International",
+    "Sport",
+    "Film Presentation"
+   ],
+   "id": 62106,
+   "releaseDate": "2026-10-16T00:00:00",
+   "name": "Thaapi (Punjabi w/e.s.t.)",
+   "runtimeInMinutes": 999,
+   "filmUrl": "thaapi-punjabi-west",
+   "smallPosterImageUrl": "https://mediafiles.cineplex.com/Central/Film/Posters/62106_130_193.jpg",
+   "mediumPosterImageUrl": "https://mediafiles.cineplex.com/Central/Film/Posters/62106_320_470.jpg",
+   "largePosterImageUrl": "https://mediafiles.cineplex.com/Central/Film/Posters/62106_768_1024.jpg",
+   "brightcoveVideoId": "",
+   "language": "Punjabi",
+   "subtitleLanguage": "English",
+   "marketLanguageCode": "EN",
+   "genres": [
+    "International",
+    "Sport"
+   ],
+   "ratings": [],
+   "distributor": "OMJEES CINE WORLD LTD",
+   "detailPageUrl": "https://www.cineplex.com/Movie/thaapi-punjabi-west",
+   "hasPosterImage": true,
+   "isNowPlaying": false,
+   "isRelevant": true,
+   "isComingSoon": true,
+   "hasShowtimes": false,
+   "isEvent": false,
+   "isEarlyAccess": false
+  },
+  {
+   "filmCategories": [
+    "Documentary",
+    "Documentary",
+    "Event"
+   ],
+   "id": 62068,
+   "releaseDate": "2026-10-21T00:00:00",
+   "name": "HANGING BY A WIRE",
+   "runtimeInMinutes": 78,
+   "filmUrl": "hanging-by-a-wire",
+   "smallPosterImageUrl": "https://mediafiles.cineplex.com/Central/Film/Posters/62068_130_193.jpg",
+   "mediumPosterImageUrl": "https://mediafiles.cineplex.com/Central/Film/Posters/62068_320_470.jpg",
+   "largePosterImageUrl": "https://mediafiles.cineplex.com/Central/Film/Posters/62068_768_1024.jpg",
+   "brightcoveVideoId": "",
+   "language": "English",
+   "subtitleLanguage": "English",
+   "marketLanguageCode": "EN",
+   "genres": [
+    "Documentary"
+   ],
+   "ratings": [],
+   "distributor": "Demand Film Inc",
+   "detailPageUrl": "https://www.cineplex.com/Movie/hanging-by-a-wire",
+   "hasPosterImage": true,
+   "isNowPlaying": false,
+   "isRelevant": true,
+   "isComingSoon": true,
+   "hasShowtimes": false,
+   "isEvent": true,
+   "isEarlyAccess": false
+  },
+  {
+   "filmCategories": [
+    "Classic",
+    "Film Presentation"
+   ],
+   "id": 62095,
+   "releaseDate": "2026-10-23T00:00:00",
+   "name": "Marie Antoinette",
+   "runtimeInMinutes": 126,
+   "filmUrl": "marie-antoinette",
+   "smallPosterImageUrl": "https://mediafiles.cineplex.com/Central/Film/Posters/62095_130_193.jpg",
+   "mediumPosterImageUrl": "https://mediafiles.cineplex.com/Central/Film/Posters/62095_320_470.jpg",
+   "largePosterImageUrl": "https://mediafiles.cineplex.com/Central/Film/Posters/62095_768_1024.jpg",
+   "brightcoveVideoId": "",
+   "language": "English",
+   "subtitleLanguage": "",
+   "marketLanguageCode": "EN",
+   "genres": [
+    "Classic"
+   ],
+   "ratings": [],
+   "distributor": "Mubi Inc.",
+   "detailPageUrl": "https://www.cineplex.com/Movie/marie-antoinette",
+   "hasPosterImage": true,
+   "isNowPlaying": false,
+   "isRelevant": true,
+   "isComingSoon": true,
+   "hasShowtimes": false,
+   "isEvent": false,
+   "isEarlyAccess": false
+  },
+  {
+   "filmCategories": [
+    "Opera",
+    "Event"
+   ],
+   "id": 61729,
+   "releaseDate": "2026-10-03T00:00:00",
+   "name": "Così fan tutte (Mozart) Italian w/e.s.t. – Metropolitan Opera",
+   "runtimeInMinutes": 240,
+   "filmUrl": "est-cosi-fan-tutte-mozart-italian-west-met",
+   "smallPosterImageUrl": "https://mediafiles.cineplex.com/Central/Film/Posters/61729_130_193.jpg",
+   "mediumPosterImageUrl": "https://mediafiles.cineplex.com/Central/Film/Posters/61729_320_470.jpg",
+   "largePosterImageUrl": "https://mediafiles.cineplex.com/Central/Film/Posters/61729_768_1024.jpg",
+   "brightcoveVideoId": "ref: Cosi fan tutte Mozart Italian west Met",
+   "language": "Italian",
+   "subtitleLanguage": "English",
+   "marketLanguageCode": "EN",
+   "genres": [],
+   "ratings": [],
+   "distributor": "Metropolitan Opera",
+   "detailPageUrl": "https://www.cineplex.com/Movie/est-cosi-fan-tutte-mozart-italian-west-met",
+   "hasPosterImage": true,
+   "isNowPlaying": true,
+   "isRelevant": true,
+   "isComingSoon": false,
+   "hasShowtimes": false,
+   "isEvent": true,
+   "isEarlyAccess": false
+  },
+  {
+   "filmCategories": [
+    "Concert",
+    "Concert",
+    "Event"
+   ],
+   "id": 61903,
+   "releaseDate": "2026-09-30T00:00:00",
+   "name": "LINKIN PARK: UNSHATTER",
+   "runtimeInMinutes": 107,
+   "filmUrl": "linkin-park-unshatter",
+   "smallPosterImageUrl": "https://mediafiles.cineplex.com/Central/Film/Posters/61903_130_193.jpg",
+   "mediumPosterImageUrl": "https://mediafiles.cineplex.com/Central/Film/Posters/61903_320_470.jpg",
+   "largePosterImageUrl": "https://mediafiles.cineplex.com/Central/Film/Posters/61903_768_1024.jpg",
+   "brightcoveVideoId": "",
+   "language": "English",
+   "subtitleLanguage": "",
+   "marketLanguageCode": "EN",
+   "genres": [
+    "Concert"
+   ],
+   "ratings": [],
+   "distributor": "Trafalgar Releasing Ltd.",
+   "detailPageUrl": "https://www.cineplex.com/Movie/linkin-park-unshatter",
+   "hasPosterImage": true,
+   "isNowPlaying": true,
+   "isRelevant": true,
+   "isComingSoon": false,
+   "hasShowtimes": true,
+   "isEvent": true,
+   "isEarlyAccess": false
+  },
+  {
+   "filmCategories": [
+    "Stage",
+    "Stage Performance",
+    "Event"
+   ],
+   "id": 61929,
+   "releaseDate": "2026-11-05T00:00:00",
+   "name": "Golden Boy - National Theatre Live",
+   "runtimeInMinutes": 180,
+   "filmUrl": "golden-boy-national-theatre-live",
+   "smallPosterImageUrl": "https://mediafiles.cineplex.com/Central/Film/Posters/61929_130_193.jpg",
+   "mediumPosterImageUrl": "https://mediafiles.cineplex.com/Central/Film/Posters/61929_320_470.jpg",
+   "largePosterImageUrl": "https://mediafiles.cineplex.com/Central/Film/Posters/61929_768_1024.jpg",
+   "brightcoveVideoId": "ref:Golden Boy National Theatre Live",
+   "language": "English",
+   "subtitleLanguage": "",
+   "marketLanguageCode": "EN",
+   "genres": [
+    "Stage"
+   ],
+   "ratings": [],
+   "distributor": "Royal National Theatre",
+   "detailPageUrl": "https://www.cineplex.com/Movie/golden-boy-national-theatre-live",
+   "hasPosterImage": true,
+   "isNowPlaying": false,
+   "isRelevant": true,
+   "isComingSoon": true,
+   "hasShowtimes": true,
+   "isEvent": true,
+   "isEarlyAccess": false
+  },
+  {
+   "filmCategories": [
+    "Drama",
+    "Stage Performance",
+    "Event"
+   ],
+   "id": 61851,
+   "releaseDate": "2026-10-22T00:00:00",
+   "name": "Fallen Angels by Noël Coward",
+   "runtimeInMinutes": 110,
+   "filmUrl": "fallen-angels-by-noel-coward",
+   "smallPosterImageUrl": "https://mediafiles.cineplex.com/Central/Film/Posters/61851_130_193.jpg",
+   "mediumPosterImageUrl": "https://mediafiles.cineplex.com/Central/Film/Posters/61851_320_470.jpg",
+   "largePosterImageUrl": "https://mediafiles.cineplex.com/Central/Film/Posters/61851_768_1024.jpg",
+   "brightcoveVideoId": "",
+   "language": "English",
+   "subtitleLanguage": "",
+   "marketLanguageCode": "EN",
+   "genres": [
+    "Drama"
+   ],
+   "ratings": [],
+   "distributor": "Trafalgar Releasing Ltd.",
+   "detailPageUrl": "https://www.cineplex.com/Movie/fallen-angels-by-noel-coward",
+   "hasPosterImage": true,
+   "isNowPlaying": false,
+   "isRelevant": true,
+   "isComingSoon": true,
+   "hasShowtimes": true,
+   "isEvent": true,
+   "isEarlyAccess": false
+  }
+ ],
+ "totalCount": 29
+}

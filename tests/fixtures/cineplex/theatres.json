@@ -1,0 +1,627 @@
+{
+ "favouriteTheatres": [],
+ "nearbyTheatres": [
+  {
+   "theatreId": 7130,
+   "theatreName": "Cineplex Cinemas Yonge-Dundas and VIP",
+   "shortTheatreName": "Yonge-Dundas and VIP",
+   "theatreUrl": "cineplex-cinemas-yongedundas-and-vip",
+   "hasFreeParking": false,
+   "alertMessages": null,
+   "location": {
+    "geoLocation": {
+     "latitude": 43.656746,
+     "longitude": -79.380484
+    },
+    "distanceToOriginInMeters": 450.8,
+    "hasDistanceToOrigin": true,
+    "address": "10 Dundas Street East, Suite 402",
+    "city": "Toronto",
+    "provinceCode": "ON",
+    "postalCode": "M5B 2G9"
+   }
+  },
+  {
+   "theatreId": 7402,
+   "theatreName": "Scotiabank Theatre Toronto",
+   "shortTheatreName": "Scotiabank Toronto",
+   "theatreUrl": "scotiabank-theatre-toronto",
+   "hasFreeParking": false,
+   "alertMessages": null,
+   "location": {
+    "geoLocation": {
+     "latitude": 43.649039,
+     "longitude": -79.390559
+    },
+    "distanceToOriginInMeters": 751.4,
+    "hasDistanceToOrigin": true,
+    "address": "259 Richmond Street West",
+    "city": "Toronto",
+    "provinceCode": "ON",
+    "postalCode": "M5V 3M6"
+   }
+  },
+  {
+   "theatreId": 7199,
+   "theatreName": "Cineplex Cinemas Varsity and VIP",
+   "shortTheatreName": "Varsity and VIP",
+   "theatreUrl": "cineplex-cinemas-varsity-and-vip",
+   "hasFreeParking": false,
+   "alertMessages": null,
+   "location": {
+    "geoLocation": {
+     "latitude": 43.669671,
+     "longitude": -79.388759
+    },
+    "distanceToOriginInMeters": 1885.3,
+    "hasDistanceToOrigin": true,
+    "address": "55 Bloor Street West",
+    "city": "Toronto",
+    "provinceCode": "ON",
+    "postalCode": "M4W 1A5"
+   }
+  },
+  {
+   "theatreId": 7400,
+   "theatreName": "Cineplex Cinemas Yonge-Eglinton and VIP",
+   "shortTheatreName": "Yonge-Eglinton and VIP",
+   "theatreUrl": "cineplex-cinemas-yongeeglinton-and-vip",
+   "hasFreeParking": false,
+   "alertMessages": null,
+   "location": {
+    "geoLocation": {
+     "latitude": 43.707236,
+     "longitude": -79.398663
+    },
+    "distanceToOriginInMeters": 6135.9,
+    "hasDistanceToOrigin": true,
+    "address": "2300 Yonge Street",
+    "city": "Toronto",
+    "provinceCode": "ON",
+    "postalCode": "M4P 1E4"
+   }
+  },
+  {
+   "theatreId": 7139,
+   "theatreName": "Cineplex VIP Cinemas Don Mills (age restricted 19+)",
+   "shortTheatreName": "Don Mills VIP",
+   "theatreUrl": "cineplex-vip-cinemas-don-mills-age-restricted-19",
+   "hasFreeParking": true,
+   "alertMessages": null,
+   "location": {
+    "geoLocation": {
+     "latitude": 43.734328,
+     "longitude": -79.346049
+    },
+    "distanceToOriginInMeters": 9502.6,
+    "hasDistanceToOrigin": true,
+    "address": "Shops at Don Mills, 12 Marie Labatte Road, Unit B7",
+    "city": "Toronto",
+    "provinceCode": "ON",
+    "postalCode": "M3C 0H9"
+   }
+  },
+  {
+   "theatreId": 7406,
+   "theatreName": "Cineplex Cinemas Yorkdale",
+   "shortTheatreName": "Yorkdale",
+   "theatreUrl": "cineplex-cinemas-yorkdale",
+   "hasFreeParking": true,
+   "alertMessages": null,
+   "location": {
+    "geoLocation": {
+     "latitude": 43.724762,
+     "longitude": -79.45703
+    },
+    "distanceToOriginInMeters": 9927.7,
+    "hasDistanceToOrigin": true,
+    "address": "Yorkdale Shopping Centre, 3401 Dufferin Street",
+    "city": "Toronto",
+    "provinceCode": "ON",
+    "postalCode": "M6A 2T9"
+   }
+  },
+  {
+   "theatreId": 7253,
+   "theatreName": "Cineplex Odeon Eglinton Town Centre Cinemas",
+   "shortTheatreName": "Eglinton Town Centre",
+   "theatreUrl": "cineplex-odeon-eglinton-town-centre-cinemas",
+   "hasFreeParking": true,
+   "alertMessages": null,
+   "location": {
+    "geoLocation": {
+     "latitude": 43.725244,
+     "longitude": -79.290907
+    },
+    "distanceToOriginInMeters": 10919.8,
+    "hasDistanceToOrigin": true,
+    "address": "22 Lebovic Avenue",
+    "city": "Toronto",
+    "provinceCode": "ON",
+    "postalCode": "M1L 4V9"
+   }
+  },
+  {
+   "theatreId": 7260,
+   "theatreName": "Cineplex Cinemas Queensway and VIP",
+   "shortTheatreName": "Queensway and VIP",
+   "theatreUrl": "cineplex-cinemas-queensway-and-vip",
+   "hasFreeParking": true,
+   "alertMessages": null,
+   "location": {
+    "geoLocation": {
+     "latitude": 43.621281,
+     "longitude": -79.51546
+    },
+    "distanceToOriginInMeters": 11219.7,
+    "hasDistanceToOrigin": true,
+    "address": "1025 The Queensway",
+    "city": "Toronto",
+    "provinceCode": "ON",
+    "postalCode": "M8Z 6C7"
+   }
+  },
+  {
+   "theatreId": 7298,
+   "theatreName": "Cineplex Cinemas Empress Walk",
+   "shortTheatreName": "Empress Walk",
+   "theatreUrl": "cineplex-cinemas-empress-walk",
+   "hasFreeParking": false,
+   "alertMessages": null,
+   "location": {
+    "geoLocation": {
+     "latitude": 43.768266,
+     "longitude": -79.412527
+    },
+    "distanceToOriginInMeters": 13010.1,
+    "hasDistanceToOrigin": true,
+    "address": "5095 Yonge St., 3rd Floor",
+    "city": "Toronto",
+    "provinceCode": "ON",
+    "postalCode": "M2N 6Z4"
+   }
+  },
+  {
+   "theatreId": 7115,
+   "theatreName": "Cineplex Cinemas Fairview Mall",
+   "shortTheatreName": "Fairview Mall",
+   "theatreUrl": "cineplex-cinemas-fairview-mall",
+   "hasFreeParking": true,
+   "alertMessages": null,
+   "location": {
+    "geoLocation": {
+     "latitude": 43.77563,
+     "longitude": -79.345296
+    },
+    "distanceToOriginInMeters": 13950.3,
+    "hasDistanceToOrigin": true,
+    "address": "1800 Sheppard Avenue East, Unit Y007",
+    "city": "Toronto",
+    "provinceCode": "ON",
+    "postalCode": "M2J 5A7"
+   }
+  }
+ ],
+ "otherTheatres": [
+  {
+   "theatreId": 7404,
+   "theatreName": "Cineplex Cinemas Scarborough",
+   "shortTheatreName": "Scarborough",
+   "theatreUrl": "cineplex-cinemas-scarborough",
+   "hasFreeParking": true,
+   "alertMessages": null,
+   "location": {
+    "geoLocation": {
+     "latitude": 43.776401,
+     "longitude": -79.255285
+    },
+    "distanceToOriginInMeters": 17127.8,
+    "hasDistanceToOrigin": true,
+    "address": "Scarborough Town Centre, 300 Borough Drive",
+    "city": "Toronto",
+    "provinceCode": "ON",
+    "postalCode": "M1P 4P5"
+   }
+  },
+  {
+   "theatreId": 7408,
+   "theatreName": "Cineplex Cinemas Vaughan",
+   "shortTheatreName": "Vaughan",
+   "theatreUrl": "cineplex-cinemas-vaughan",
+   "hasFreeParking": true,
+   "alertMessages": null,
+   "location": {
+    "geoLocation": {
+     "latitude": 43.788143,
+     "longitude": -79.54477
+    },
+    "distanceToOriginInMeters": 19842.8,
+    "hasDistanceToOrigin": true,
+    "address": "3555 Highway 7 West",
+    "city": "Vaughan",
+    "provinceCode": "ON",
+    "postalCode": "L4L 6B1"
+   }
+  },
+  {
+   "theatreId": 7405,
+   "theatreName": "SilverCity Richmond Hill Cinemas",
+   "shortTheatreName": "Richmond Hill",
+   "theatreUrl": "silvercity-richmond-hill-cinemas",
+   "hasFreeParking": true,
+   "alertMessages": null,
+   "location": {
+    "geoLocation": {
+     "latitude": 43.839611,
+     "longitude": -79.427333
+    },
+    "distanceToOriginInMeters": 21028.9,
+    "hasDistanceToOrigin": true,
+    "address": "8725 Yonge Street",
+    "city": "Richmond Hill",
+    "provinceCode": "ON",
+    "postalCode": "L4C 6Z1"
+   }
+  },
+  {
+   "theatreId": 7240,
+   "theatreName": "Cineplex Odeon Morningside Cinemas",
+   "shortTheatreName": "Morningside",
+   "theatreUrl": "cineplex-odeon-morningside-cinemas",
+   "hasFreeParking": true,
+   "alertMessages": null,
+   "location": {
+    "geoLocation": {
+     "latitude": 43.797755,
+     "longitude": -79.204
+    },
+    "distanceToOriginInMeters": 21580.6,
+    "hasDistanceToOrigin": true,
+    "address": "785 Milner Avenue",
+    "city": "Toronto",
+    "provinceCode": "ON",
+    "postalCode": "M1B 3C3"
+   }
+  },
+  {
+   "theatreId": 7213,
+   "theatreName": "Cineplex Cinemas Markham and VIP",
+   "shortTheatreName": "Markham and VIP",
+   "theatreUrl": "cineplex-cinemas-markham-and-vip",
+   "hasFreeParking": true,
+   "alertMessages": null,
+   "location": {
+    "geoLocation": {
+     "latitude": 43.849312,
+     "longitude": -79.323928
+    },
+    "distanceToOriginInMeters": 22320.3,
+    "hasDistanceToOrigin": true,
+    "address": "179 Enterprise Blvd., Suite 169",
+    "city": "Markham",
+    "provinceCode": "ON",
+    "postalCode": "L6G 0E7"
+   }
+  },
+  {
+   "theatreId": 7420,
+   "theatreName": "Cineplex Cinemas Mississauga Square One",
+   "shortTheatreName": "Mississauga Square One",
+   "theatreUrl": "cineplex-cinemas-mississauga-square-one",
+   "hasFreeParking": true,
+   "alertMessages": null,
+   "location": {
+    "geoLocation": {
+     "latitude": 43.591364,
+     "longitude": -79.650364
+    },
+    "distanceToOriginInMeters": 22577.7,
+    "hasDistanceToOrigin": true,
+    "address": "309 Rathburn Road West",
+    "city": "Mississauga",
+    "provinceCode": "ON",
+    "postalCode": "L5B 4C1"
+   }
+  },
+  {
+   "theatreId": 7122,
+   "theatreName": "Cineplex Cinemas Courtney Park",
+   "shortTheatreName": "Courtney Park",
+   "theatreUrl": "cineplex-cinemas-courtney-park",
+   "hasFreeParking": true,
+   "alertMessages": null,
+   "location": {
+    "geoLocation": {
+     "latitude": 43.636624,
+     "longitude": -79.6902
+    },
+    "distanceToOriginInMeters": 24771.1,
+    "hasDistanceToOrigin": true,
+    "address": "110 Courtneypark Dr E",
+    "city": "Mississauga",
+    "provinceCode": "ON",
+    "postalCode": "L5T 2Y3"
+   }
+  },
+  {
+   "theatreId": 7123,
+   "theatreName": "Cineplex Cinemas Winston Churchill & VIP",
+   "shortTheatreName": "Winston Churchill & VIP",
+   "theatreUrl": "cineplex-cinemas-winston-churchill-vip",
+   "hasFreeParking": true,
+   "alertMessages": null,
+   "location": {
+    "geoLocation": {
+     "latitude": 43.509563,
+     "longitude": -79.669165
+    },
+    "distanceToOriginInMeters": 28029.8,
+    "hasDistanceToOrigin": true,
+    "address": "2081 Winston Park Dr.",
+    "city": "Oakville",
+    "provinceCode": "ON",
+    "postalCode": "L6H 6P5"
+   }
+  },
+  {
+   "theatreId": 7313,
+   "theatreName": "Cineplex Junxion Erin Mills",
+   "shortTheatreName": "Junxion Erin Mills",
+   "theatreUrl": "cineplex-junxion-erin-mills",
+   "hasFreeParking": false,
+   "alertMessages": null,
+   "location": {
+    "geoLocation": {
+     "latitude": 43.557576,
+     "longitude": -79.712437
+    },
+    "distanceToOriginInMeters": 28562.1,
+    "hasDistanceToOrigin": true,
+    "address": "5100 Erin Mills Pkwy, Unit #Y002",
+    "city": "Mississauga",
+    "provinceCode": "ON",
+    "postalCode": "L5M 4Z5"
+   }
+  },
+  {
+   "theatreId": 7312,
+   "theatreName": "Cineplex Cinemas Pickering and VIP",
+   "shortTheatreName": "Pickering and VIP",
+   "theatreUrl": "cineplex-cinemas-pickering-and-vip",
+   "hasFreeParking": false,
+   "alertMessages": null,
+   "location": {
+    "geoLocation": {
+     "latitude": 43.834935,
+     "longitude": -79.087919
+    },
+    "distanceToOriginInMeters": 31161.1,
+    "hasDistanceToOrigin": true,
+    "address": "1355 Kingston Road, Pickering Town Centre",
+    "city": "Pickering",
+    "provinceCode": "ON",
+    "postalCode": "L1V 1B8"
+   }
+  },
+  {
+   "theatreId": 7411,
+   "theatreName": "SilverCity Brampton Cinemas",
+   "shortTheatreName": "Brampton",
+   "theatreUrl": "silvercity-brampton-cinemas",
+   "hasFreeParking": true,
+   "alertMessages": null,
+   "location": {
+    "geoLocation": {
+     "latitude": 43.731608,
+     "longitude": -79.762431
+    },
+    "distanceToOriginInMeters": 31712.3,
+    "hasDistanceToOrigin": true,
+    "address": "50 Great Lakes Drive",
+    "city": "Brampton",
+    "provinceCode": "ON",
+    "postalCode": "L6R 2K7"
+   }
+  },
+  {
+   "theatreId": 7248,
+   "theatreName": "Cineplex Odeon Ajax Cinemas",
+   "shortTheatreName": "Ajax",
+   "theatreUrl": "cineplex-odeon-ajax-cinemas",
+   "hasFreeParking": true,
+   "alertMessages": null,
+   "location": {
+    "geoLocation": {
+     "latitude": 43.866253,
+     "longitude": -79.016402
+    },
+    "distanceToOriginInMeters": 37801.9,
+    "hasDistanceToOrigin": true,
+    "address": "248 Kingston Road East, Highway 2",
+    "city": "Ajax",
+    "provinceCode": "ON",
+    "postalCode": "L1S 1G1"
+   }
+  },
+  {
+   "theatreId": 7284,
+   "theatreName": "Cineplex Odeon Aurora Cinemas",
+   "shortTheatreName": "Aurora",
+   "theatreUrl": "cineplex-odeon-aurora-cinemas",
+   "hasFreeParking": true,
+   "alertMessages": null,
+   "location": {
+    "geoLocation": {
+     "latitude": 44.010187,
+     "longitude": -79.444875
+    },
+    "distanceToOriginInMeters": 40002.2,
+    "hasDistanceToOrigin": true,
+    "address": "15460 Bayview Avenue",
+    "city": "Aurora",
+    "provinceCode": "ON",
+    "postalCode": "L4G 7J1"
+   }
+  },
+  {
+   "theatreId": 7285,
+   "theatreName": "Cineplex Cinemas Milton",
+   "shortTheatreName": "Milton",
+   "theatreUrl": "cineplex-cinemas-milton",
+   "hasFreeParking": true,
+   "alertMessages": null,
+   "location": {
+    "geoLocation": {
+     "latitude": 43.537856,
+     "longitude": -79.869224
+    },
+    "distanceToOriginInMeters": 41187.4,
+    "hasDistanceToOrigin": true,
+    "address": "1175 Maple Avenue",
+    "city": "Milton",
+    "provinceCode": "ON",
+    "postalCode": "L9T 0A5"
+   }
+  },
+  {
+   "theatreId": 7273,
+   "theatreName": "Cineplex Cinemas Oakville and VIP",
+   "shortTheatreName": "Oakville and VIP",
+   "theatreUrl": "cineplex-cinemas-oakville-and-vip",
+   "hasFreeParking": true,
+   "alertMessages": null,
+   "location": {
+    "geoLocation": {
+     "latitude": 43.39358,
+     "longitude": -79.750861
+    },
+    "distanceToOriginInMeters": 41377.6,
+    "hasDistanceToOrigin": true,
+    "address": "3531 Wyecroft Road",
+    "city": "Oakville",
+    "provinceCode": "ON",
+    "postalCode": "L6L 0B7"
+   }
+  },
+  {
+   "theatreId": 7407,
+   "theatreName": "SilverCity Newmarket Cinemas and XSCAPE Entertainment Centre",
+   "shortTheatreName": "Newmarket",
+   "theatreUrl": "silvercity-newmarket-cinemas-and-xscape-entertainment-centre",
+   "hasFreeParking": true,
+   "alertMessages": null,
+   "location": {
+    "geoLocation": {
+     "latitude": 44.070601,
+     "longitude": -79.484036
+    },
+    "distanceToOriginInMeters": 47111.7,
+    "hasDistanceToOrigin": true,
+    "address": "18195 Yonge Street",
+    "city": "East Gwillimbury",
+    "provinceCode": "ON",
+    "postalCode": "L9N 0H9"
+   }
+  },
+  {
+   "theatreId": 7413,
+   "theatreName": "SilverCity Burlington Cinemas",
+   "shortTheatreName": "Burlington",
+   "theatreUrl": "silvercity-burlington-cinemas",
+   "hasFreeParking": true,
+   "alertMessages": null,
+   "location": {
+    "geoLocation": {
+     "latitude": 43.343731,
+     "longitude": -79.829648
+    },
+    "distanceToOriginInMeters": 49808.5,
+    "hasDistanceToOrigin": true,
+    "address": "1250 Brant Street",
+    "city": "Burlington",
+    "provinceCode": "ON",
+    "postalCode": "L7P 1X8"
+   }
+  },
+  {
+   "theatreId": 7289,
+   "theatreName": "Cineplex Odeon Oshawa Cinemas",
+   "shortTheatreName": "Oshawa",
+   "theatreUrl": "cineplex-odeon-oshawa-cinemas",
+   "hasFreeParking": true,
+   "alertMessages": null,
+   "location": {
+    "geoLocation": {
+     "latitude": 43.941749,
+     "longitude": -78.836914
+    },
+    "distanceToOriginInMeters": 54330.4,
+    "hasDistanceToOrigin": true,
+    "address": "1351 Grandview Street North",
+    "city": "Oshawa",
+    "provinceCode": "ON",
+    "postalCode": "L1K 0G1"
+   }
+  },
+  {
+   "theatreId": 1417,
+   "theatreName": "SilverCity Victoria Cinemas",
+   "shortTheatreName": "SilverCity Victoria",
+   "theatreUrl": "silvercity-victoria-cinemas",
+   "hasFreeParking": false,
+   "alertMessages": null,
+   "location": {
+    "geoLocation": {
+     "latitude": 48.45271,
+     "longitude": -123.395009
+    },
+    "distanceToOriginInMeters": 3390009.7,
+    "hasDistanceToOrigin": true,
+    "address": "3130 Tillicum Road",
+    "city": "Victoria",
+    "provinceCode": "BC",
+    "postalCode": "V9A 6T2"
+   }
+  },
+  {
+   "theatreId": 1146,
+   "theatreName": "Cineplex Odeon Westshore Cinemas",
+   "shortTheatreName": "Westshore",
+   "theatreUrl": "cineplex-odeon-westshore-cinemas",
+   "hasFreeParking": true,
+   "alertMessages": null,
+   "location": {
+    "geoLocation": {
+     "latitude": 48.4406984,
+     "longitude": -123.5083973
+    },
+    "distanceToOriginInMeters": 3398476.8,
+    "hasDistanceToOrigin": true,
+    "address": "900 2945 Jacklin Rd",
+    "city": "Langford",
+    "provinceCode": "BC",
+    "postalCode": "V9B 5E3"
+   }
+  },
+  {
+   "theatreId": 1141,
+   "theatreName": "Galaxy Cinemas Nanaimo",
+   "shortTheatreName": "Nanaimo",
+   "theatreUrl": "galaxy-cinemas-nanaimo",
+   "hasFreeParking": true,
+   "alertMessages": null,
+   "location": {
+    "geoLocation": {
+     "latitude": 49.217948,
+     "longitude": -124.029518
+    },
+    "distanceToOriginInMeters": 3425265.4,
+    "hasDistanceToOrigin": true,
+    "address": "213-4750 Rutherford Road",
+    "city": "Nanaimo",
+    "provinceCode": "BC",
+    "postalCode": "V9T 4K6"
+   }
+  }
+ ]
+}
