@@ -38,7 +38,7 @@ h2{font-size:15px;letter-spacing:.08em;color:var(--mute);margin:32px 0 12px;font
 .film h3{font-size:19px;margin:0;line-height:1.3;overflow-wrap:anywhere}
 .zh{display:block;font-size:15px;color:var(--mute);font-weight:400}
 .badges{margin:8px 0 6px;display:flex;flex-wrap:wrap;gap:6px}
-.badge{font-size:11.5px;line-height:1;padding:5px 8px;border-radius:999px;background:#ececea;color:#333}
+.badge{font-size:11.5px;line-height:1.35;padding:5px 8px;border-radius:12px;background:#ececea;color:#333;word-break:keep-all}
 .badge.warn{background:#ffedd5;color:var(--warn)}
 .badge.new{background:#dbeafe;color:var(--new)}
 .badge.quiet{background:transparent;border:1px solid var(--line);color:var(--mute)}
