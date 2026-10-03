@@ -1,0 +1,348 @@
+{
+ "stop_reason": "end_turn",
+ "text": "联网查到的结果显示，《沙丘：第二部》（Dune: Part Two）的影评口碑非常好：上映前后烂番茄新鲜度在97%左右（基于105篇影评，见 https://www.imdb.com/news/ni64452983/ ；另一则粉丝站帖子称是98%，来源可靠性较低，见 https://warnerbros.fandom.com/f/p/4400000000000027968 ）。根据这篇IMDb新闻，绝大多数影评人喜欢这部影片，常把它称为一部视觉震撼的科幻史诗。需要说明的是，这两个都是上映初期的数字，搜索次数用完后我没能查到烂番茄现在的分数和Metacritic评分，所以现在的分数可能已经有所变化。",
+ "blocks": [
+  {
+   "id": "srvtoolu_01HbqMApNRL1AKCbvACBp4nd",
+   "input": {
+    "code": "import json\nqs=[\"Dune Part Two Rotten Tomatoes score\",\"Dune Part Two Metacritic score reviews\",\"Dune Part Two critics reception\"]\nfor q in qs:\n    r=await web_search({\"query\":q})\n    for x in r[:5]:\n        print(x.get('title'),x.get('url'))\n        print(x.get('content','')[:600].replace('\\n',' '))"
+   },
+   "name": "code_execution",
+   "type": "server_tool_use"
+  },
+  {
+   "id": "srvtoolu_01UihZzJgiBUEdr8S9aQ58VE",
+   "input": {
+    "query": "Dune Part Two Rotten Tomatoes score"
+   },
+   "name": "web_search",
+   "type": "server_tool_use",
+   "caller": {
+    "tool_id": "srvtoolu_01HbqMApNRL1AKCbvACBp4nd",
+    "type": "code_execution_20260120"
+   }
+  },
+  {
+   "content": [
+    {
+     "encrypted_content": "Er8HCioIFBgCIiQyNGJhMmM2Ni1hNjRiLTRkNzAtYTk1My05ZTc0Y2Q2MDFmYTUSDLMHu942jubEueLASBoMEXh0PFQpCti6BEmVIjCIXDmHeTK8Je/yqSYHGZ3q3vrltK8W2PaRrlvGFtvczk8d9/xodpXGOoFcIE0nfjAqwgbtMQurhbBBPbOdJBjvsbSnD/ALeNswlwjn9rNJKKMoAllBa77z5ZB89VzTLToirxSj+fArTXwJFuK1Bi1zVsv2PZuWo4oD9mEKYQjhakUzAWEJufMf7xGpvrCdzZm19qiv",
+     "page_age": null,
+     "title": "Dune: Part Two's Rotten Tomatoes Score Is Indicative of Critics' Earth-Shattering Praise",
+     "type": "web_search_result",
+     "url": "https://www.imdb.com/news/ni64452983/"
+    },
+    {
+     "encrypted_content": "EtgPCioIFBgCIiQyNGJhMmM2Ni1hNjRiLTRkNzAtYTk1My05ZTc0Y2Q2MDFmYTUSDHqPVhV5c8t9NzSAFxoMHRvVeYKJEcePfHNaIjB63gKAhnBMBzf9bP3hhWOhceDeF85H8saJ62Xl9gPUAAKCMkNHOmrxka4EFwHRDioq2w5ZVFss+Oj1GxmrrIbv/0h+y9bKUd7VL/WAOj0Cqx/pjMKdz4exvT4LYz40z6u7zXl9PVjh8cIEY4K/yi5RMnIzquKVGUSNCEFTqcHq1Ygt8sT2qgh4R72I85K0xbg6VqqF",
+     "page_age": "946 days ago",
+     "title": "Dune 2's Rotten Tomatoes Score Breaks 10 Records",
+     "type": "web_search_result",
+     "url": "https://warnerbros.fandom.com/f/p/4400000000000027968"
+    },
+    {
+     "encrypted_content": "EowKCioIFBgCIiQyNGJhMmM2Ni1hNjRiLTRkNzAtYTk1My05ZTc0Y2Q2MDFmYTUSDFfZ116ExtsY3Ix/DRoMEyLwLY3OxahLl5ReIjDFMOyyXRxb2n3mIM2fWyfxx/GaZ4T7aIEfGSovv8wHWzlpuie8PcvdGI2bohFeVJEqjwkUtdTBo6lR1x8vFZ1Z6zN+OrwWt4HQmLC0wwrT6Fd6z0arMpPDqSJxPwZLoerpBSqfsjHOKwxKjvpokrgCBMsVUrt5X+afr8lJ5O+urwXURU3rD4f+Sws4KdqMUiEBvvIO",
+     "page_age": "951 days ago",
+     "title": "Dune 2's Record-Breaking Rotten Tomatoes Score Sets An Almost Impossible Challenge For Dune 3",
+     "type": "web_search_result",
+     "url": "https://www.imdb.com/news/ni64458752/"
+    },
+    {
+     "encrypted_content": "ErcICioIFBgCIiQyNGJhMmM2Ni1hNjRiLTRkNzAtYTk1My05ZTc0Y2Q2MDFmYTUSDFERgPSA9/paAtBkwBoMJ4NolfL6OXf7lpx/IjCD7oXMiBiR0BwmfTOldyN+6TEWnYq7NWnpOiF3XDiFF349oYVNuUtASDf+8SQ/CssqugddLQbG1BAE44EtwFUN5Cs8HgwuCeitlf+ypGczIoObJST+KmrzxJNy6QsVG9zacuopn+6UMOsZsAQ2EpNWKm4s4rMmr2jMi2agaqnznIikqu6TBZ2GH/0tTEQLy3ms4yVt",
+     "page_age": null,
+     "title": "List of accolades received by Dune: Part Two",
+     "type": "web_search_result",
+     "url": "https://en.wikipedia.org/wiki/List_of_accolades_received_by_Dune:_Part_Two"
+    },
+    {
+     "encrypted_content": "EvAICioIFBgCIiQyNGJhMmM2Ni1hNjRiLTRkNzAtYTk1My05ZTc0Y2Q2MDFmYTUSDAWOxDacSDHPHJayTRoMjidM6KmnXSs/PFTSIjBc5e51if1FIW8x4HG7qFbk3GxiogOqQuy5WNHnlIQqMxqth1FRmJm05amFbDL0FT0q8wfeyhGPWK7ujk90bEpDWfqxi9yYY726lN/jHmnv7zBxbRVcxELRqOZqfLK9oD0iMeQM/dOC0L9PIDIwZ0VQOZDvzYi+a8nGkzcMj4h1VhyoEDI0r740HM5E5V7orF5lkigY",
+     "page_age": "955 days ago",
+     "title": "Dune: Part Two Debuts With Record-Breaking Rotten Tomatoes Scoree",
+     "type": "web_search_result",
+     "url": "https://www.cbr.com/dune-part-two-rotten-tomatoes-score/"
+    },
+    {
+     "encrypted_content": "EsEMCioIFBgCIiQyNGJhMmM2Ni1hNjRiLTRkNzAtYTk1My05ZTc0Y2Q2MDFmYTUSDL2JBp6Lvq0kKzyTURoMRlF6o9c8XNWOuIsQIjBCQpZoIDLsu4+gbZCOhY2Q6Q/XGIWhuQ12ZBssDd962P0NLTAklrwViu+azGYgE2sqxAsAyni0G5Ix1X7SECBRoDh9owW2jf6ewu0rno28gYsSo77B/43r7ktLTNQWtjJIFvgNK0YVVpvhMCct53ko2oJFZILm5DwJG9ErV4oTm7I2zDyuwLkyvshXnXv9T748t0wd",
+     "page_age": "950 days ago",
+     "title": "Dune 2's Record-Breaking Rotten Tomatoes Score Sets An Almost Impossible Challenge For Dune 3",
+     "type": "web_search_result",
+     "url": "https://screenrant.com/dune-2-movie-rotten-tomatoes-dune-3-challenge/"
+    },
+    {
+     "encrypted_content": "EuAQCioIFBgCIiQyNGJhMmM2Ni1hNjRiLTRkNzAtYTk1My05ZTc0Y2Q2MDFmYTUSDPLy0N9mD2IRMeKOZxoMACUSoEU4vBlkZfQcIjBgDgDUInc7XTDh8oZEBh+I0eF+Blvl/q/9/9Yx9p+SZ9I4uUiWJ8bsP2B5QyTYhUMq4w/Essp/Da2xbNxL6cYYgChqlu5hHaGRDnXL+LYFVMCBq65+ODHXbxfwA8LoFVmPokZ28qCuI4pEWpfLgQdtslbonPQJlCGZ6y0V0hNpg+bEBdfWA4n2AguvWKzjXDSu+4tM",
+     "page_age": "954 days ago",
+     "title": "Dune 2's Rotten Tomatoes Score Breaks 10 Records",
+     "type": "web_search_result",
+     "url": "https://screenrant.com/dune-2-movie-rotten-tomatoes-score-records-broken/"
+    },
+    {
+     "encrypted_content": "EuAQCioIFBgCIiQyNGJhMmM2Ni1hNjRiLTRkNzAtYTk1My05ZTc0Y2Q2MDFmYTUSDARdaH7WB3GmklJiEhoM/PN7Bh0csFNKBkOgIjBoi0ix2aaB3VTHmVKH7LNGzqeBoGgRnojKmO+Ds8/53UFL51FHuyvLQQXfNjj10b8q4w9SNy6pvwsV2jf4EPWszGdbLUrnUYGU2VXRCGObbZ7pCaOFa4UaITB69CYxSJr7GCFrX5MShimhfgDWckiYhvbpr2njU0Ia/62ZiXyK+sU9xpDqZ8Y6Qw+ae6F/eDMviNye",
+     "page_age": "949 days ago",
+     "title": "Why Dune 2's Rotten Tomatoes Score Is So Much Higher Than The First Movie",
+     "type": "web_search_result",
+     "url": "https://screenrant.com/dune-2-rotten-tomatoes-score-higher-dune-2021/"
+    },
+    {
+     "encrypted_content": "EtoOCioIFBgCIiQyNGJhMmM2Ni1hNjRiLTRkNzAtYTk1My05ZTc0Y2Q2MDFmYTUSDAZQWZ3UvPejws5yPhoM8D4AAxKknlPG7NPiIjDxHibkn2JlZqwrQFLjwihu0502skn1eSLfyh0DHvD1nMVF0JB7j5m1t2PLRlkAnNIq3Q0ohF35gcVKDcSteBx5EHjKWUvRmZHZvJ6KnvHv6qmyUlasWIcfHupIxiP/Dbd5OB+ztGp+Fw5brHYmY2VkgEWguyJALNcDP3ZAkWfGHQlSumGV3JCdl/qUPWFGSSWkFSGt",
+     "page_age": "728 days ago",
+     "title": "Dune: Part Two Debuts on Rotten Tomatoes With Insanely High Rating - ComicBook.com",
+     "type": "web_search_result",
+     "url": "https://comicbook.com/movies/news/dune-2-rotten-tomatoes-fresh-rating-zendaya-timothee-chalamet/"
+    },
+    {
+     "encrypted_content": "EtwPCioIFBgCIiQyNGJhMmM2Ni1hNjRiLTRkNzAtYTk1My05ZTc0Y2Q2MDFmYTUSDAWy04oE+TxPUbILshoMO5YtAeGE+CyxfWdXIjBZAqlaQL1OwhP3P7sUdHNj9KT6B5nPW5lo3VrjSWuNDmAPoi6Z8wZ72hyUdaEF+qgq3w4rxspTGEXvaBvF0wMDaVckZiabAZhoKUGI9Blk75+0u0prHEXQnaR7gnsp+z4gIAkrzdY4KnqF9L+7sEI242l6rcjFoSJaONMTjDnZp22w3NqnBOfWHzNDO3bjKXAAeCY0",
+     "page_age": "955 days ago",
+     "title": "Dune 2 Rotten Tomatoes Score Debuts With Big Jump From Original Movie",
+     "type": "web_search_result",
+     "url": "https://screenrant.com/dune-2-movie-rotten-tomatoes-score/"
+    }
+   ],
+   "tool_use_id": "srvtoolu_01UihZzJgiBUEdr8S9aQ58VE",
+   "type": "web_search_tool_result",
+   "caller": {
+    "tool_id": "srvtoolu_01HbqMApNRL1AKCbvACBp4nd",
+    "type": "code_execution_20260120"
+   }
+  },
+  {
+   "content": {
+    "content": [],
+    "encrypted_stdout": "Eo4BCioIFBgCIiQyNGJhMmM2Ni1hNjRiLTRkNzAtYTk1My05ZTc0Y2Q2MDFmYTUSDJrOjdPeX9y3TVKHURoMmQG/xoTASx3nbiEuIjAGTEuC+4She7VmB2nfU0rExN/UsPLsT3wBwepu129lQdCVDrVv5p6CSLAhfmcx7EcqEmyFyi3uJ6GlVImeUGQ48/hMNRgD",
+    "return_code": 1,
+    "stderr": "Traceback (most recent call last):\n  File \"/usr/local/lib/python3.11/asyncio/runners.py\", line 190, in run\n    return runner.run(main)\n           ^^^^^^^^^^^^^^^^\n  File \"/usr/local/lib/python3.11/asyncio/runners.py\", line 118, in run\n    return self._loop.run_until_complete(task)\n           ^^^^^^^",
+    "type": "encrypted_code_execution_result"
+   },
+   "tool_use_id": "srvtoolu_01HbqMApNRL1AKCbvACBp4nd",
+   "type": "code_execution_tool_result"
+  },
+  {
+   "id": "srvtoolu_012ay5dPSwcgRmx2a13T5u24",
+   "input": {
+    "code": "r=await web_search({\"query\":\"Dune Part Two Rotten Tomatoes score\"})\nprint(type(r)); print(str(r)[:1500])\n"
+   },
+   "name": "code_execution",
+   "type": "server_tool_use"
+  },
+  {
+   "id": "srvtoolu_01AhKT4kwGNd2yxCGGzER8iR",
+   "input": {
+    "query": "Dune Part Two Rotten Tomatoes score"
+   },
+   "name": "web_search",
+   "type": "server_tool_use",
+   "caller": {
+    "tool_id": "srvtoolu_012ay5dPSwcgRmx2a13T5u24",
+    "type": "code_execution_20260120"
+   }
+  },
+  {
+   "content": [
+    {
+     "encrypted_content": "Er8HCioIFBgCIiQyNGJhMmM2Ni1hNjRiLTRkNzAtYTk1My05ZTc0Y2Q2MDFmYTUSDCxv3O7ZrkTgiUZFuRoM6BWLvVCxuSJINHWbIjB0FavOJKkIKMSb90MuWJI+KSC22dz45NAk1u9TYm4hvhg/NlM53QnDr9ooFEgxnzIqwgZnWHlM7gY5lWdjDARskX88YfgH9079O1ftk22xKkIxiHPmK++ARl6eNcxHSbeAoXBTVsjsnAlp4V1JFM3sA4FpBT5HOnaSwwqtFR/21Db9iMYazOJSU2VRoZ6/rrdOa+Or",
+     "page_age": null,
+     "title": "Dune: Part Two's Rotten Tomatoes Score Is Indicative of Critics' Earth-Shattering Praise",
+     "type": "web_search_result",
+     "url": "https://www.imdb.com/news/ni64452983/"
+    },
+    {
+     "encrypted_content": "EtgPCioIFBgCIiQyNGJhMmM2Ni1hNjRiLTRkNzAtYTk1My05ZTc0Y2Q2MDFmYTUSDJBpEHqbOtjpja31xxoM1+4jH02p5XfGTxgQIjDuCC4D+BzRFtFRGDXeZQpDIYwK18urjuoQhigIVxem/42uQPtWH0f1nw7vlTjOHjoq2w7datpqSioS9XcuvvQDBlR+xmov7OAFnD5OsYGAOdHPkYS9DFNUSeGpV55wzGfdUFJ0IHbpfdSDzKAqExH3Z1NytzBolpoOfILTifj1CyevhoV0V6Dk2LE3u31DElGTPEdX",
+     "page_age": "946 days ago",
+     "title": "Dune 2's Rotten Tomatoes Score Breaks 10 Records",
+     "type": "web_search_result",
+     "url": "https://warnerbros.fandom.com/f/p/4400000000000027968"
+    },
+    {
+     "encrypted_content": "EowKCioIFBgCIiQyNGJhMmM2Ni1hNjRiLTRkNzAtYTk1My05ZTc0Y2Q2MDFmYTUSDAVYZe4lMHMDGd+GHxoMyGCCWTUPGhGzI27kIjCYzVpISUH8u738D7qxZj57jbNHZHGljW1WIVJIlU5Cds9dxxwGLUqIhFGkoBb8DQQqjwlasCY0y3pbIndMGVdcsVv1aj4IOQcxytV4lGMnnI9fR0/4xjt2oajN9GFh9Zoet9ZcAQ8e5DMfOpS7lPZtoBJBS4odwxuDbt9A/17MCyypi/DWL6EV32HfvNHzeJQvaLVy",
+     "page_age": "951 days ago",
+     "title": "Dune 2's Record-Breaking Rotten Tomatoes Score Sets An Almost Impossible Challenge For Dune 3",
+     "type": "web_search_result",
+     "url": "https://www.imdb.com/news/ni64458752/"
+    },
+    {
+     "encrypted_content": "ErcICioIFBgCIiQyNGJhMmM2Ni1hNjRiLTRkNzAtYTk1My05ZTc0Y2Q2MDFmYTUSDFNM0mfy34KCCArwwhoMUr7WeGrgVbNeGsGgIjAI839YOg1VlIDTCYBPvhEn5PttyZLF+PKSweKWpDKELZ4U42lNhsN6CcjZh/jlm9kqugeJt8HHbjWo+F5VeqkC/L3Gc/YqXq5x46jfqvGDj9P7tGawB3qHbJunLABiErQxn5Pl6XFk3SzHE9DhDRV3HTkX8/m5A4rro/Y1EtWFa2YSbXy3Q0ydt3wfY8MdCvyWOa4b",
+     "page_age": null,
+     "title": "List of accolades received by Dune: Part Two",
+     "type": "web_search_result",
+     "url": "https://en.wikipedia.org/wiki/List_of_accolades_received_by_Dune:_Part_Two"
+    },
+    {
+     "encrypted_content": "EvAICioIFBgCIiQyNGJhMmM2Ni1hNjRiLTRkNzAtYTk1My05ZTc0Y2Q2MDFmYTUSDEJgsg/S6b2f20WPiBoMTxTga0/uozN6Nz8sIjCubqicTThPNIexH0j3osNncZHPGRHZhuuMHhSKZiPTFws8IsPeD2YMdDrfMddrDRcq8wfPAMJIwOpokm/eAqlxbDI5jxe6Z7dP53Ks4AvJu0dyULE3+h3Xz5v+lY46ucCaspisom17G2lk5+YwaPo4mBfV1Tzq5kskgH4W9OQrMNEAv7CK9EYn22WxFAE1TKnpNARr",
+     "page_age": "955 days ago",
+     "title": "Dune: Part Two Debuts With Record-Breaking Rotten Tomatoes Scoree",
+     "type": "web_search_result",
+     "url": "https://www.cbr.com/dune-part-two-rotten-tomatoes-score/"
+    },
+    {
+     "encrypted_content": "EsEMCioIFBgCIiQyNGJhMmM2Ni1hNjRiLTRkNzAtYTk1My05ZTc0Y2Q2MDFmYTUSDCXKtdM4C7wEsqx9uxoMOjVKv8ICZLKhRLr6IjCitb9tucJgDzh2dgOTF57UOse58k9e1U22J82N2/RIKU2FJ1iQGbpGWgOERNN1cgMqxAtxG6iIT1OW6DQwL6QtEPA4V4T8y16bpysGQao+qIevdnWEnuuK4NWuvBXC+j5nxHDze/wR/Tgj+DjH3XJUbhjP6sg5aNRVrszoZeZDpyUOzDDUQoFqC4xdl40dAnKqAv1+",
+     "page_age": "950 days ago",
+     "title": "Dune 2's Record-Breaking Rotten Tomatoes Score Sets An Almost Impossible Challenge For Dune 3",
+     "type": "web_search_result",
+     "url": "https://screenrant.com/dune-2-movie-rotten-tomatoes-dune-3-challenge/"
+    },
+    {
+     "encrypted_content": "EuAQCioIFBgCIiQyNGJhMmM2Ni1hNjRiLTRkNzAtYTk1My05ZTc0Y2Q2MDFmYTUSDLaRPW8jKDge61dZChoM9ggE5xLRtxHgPN+dIjCjyw6uSiPgWy7aHMiqRoO/M/f6e9EVhSJFpuXzFyJMM3tGaTGYsriIGGtwHaWPx00q4w8cdIeLu8dbm7IhyJTyWWFv4Hr4cVnSV03s6iII2ksMyeS0iepXMP1LVANxI3ULvu14g/kRZDlQXqpLJvk0yDy/WiONHwXz19VcYHt7LgJHQUoDfWqKzaAm4LHJ3PaDaIg2",
+     "page_age": "954 days ago",
+     "title": "Dune 2's Rotten Tomatoes Score Breaks 10 Records",
+     "type": "web_search_result",
+     "url": "https://screenrant.com/dune-2-movie-rotten-tomatoes-score-records-broken/"
+    },
+    {
+     "encrypted_content": "EuAQCioIFBgCIiQyNGJhMmM2Ni1hNjRiLTRkNzAtYTk1My05ZTc0Y2Q2MDFmYTUSDNJS+IhD80m/VnLSgxoM3SA7tOXA4xQoK6i1IjAld7t28qD2lkmyUWaFl61pbI109zhyFfPIToQ0XHZVk2SZDzd0dkJyXZe2HMHJeAMq4w/LDeNlYr1WA2BU1J9LaZDsOvKgGCzVRe/A8VIxuFawjdNdp9NK0B4QxfuPOTLIGFChUosgJna3y5p7tun4Qy5hiSi3cPQpELya1iQYezDOwJTEmb0nsCBSTEM3CzZByJP8",
+     "page_age": "949 days ago",
+     "title": "Why Dune 2's Rotten Tomatoes Score Is So Much Higher Than The First Movie",
+     "type": "web_search_result",
+     "url": "https://screenrant.com/dune-2-rotten-tomatoes-score-higher-dune-2021/"
+    },
+    {
+     "encrypted_content": "EtoOCioIFBgCIiQyNGJhMmM2Ni1hNjRiLTRkNzAtYTk1My05ZTc0Y2Q2MDFmYTUSDDKf0vKOOpol60LGhBoM8vtX3pN8dMHJyNztIjD5KEFH1hd+CYIihVhtrS6IgGic6sNt31WJO5meUmhYM+6wjO7TlpgmrIYX5cDyI1kq3Q2by1qtEexF9CjRNhsX/pcVu+O14TjT+E5xHkhgyNvL3QKGVnJwNPYFpfeP0DkFoqo8mT0jfCQEMrcxcVU561Ke5HzfAEJLSQzH/dguqSaJmgkWKBVZq060meFqTiIVJKVC",
+     "page_age": "728 days ago",
+     "title": "Dune: Part Two Debuts on Rotten Tomatoes With Insanely High Rating - ComicBook.com",
+     "type": "web_search_result",
+     "url": "https://comicbook.com/movies/news/dune-2-rotten-tomatoes-fresh-rating-zendaya-timothee-chalamet/"
+    },
+    {
+     "encrypted_content": "EtwPCioIFBgCIiQyNGJhMmM2Ni1hNjRiLTRkNzAtYTk1My05ZTc0Y2Q2MDFmYTUSDAUCPgDCryXf1/9bDBoMd0XHhAA3+vSg1lvQIjBjYnXpJ2e8AdW4/NkKuXnhPY7jKUZTXPtVZUWeqR9LFc0+C57SSqzA9HVJr69LGCgq3w4eoywnnOzRUme8RYlGc7u9lKdBWUt4rmsgeQMLXhZBEyERHV0NVhaXv+GxeCdSJxwjBAGKU0hw4jt8eURLpWvhQBff8aJ1MzWV+nSu8XdmY/UL5T6dZTSd2rPTJeFPGewP",
+     "page_age": "955 days ago",
+     "title": "Dune 2 Rotten Tomatoes Score Debuts With Big Jump From Original Movie",
+     "type": "web_search_result",
+     "url": "https://screenrant.com/dune-2-movie-rotten-tomatoes-score/"
+    }
+   ],
+   "tool_use_id": "srvtoolu_01AhKT4kwGNd2yxCGGzER8iR",
+   "type": "web_search_tool_result",
+   "caller": {
+    "tool_id": "srvtoolu_012ay5dPSwcgRmx2a13T5u24",
+    "type": "code_execution_20260120"
+   }
+  },
+  {
+   "content": {
+    "content": [],
+    "encrypted_stdout": "EvsMCioIFBgCIiQyNGJhMmM2Ni1hNjRiLTRkNzAtYTk1My05ZTc0Y2Q2MDFmYTUSDJAJdL4UrnQ81Tyl2BoMN1PTIYhb+HAyLxekIjDxNEcj2jEspX7Gj7pJ/kUtwiM3y0Xj/MzWRitE+Q3D6Z+RsnfrbboQ6h2NDuJYKgcq/gvs508AHvvkMx7aPeYiDW6mX/eONQtlbMHEP0DE+/moEr3AL9LXaqne86LM2CXHaVT5nfDyl+VWW49w+e2xzARuxj1pfdD+4whjUxx/nYiiKZUNCPKvvMLch+QrF1fufRgh",
+    "return_code": 0,
+    "stderr": "",
+    "type": "encrypted_code_execution_result"
+   },
+   "tool_use_id": "srvtoolu_012ay5dPSwcgRmx2a13T5u24",
+   "type": "code_execution_tool_result"
+  },
+  {
+   "id": "srvtoolu_01TmsNaLhVFpEidbsGDhDz7p",
+   "input": {
+    "code": "for q in [\"Dune Part Two Rotten Tomatoes 92% critics consensus\",\"Dune Part Two Metacritic 79\",\"Dune: Part Two reception wikipedia\"]:\n    r=json.loads(await web_search({\"query\":q}))\n    for x in r[:5]:\n        print(x.get('title'),x.get('url'))\n        c=x.get('content','')\n        import re\n        "
+   },
+   "name": "code_execution",
+   "type": "server_tool_use"
+  },
+  {
+   "id": "srvtoolu_01KsqFM1vgiktGiVz4nitnFo",
+   "input": {
+    "query": "Dune Part Two Rotten Tomatoes 92% critics consensus"
+   },
+   "name": "web_search",
+   "type": "server_tool_use",
+   "caller": {
+    "tool_id": "srvtoolu_01TmsNaLhVFpEidbsGDhDz7p",
+    "type": "code_execution_20260120"
+   }
+  },
+  {
+   "content": [
+    {
+     "encrypted_content": "Et0ICioIFBgCIiQyNGJhMmM2Ni1hNjRiLTRkNzAtYTk1My05ZTc0Y2Q2MDFmYTUSDIy6fn6WtnCYzvOuJBoMGdftskZOOyjJyroCIjD4ehKj2/cCAg9TUzoRrLtsj0F07WOxZrTYCeBi58h0eSdQdRVFsDs89HA83lQdCWIq4AcnGLbGtSYlvOnAanyuD9x7w5/WoDNYJ1Goz1sUCAeQfDXOLRwfctEeM5wpPgYxnLekX3vLyESO/EvVBXAKOF4JsN5lELFNVtNZb8zl9iqbzXub/xJxQQ9KVAyvvlzd6NDO",
+     "page_age": null,
+     "title": "Dune 2's Rotten Tomatoes Score Breaks 10 Records",
+     "type": "web_search_result",
+     "url": "https://www.imdb.com/news/ni64454156/"
+    },
+    {
+     "encrypted_content": "EtAHCioIFBgCIiQyNGJhMmM2Ni1hNjRiLTRkNzAtYTk1My05ZTc0Y2Q2MDFmYTUSDPQ3PG9nvqAKr0jSmhoMGfbxTPa4mNoJUplsIjCrzVX6k8hNxckwvshXMeNJ4/sslB/VF89kAz7uYI3w6VCaceDhNkrJx3bsLoXz358q0wbkZc91uvps/uF2tUPBZIbbER/BA/LBsRQezCtycu4QBI2xEQqxhD6JjrQmqoSSt6h8ZGFr3npI7HtHUdXwTW/7zzWGfUfYJIradlw0ho7v5gV5TENQg76/V+qo64pHt1NB",
+     "page_age": "946 days ago",
+     "title": "Dune: Part Two",
+     "type": "web_search_result",
+     "url": "https://www.rottentomatoes.com/m/dune_part_two"
+    },
+    {
+     "encrypted_content": "ErcICioIFBgCIiQyNGJhMmM2Ni1hNjRiLTRkNzAtYTk1My05ZTc0Y2Q2MDFmYTUSDG0SAyCC1sPDLZPzJBoM7Wwa3k10FbTJnDghIjCCj6olXMcmvMXXp3B0wiUM1yyXS6yW0WSNYfFpKovPTDUBqdwXskC01JnbMNHlSNQqugcgzdeE2CucoY3N2H39uAr2s2hrnKsS1cpxKMNDUO+flm2t84LbGLi+aZr2kk0LBvs1yE5JB6q+co+szGvSYtjEgpIaLqIrZ+bi98LPgSmVKrOP33LuyyJ5i95MGK247wgh",
+     "page_age": null,
+     "title": "List of accolades received by Dune: Part Two",
+     "type": "web_search_result",
+     "url": "https://en.wikipedia.org/wiki/List_of_accolades_received_by_Dune:_Part_Two"
+    },
+    {
+     "encrypted_content": "EoAOCioIFBgCIiQyNGJhMmM2Ni1hNjRiLTRkNzAtYTk1My05ZTc0Y2Q2MDFmYTUSDLQR5qGXWnKf4mqENBoMGGPgEIW8j3HdEWF2IjCgShN8EBgiH39MfFbUK3bThQyyKp48gC+qUSj9k2nE3Q6WMUYgsXqRXMcQ8Dc8eLoqgw3oC1bOtHL98rCQB9NTNZCLLUs4XscWqjd2eCM1Z4hIjJ8OlxfzXHJI1Mdi7X4My754dCDzoSH3nArZQ+a0g5TO7hFuBKX9TMtakGnM7LzPEmIE+ZPu/QZZ4FUT5rDjnIwP",
+     "page_age": "946 days ago",
+     "title": "Dune 2's Rotten Tomatoes Score Breaks 10 Records",
+     "type": "web_search_result",
+     "url": "https://warnerbros.fandom.com/f/p/4400000000000027968"
+    },
+    {
+     "encrypted_content": "EqsKCioIFBgCIiQyNGJhMmM2Ni1hNjRiLTRkNzAtYTk1My05ZTc0Y2Q2MDFmYTUSDNCfcKwhiONzVTYIjxoMz3D0e+dz08NIB0ryIjBq9xezY+X2bHb/PUo5yZiB/bATrIbgh7+/9VqV49d/PboMyys49GasUslFCUVXfNUqrgkuLz8GZz6fb+ndy3ae3VlI26tMh7Ekn43cz6wiEHAn5zrsM8rrW2By//YRj/2msAg4jh8tofouynz1as4IG5MoLyGjBUPQyI3c972x0CCjQZbbpdKgZt3atfolpqHTjIZG",
+     "page_age": "954 days ago",
+     "title": "Dune: Part Two reviews are in",
+     "type": "web_search_result",
+     "url": "https://clutchpoints.com/entertainment/dune-part-two-reviews-are-in"
+    },
+    {
+     "encrypted_content": "EuAQCioIFBgCIiQyNGJhMmM2Ni1hNjRiLTRkNzAtYTk1My05ZTc0Y2Q2MDFmYTUSDLNeZV3KhMCCffbMsxoMyZ3sPzjlcML0fC97IjCf1xvwSd0sBRTnp79mpRiGBBzvHnel50u/OfOoNBmYZSNrLLjTbc9iahrpkVV545Aq4w9dJxV4Kq+1R4hlfZUaR7EUItaE8MVY4Vwdl4Vmh7Axzp3pNdOrMDuZsnRQyrH3dqGmFv03ENkJvS/HglYmbblOJZlpclvdPBHtMv3WWnH8ijVE1tSme1QayRtIfUpaj64S",
+     "page_age": "949 days ago",
+     "title": "Why Dune 2's Rotten Tomatoes Score Is So Much Higher Than The First Movie",
+     "type": "web_search_result",
+     "url": "https://screenrant.com/dune-2-rotten-tomatoes-score-higher-dune-2021/"
+    },
+    {
+     "encrypted_content": "EvAHCioIFBgCIiQyNGJhMmM2Ni1hNjRiLTRkNzAtYTk1My05ZTc0Y2Q2MDFmYTUSDIFXLWXynxyA6bdAJRoMSd6nS3w4uIcEwClYIjC80bQCbZm3On4+ikHhUxwPVxOph2gM7zu8jrk3FJA0NPktwTDJ/OQBN2GMZbcI17Eq8wb6LvjSftgYAwI8ouJDFkPkZH7BUk2Kj1ZyHIVl647CIYK0CTmehIY6kh+zqs5+OP7chACyYeG/2hnbS8jc8ukeZzfvrTgLbxx2swhG+EuC/FG7S6ZUqsvoA4EgZmU8ySS7",
+     "page_age": "955 days ago",
+     "title": "Dune: Part Two Debuts With Record-Breaking Rotten Tomatoes Scoree",
+     "type": "web_search_result",
+     "url": "https://www.cbr.com/dune-part-two-rotten-tomatoes-score/"
+    },
+    {
+     "encrypted_content": "EtYICioIFBgCIiQyNGJhMmM2Ni1hNjRiLTRkNzAtYTk1My05ZTc0Y2Q2MDFmYTUSDDEdyF0XwQbIvW3fCBoMrgvjyJ+2MfUMdcavIjA7auaHa54TqlzkhIH27i0Uu7liLx4+wx9mVQQ/Bg7wmURWwqOEBwXGvRkteNBdHPUq2QenAbtrvPZzUR96NL77ol5JVR/O6WgjbWl7xL+Tt/Wpv2VxSx20d9YzSengPd2CjhvK6j2DnTKsYpGuVjfGuULD0Xez7xxu7crcb6jC0YiB1SwL5F4dGChmgBO6KGWVO9g/",
+     "page_age": "954 days ago",
+     "title": "Dune 2's Rotten Tomatoes Score Breaks 10 Records",
+     "type": "web_search_result",
+     "url": "https://screenrant.com/dune-2-movie-rotten-tomatoes-score-records-broken/"
+    },
+    {
+     "encrypted_content": "EuAQCioIFBgCIiQyNGJhMmM2Ni1hNjRiLTRkNzAtYTk1My05ZTc0Y2Q2MDFmYTUSDIdwsa8m7ymA9B3VWBoMYvYqz/VfPq6j7NVXIjBW/Fna4SCEIlOycRuWMb1fytHHPJhYQJFoYUXO6y3zoGMJkzCmu+EiLJX09vpQPBkq4w97VKW2rBjK1i+SxHVZ2g2EdVuqmsh/TYtbcdp4xu1AJdOPRvtS5sef8hy+vt6/UGRD00b8fR3XOdPIYLkHuQm2ezFCFQdNHKXOftDUw7rXrnZo30NlV0/nevoP6UHXEdXX",
+     "page_age": null,
+     "title": "'Dune: Part Two' just crashed the Netflix Top 10 — and it's 92% on Rotten Tomatoes",
+     "type": "web_search_result",
+     "url": "https://tomsguide.com/entertainment/netflix/dune-part-two-just-crashed-the-netflix-top-10-and-its-92-percent-on-rotten-tomatoes"
+    },
+    {
+     "encrypted_content": "EpMQCioIFBgCIiQyNGJhMmM2Ni1hNjRiLTRkNzAtYTk1My05ZTc0Y2Q2MDFmYTUSDLHR9hFox18xhJsX3hoMvMdPxys+LNB723LFIjBBGAzafik6eb7yk6sV1yuipojQjaMRB8VOybbRCMbM+rfOtlkNJXSdv06gSBGbeEwqlg92dvdm0fU3rPQvz5JS9yDNVM56S1V0OWTOuCu11Bct9f3j2QFM2B2CKfgHvkKlezGxcqTtCvBn7yGj5aLfpSqaSFNjsGaX8/lJoHvcR9g+MLswguqsn8uA+9ojMq4fwE7n",
+     "page_age": null,
+     "title": "Rotten Tomatoes",
+     "type": "web_search_result",
+     "url": "https://www.rottentomatoes.com/m/Dune_Part_Two"
+    }
+   ],
+   "tool_use_id": "srvtoolu_01KsqFM1vgiktGiVz4nitnFo",
+   "type": "web_search_tool_result",
+   "caller": {
+    "tool_id": "srvtoolu_01TmsNaLhVFpEidbsGDhDz7p",
+    "type": "code_execution_20260120"
+   }
+  },
+  {
+   "content": {
+    "content": [],
+    "encrypted_stdout": "Eo4BCioIFBgCIiQyNGJhMmM2Ni1hNjRiLTRkNzAtYTk1My05ZTc0Y2Q2MDFmYTUSDPl+czBpzwWdVhFQvhoMZhji68KbUAy0NzS1IjB6ZQPoVxURa5NoEKV/pDG8hkq+1H/RnNDTLIoMzvihbHP7zXvi8JAfOTMBrqL/bQIqEnxZja678O1bnwKqsffnLc072xgD",
+    "return_code": 1,
+    "stderr": "Server tool use limit exceeded during code execution.",
+    "type": "encrypted_code_execution_result"
+   },
+   "tool_use_id": "srvtoolu_01TmsNaLhVFpEidbsGDhDz7p",
+   "type": "code_execution_tool_result"
+  },
+  {
+   "signature": "CAQS2AkKEAgSGAI4AUIIdGhpbmtpbmcSDJxYcj6AgD/akcIywhoMBZj0kRqZJgc23OyhIjDGpl0AEu6vA3T4TmhhakNo/ky0d2OtbFio/8w4rLX2IMlaLTbISVu5kBjIYBTrqj4q9QjBq+C6xd1RUQV0JRUb511Bo1CRO95Ozc7WP/e81hvP+yAjwWBb4T1drq8wmhjnsILBCWye3ndpbCKBibLDcYmUyitmbaiugZhWOFE1BFjJMYwnR1W7v90gClE58VPxuAXbO6o4UU+sgEZyCDApJHCTRqECENm2IpXJ",
+   "thinking": "",
+   "type": "thinking"
+  },
+  {
+   "text": "联网查到的结果显示，《沙丘：第二部》（Dune: Part Two）的影评口碑非常好：上映前后烂番茄新鲜度在97%左右（基于105篇影评，见 https://www.imdb.com/news/ni64452983/ ；另一则粉丝站帖子称是98%，来源可靠性较低，见 https://warnerbros.fandom.com/f/p/4400000000000027968 ）。根据这篇IMDb新闻，绝大多数影评人喜欢这部影片，常把它称为一部视觉震撼的科幻史诗。需要说明的是，这两个都是上映初期的数字，搜索次数用完后我没能查到烂番茄现在的分数和Metacritic评分，所以现在的分数可能已经有所变",
+   "type": "text"
+  }
+ ]
+}
