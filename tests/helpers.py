@@ -102,3 +102,28 @@ class FakeCaller:
         if isinstance(reply, Exception):
             raise reply
         return reply
+
+
+# ---- 任务 7 起用到 ----
+
+def make_card(**overrides) -> dict:
+    """模型返回的一张合法卡片（白名单处理之前的样子）。"""
+    card = {
+        "tier": "must",
+        "strength": 4,
+        "category": "scifi",
+        "one_liner": "一句话定位。",
+        "premise": "讲什么。",
+        "why_for_you": "为什么对胃口。",
+        "reception": "口碑如何。",
+        "background": "创作背景。",
+        "caveats": "可能踩雷。",
+        "skip_reason": None,
+        "evidence": "ample",
+        "title_zh": None,
+        "title_zh_source": None,
+        "scores": [],
+        "sources": [{"title": "影评", "url": "https://example.com/review"}],
+    }
+    card.update(overrides)
+    return card
