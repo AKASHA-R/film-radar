@@ -2,6 +2,7 @@ import json
 from datetime import date
 
 import pytest
+import requests
 
 from film_radar.cineplex import (
     API_BASE, KEY_HEADER, USER_AGENT, CineplexClient, CineplexError, candidate_keys, script_urls,
@@ -266,6 +267,17 @@ def test_movie_details_404():
 
 
 # ---- 请求卫生 ----
+
+def test_network_errors_become_cineplex_errors():
+    """requests 的超时、连接重置不是 CineplexError。不包起来，main 就认不出这是"Cineplex 抓取"环节的失败。"""
+    class Down:
+        def get(self, url, headers=None, timeout=None):
+            raise requests.ConnectionError("Connection reset by peer")
+
+    client = CineplexClient(Down(), sleep=lambda seconds: None)
+    with pytest.raises(CineplexError, match="网络错误.*ConnectionError"):
+        client.movies()
+
 
 def test_every_request_is_throttled_and_carries_user_agent():
     session = make_session()

@@ -11,6 +11,8 @@ import time
 from datetime import date
 from typing import Callable
 
+import requests
+
 API_BASE = "https://apis.cineplex.com/prod/cpx/theatrical/api"
 SITE = "https://www.cineplex.com"
 KEY_HEADER = "Ocp-Apim-Subscription-Key"
@@ -96,7 +98,11 @@ class CineplexClient:
         self._sleep(self._min_interval)
         merged = {"User-Agent": USER_AGENT}
         merged.update(headers or {})
-        return self._session.get(url, headers=merged, timeout=30)
+        try:
+            return self._session.get(url, headers=merged, timeout=30)
+        except requests.RequestException as e:
+            # 只放异常类型和网址：请求头里有订阅密钥，不能进报错
+            raise CineplexError(f"{url}: 网络错误 {type(e).__name__}") from e
 
     @staticmethod
     def _json(response, where: str):
