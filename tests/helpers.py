@@ -127,3 +127,59 @@ def make_card(**overrides) -> dict:
     }
     card.update(overrides)
     return card
+
+
+# ---- 任务 8 起用到 ----
+
+from datetime import date as _date  # noqa: E402
+
+USAGE = {"calls": 3, "input_tokens": 1000, "output_tokens": 500, "searches": 4,
+         "estimated_token_cost_usd": 0.014}
+
+
+def make_verdict(film_id: int, keep: bool = True, rank=1, category: str = "scifi", reason: str = "粗筛理由") -> dict:
+    return {"film_id": film_id, "keep": keep, "rank": rank if keep else None, "category": category, "reason": reason}
+
+
+def ok_review(film_id: int, **card_overrides) -> dict:
+    card = make_card(**card_overrides)
+    card["film_id"] = film_id
+    card.setdefault("sources_dropped", 0)
+    return {"film_id": film_id, "ok": True, "card": card, "error": None, "searches": 2}
+
+
+def failed_review(film_id: int, error: str = "调查阶段 stop_reason 为 max_tokens") -> dict:
+    return {"film_id": film_id, "ok": False, "card": None, "error": error, "searches": 0}
+
+
+def recommended(film_id: int, title: str, candidate: dict | None = None, **card_overrides):
+    """一部入围且精评成功的片：返回 (候选, 判定, 精评结果)。"""
+    return (make_candidate(film_id, title, **(candidate or {})), make_verdict(film_id), ok_review(film_id, **card_overrides))
+
+
+def skipped(film_id: int, title: str, reason: str = "不对口味"):
+    """一部粗筛就没入围的片。"""
+    return (make_candidate(film_id, title), make_verdict(film_id, keep=False, reason=reason), None)
+
+
+def broken(film_id: int, title: str, error: str = "调查阶段 stop_reason 为 max_tokens"):
+    """一部入围但精评失败的片。"""
+    return (make_candidate(film_id, title), make_verdict(film_id), failed_review(film_id, error))
+
+
+def build_edition(settings, entries, previous=None, filtered_events=(), orphan_ids=(),
+                  run_date=_date(2026, 10, 8), generated_at="2026-10-08T07:05:00-04:00") -> dict:
+    from film_radar.assemble import assemble
+
+    return assemble(
+        candidates=[e[0] for e in entries],
+        verdicts=[e[1] for e in entries],
+        reviews=[e[2] for e in entries if e[2] is not None],
+        previous=previous,
+        filtered_events=list(filtered_events),
+        orphan_ids=list(orphan_ids),
+        usage=dict(USAGE),
+        run_date=run_date,
+        generated_at=generated_at,
+        settings=settings,
+    )
