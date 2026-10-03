@@ -42,3 +42,63 @@ class FakeSession:
         if "/_next/static/" in url:
             return FakeResponse(200, "")
         return FakeResponse(404, "")
+
+
+# ---- 任务 6 起用到的构造函数 ----
+
+from film_radar.llm import LLMResult  # noqa: E402
+
+
+def make_candidate(film_id: int, title: str | None = None, **overrides) -> dict:
+    """构造一个候选。键必须与 candidates.build_candidates 的产出一致（test_helpers_shape.py 守着）。"""
+    title = title or f"Film {film_id}"
+    candidate = {
+        "film_id": film_id,
+        "title": title,
+        "film_url": f"film-{film_id}",
+        "versions": [{"film_id": film_id, "name": title, "language": "English", "subtitle": ""}],
+        "status": "now_playing",
+        "is_event": False,
+        "release_date": "2026-10-02",
+        "runtime": 120,
+        "genres": ["Drama"],
+        "film_categories": ["Drama", "Film Presentation"],
+        "distributor": "ELEVATION PICTURES CORP.",
+        "poster_url": "https://mediafiles.cineplex.com/poster.jpg",
+        "detail_url": f"https://www.cineplex.com/movie/film-{film_id}",
+        "gta_theatres": ["Scotiabank Theatre Toronto"],
+        "gta_dates": ["2026-10-04"],
+        "weeks_in_release": 1,
+        "hurry": False,
+        "rating_on": None,
+        "synopsis": "A synopsis.",
+        "director": "A Director",
+        "starring": "An Actor",
+        "details_missing": False,
+    }
+    candidate.update(overrides)
+    return candidate
+
+
+def llm_reply(obj, stop: str = "end_turn", blocks=None, tokens=(100, 50)) -> LLMResult:
+    """把一个对象包成 LLMResult。obj 是字符串时原样当作文本，否则序列化成 JSON。"""
+    text = obj if isinstance(obj, str) else json.dumps(obj, ensure_ascii=False)
+    return LLMResult(stop_reason=stop, text=text, blocks=list(blocks or []),
+                     input_tokens=tokens[0], output_tokens=tokens[1])
+
+
+class FakeCaller:
+    """按顺序吐出预设回复的假 caller。回复是异常实例时抛出它。"""
+
+    def __init__(self, *replies):
+        self.replies = list(replies)
+        self.calls: list[dict] = []
+
+    def __call__(self, **kwargs):
+        self.calls.append(kwargs)
+        if not self.replies:
+            raise AssertionError("FakeCaller 的预设回复用完了：被多调用了一次")
+        reply = self.replies.pop(0)
+        if isinstance(reply, Exception):
+            raise reply
+        return reply
