@@ -189,8 +189,9 @@ def test_attach_details_allows_exactly_half():
 # ---- 用量 ----
 
 def test_summarize_usage(settings):
+    priced = replace(settings, price_input_per_mtok=4.0, price_output_per_mtok=20.0)   # 算术与线上单价无关
     results = [LLMResult("end_turn", "", [], 1_000_000, 100_000), LLMResult("end_turn", "", [], 500_000, 50_000)]
-    assert summarize_usage(results, 7, settings) == {
+    assert summarize_usage(results, 7, priced) == {
         "calls": 2, "input_tokens": 1_500_000, "output_tokens": 150_000, "searches": 7,
         "estimated_token_cost_usd": 9.0,
     }

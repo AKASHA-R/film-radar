@@ -32,7 +32,7 @@
 | 口味之外的片 | 六类加权而非排他；六类之外每期最多 2 个位置 | 设计确认 |
 | 活动场的处理 | 只过滤非电影类活动（歌剧、演唱会、舞台剧、电视节目）；以活动形式放映的电影保留为候选 | 用户审阅时指出，实测数据确认（见附录 A） |
 | 运行位置 | 全部在 GitHub Actions | 设计确认 |
-| 模型 | `claude-opus-5-5` | claude-api 技能默认 |
+| 模型 | `claude-sonnet-5-5`。**首期（2026-10-03）用的是 `claude-opus-5-5`，运行后用户嫌 token 费用太高，改为 Sonnet 5.5。** 两者单价差一半（Opus 5.5 输入 4 / 输出 20 美元，Sonnet 5.5 输入 2 / 输出 10 美元，每百万 token）。换模型对精评质量的影响没有实测，见第 14 节 | 用户选定 |
 
 ## 3. 范围
 
@@ -117,8 +117,8 @@ film-radar/
 
 `triage` 与 `review` 共用：
 
-- 走官方 `anthropic` Python SDK，模型 `claude-opus-5-5`。
-- 该模型的思考始终开启，不传 `budget_tokens`；`effort` 显式设置（它的默认值是 `medium`，不显式写容易在换模型时悄悄变化）：粗筛 `medium`，精评 `high`。
+- 走官方 `anthropic` Python SDK，模型取自 `config/settings.toml` 的 `model`（现为 `claude-sonnet-5-5`，首期是 `claude-opus-5-5`）。
+- 思考用 `thinking={"type": "adaptive"}`，不传 `budget_tokens`（这两个模型都会 400）；`effort` 显式设置，不依赖默认值（Opus 5.5 默认 `medium`，Sonnet 5.5 默认 `high`，档位含义随模型重新校准过，不显式写容易在换模型时悄悄变化）：粗筛 `medium`，精评 `high`。换成 Sonnet 5.5 时没有重新扫过 effort，沿用首期的取值。
 - 读取响应时只取 `type == "text"` 的内容块。
 - 每次调用后先查 `stop_reason`，再读内容。`max_tokens` 与 `refusal` 都按失败处理。
 - 启用服务端拒答回退（`fallbacks: "default"`，beta 功能）。回退后仍拒答才算失败。
@@ -413,8 +413,9 @@ sources          [{title, url}]
 
 - 入围上限 `shortlist_cap`（15）；每片搜索次数上限 `search_max_uses`（5）。
 - 每次运行记录实际 token 用量与搜索次数，写入 edition 数据、页脚和 Actions 摘要。
-- 费用估算只算 token 部分，单价写在配置里（`claude-opus-5-5`：输入每百万 token 4 美元，输出 20 美元）。联网搜索另按次计费，其单价本设计没有核实过，所以只记次数、不折算金额，实际花费以 Anthropic 控制台账单为准。
+- 费用估算只算 token 部分，单价写在配置里（现为 `claude-sonnet-5-5`：输入每百万 token 2 美元，输出 10 美元；首期用的 `claude-opus-5-5` 是 4 / 20 美元）。联网搜索另按次计费，其单价本设计没有核实过，所以只记次数、不折算金额，实际花费以 Anthropic 控制台账单为准。
 - **首期实测（2026-10-03，70 部候选、15 部入围）：** 32 次模型调用（粗筛 2 次，其中 1 次是漏判重试；精评 15 部 × 2 次），输入 1,684,232 / 输出 88,449 token，联网搜索 75 次；token 费用估算 **$8.51**（不含搜索费，搜索单价没有核实过，以账单为准）。设计阶段估的是每期 2–5 美元，实际 token 部分就已是估算上限的 1.7 倍，加上搜索费更高。每部入围片的精评平均约 11 万输入 token，主要是联网搜索结果灌进上下文。每期约 $8.5 以上、每两周一次，是否调整 `shortlist_cap` / `search_max_uses` 由用户决定，代码没有改。
+- **2026-10-03 起改用 `claude-sonnet-5-5`**（用户嫌首期费用太高）。单价正好是 Opus 5.5 的一半，同样的 token 量下首期的 $8.51 约合 $4.26。**这是按单价推算，不是实测**：换模型后 token 用量（搜索次数、思考长度）和精评质量都会变，尤其是首期核查发现的错误"没查到"断言会不会更多，没有数据。下一次运行（2026-10-08 的定时运行）页脚给出第一个 Sonnet 的实测数字。输入 token 占了费用的大头（首期 168 万输入 vs 8.8 万输出），要再降主要看 `search_max_uses` 与 `shortlist_cap`，不是 `effort`。
 
 ## 15. 配置（`config/settings.toml`）
 
@@ -431,8 +432,8 @@ sources          [{title, url}]
 | `search_max_uses` | 5 | 每片搜索次数上限 |
 | `anchor_date` | 2026-10-08 | 双周门控锚点 |
 | `stale_after_days` | 16 | 页面过期提示阈值 |
-| `model` | `claude-opus-5-5` | 模型 |
-| `price_input_per_mtok` / `price_output_per_mtok` | 4.00 / 20.00 | 费用估算用的 token 单价（美元） |
+| `model` | `claude-sonnet-5-5` | 模型（首期是 `claude-opus-5-5`） |
+| `price_input_per_mtok` / `price_output_per_mtok` | 2.00 / 10.00 | 费用估算用的 token 单价（美元）。**换模型时必须同步改**，否则页脚的费用数字是错的 |
 | `timezone` | `America/Toronto` | 期号与日期计算所用时区 |
 | `page_url` | `https://akasha-r.github.io/film-radar/` | 写进 Issue 正文的页面地址 |
 

@@ -14,7 +14,7 @@
 
 - Python **3.11**。本机用 `python3.11` 建 `.venv`，Actions 用同一小版本。系统自带的 `python3` 是 3.9，不能用。
 - 依赖版本钉死：`anthropic==1.11.0`、`requests==2.34.2`、`pytest==9.1.1`。不加其他第三方依赖。
-- 模型一律 `claude-opus-5-5`，模型 ID 不带日期后缀。
+- 模型由 `config/settings.toml` 的 `model` 决定，模型 ID 不带日期后缀。计划执行时用的是 `claude-opus-5-5`（下面各任务的代码与测试保留原文）；2026-10-03 首期运行后用户嫌 token 费用太高，改为 `claude-sonnet-5-5`，单价同步改成 2.00 / 10.00，见 spec 第 2、4、14、15 节。探针脚本现在读配置里的模型，不再硬编码。
 - **测试不访问真实网络和真实 API。** HTTP 用 `tests/helpers.py` 里的 `FakeSession`，Claude 调用用注入的假 `caller` 或 monkeypatch `llm._send`。
 - Cineplex 测试数据只用 `tests/fixtures/cineplex/` 里的真实响应裁剪件。需要变体时在测试里复制一条真实记录再改单个字段，不手写整条记录。
 - 用这批数据的测试，运行日期一律取 **2026-10-03**。

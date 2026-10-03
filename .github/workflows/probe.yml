@@ -1,5 +1,11 @@
 name: probe
-on: workflow_dispatch
+on:
+  workflow_dispatch:
+    inputs:
+      notify:
+        description: "同时开一个测试 Issue，用来确认通知能不能到达（默认不开，免得每次探针都发一封邮件）"
+        type: boolean
+        default: false
 
 permissions:
   contents: read
@@ -25,7 +31,7 @@ jobs:
           name: probe-out
           path: out/probe
       - name: Open a test issue
-        if: always()
+        if: ${{ always() && inputs.notify }}
         env:
           GH_TOKEN: ${{ github.token }}
         run: |

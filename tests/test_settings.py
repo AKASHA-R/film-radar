@@ -31,9 +31,9 @@ def test_loads_repo_settings(settings):
     assert settings.search_max_uses == 5
     assert settings.anchor_date == date(2026, 10, 8)
     assert settings.stale_after_days == 16
-    assert settings.model == "claude-opus-5-5"
-    assert settings.price_input_per_mtok == 4.0
-    assert settings.price_output_per_mtok == 20.0
+    assert settings.model == "claude-sonnet-5-5"
+    assert settings.price_input_per_mtok == 2.0
+    assert settings.price_output_per_mtok == 10.0
     assert settings.timezone == "America/Toronto"
     assert settings.page_url == "https://akasha-r.github.io/film-radar/"
 

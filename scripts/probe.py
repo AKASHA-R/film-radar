@@ -13,9 +13,11 @@ import requests
 
 from film_radar import llm
 from film_radar.cineplex import CineplexClient
+from film_radar.settings import load_settings
 
 OUT = Path("out/probe")
-MODEL = "claude-opus-5-5"
+# 探针测的是流水线实际会用的模型，不在这里另写一份：换模型时那份会悄悄漂移
+MODEL = load_settings(Path(__file__).resolve().parents[1] / "config" / "settings.toml").model
 
 
 def trim(value, limit: int = 300):

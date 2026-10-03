@@ -20,10 +20,10 @@ search_max_uses = 5
 anchor_date = 2026-10-08
 stale_after_days = 16
 
-model = "claude-opus-5-5"
+model = "claude-sonnet-5-5"
 # 费用估算用的 token 单价（美元 / 百万 token）。联网搜索另按次计费，不在此折算。
-price_input_per_mtok = 4.00
-price_output_per_mtok = 20.00
+price_input_per_mtok = 2.00
+price_output_per_mtok = 10.00
 
 timezone = "America/Toronto"
 page_url = "https://akasha-r.github.io/film-radar/"
