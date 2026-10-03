@@ -1,0 +1,92 @@
+name: edition
+
+on:
+  schedule:
+    # 每周四 11:00 UTC（多伦多夏令时 7:00，冬令时 6:00）。脚本里按周数奇偶决定这周跑不跑。
+    - cron: "0 11 * * 4"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+  issues: write
+
+concurrency:
+  group: edition
+  cancel-in-progress: false
+
+jobs:
+  edition:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deploy.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - run: pip install -e .
+
+      - name: Run pipeline
+        id: run
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+        run: python -m film_radar.main run ${{ github.event_name == 'workflow_dispatch' && '--manual' || '' }}
+
+      - name: Commit edition data
+        if: steps.run.outputs.skipped == 'false'
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/editions
+          git diff --cached --quiet || git commit -m "data: 第 ${{ steps.run.outputs.edition_id }} 期"
+          git push
+
+      - uses: actions/configure-pages@v5
+        if: steps.run.outputs.skipped == 'false'
+
+      - uses: actions/upload-pages-artifact@v3
+        if: steps.run.outputs.skipped == 'false'
+        with:
+          path: site
+
+      - name: Deploy pages
+        id: deploy
+        if: steps.run.outputs.skipped == 'false'
+        uses: actions/deploy-pages@v4
+
+      - name: Open edition issue
+        if: steps.run.outputs.skipped == 'false'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          printf '\ncc @%s\n' "${{ github.repository_owner }}" >> out/issue_body.md
+          gh issue create --repo "${{ github.repository }}" \
+            --title "$(cat out/issue_title.txt)" \
+            --body-file out/issue_body.md \
+            --label edition
+
+      - name: Open failure issue
+        if: failure()
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          {
+            echo "运行日志：${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"
+            echo
+            if [ -f out/failure.txt ]; then
+              cat out/failure.txt
+            else
+              echo "失败发生在流水线之外的步骤（提交、部署或开 Issue），详见运行日志。"
+            fi
+            echo
+            echo "已发布的页面没有被改动。cc @${{ github.repository_owner }}"
+          } > failure_body.md
+          gh issue create --repo "${{ github.repository }}" \
+            --title "film-radar 运行失败 $(date -u +%F)" \
+            --body-file failure_body.md \
+            --label failure
