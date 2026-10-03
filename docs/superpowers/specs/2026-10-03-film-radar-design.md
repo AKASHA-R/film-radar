@@ -275,7 +275,9 @@ sources          [{title, url}]
 
 模型的文字无法由程序逐句核对。程序能守住的是：**凡是可核对的声明都必须挂一个来源，而来源必须真的出现在那次调用的搜索结果里。**
 
-1. **来源白名单**：取调查那次调用里全部**工具结果块**（类型以 `_tool_result` 结尾）中出现的网址，加上 API 附在文本块上的引用网址（比较前去掉 fragment、末尾斜杠与末尾标点，协议与域名转小写）。模型自己写的正文和它发出的搜索请求不算——取了等于让模型给自己作证。白名单为空即判该片精评失败。
+1. **来源白名单**：取调查那次调用里**搜索结果块**（`web_search_tool_result`）中出现的网址，加上 API 附在文本块上的引用网址（比较前去掉 fragment、末尾斜杠与末尾标点，协议与域名转小写）。模型自己写的正文、它发出的搜索请求、思考块，以及**代码执行结果块**（`code_execution_tool_result` 等）都不算——取了等于让模型给自己作证。白名单为空即判该片精评失败。
+
+   **为什么代码执行结果块不算（2026-10-03 任务 4 真实响应实测）：** 带动态过滤的搜索工具会让模型写代码去调用搜索。那些代码的执行结果里，stdout 是加密字段，stderr 是明文且会回显模型自己写的代码，所以是模型自己产出的内容。搜索结果的网址仍然完整出现在 `web_search_tool_result` 块里（实测 3 次搜索共 30 条、15 个不重复网址，代码执行结果块里一个都没有），收紧不丢任何真实网址。代价：若将来搜索工具把结果放进别的块类型，白名单会为空，该片精评失败，是响亮的失败而不是静默放行。
 2. `sources` 里不在白名单的条目丢弃，卡片记 `sources_dropped` 计数。
 3. `scores` 里 `source_url` 不在白名单的条目丢弃。
 4. `title_zh_source` 不在白名单 → `title_zh` 置空。
@@ -455,12 +457,12 @@ sources          [{title, url}]
 
 | # | 前提 | 当前状态 | 不成立时的退路 |
 |---|---|---|---|
-| 1 | GitHub Actions 的机房 IP 能访问 Cineplex 网站与接口 | **未验证**。只在用户本机测过 | 抓取改在本机 launchd 执行，把原始数据推到仓库，由 Actions 接手后半段 |
-| 2 | Actions 机器人开的 Issue 会给仓库所有者发邮件与 App 推送 | **未验证** | 改用邮件直发，或在 Issue 里 @ 用户 |
-| 3 | 用户的 GitHub 套餐允许公开仓库使用 Pages 与定时 Actions | **私有仓库的 Pages 已实测不支持**：`POST /repos/AKASHA-R/film-radar/pages` 返回 422「Your current plan does not support GitHub Pages for this repository」。公开仓库待计划任务 4 Step 4a 实测 | 无需退路。Step 4a 若对公开仓库也返回套餐类错误，停下来报告用户 |
+| 1 | GitHub Actions 的机房 IP 能访问 Cineplex 网站与接口 | **已验证（2026-10-03，任务 4 闸门 A）**：Actions 上片单 258、影院 152、可订票日期 92，与本机一致 | 抓取改在本机 launchd 执行，把原始数据推到仓库，由 Actions 接手后半段 |
+| 2 | Actions 机器人开的 Issue 会给仓库所有者发邮件与 App 推送 | **已验证（2026-10-03，任务 4 闸门 C）**：用户确认收到 | 改用邮件直发，或在 Issue 里 @ 用户 |
+| 3 | 用户的 GitHub 套餐允许公开仓库使用 Pages 与定时 Actions | **私有仓库的 Pages 已实测不支持**：`POST /repos/AKASHA-R/film-radar/pages` 返回 422「Your current plan does not support GitHub Pages for this repository」。**公开仓库已验证**：同一条命令返回 `workflow https://akasha-r.github.io/film-radar/`。定时 Actions 待任务 11 首跑确认 | 无需退路。Step 4a 若对公开仓库也返回套餐类错误，停下来报告用户 |
 | 4 | 联网搜索与结构化输出可在同一请求中使用 | **不再需要验证**：直接采用两次调用（第 9 节） | — |
-| 6 | `llm.py` 的请求形状（流式、结构化输出、拒答回退 beta、联网搜索工具）在真实 API 上可用 | **未验证**。写计划时本机没有 API 密钥 | 实施计划任务 4 的闸门 B 列了逐项处理规则 |
-| 7 | 联网搜索的真实响应里，结果网址落在工具结果块或引用里 | **未验证** | 任务 4 抓回一份真实响应做测试数据；提取不到就按真实形状改提取逻辑，不放宽白名单 |
+| 6 | `llm.py` 的请求形状（流式、结构化输出、拒答回退 beta、联网搜索工具）在真实 API 上可用 | **已验证（2026-10-03，任务 4 闸门 B）**：结构化输出与联网搜索都 `end_turn`；`thinking`、`output_config`、`betas`、`fallbacks` 参数 API 都接受。**只验证了探针里的两个简单 schema**，粗筛与卡片的真实 schema（含 `anyOf` 可空、整数 `enum`）在任务 11 首跑才第一次过真实 API | 首跑若返回 400，按报错改 schema |
+| 7 | 联网搜索的真实响应里，结果网址落在工具结果块或引用里 | **已验证（2026-10-03，任务 4）**：网址落在 `web_search_tool_result` 块里；text 块的 `citations` 为空，白名单只能靠搜索结果块。同时发现代码执行结果块不能收，见第 9 节 | 真实响应已存为 `tests/fixtures/claude/research.json` |
 | 5 | 联网搜索对新片、华语片能搜到足够的评论 | **未验证** | `evidence` 机制已覆盖评论稀少的情况；若普遍稀少，需重新评估精评的价值 |
 
 已实测通过的前提见附录 A。

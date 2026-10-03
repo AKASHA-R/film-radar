@@ -2960,6 +2960,13 @@ git commit -m "feat: 粗筛（逐片判定、漏判重试、名额上限）"
 - 取法是对工具结果块整体做 JSON 序列化后用正则抽网址，不依赖块内部的具体结构。这样带动态过滤的新版搜索工具（结果可能出现在代码执行的输出里）也认得。
 - **白名单为空就判这部片精评失败**：没有任何工具结果里带网址，说明搜索没成功。
 
+> **2026-10-03 执行时的改动（以真实响应为准，下面的代码块与测试保留原文，实际代码与测试以仓库为准）：**
+> 任务 4 抓回的真实响应显示，搜索工具会让模型调 `code_execution`。那类结果块的 `stdout` 是加密字段、`stderr` 是明文且会回显模型自己写的代码；搜索结果的网址仍完整出现在 `web_search_tool_result` 块里（30 条、15 个不重复）。所以：
+> 1. `collect_urls` 只认 `web_search_tool_result`（常量 `SEARCH_RESULT_TYPES`），不再认"所有以 `_tool_result` 结尾的块"。上面第 53、55 行的说法作废。
+> 2. 测试 `test_collect_urls_reads_any_tool_result_shape` 删除，换成 `test_collect_urls_ignores_code_execution_results` 与 `test_real_response_urls_come_only_from_search_results`。Step 5 的预期通过数因此是 `39 passed`，不是 `38 passed`。
+> 3. Step 6 第三处注入（`elif kind...` 改成 `else:`）预期红的是三条，不是一条：`test_collect_urls_ignores_what_the_model_wrote` 加上上面两条新增的。另加第四处：把 `elif kind in SEARCH_RESULT_TYPES:` 改回计划原版的 `elif kind.endswith("_tool_result"):`，预期红的恰好是那两条新增的，说明它们有区分力。
+> 依据与代价见 spec 第 9 节。
+
 - [ ] **Step 1: 往测试辅助里追加 `make_card`**
 
 `tests/helpers.py`（追加到文件末尾）：
