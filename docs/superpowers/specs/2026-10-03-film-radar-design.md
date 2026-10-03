@@ -28,7 +28,9 @@
 | 判断方案 | 两段式：程序过滤 → Claude 粗筛 → 逐片联网精评 | 用户选定 |
 | 频率 | 两周一次，周四早上（多伦多时间） | 用户指定，设计确认 |
 | 仓库可见性 | 公开（免费版 GitHub Pages 要求公开仓库） | 设计确认 |
-| 口味之外的片 | 五类加权而非排他；五类之外每期最多 2 个位置 | 设计确认 |
+| 口味类别 | 六类：科幻、惊悚、政治历史、中国电影、恐怖、日本电影（含经典动画电影重映） | 前五类为用户原定；第六类为用户审阅 spec 时追加 |
+| 口味之外的片 | 六类加权而非排他；六类之外每期最多 2 个位置 | 设计确认 |
+| 活动场的处理 | 只过滤非电影类活动（歌剧、演唱会、舞台剧、电视节目）；以活动形式放映的电影保留为候选 | 用户审阅时指出，实测数据确认（见附录 A） |
 | 运行位置 | 全部在 GitHub Actions | 设计确认 |
 | 模型 | `claude-opus-5-5` | claude-api 技能默认 |
 
@@ -56,7 +58,7 @@
 ```
 cineplex      运行时取密钥；片单、GTA 影院、未来 7 天排片、单片详情
    ↓
-candidates    程序过滤与同片多版本合并                    → 约 50–80 部
+candidates    程序过滤与同片多版本合并                    → 约 50–90 部
    ↓
 triage        Claude 一次调用，只看元数据，逐片给去留      → 入围最多 15 部
    ↓
@@ -130,17 +132,17 @@ Cineplex 没有公开 RSS，也没有官方开放 API。网站前端调用 `apis
 
 1. 抓取 `https://www.cineplex.com/` 首页，找出其引用的 `/_next/static/**.js`。
 2. 在脚本里找 `"Ocp-Apim-Subscription-Key":"<32 位十六进制>"`。实测前端里有不止一把密钥（电影接口一把，个性化横幅接口另一把）。
-3. 优先取与 `cpx/theatrical/api` 基址出现在同一语句里的那把；取不到时，对找到的每把不同密钥依次试调 `/v1/movies`，用第一把返回 200 的。
+3. 优先取与 `cpx/theatrical/api` 基址出现在同一语句里的那把；取不到时，对找到的每把不同密钥依次试调 `/v2/movies`，用第一把返回 200 的。
 4. 密钥只在内存里用，不写入仓库、不写入数据文件、日志里只打前 4 位。
 
 ### 抓取步骤
 
-1. `GET /v1/movies?language=en` → 全量片单。
+1. `GET /v2/movies?language=en` → 全量片单。用 v2 而不是 v1，因为只有 v2 带 `filmCategories` 字段，第 6 节区分"电影"与"非电影活动"要靠它。
 2. `GET /v1/theatres?language=en&latitude=..&longitude=..&range=..` → 全部影院及各自到中心点的距离（`location.distanceToOriginInMeters`）。取距离不超过 `radius_km` 的为 GTA 影院。
 3. 对每家 GTA 影院、从运行当天起连续 `showtime_days` 天，`GET /v1/showtimes?language=en&locationId=<id>&date=MM/DD/YYYY` → 该店当日在映影片。
 4. 过滤出候选后，对每部候选抓 `https://www.cineplex.com/movie/<filmUrl>`，解析 `__NEXT_DATA__` 里的 `props.pageProps.movieDetails` → 简介、导演、主演。
 
-请求间隔不小于 0.3 秒。按 22 家影院、7 天、约 80 部候选估算，单次运行约 250 个请求，耗时 2 分钟左右。
+请求间隔不小于 0.3 秒。按 22 家影院、7 天、约 90 部候选估算，单次运行约 260 个请求，耗时 2 分钟左右。
 
 所有请求带一个固定的浏览器 User-Agent。实测时是带着的，不带是否可行没有验证过。
 
@@ -152,7 +154,15 @@ Cineplex 没有公开 RSS，也没有官方开放 API。网站前端调用 `apis
 
 输入是全量片单、GTA 影院、排片结果。规则按顺序执行：
 
-1. **去活动**：`isEvent == true` 的丢弃（歌剧、演唱会直播等）。
+1. **去非电影活动**：`isEvent == true` **且** `filmCategories` 与 `non_film_categories` 有交集的条目过滤掉。`non_film_categories` 默认为 `Opera`、`Concert`、`Stage`、`Stage Performance`、`Television Event`、`Sport`。
+
+   **不能只看 `isEvent`。** Cineplex 把以特别放映形式上映的电影也标成活动。实测被标为活动的有：动画重映 `Ninja Scroll 4K`、日语动画新片 `Dive in Wonderland`、恐怖片 `Fresh Meat`、纪录片 `HANGING BY A WIRE`。只看 `isEvent` 会把它们全部丢掉。
+
+   用排除名单而不用准入名单，是因为两者的出错方向不同：排除名单遇到没见过的活动类别时会放行，交给粗筛判断并留下理由；准入名单则会把它悄悄丢掉。
+
+   规则只对活动生效。非活动的片即使带 `Sport` 这类类别（体育题材剧情片）也不受影响。
+
+   被过滤的条目不进候选，但**片名与命中的类别记入当期数据的 `filtered_events`**，并在页面折叠区列出，这样误杀可以被看见。
 2. **同片多版本合并**：片名去掉末尾括号后相同、**且上映日期相差不超过 60 天**的条目视为同一部片（实测：`Digger` 与 `Digger (Dubbed in Spanish)` 是不同 id，上映日相差 3 天）。日期条件用来防止把同名的翻拍与旧片重映误并。主条目取片名不带括号的那条；都带括号时取 id 最小的。被合并的条目记为主条目的 `variants`（语言版本），其排片并入主条目。状态、上映日期等字段一律取主条目的。
 3. **入选条件**，满足任一即为候选：
    - **GTA 有排片**：该片（含其 variants）在任一 GTA 影院、未来 `showtime_days` 天内有排片。
@@ -165,13 +175,18 @@ Cineplex 没有公开 RSS，也没有官方开放 API。网站前端调用 `apis
 | 字段 | 算法 |
 |---|---|
 | `title` | 主条目片名去掉末尾括号。语言与字幕另行显示 |
+| `versions` | 主条目与全部 variants 各自的语言与字幕，如"英语配音""日语原声 / 英文字幕" |
 | `status` | 主条目 `isComingSoon` 为真则 `coming_soon`，否则 `now_playing` |
+| `is_event` | 主条目或任一 variant 的 `isEvent` 为真 |
 | `gta_theatres` | 未来 `showtime_days` 天内有排片的 GTA 影院名列表，可为空（近期上映但排片未出） |
+| `gta_dates` | 未来 `showtime_days` 天内在 GTA 有排片的日期列表，可为空 |
 | `weeks_in_release` | 仅 `now_playing`：`(运行日期 − 上映日期).days // 7 + 1`，最小为 1 |
 | `hurry` | 仅 `now_playing`：`weeks_in_release >= 3` 且 `len(gta_theatres) <= 2` |
 | `rating_on` | `ratings` 里 `provinceCode == "ON"` 的那条，没有则为空 |
 
 `hurry` 是推断，不是 Cineplex 给的下映日期。页面上标注为"推断"。
+
+`is_event` 的片通常只放几场就没了，`hurry` 那条按周数算的规则对它不适用。这类片在页面上标"限定放映"，并直接列出 `gta_dates` 里的具体日期。日期是 Cineplex 排片的事实，不是推断。
 
 ## 7. 口味档案（`config/taste_profile.md`）
 
@@ -184,12 +199,17 @@ Cineplex 没有公开 RSS，也没有官方开放 API。网站前端调用 `apis
 3. **政治、历史**。
 4. **中国电影**：华语片，含港台。
 5. **恐怖**：正例《仲夏夜惊魂》《遗传厄运》《着魔》。现代新恐怖、心理恐怖、民俗恐怖。**反例：美式 B 级砍杀片（slasher）**，这一类即使口碑好也不推荐。
+6. **日本电影**：真人电影和动画电影都算。**特别想看经典动画电影的重映与修复版，正例《阿基拉》《攻壳机动队》。** 这类片在 Cineplex 常以"活动"或"限定放映"的形式出现，场次很少，不能因此降低优先级。
 
-另写明：五类是加权不是排他。五类之外口碑特别强的片可以推荐，但要标为"口味之外"。
+另写明：六类是加权不是排他。六类之外口碑特别强的片可以推荐，但要标为"口味之外"。
+
+一部片可能同时属于多类（日本科幻动画既是日本电影也是科幻）。`category` 只填最主要的一类，其余在 `why_for_you` 里说明。
 
 ## 8. 粗筛（`triage.py`）
 
-**一次调用**，不带工具。输入是口味档案和全部候选的元数据（id、片名、语言、字幕、类型、简介、导演、主演、发行方、上映日期、状态）。
+**一次调用**，不带工具。输入是口味档案和全部候选的元数据（id、片名、全部语言版本、类型、`filmCategories`、简介、导演、主演、发行方、上映日期、状态、是否活动场）。
+
+语言必须给全部版本而不是只给主条目的。实测 `Ninja Scroll 4K` 的主条目是英语配音版，日语原声是它的 variant；只给主条目语言的话，模型看不出这是一部日本电影。
 
 输出为结构化数据，每部候选一条：
 
@@ -197,7 +217,7 @@ Cineplex 没有公开 RSS，也没有官方开放 API。网站前端调用 `apis
 film_id   int
 keep      bool
 rank      int | null     入围片的优先顺序，1 最优先；未入围为 null
-category  scifi | thriller | political_historical | chinese | horror | outside
+category  scifi | thriller | political_historical | chinese | horror | japanese | outside
 reason    str            一句中文理由
 ```
 
@@ -226,7 +246,7 @@ reason    str            一句中文理由
 film_id          int
 tier             must | ok | skip
 strength         int 1–5          同档内的排序依据
-category         同粗筛的六个取值
+category         同粗筛的七个取值
 one_liner        str   一句话定位
 premise          str   讲什么（不剧透，说人话）
 why_for_you      str   为什么对口味，可类比口味档案里的锚点片
@@ -297,6 +317,7 @@ sources          [{title, url}]
 - `edition_id`、`generated_at`、`next_edition_date`
 - `settings` 快照（半径、窗口、名额）
 - `films`：每部候选一条，含 Cineplex 事实字段、粗筛判定、卡片或失败记录、最终去向（`must` / `ok` / `skip` / `review_failed`）及去向理由
+- `filtered_events`：被第 6 节规则 1 过滤掉的非电影活动，每条含片名与命中的类别。它们不是候选，不计入总数核对
 - `usage`：各次调用的输入输出 token 数与搜索次数；token 部分按配置里的单价折算出估算费用，搜索只记次数
 - `counts`：各去向的数量
 
@@ -309,11 +330,12 @@ sources          [{title, url}]
 **当期页，从上到下：**
 
 1. 页头：期号、覆盖范围（GTA、Cineplex、半径）、数据抓取时间、下期日期。
-2. **重点推荐**：大卡片。海报、英文片名（始终保留）、中文片名（有则显示）、类别、状态徽标（在映第 N 周 / X 月 X 日上映）、`hurry` 徽标"抓紧（推断）"、新旧徽标、放映影院、片长、语言字幕、安省分级；一句话定位、讲什么、为什么对你胃口、口碑、创作背景、可能踩雷；带来源的评分；来源链接；Cineplex 详情页链接。`evidence` 为 `thin` 或 `none` 时在口碑上方显示提示。
+2. **重点推荐**：大卡片。海报、英文片名（始终保留）、中文片名（有则显示）、类别、状态徽标（在映第 N 周 / X 月 X 日上映）、`hurry` 徽标"抓紧（推断）"、`is_event` 徽标"限定放映"及具体放映日期、新旧徽标、放映影院、片长、全部语言版本、安省分级；一句话定位、讲什么、为什么对你胃口、口碑、创作背景、可能踩雷；带来源的评分；来源链接；Cineplex 详情页链接。`evidence` 为 `thin` 或 `none` 时在口碑上方显示提示。
 3. **可以看**：紧凑卡片，字段同上，正文默认收起。
 4. **本期未能评估**：仅在有 `review_failed` 时出现。列出片名、粗筛理由、失败原因。
 5. **跳过**：折叠区。每部一行：片名、理由。
-6. 页脚：往期存档链接、本期用量、"推荐由模型生成，评分请点来源核对"。
+6. **已过滤的非电影活动**：折叠区。只列片名与命中的类别（歌剧、演唱会等），不做任何评估。用途是让误杀看得见：如果某部电影被错归到这里，一眼能发现。
+7. 页脚：往期存档链接、本期用量、"推荐由模型生成，评分请点来源核对"。
 
 **过期提示**：页面内联一小段脚本，比较当前日期与 `generated_at`，超过 `stale_after_days` 天就在页头显示"这一期已过期，新一期可能生成失败"。
 
@@ -386,6 +408,7 @@ sources          [{title, url}]
 | `radius_km` | 40 | GTA 半径。实测覆盖 22 家影院，含 Markham、Richmond Hill、Mississauga |
 | `showtime_days` | 7 | 排片查询天数 |
 | `coming_soon_days` | 14 | 即将上映窗口 |
+| `non_film_categories` | `Opera`、`Concert`、`Stage`、`Stage Performance`、`Television Event`、`Sport` | 活动场里要过滤的类别。只对 `isEvent` 为真的条目生效 |
 | `shortlist_cap` | 15 | 精评名额 |
 | `must_cap` | 6 | 重点推荐上限 |
 | `outside_cap` | 2 | 口味之外名额 |
@@ -400,7 +423,8 @@ sources          [{title, url}]
 
 - 测试不访问真实网络与 API。Claude 调用与 HTTP 请求全部 mock。
 - **Cineplex 测试数据用真实响应裁剪**，不手写。实施的第一步就是抓一份真实响应存为 fixture。
-- `candidates`：表驱动测试。第 14 天与第 15 天的边界；半径边界；活动过滤；多版本合并及排片并入；预售中的未上映片；`hurry` 的两个阈值。
+- `candidates`：表驱动测试。第 14 天与第 15 天的边界；半径边界；多版本合并及排片并入；预售中的未上映片；`hurry` 的两个阈值。
+- 活动过滤单列，用附录 A 的真实条目做用例：歌剧与演唱会被过滤并进入 `filtered_events`；动画重映（`Ninja Scroll 4K`）、活动场恐怖片（`Fresh Meat`）保留为候选；类别不在排除名单里的未知活动保留；非活动的 `Sport` 类片不受影响；英配与日语原声两个版本合并后 `versions` 里两种语言都在、`is_event` 为真。
 - `triage`：截断、拒答、未知 id、漏判后重试成功、漏判后重试仍缺、入围超额。
 - `review`：第 9 节每一种失败判定各一条；白名单对 `sources`、`scores`、`title_zh` 的处理；搜索错误对象的判别。
 - `assemble`：三条名额与降档规则；新旧标记；总数核对在人为制造不一致时抛异常。
@@ -429,15 +453,17 @@ sources          [{title, url}]
 - **防编造的边界。** 程序只保证声明有来源，不保证声明与来源一致。页面以"带来源的链接"呈现并在页脚提示。
 - **两周一次的残余漏洞。** 临时加映且放映不满两周的片可能在两期之间出现又消失。改为每周运行可消除，成本翻倍。
 - **`hurry` 是启发式。** 可能把一次性的经典重映也标为"抓紧"，页面已注明为推断。
+- **活动过滤靠 Cineplex 的类别标签。** 一部电影如果被 Cineplex 错标了 `Concert` 之类的类别，会被过滤。对策是过滤清单在页面上可见，以及排除名单写在配置里可以随时调。反方向的代价是：没见过的活动类别会放行进粗筛，多花一点 token。
+- **限定放映的片可能赶不上。** 活动场常常只放一两天。两周一次的节奏下，排片公布得晚的限定场次仍可能在两期之间出现又消失。这是"两周一次的残余漏洞"在活动场上的加重版，改为每周运行同样能缓解。
 - **公开仓库。** 口味档案与每期推荐公开可见。
 
 ## 附录 A：Cineplex 接口实测记录（2026-10-03，用户本机）
 
 基址：`https://apis.cineplex.com/prod/cpx/theatrical/api`。请求头 `Ocp-Apim-Subscription-Key`。响应为 gzip 压缩的 JSON。不带密钥返回 401。
 
-**`GET /v1/movies?language=en`** → `{items: [...], totalCount}`。实测 258 条。单条字段：
+**`GET /v2/movies?language=en`** → `{items: [...], totalCount}`。实测 258 条。单条字段：
 
-`id`、`releaseDate`、`name`、`runtimeInMinutes`、`filmUrl`、`smallPosterImageUrl`、`mediumPosterImageUrl`、`largePosterImageUrl`、`brightcoveVideoId`、`language`、`subtitleLanguage`、`marketLanguageCode`、`genres`、`ratings`、`distributor`、`detailPageUrl`、`hasPosterImage`、`isNowPlaying`、`isRelevant`、`isComingSoon`、`hasShowtimes`、`isEvent`、`isEarlyAccess`
+`filmCategories`、`id`、`releaseDate`、`name`、`runtimeInMinutes`、`filmUrl`、`smallPosterImageUrl`、`mediumPosterImageUrl`、`largePosterImageUrl`、`brightcoveVideoId`、`language`、`subtitleLanguage`、`marketLanguageCode`、`genres`、`ratings`、`distributor`、`detailPageUrl`、`hasPosterImage`、`isNowPlaying`、`isRelevant`、`isComingSoon`、`hasShowtimes`、`isEvent`、`isEarlyAccess`
 
 实测观察：
 
@@ -451,7 +477,17 @@ sources          [{title, url}]
 - 配音版是独立条目、独立 id，片名为原片名加括号后缀。
 - `ratings` 是按省的数组，每项含 `provinceCode`、`rating`、`warnings`、`ratingDescription`。
 
-`/v2/movies` 多一个 `filmCategories` 字段，其余相同。
+`/v1/movies` 返回同样的 258 条，只是没有 `filmCategories` 字段。
+
+**`isEvent` 与 `filmCategories` 的实测关系**（第 6 节规则 1 的依据）：
+
+- `filmCategories` 全部取值：`Action`、`Adventure`、`Alt Prog Film Event`、`Animation`、`Anime`、`Biography`、`Classic`、`Comedy`、`Concert`、`Crime`、`Documentary`、`Drama`、`Event`、`FRCE Feature Release`、`Family`、`Fantasy`、`Film Presentation`、`Horror`、`International`、`Music`、`Mystery`、`Opera`、`Romance`、`Science Fiction`、`Sport`、`Stage`、`Stage Performance`、`Suspense`、`Television Event`、`Thriller`。
+- 47 条活动的 `filmCategories` 都非空。
+- 按排除名单过滤掉 41 条：`Opera` 19、`Concert` 16、`Stage` 3、`Television Event` 2、`Stage Performance` 1。其中没有日语片，也没有带 `Anime`、`Horror`、`Classic`、`Animation` 的。
+- 保留 6 条：`Ninja Scroll 4K`（英配）、`Ninja Scroll 4K (Japanese w.e.s.t.)`、`Dive in Wonderland (Japanese w.e.s.t)`（三者均为 `Anime` + `FRCE Feature Release`）、`Fresh Meat`（`Horror` + `FRCE Feature Release`）、`E.T. the Extra-Terrestrial - Family Favourites`（`Classic` + `Alt Prog Film Event`）、`HANGING BY A WIRE`（`Documentary`）。
+- 非活动片里只有 1 部带排除名单里的类别（`Thaapi`，`Sport`），规则不对它生效。
+- 日语片共 4 部，2 部是活动（上面两部动画），2 部不是（`Godzilla Minus Zero`、`Yuri!!! on ICE 10th Anniversary`）。
+- `Music` 不在排除名单里，因为它也是普通电影的类型标签。实测带 `Music` 的活动同时都带 `Concert`。
 
 **`GET /v1/theatres?language=en&latitude=43.6532&longitude=-79.3832&range=30`** → `{favouriteTheatres, nearbyTheatres, otherTheatres}`。`nearbyTheatres` 固定只给最近 10 家，`otherTheatres` 142 家。两者单条字段相同：`theatreId`、`theatreName`、`shortTheatreName`、`theatreUrl`、`hasFreeParking`、`alertMessages`、`location`。
 
