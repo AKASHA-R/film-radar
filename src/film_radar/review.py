@@ -13,7 +13,6 @@ from .llm import LLMError
 from .schema import SchemaError, validate
 from .triage import CATEGORIES
 
-_URL = re.compile(r"https?://[^\s\"'<>\\)\]]+", re.I)
 _SPLIT = re.compile(r"(https?://)([^/?]+)(.*)$", re.I | re.S)
 
 # 白名单只认搜索服务返回的结果块。代码执行结果块（code_execution_tool_result 等）不认：
@@ -124,8 +123,12 @@ def collect_urls(blocks: list[dict]) -> set[str]:
                 if isinstance(citation, dict) and isinstance(citation.get("url"), str):
                     urls.add(normalize_url(citation["url"]))
         elif kind in SEARCH_RESULT_TYPES:
-            for found in _URL.findall(json.dumps(block, ensure_ascii=False)):
-                urls.add(normalize_url(found))
+            # 直接取结果条目的 url 字段，不对整块 JSON 做正则：正则会把 ) 当终止符，
+            # 把维基百科的 .../Foo_(2026_film) 截成 .../Foo_(2026_film（首期真实运行里出现过）
+            content = block.get("content")
+            for item in content if isinstance(content, list) else []:
+                if isinstance(item, dict) and isinstance(item.get("url"), str):
+                    urls.add(normalize_url(item["url"]))
     return urls
 
 

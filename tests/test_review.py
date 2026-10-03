@@ -68,6 +68,13 @@ def test_collect_urls_from_search_results():
     assert collect_urls(blocks) == {SRC1, SRC2}
 
 
+def test_collect_urls_keeps_parentheses_in_search_result_urls():
+    """维基百科的消歧义网址以 ) 结尾。首期真实运行里被截成 ..._(2026_film，卡片上的链接打开是 404。"""
+    paren = "https://en.wikipedia.org/wiki/Dune_(2021_film)"
+    middle = "https://example.com/a_(b)_c"
+    assert collect_urls([result_block(paren, middle)]) == {paren, middle}
+
+
 def test_collect_urls_ignores_what_the_model_wrote():
     blocks = [
         {"type": "text", "text": "见 https://invented.example/by-model"},
