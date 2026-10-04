@@ -101,30 +101,38 @@ def attach_details(client, candidates: list[dict]) -> None:
         raise PipelineError(f"{len(candidates)} 部候选里有 {failed} 部详情页失败，超过一半")
 
 
-def summarize_usage(results, searches: int, settings: Settings) -> dict:
-    tokens_in = sum(r.input_tokens for r in results)
-    tokens_out = sum(r.output_tokens for r in results)
-    cost = (
-        tokens_in / 1_000_000 * settings.price_input_per_mtok
-        + tokens_out / 1_000_000 * settings.price_output_per_mtok
+def summarize_usage(triage_results, review_results, searches: int, settings: Settings) -> dict:
+    """粗筛和精评用的不是同一个模型，各按各的单价算。"""
+    def cost(results, price_input: float, price_output: float) -> float:
+        return (
+            sum(r.input_tokens for r in results) / 1_000_000 * price_input
+            + sum(r.output_tokens for r in results) / 1_000_000 * price_output
+        )
+
+    results = list(triage_results) + list(review_results)
+    total = (
+        cost(triage_results, settings.triage_price_input_per_mtok, settings.triage_price_output_per_mtok)
+        + cost(review_results, settings.price_input_per_mtok, settings.price_output_per_mtok)
     )
     return {
         "calls": len(results),
-        "input_tokens": tokens_in,
-        "output_tokens": tokens_out,
+        "input_tokens": sum(r.input_tokens for r in results),
+        "output_tokens": sum(r.output_tokens for r in results),
         "searches": searches,
-        "estimated_token_cost_usd": round(cost, 4),
+        "estimated_token_cost_usd": round(total, 4),
     }
 
 
 def run_pipeline(*, client, caller, settings: Settings, taste: str, run_date: date,
-                 previous: dict | None, generated_at: str) -> dict:
+                 previous: dict | None, generated_at: str, triage_caller=None) -> dict:
+    """caller 做精评；triage_caller 做粗筛，不给就和精评共用同一个。"""
+    triage_caller = triage_caller or caller
     movies, theatres, showtimes = collect(client, settings, run_date)
     candidates, filtered_events, orphan_ids = build_candidates(movies, showtimes, run_date, settings)
     check_sanity(movies, theatres, showtimes, candidates)
     attach_details(client, candidates)
 
-    verdicts, triage_results = triage(caller, taste, candidates, settings.shortlist_cap)
+    verdicts, triage_results = triage(triage_caller, taste, candidates, settings.shortlist_cap)
     by_id = {c["film_id"]: c for c in candidates}
     reviews = [
         review_film(caller, taste, by_id[v["film_id"]], v, settings.search_max_uses)
@@ -136,8 +144,8 @@ def run_pipeline(*, client, caller, settings: Settings, taste: str, run_date: da
         detail = "；".join(f"{reason} ×{n}" for reason, n in reasons)
         raise ReviewError(f"{len(reviews)} 部入围片里有 {failed} 部精评失败，超过一半，本期不发布。原因：{detail}")
 
-    results = triage_results + [result for r in reviews for result in r["usage"]]
-    usage = summarize_usage(results, sum(r["searches"] for r in reviews), settings)
+    review_results = [result for r in reviews for result in r["usage"]]
+    usage = summarize_usage(triage_results, review_results, sum(r["searches"] for r in reviews), settings)
     return assemble(
         candidates=candidates, verdicts=verdicts, reviews=reviews, previous=previous,
         filtered_events=filtered_events, orphan_ids=orphan_ids, usage=usage,
@@ -163,8 +171,10 @@ def build_clients(settings: Settings):
     import requests
 
     client = CineplexClient(requests.Session())
-    caller = partial(llm.call, anthropic.Anthropic(), model=settings.model)
-    return client, caller
+    anthropic_client = anthropic.Anthropic()
+    caller = partial(llm.call, anthropic_client, model=settings.model)
+    triage_caller = partial(llm.call, anthropic_client, model=settings.triage_model)
+    return client, caller, triage_caller
 
 
 def _set_output(name: str, value: str) -> None:
@@ -204,9 +214,9 @@ def _run(root: Path, manual: bool, date_arg: str | None) -> int:
     taste = (root / "config" / "taste_profile.md").read_text(encoding="utf-8")
     editions_dir = root / "data" / "editions"
     previous = previous_edition(load_editions(editions_dir), run_date)
-    client, caller = build_clients(settings)
+    client, caller, triage_caller = build_clients(settings)
     edition = run_pipeline(
-        client=client, caller=caller, settings=settings, taste=taste, run_date=run_date,
+        client=client, caller=caller, triage_caller=triage_caller, settings=settings, taste=taste, run_date=run_date,
         previous=previous, generated_at=now.isoformat(timespec="seconds"),
     )
 

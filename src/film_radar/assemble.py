@@ -122,6 +122,7 @@ def assemble(*, candidates: list[dict], verdicts: list[dict], reviews: list[dict
             "outside_cap": settings.outside_cap,
             "stale_after_days": settings.stale_after_days,
         },
+        "models": {"triage": settings.triage_model, "review": settings.model},
         "films": films,
         "filtered_events": list(filtered_events),
         "orphan_ids": list(orphan_ids),

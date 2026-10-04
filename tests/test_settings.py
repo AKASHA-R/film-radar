@@ -34,6 +34,9 @@ def test_loads_repo_settings(settings):
     assert settings.model == "claude-sonnet-5-5"
     assert settings.price_input_per_mtok == 2.0
     assert settings.price_output_per_mtok == 10.0
+    assert settings.triage_model == "claude-opus-5-5"
+    assert settings.triage_price_input_per_mtok == 4.0
+    assert settings.triage_price_output_per_mtok == 20.0
     assert settings.timezone == "America/Toronto"
     assert settings.page_url == "https://akasha-r.github.io/film-radar/"
 

@@ -83,9 +83,10 @@ class ScriptedCaller:
         return llm_reply(make_card(tier="ok", sources=[{"title": "影评", "url": SRC}]))
 
 
-def pipeline(settings, client=None, caller=None, previous=None):
+def pipeline(settings, client=None, caller=None, previous=None, triage_caller=None):
     return run_pipeline(
         client=client or FakeCineplex(), caller=caller or ScriptedCaller(keep={61994, 38459}),
+        triage_caller=triage_caller,
         settings=settings, taste=TASTE, run_date=RUN, previous=previous,
         generated_at="2026-10-03T07:05:00-04:00",
     )
@@ -188,13 +189,18 @@ def test_attach_details_allows_exactly_half():
 
 # ---- 用量 ----
 
-def test_summarize_usage(settings):
-    priced = replace(settings, price_input_per_mtok=4.0, price_output_per_mtok=20.0)   # 算术与线上单价无关
-    results = [LLMResult("end_turn", "", [], 1_000_000, 100_000), LLMResult("end_turn", "", [], 500_000, 50_000)]
-    assert summarize_usage(results, 7, priced) == {
-        "calls": 2, "input_tokens": 1_500_000, "output_tokens": 150_000, "searches": 7,
+def test_summarize_usage_prices_each_stage_with_its_own_model(settings):
+    priced = replace(                       # 算术与线上单价无关
+        settings, price_input_per_mtok=2.0, price_output_per_mtok=10.0,
+        triage_price_input_per_mtok=4.0, triage_price_output_per_mtok=20.0,
+    )
+    triage_results = [LLMResult("end_turn", "", [], 1_000_000, 100_000)]                  # 4 + 2 = 6
+    review_results = [LLMResult("end_turn", "", [], 500_000, 50_000),
+                      LLMResult("end_turn", "", [], 500_000, 50_000)]                      # 2 + 1 = 3
+    assert summarize_usage(triage_results, review_results, 7, priced) == {
+        "calls": 3, "input_tokens": 2_000_000, "output_tokens": 200_000, "searches": 7,
         "estimated_token_cost_usd": 9.0,
-    }
+    }   # 全按精评单价算会是 6.0：粗筛的钱不能少算
 
 
 # ---- 整条流水线 ----
@@ -306,7 +312,7 @@ def root(tmp_path, monkeypatch):
 
 def use_fakes(monkeypatch, client=None, caller=None):
     pair = (client or FakeCineplex(), caller or ScriptedCaller(keep={61994, 38459}))
-    monkeypatch.setattr(main_module, "build_clients", lambda settings: pair)
+    monkeypatch.setattr(main_module, "build_clients", lambda settings: (pair[0], pair[1], pair[1]))   # 两个阶段共用一个假 caller
     return pair
 
 
@@ -418,3 +424,21 @@ def test_cli_build_site_rebuilds_from_data(root, settings):
     assert main(["--root", str(root), "build-site"]) == 0
     assert "第 2 期" in (root / "site" / "index.html").read_text(encoding="utf-8")
     assert (root / "site" / "editions" / "2026-09-19.html").exists()
+
+
+def test_triage_and_review_use_their_own_callers(settings):
+    triage_caller = ScriptedCaller(keep={61994, 38459})
+    review_caller = ScriptedCaller(keep={61994, 38459})
+    pipeline(settings, caller=review_caller, triage_caller=triage_caller)
+    assert [c.get("schema") is TRIAGE_SCHEMA for c in triage_caller.calls] == [True]     # 粗筛只发给粗筛的 caller
+    assert not any(c.get("tools") for c in triage_caller.calls)
+    assert not any(c.get("schema") is TRIAGE_SCHEMA for c in review_caller.calls)
+    assert sum(1 for c in review_caller.calls if c.get("tools")) == 2                    # 两部入围片的联网调查
+
+
+def test_build_clients_gives_each_stage_its_configured_model(settings, monkeypatch):
+    monkeypatch.setenv("ANTHROPIC_API_KEY", "test-key-not-real")
+    _, caller, triage_caller = main_module.build_clients(settings)
+    assert caller.keywords["model"] == settings.model
+    assert triage_caller.keywords["model"] == settings.triage_model
+    assert settings.triage_model != settings.model      # 这条是在守「粗筛单独用更强的模型」这个决定

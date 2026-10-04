@@ -30,6 +30,9 @@ class Settings:
     model: str
     price_input_per_mtok: float
     price_output_per_mtok: float
+    triage_model: str
+    triage_price_input_per_mtok: float
+    triage_price_output_per_mtok: float
     timezone: str
     page_url: str
 

@@ -73,6 +73,8 @@ open site/index.html
 
 ## 费用
 
+粗筛（便宜、关键）用 Opus，精评（量大）用 Sonnet，模型与单价都在 `config/settings.toml`，换模型时单价要一起改。每期的 `models` 字段记下当时各阶段用的模型。
+
 每期的模型调用次数、token 数、搜索次数写在页脚和 Actions 的运行摘要里。页面上的美元数只算了 token，不含联网搜索的按次费用，实际花费以 Anthropic 控制台账单为准。
 
 ## 文档

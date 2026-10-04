@@ -246,3 +246,9 @@ def test_next_edition_date_follows_the_fortnightly_schedule(settings, run_day, e
     """下期日期是"下一次真正会运行的日子"，不是"今天加 14 天"：手动跑的那一天不在双周节奏上。"""
     edition = build_edition(settings, [recommended(1, "A")], run_date=run_day)
     assert edition["next_edition_date"] == expected
+
+
+def test_edition_records_the_model_of_each_stage(settings):
+    """比较两期时只能靠日期猜当时用的哪个模型。期数据里要直接写明。"""
+    edition = build_edition(settings, [recommended(1, "A")])
+    assert edition["models"] == {"triage": settings.triage_model, "review": settings.model}

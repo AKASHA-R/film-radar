@@ -20,10 +20,18 @@ search_max_uses = 5
 anchor_date = 2026-10-08
 stale_after_days = 16
 
+# 精评（逐片联网调查）用的模型与单价。
 model = "claude-sonnet-5-5"
 # 费用估算用的 token 单价（美元 / 百万 token）。联网搜索另按次计费，不在此折算。
 price_input_per_mtok = 2.00
 price_output_per_mtok = 10.00
+
+# 粗筛单独用更强的模型：它一次调用只要一毛到两毛，却决定哪 15 部进入精评。
+# 2026-10-04 实测同一份输入，Sonnet 与 Opus 的入围名单只重合 10–12 部，而 Atonement 这类片
+# Opus 每次都选、Sonnet 每次都不选。换模型时单价必须同步改，否则页脚的费用数字是错的。
+triage_model = "claude-opus-5-5"
+triage_price_input_per_mtok = 4.00
+triage_price_output_per_mtok = 20.00
 
 timezone = "America/Toronto"
 page_url = "https://akasha-r.github.io/film-radar/"
