@@ -37,14 +37,33 @@ jobs:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
         run: python -m film_radar.main run ${{ github.event_name == 'workflow_dispatch' && '--manual' || '' }}
 
+      # 这一期花了几块钱，只存在这台临时机器上。先备份成产物：后面的推送、部署、开 Issue 任何一步失败，
+      # 数据都还在，可以手工提交，不用再付一次钱重跑
+      - name: Back up the new edition
+        if: steps.run.outputs.skipped == 'false'
+        uses: actions/upload-artifact@v4
+        with:
+          name: edition-backup
+          path: |
+            data/editions
+            out
+          retention-days: 14
+
       - name: Commit edition data
+        id: commit
         if: steps.run.outputs.skipped == 'false'
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add data/editions
           git diff --cached --quiet || git commit -m "data: 第 ${{ steps.run.outputs.edition_id }} 期"
-          git push
+          # 跑一期要十来分钟，这期间有人往 main 推了东西的话，直接推送会被拒绝。先变基再推，最多三次
+          for attempt in 1 2 3; do
+            git pull --rebase --quiet origin main && git push && exit 0
+            sleep 5
+          done
+          echo "git push 三次都没成功。这一期的数据在本次运行的 edition-backup 产物里。" >&2
+          exit 1
 
       - uses: actions/configure-pages@v5
         if: steps.run.outputs.skipped == 'false'
@@ -74,17 +93,30 @@ jobs:
         if: failure()
         env:
           GH_TOKEN: ${{ github.token }}
+          RUN_OUTCOME: ${{ steps.run.outcome }}
+          COMMIT_OUTCOME: ${{ steps.commit.outcome }}
+          DEPLOY_OUTCOME: ${{ steps.deploy.outcome }}
         run: |
           {
             echo "运行日志：${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"
             echo
-            if [ -f out/failure.txt ]; then
+            if [ "$DEPLOY_OUTCOME" = "success" ]; then
+              echo "页面已经更新到新一期，数据也已提交，只是通知 Issue 没开成（比如 edition 标签被删了）。直接打开页面看新一期。"
+            elif [ "$RUN_OUTCOME" = "success" ] && [ "$COMMIT_OUTCOME" != "success" ]; then
+              echo "流水线跑成功了，但提交数据这一步没完成（推送被拒，或备份上传失败）。页面没有更新。能找到本次运行的 edition-backup 产物的话，这一期的数据就在里面。"
+            elif [ "$RUN_OUTCOME" = "success" ]; then
+              echo "流水线跑成功、数据已提交，但页面部署失败，页面还是上一期。"
+            elif [ -f out/failure.txt ]; then
               cat out/failure.txt
+              echo
+              echo "已发布的页面没有被改动。"
+            elif [ "$RUN_OUTCOME" = "failure" ]; then
+              echo "流水线失败了，但没有留下失败说明（进程被杀或超时？），详见运行日志。已发布的页面没有被改动。"
             else
-              echo "失败发生在流水线之外的步骤（提交、部署或开 Issue），详见运行日志。"
+              echo "失败在流水线之前的环境准备（检出代码或安装依赖），详见运行日志。已发布的页面没有被改动。"
             fi
             echo
-            echo "已发布的页面没有被改动。cc @${{ github.repository_owner }}"
+            echo "cc @${{ github.repository_owner }}"
           } > failure_body.md
           gh issue create --repo "${{ github.repository }}" \
             --title "film-radar 运行失败 $(date -u +%F)" \
