@@ -193,14 +193,15 @@ def test_summarize_usage_prices_each_stage_with_its_own_model(settings):
     priced = replace(                       # 算术与线上单价无关
         settings, price_input_per_mtok=2.0, price_output_per_mtok=10.0,
         triage_price_input_per_mtok=4.0, triage_price_output_per_mtok=20.0,
+        search_price_per_search=0.01,
     )
     triage_results = [LLMResult("end_turn", "", [], 1_000_000, 100_000)]                  # 4 + 2 = 6
     review_results = [LLMResult("end_turn", "", [], 500_000, 50_000),
                       LLMResult("end_turn", "", [], 500_000, 50_000)]                      # 2 + 1 = 3
     assert summarize_usage(triage_results, review_results, 7, priced) == {
         "calls": 3, "input_tokens": 2_000_000, "output_tokens": 200_000, "searches": 7,
-        "estimated_token_cost_usd": 9.0,
-    }   # 全按精评单价算会是 6.0：粗筛的钱不能少算
+        "estimated_token_cost_usd": 9.0, "estimated_search_cost_usd": 0.07, "estimated_cost_usd": 9.07,
+    }   # 全按精评单价算会是 6.0：粗筛的钱不能少算；搜索 7 次 × 0.01 = 0.07
 
 
 # ---- 整条流水线 ----
@@ -442,3 +443,25 @@ def test_build_clients_gives_each_stage_its_configured_model(settings, monkeypat
     assert caller.keywords["model"] == settings.model
     assert triage_caller.keywords["model"] == settings.triage_model
     assert settings.triage_model != settings.model      # 这条是在守「粗筛单独用更强的模型」这个决定
+
+
+def test_summary_shows_search_cost_when_the_edition_has_it(settings, tmp_path, monkeypatch):
+    path = tmp_path / "summary"
+    monkeypatch.setenv("GITHUB_STEP_SUMMARY", str(path))
+    edition = build_edition(settings, [recommended(1, "One")])
+    edition["usage"] = {**edition["usage"], "estimated_token_cost_usd": 3.0,
+                        "estimated_search_cost_usd": 0.5, "estimated_cost_usd": 3.5}
+    main_module._write_summary(edition, 1)
+    text = path.read_text(encoding="utf-8")
+    assert "费用估算 $3.50（token $3.00 + 搜索 $0.50）" in text
+    assert "不含搜索费" not in text
+
+
+def test_summary_of_an_older_edition_keeps_the_old_wording(settings, tmp_path, monkeypatch):
+    """旧期数据没有搜索费字段。不能因为新字段缺失而崩，也不能把没算过的数字说成算过。"""
+    path = tmp_path / "summary"
+    monkeypatch.setenv("GITHUB_STEP_SUMMARY", str(path))
+    edition = build_edition(settings, [recommended(1, "One")])
+    assert "estimated_search_cost_usd" not in edition["usage"]
+    main_module._write_summary(edition, 1)
+    assert "token 费用估算 $0.01（不含搜索费）" in path.read_text(encoding="utf-8")

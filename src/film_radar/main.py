@@ -21,7 +21,7 @@ from .assemble import AssembleError, assemble
 from .candidates import build_candidates, gta_theatres
 from .cineplex import CineplexClient, CineplexError
 from .llm import LLMError
-from .render import issue_body, issue_title, render_site
+from .render import cost_text, issue_body, issue_title, render_site
 from .review import review_film
 from .settings import Settings, SettingsError, load_settings
 from .triage import TriageError, triage
@@ -114,12 +114,15 @@ def summarize_usage(triage_results, review_results, searches: int, settings: Set
         cost(triage_results, settings.triage_price_input_per_mtok, settings.triage_price_output_per_mtok)
         + cost(review_results, settings.price_input_per_mtok, settings.price_output_per_mtok)
     )
+    search_cost = searches * settings.search_price_per_search
     return {
         "calls": len(results),
         "input_tokens": sum(r.input_tokens for r in results),
         "output_tokens": sum(r.output_tokens for r in results),
         "searches": searches,
         "estimated_token_cost_usd": round(total, 4),
+        "estimated_search_cost_usd": round(search_cost, 4),
+        "estimated_cost_usd": round(total + search_cost, 4),
     }
 
 
@@ -195,7 +198,7 @@ def _write_summary(edition: dict, number: int) -> None:
         f"- 重点推荐 {counts['must']}，可以看 {counts['ok']}，跳过 {counts['skip']}，未能评估 {counts['review_failed']}",
         f"- 模型调用 {usage['calls']} 次，输入 {usage['input_tokens']:,} / 输出 {usage['output_tokens']:,} token，"
         f"联网搜索 {usage['searches']} 次",
-        f"- token 费用估算 ${usage['estimated_token_cost_usd']:.2f}（不含搜索费）",
+        f"- {cost_text(usage)}",
         "",
     ]
     with open(path, "a", encoding="utf-8") as f:

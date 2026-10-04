@@ -33,6 +33,7 @@ class Settings:
     triage_model: str
     triage_price_input_per_mtok: float
     triage_price_output_per_mtok: float
+    search_price_per_search: float
     timezone: str
     page_url: str
 

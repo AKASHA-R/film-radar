@@ -243,13 +243,20 @@ def _stale_banner(edition: dict) -> str:
     )
 
 
+def cost_text(usage: dict) -> str:
+    """费用一句话。早期的期数据没有搜索费字段（当时没核实过单价），保持原来的说法，不把没算过的数说成算过。"""
+    if "estimated_cost_usd" in usage:
+        return (f'费用估算 ${usage["estimated_cost_usd"]:.2f}'
+                f'（token ${usage["estimated_token_cost_usd"]:.2f} + 搜索 ${usage["estimated_search_cost_usd"]:.2f}）')
+    return f'token 费用估算 ${usage["estimated_token_cost_usd"]:.2f}（不含搜索费）'
+
+
 def _footer(edition: dict, archive: list[tuple[str, int]], is_latest: bool, prefix: str) -> str:
     usage = edition["usage"]
     lines = [
         f'<p class="foot">本期用量：{usage["calls"]} 次模型调用，'
         f'输入 {usage["input_tokens"]:,} / 输出 {usage["output_tokens"]:,} token，'
-        f'联网搜索 {usage["searches"]} 次；token 费用估算 ${usage["estimated_token_cost_usd"]:.2f}'
-        "（不含搜索费，以账单为准）。</p>"
+        f'联网搜索 {usage["searches"]} 次；{cost_text(usage)}，以账单为准。</p>'
     ]
     if edition["orphan_ids"]:
         ids = "、".join(str(i) for i in edition["orphan_ids"])

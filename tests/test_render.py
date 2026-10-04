@@ -406,3 +406,19 @@ def test_hostile_text_is_escaped_in_every_sink(settings):
     html = page(edition)
     assert "<x-mark" not in html
     assert html.count(escaped) == 22      # 每个字段都真的被渲染了，且都被转义了
+
+
+def test_footer_shows_search_cost_when_the_edition_has_it(settings):
+    edition = build_edition(settings, [recommended(1, "One")])
+    edition["usage"] = {**edition["usage"], "estimated_token_cost_usd": 3.0,
+                        "estimated_search_cost_usd": 0.5, "estimated_cost_usd": 3.5}
+    html = page(edition)
+    assert "费用估算 $3.50（token $3.00 + 搜索 $0.50" in html
+    assert "不含搜索费" not in html
+    assert "以账单为准" in html
+
+
+def test_footer_of_an_older_edition_still_says_search_is_not_included(settings):
+    edition = build_edition(settings, [recommended(1, "One")])
+    assert "estimated_search_cost_usd" not in edition["usage"]
+    assert "不含搜索费" in page(edition)
