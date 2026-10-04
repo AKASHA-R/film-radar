@@ -373,3 +373,18 @@ def test_both_prompts_name_every_category():
             continue
         assert key in triage.SYSTEM, f"粗筛提示词没提到 {key}"
         assert key in CARD_SYSTEM, f"精评整理提示词没提到 {key}"
+
+
+def test_search_tool_is_the_dynamic_filtering_default(monkeypatch):
+    from film_radar import review
+    assert review.search_tool(5) == {"type": "web_search_20260209", "name": "web_search", "max_uses": 5}
+
+
+def test_search_tool_can_be_forced_to_direct_calls(monkeypatch):
+    """allowed_callers=["direct"]：模型直接调搜索，不经代码执行。默认（动态过滤）会让模型在代码里批量调搜索，
+    每个都计入 max_uses，额度瞬间用光。"""
+    from film_radar import review
+    monkeypatch.setattr(review, "SEARCH_ALLOWED_CALLERS", ["direct"])
+    assert review.search_tool(5)["allowed_callers"] == ["direct"]
+    _, caller = run(research(), llm_reply(make_card(sources=[{"title": "t", "url": SRC1}])))
+    assert caller.calls[0]["tools"][0]["allowed_callers"] == ["direct"]

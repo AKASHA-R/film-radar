@@ -21,6 +21,20 @@ _SPLIT = re.compile(r"(https?://)([^/?]+)(.*)$", re.I | re.S)
 # web_search_tool_result 块里（tests/fixtures/claude/research.json），所以这样收紧不丢东西。
 SEARCH_RESULT_TYPES = frozenset({"web_search_tool_result"})
 
+# 联网搜索工具的版本与调用方式。web_search_20260209 默认让模型在代码里调搜索（动态过滤，
+# allowed_callers 默认是代码执行）：代码里一次批量发出的多个搜索，每个都计入 max_uses，额度可能瞬间用光。
+# 设成 ["direct"] 则让模型直接一次调一个。注意不能换成 web_search_20260318 的
+# response_inclusion=excluded：它会把搜索结果块从响应里删掉，白名单就取不到网址了。
+SEARCH_TOOL_TYPE = "web_search_20260209"
+SEARCH_ALLOWED_CALLERS: list[str] | None = None
+
+
+def search_tool(max_uses: int) -> dict:
+    tool = {"type": SEARCH_TOOL_TYPE, "name": "web_search", "max_uses": max_uses}
+    if SEARCH_ALLOWED_CALLERS is not None:
+        tool["allowed_callers"] = list(SEARCH_ALLOWED_CALLERS)
+    return tool
+
 _NULLABLE_STRING = {"anyOf": [{"type": "string"}, {"type": "null"}]}
 
 CARD_SCHEMA = {
@@ -185,7 +199,7 @@ def review_film(caller, taste: str, candidate: dict, verdict: dict, max_uses: in
             user=f"{_film_block(taste, candidate)}\n\n粗筛时的初步判断：{verdict['category']}，{verdict['reason']}",
             effort="high",
             max_tokens=16000,
-            tools=[{"type": "web_search_20260209", "name": "web_search", "max_uses": max_uses}],
+            tools=[search_tool(max_uses)],
         )
         usage.append(research)
         searches = _count_searches(research.blocks)
