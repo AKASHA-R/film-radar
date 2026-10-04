@@ -172,3 +172,12 @@ def test_empty_candidates_makes_no_call():
 def test_llm_error_propagates():
     with pytest.raises(LLMError, match="限流"):
         triage(FakeCaller(LLMError("限流: slow down")), TASTE, three(), cap=15)
+
+
+def test_retry_ranks_come_after_the_first_calls_ranks():
+    """漏判重试时模型的排名从 1 重新开始，不能和第一次调用的排名混着比：补判的片不该挤掉第一次排在前面的片。"""
+    caller = FakeCaller(verdicts(v(1, True, 1), v(2, True, 2)), verdicts(v(3, True, 1)))
+    result, _ = triage(caller, TASTE, three(), cap=2)
+    assert {x["film_id"] for x in result if x["keep"]} == {1, 2}
+    assert result[2]["keep"] is False
+    assert "超出本期精评名额" in result[2]["reason"]

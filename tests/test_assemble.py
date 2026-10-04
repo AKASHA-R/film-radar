@@ -94,12 +94,12 @@ def test_outside_cap_follows_settings(settings):
 # ---- 规则 3：重点推荐的名额 ----
 
 def test_must_cap_demotes_the_weakest(settings):
-    entries = [recommended(i, f"Must {i}", tier="must", strength=5) for i in range(1, 7)]
-    entries.append(recommended(7, "Must Weak", tier="must", strength=1))
+    entries = [recommended(i, f"Must {i}", tier="must", strength=5) for i in range(2, 8)]
+    entries.append(recommended(1, "Must Weak", tier="must", strength=1))   # id 最小：只按 id 排序会误留下它
     f = films(build_edition(settings, entries))
     assert sum(1 for x in f.values() if x["outcome"] == "must") == 6
-    assert f[7]["outcome"] == "ok"
-    assert f[7]["flags"] == ["超出重点推荐名额"]
+    assert f[1]["outcome"] == "ok"
+    assert f[1]["flags"] == ["超出重点推荐名额"]
 
 
 def test_must_cap_tie_breaks_on_newer_release(settings):
@@ -221,3 +221,28 @@ def test_shortlisted_film_without_review_fails(settings):
 def test_unknown_tier_breaks_the_count_check(settings):
     with pytest.raises(AssembleError, match="总数核对失败"):
         assemble(**kwargs(settings, reviews=[ok_review(1, tier="great")]))
+
+
+def test_outside_cap_prefers_must_over_a_stronger_ok(settings):
+    """档位优先于强度：一个 strength 1 的 must 要压过 strength 5 的 ok。只按强度排序就会反过来。"""
+    edition = build_edition(replace(settings, outside_cap=1), [
+        recommended(1, "Outside Ok Strong", tier="ok", strength=5, category="outside"),
+        recommended(2, "Outside Must Weak", tier="must", strength=1, category="outside"),
+    ])
+    f = films(edition)
+    assert f[2]["outcome"] == "must"
+    assert f[1]["outcome"] == "skip"
+
+
+@pytest.mark.parametrize("run_day, expected", [
+    (date(2026, 10, 3), "2026-10-08"),    # 首期是锚点前五天手动跑的：下一次真正会运行的是锚点当天
+    (date(2026, 10, 8), "2026-10-22"),
+    (date(2026, 10, 9), "2026-10-22"),    # 定时任务晚了一天
+    (date(2026, 10, 22), "2026-11-05"),
+    (date(2026, 9, 24), "2026-10-08"),    # 锚点之前
+    (date(2026, 12, 31), "2027-01-14"),   # 跨年
+])
+def test_next_edition_date_follows_the_fortnightly_schedule(settings, run_day, expected):
+    """下期日期是"下一次真正会运行的日子"，不是"今天加 14 天"：手动跑的那一天不在双周节奏上。"""
+    edition = build_edition(settings, [recommended(1, "A")], run_date=run_day)
+    assert edition["next_edition_date"] == expected

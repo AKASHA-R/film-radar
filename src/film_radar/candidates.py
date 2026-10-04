@@ -10,6 +10,7 @@ from datetime import date, timedelta
 from .settings import Settings
 
 MERGE_WINDOW_DAYS = 60
+RERELEASE_AFTER_WEEKS = 52
 _TRAILING_PAREN = re.compile(r"\s*\([^()]*\)\s*$")
 
 
@@ -69,11 +70,17 @@ def _candidate(cluster: list[dict], shows: list[tuple[str, str]], run_date: date
     primary = cluster[0]
     status = "coming_soon" if primary["isComingSoon"] else "now_playing"
     theatres = sorted({theatre for theatre, _ in shows})
+    is_event = any(m["isEvent"] for m in cluster)
     weeks = None
     hurry = False
     if status == "now_playing":
         weeks = max(1, (run_date - _release(primary)).days // 7 + 1)
-        hurry = weeks >= 3 and len(theatres) <= 2
+        if weeks > RERELEASE_AFTER_WEEKS:
+            # 老片重映：Cineplex 沿用原来的上映日期，"在映第 326 周"没有意义，周数和 hurry 都不算
+            weeks = None
+        elif not is_event:
+            # 限定放映本来就只放几场，按周数推断下映的 hurry 规则对它不适用（spec 第 6 节）
+            hurry = weeks >= 3 and len(theatres) <= 2
     rating = next((r for r in primary.get("ratings") or [] if r.get("provinceCode") == "ON"), None)
     return {
         "film_id": primary["id"],
@@ -89,7 +96,7 @@ def _candidate(cluster: list[dict], shows: list[tuple[str, str]], run_date: date
             for m in cluster
         ],
         "status": status,
-        "is_event": any(m["isEvent"] for m in cluster),
+        "is_event": is_event,
         "release_date": primary["releaseDate"][:10],
         "runtime": primary.get("runtimeInMinutes"),
         "genres": list(primary.get("genres") or []),

@@ -9,6 +9,7 @@ from __future__ import annotations
 from dataclasses import dataclass
 
 import anthropic
+import httpx2
 
 FALLBACK_BETA = "server-side-fallback-2026-07-01"
 MAX_CONTINUATIONS = 3
@@ -42,6 +43,10 @@ def _send(client, params: dict):
         raise LLMError(f"API 错误 {e.status_code}: {e.message}") from e
     except anthropic.APIConnectionError as e:
         raise LLMError(f"连接失败: {e}") from e
+    except httpx2.HTTPError as e:
+        # SDK 只给"发请求"这一步包了异常；流式响应读到一半断连，httpx2 的错误会原样漏出来，
+        # 而且不会被重试。不转成 LLMError，review_film 就记不成「这一部精评失败」，整期作废
+        raise LLMError(f"流式传输中断: {type(e).__name__}: {e}") from e
 
 
 def call(client, *, model: str, system: str, user: str, effort: str, max_tokens: int,

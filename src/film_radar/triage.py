@@ -94,9 +94,15 @@ def triage(caller, taste: str, candidates: list[dict], cap: int):
         except (ValueError, SchemaError) as e:
             problem = f"输出无法解析（{e}）"
             continue
+        # 重试时模型的排名从 1 重新开始，要接在已有排名的后面：补判的片是模型一开始漏掉的，
+        # 不能因为排名也是 1 就和第一次调用排在前面的片平起平坐，把它们挤出名额
+        offset = max((v["rank"] for v in verdicts.values() if v["rank"] is not None), default=0)
         for verdict in data["verdicts"]:
             # 不认识的 film_id 也先收下：最后只按候选取值，多出来的自然被丢掉
-            verdicts.setdefault(verdict["film_id"], dict(verdict))
+            entry = dict(verdict)
+            if entry["rank"] is not None:
+                entry["rank"] += offset
+            verdicts.setdefault(entry["film_id"], entry)
         pending = [c for c in candidates if c["film_id"] not in verdicts]
         if not pending:
             break

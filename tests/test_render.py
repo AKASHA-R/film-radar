@@ -1,3 +1,4 @@
+import html as htmllib
 import re
 from datetime import date
 
@@ -6,7 +7,7 @@ import pytest
 from film_radar.render import (
     CATEGORY_LABELS, ISSUE_TITLE_LIMIT, issue_body, issue_title, render_edition, render_site, status_text,
 )
-from helpers import broken, build_edition, recommended, skipped
+from helpers import broken, build_edition, failed_review, make_candidate, make_verdict, recommended, skipped
 
 PAGE_URL = "https://akasha-r.github.io/film-radar/"
 SRC = "https://example.com/review"
@@ -375,3 +376,33 @@ def test_issue_text_never_mentions_github_users(settings):
     assert "@someone" not in issue_title(edition, 1)
     assert "@octocat" not in issue_body(edition, 1, PAGE_URL)
     assert "octocat" in issue_body(edition, 1, PAGE_URL)
+
+
+def test_status_text_for_a_rerelease_does_not_invent_a_week_count():
+    film = {"status": "now_playing", "weeks_in_release": None, "release_date": "2020-07-10"}
+    assert status_text(film) == "重映（2020 年上映）"
+
+
+def test_hostile_text_is_escaped_in_every_sink(settings):
+    """每一处会写进页面的模型 / Cineplex 文本都带上同一个恶意串，页面里不能出现未转义的标签。
+    不能只测几处：漏转义往往就漏在没人想到的那一处。"""
+    mark = "<x-mark>&\"'"
+    escaped = htmllib.escape(mark, quote=True)
+    candidate = {
+        "gta_theatres": [mark], "runtime": 100, "rating_on": {"rating": mark, "warnings": []},
+        "versions": [{"film_id": 1, "name": "n", "language": mark, "subtitle": mark}],
+        "poster_url": 'https://example.com/p.jpg"><x-mark>', "detail_url": 'https://example.com/d"><x-mark>',
+    }
+    edition = build_edition(settings, [
+        recommended(
+            1, mark, candidate, category="horror", title_zh=mark, title_zh_source=SRC, evidence="thin",
+            one_liner=mark, premise=mark, why_for_you=mark, reception=mark, background=mark, caveats=mark,
+            scores=[{"name": mark, "value": mark, "source_url": SRC}],
+            sources=[{"title": mark, "url": SRC}],
+        ),
+        skipped(3, mark, reason=mark),
+        (make_candidate(4, mark), make_verdict(4, reason=mark), failed_review(4, mark)),
+    ], filtered_events=[{"film_id": 9, "name": mark, "categories": [mark]}])
+    html = page(edition)
+    assert "<x-mark" not in html
+    assert html.count(escaped) == 22      # 每个字段都真的被渲染了，且都被转义了

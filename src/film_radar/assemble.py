@@ -79,6 +79,13 @@ def _mark_seen(films: list[dict], previous: dict | None) -> None:
         film["seen_before"] = film["film_id"] in seen
 
 
+def next_scheduled_date(run_date: date, anchor: date) -> date:
+    """下一次真正会运行的日子：从锚点起每 CADENCE_DAYS 天一次，取晚于运行日的第一个。
+    不能写成"运行日 + 14 天"：手动跑的那天不在双周节奏上，页面会报出一个不会运行的日期。"""
+    steps = (run_date - anchor).days // CADENCE_DAYS + 1
+    return anchor + timedelta(days=CADENCE_DAYS * steps)
+
+
 def assemble(*, candidates: list[dict], verdicts: list[dict], reviews: list[dict],
              previous: dict | None, filtered_events: list[dict], orphan_ids: list[int],
              usage: dict, run_date: date, generated_at: str, settings: Settings) -> dict:
@@ -105,7 +112,7 @@ def assemble(*, candidates: list[dict], verdicts: list[dict], reviews: list[dict
     return {
         "edition_id": run_date.isoformat(),
         "generated_at": generated_at,
-        "next_edition_date": (run_date + timedelta(days=CADENCE_DAYS)).isoformat(),
+        "next_edition_date": next_scheduled_date(run_date, settings.anchor_date).isoformat(),
         "settings": {
             "radius_km": settings.radius_km,
             "showtime_days": settings.showtime_days,

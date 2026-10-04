@@ -297,3 +297,30 @@ def test_film_brief_exposes_all_versions_and_no_theatres(built):
         "genres", "film_categories", "distributor", "director", "starring", "synopsis",
     }
     json.dumps(brief)
+
+
+# ---- 老片重映、限定放映、变体排片（终审补的缺口）----
+
+def test_classic_rerelease_has_no_meaningful_week_count(settings):
+    """Cineplex 在重映时沿用原来的上映日期：2020 年的老片会被算成"在映第 326 周"。"""
+    bttf = by_id(build_candidates(MOVIES, SHOWTIMES, RUN, settings)[0])[32584]
+    assert bttf["status"] == "now_playing"
+    assert bttf["weeks_in_release"] is None
+    assert bttf["hurry"] is False
+
+
+def test_event_film_is_never_marked_hurry(settings):
+    """spec 第 6 节：按周数算的 hurry 规则对限定放映不适用。"""
+    event = clone(37885, id=900006, name="One Night Only", filmUrl="one-night-only", isEvent=True)
+    film = by_id(build_candidates(MOVIES + [event], [show(900006, "2026-10-04")], RUN, settings)[0])[900006]
+    assert film["is_event"] is True
+    assert film["weeks_in_release"] == 3          # 第 3 周且只有 1 家影院，换成非活动片就是 hurry
+    assert film["hurry"] is False
+
+
+def test_variant_only_showtimes_still_make_the_film_a_candidate(settings):
+    """主条目一场都没有、只有配音版有排片：这部片也不能从页面上消失。"""
+    showtimes = [show(62194, "2026-10-07", VA, 7199)]     # 只有 Digger (Dubbed in Spanish) 有场
+    digger = by_id(build_candidates(MOVIES, showtimes, RUN, settings)[0])[38459]
+    assert digger["gta_theatres"] == [VA]
+    assert digger["gta_dates"] == ["2026-10-07"]

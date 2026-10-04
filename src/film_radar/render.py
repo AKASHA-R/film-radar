@@ -76,6 +76,8 @@ def _md(day: str) -> str:
 def status_text(film: dict) -> str:
     if film["status"] == "coming_soon":
         return f"{_md(film['release_date'])}上映"
+    if film["weeks_in_release"] is None:
+        return f"重映（{film['release_date'][:4]} 年上映）"
     return f"在映第 {film['weeks_in_release']} 周"
 
 

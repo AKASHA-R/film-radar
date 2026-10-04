@@ -9,7 +9,7 @@ from film_radar import main as main_module
 from film_radar.cineplex import CineplexError
 from film_radar.llm import LLMResult
 from film_radar.main import (
-    PipelineError, attach_details, check_sanity, collect, load_editions, main, previous_edition,
+    PipelineError, ReviewError, attach_details, check_sanity, collect, load_editions, main, previous_edition,
     run_pipeline, should_run, summarize_usage,
 )
 from film_radar.triage import TRIAGE_SCHEMA
@@ -239,8 +239,9 @@ def test_pipeline_keeps_a_minority_of_failed_reviews_visible(settings):
 
 def test_pipeline_fails_when_most_reviews_fail(settings):
     caller = ScriptedCaller(keep={61994, 38459, 38401}, fail_research={61994, 38459})
-    with pytest.raises(PipelineError, match="3 部入围片里有 2 部精评失败"):
+    with pytest.raises(ReviewError, match="3 部入围片里有 2 部精评失败") as info:
         pipeline(settings, caller=caller)
+    assert "调查阶段 stop_reason 为 max_tokens ×2" in str(info.value)    # 失败原因要进报错，不然失败 Issue 没法排查
 
 
 def test_pipeline_fails_on_suspicious_data_before_calling_claude(settings):
@@ -327,8 +328,9 @@ def test_cli_skip_week_does_nothing(root, monkeypatch):
 
 
 def test_cli_success_writes_everything(root, monkeypatch):
-    use_fakes(monkeypatch)
+    _, caller = use_fakes(monkeypatch)
     assert main(["--root", str(root), "run", "--manual", "--date", "2026-10-03"]) == 0
+    assert "我想在电影院看什么" in caller.calls[0]["user"]     # 口味档案原样送进了粗筛的提示词
 
     edition = json.loads((root / "data" / "editions" / "2026-10-03.json").read_text(encoding="utf-8"))
     assert edition["counts"]["ok"] == 2
@@ -362,12 +364,14 @@ def test_cli_failure_leaves_no_edition_and_no_site(root, monkeypatch, capsys):
 
 
 @pytest.mark.parametrize("caller, stage", [
-    (ScriptedCaller(keep={61994, 38459, 38401}, fail_research={61994, 38459}), "数据核对"),
+    (ScriptedCaller(keep={61994, 38459, 38401}, fail_research={61994, 38459}), "联网精评"),
 ])
 def test_cli_names_the_failing_stage(root, monkeypatch, caller, stage):
     use_fakes(monkeypatch, caller=caller)
     assert main(["--root", str(root), "run", "--manual", "--date", "2026-10-03"]) == 1
-    assert f"失败环节：{stage}" in (root / "out" / "failure.txt").read_text(encoding="utf-8")
+    failure = (root / "out" / "failure.txt").read_text(encoding="utf-8")
+    assert f"失败环节：{stage}" in failure
+    assert "max_tokens" in failure                  # 具体原因也要写进去
     assert not (root / "data").exists()
 
 

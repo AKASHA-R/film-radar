@@ -10,6 +10,7 @@ import json
 import os
 import sys
 import traceback
+from collections import Counter
 from datetime import date, datetime, timedelta
 from functools import partial
 from pathlib import Path
@@ -30,10 +31,15 @@ class PipelineError(Exception):
     pass
 
 
+class ReviewError(Exception):
+    """入围片里超过一半精评失败。单独一类，失败 Issue 才能写成「联网精评」而不是「数据核对」。"""
+
+
 STAGES = {
     SettingsError: "读取配置",
     CineplexError: "Cineplex 抓取",
     PipelineError: "数据核对",
+    ReviewError: "联网精评",
     TriageError: "粗筛",
     LLMError: "Claude 调用",
     AssembleError: "汇总",
@@ -126,7 +132,9 @@ def run_pipeline(*, client, caller, settings: Settings, taste: str, run_date: da
     ]
     failed = sum(1 for r in reviews if not r["ok"])
     if failed * 2 > len(reviews):
-        raise PipelineError(f"{len(reviews)} 部入围片里有 {failed} 部精评失败，超过一半，本期不发布")
+        reasons = Counter(r["error"] for r in reviews if not r["ok"]).most_common(3)
+        detail = "；".join(f"{reason} ×{n}" for reason, n in reasons)
+        raise ReviewError(f"{len(reviews)} 部入围片里有 {failed} 部精评失败，超过一半，本期不发布。原因：{detail}")
 
     results = triage_results + [result for r in reviews for result in r["usage"]]
     usage = summarize_usage(results, sum(r["searches"] for r in reviews), settings)

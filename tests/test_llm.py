@@ -1,6 +1,7 @@
 from types import SimpleNamespace
 
 import anthropic
+import httpx2
 import pytest
 
 from film_radar import llm
@@ -197,3 +198,14 @@ def test_send_maps_connection_error():
     error = bare(anthropic.APIConnectionError)
     with pytest.raises(LLMError, match="连接失败"):
         llm._send(client_raising(error), {})
+
+
+def test_send_maps_mid_stream_transport_errors():
+    """流式响应读到一半断连：SDK 只给"发请求"这一步包了异常，读流时的 httpx2 错误会原样漏出来。"""
+    class Dropping(FakeStream):
+        def get_final_message(self):
+            raise httpx2.ReadError("Connection reset by peer")
+
+    client = SimpleNamespace(beta=SimpleNamespace(messages=SimpleNamespace(stream=lambda **params: Dropping(None))))
+    with pytest.raises(LLMError, match="流式传输中断.*ReadError"):
+        llm._send(client, {})
