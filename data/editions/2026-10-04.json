@@ -1,6 +1,6 @@
 {
  "edition_id": "2026-10-04",
- "generated_at": "2026-10-04T16:53:51-04:00",
+ "generated_at": "2026-10-04T17:58:04-04:00",
  "next_edition_date": "2026-10-08",
  "settings": {
   "radius_km": 40,
@@ -10,6 +10,10 @@
   "must_cap": 6,
   "outside_cap": 2,
   "stale_after_days": 16
+ },
+ "models": {
+  "triage": "claude-opus-5-5",
+  "review": "claude-sonnet-5-5"
  },
  "films": [
   {
@@ -61,14 +65,14 @@
     "keep": false,
     "rank": null,
     "category": "horror",
-    "reason": "Insidious 系列续集，偏主流惊吓类恐怖，不是作者性新恐怖。"
+    "reason": "《潜伏》系列商业续集，偏Jump scare套路，不是作者性新恐怖。"
    },
    "card": null,
    "review_error": null,
    "flags": [],
    "seen_before": false,
    "outcome": "skip",
-   "outcome_reason": "Insidious 系列续集，偏主流惊吓类恐怖，不是作者性新恐怖。"
+   "outcome_reason": "《潜伏》系列商业续集，偏Jump scare套路，不是作者性新恐怖。"
   },
   {
    "film_id": 37617,
@@ -134,103 +138,72 @@
    "verdict": {
     "film_id": 37617,
     "keep": true,
-    "rank": 9,
+    "rank": 15,
     "category": "outside",
-    "reason": "诺兰的 IMAX 神话史诗，口味之外但大银幕价值很高，也有历史神话色彩。"
+    "reason": "诺兰IMAX胶片神话史诗，不在七类之内，但作为大银幕视听事件值得一看。"
    },
    "card": {
     "tier": "ok",
-    "strength": 4,
+    "strength": 5,
     "category": "outside",
-    "one_liner": "诺兰的神话史诗，不在你的六类里，但口碑很强，适合挑 IMAX 70mm 场次去看。",
-    "premise": "特洛伊战争结束后，奥德修斯（马特·达蒙）踏上返回伊萨卡的漫长归途，沿途遇到独眼巨人、塞壬、喀耳刻等。他是被战争幻象困扰的破碎之人，叙事带有时间交错，妻儿的处理也与原诗不同。",
-    "why_for_you": "这部片不属于你的六类，只沾一点历史神话的边，要先说明它在你的口味之外。它值得看的地方在大银幕：据称是首部全程用 IMAX 70mm 摄影机拍摄的长片，诺兰此前拍过《星际穿越》《奥本海默》，视听上你大概会感兴趣。如果去看，建议优先选 IMAX 场次。",
-    "reception": "烂番茄 94%（431篇评论），Metacritic 88（62位影评人），CinemaScore A；豆瓣 8.6，IMDb 8.4；卫报给五星。电影节入围或获奖未查到。",
-    "background": "诺兰兼任导演和编剧，与艾玛·托马斯共同制片，出品方为 Universal Pictures 和 Syncopy。他此前执导过《星际穿越》《敦刻尔克》《信条》《奥本海默》，其中《奥本海默》获奥斯卡最佳影片。本片是首部全程用 IMAX 70mm 摄影机拍摄的长片。",
-    "caveats": "情感投入偏弱，更多是感官上的震撼；起伏不均，斯库拉与卡律布狄斯等个别段落显得敷衍；对白用现代美式口语，开场可能不适应；片长约 2 小时 52 分，节奏偶尔仓促；有评论批评改编偏离原著；R 级，暴力较多；非 IMAX 70mm 的场次画面可见范围会变少。多伦多的 IMAX 70mm 场次没有查到，需要自己去影院确认。",
+    "one_liner": "诺兰改编荷马史诗的神话奇幻大片，口碑很强，但不在你的七类之内。",
+    "premise": "改编自荷马史诗，讲特洛伊战争后国王奥德修斯漫长曲折的归乡路。途中有独眼巨人、女巫喀耳刻等关卡；在伊萨卡，吟游诗人讲述故事，求婚者围着他的妻子和儿子。叙事多线、非线性，奥德修斯与儿子两条线并行。",
+    "why_for_you": "这部片不在你的七类之内，是因为口碑特别强才告诉你。笔记把它定为神话奇幻史诗，而不是片单上标的“Action”，所以不算你不看的爆米花动作片。它有导演自己的表达和大银幕的视听野心，用新的 IMAX 胶片技术拍摄，和你看《沙丘》的取向有相通之处，但它不是科幻。笔记建议去影院看，尤其是 IMAX 胶片版。全球只有 41 家影院能用完整 IMAX 70mm 放映，你常去的影院是不是，笔记没有查。",
+    "reception": "评论很充足。烂番茄影评人分 96%，Metacritic 89/100（57 篇评论，“普遍赞誉”）。观众分方面，Screen Rant 同一篇文章里先写 77% 后写 97%，自相矛盾，所以没有采用；IMDb 和 Letterboxd 未查到。电影节入围或获奖未查到，7月6日的首映在伦敦影院，不是电影节。奖项目前只有预测，没有实际获奖；Variety 称它是暑期大片中少见的、从根上就瞄准奥斯卡的片子。",
+    "background": "导演兼编剧是克里斯托弗·诺兰，他此前口碑最高的作品是《记忆碎片》《蝙蝠侠：侠影之谜》《黑暗骑士》。出品方是环球影业和 Syncopy，制片人是 Emma Thomas 和诺兰。英语片，片长 172 分钟。",
+    "caveats": "片长偏长，节奏有批评，早期仅有的两篇差评都提到节奏问题。Forbes 指出音效混音有时偏闷或过响，对白会被淹没。非线性闪回让叙事更难跟。对原著有改动，Jacobin 认为诺兰把足智多谋的主角拍成了又一个内疚的“诺兰式苦主”。对白偏口语，用了美式口音，Forbes 说一开始会觉得突兀。",
     "skip_reason": null,
     "evidence": "ample",
     "title_zh": "奥德赛",
-    "title_zh_source": "https://zh.wikipedia.org/zh-cn/%E5%A5%A7%E5%BE%B7%E8%B3%BD_(%E9%9B%BB%E5%BD%B1)",
+    "title_zh_source": "https://baike.baidu.com/item/%E5%A5%A5%E5%BE%B7%E8%B5%9B/65243968",
     "scores": [
      {
-      "name": "烂番茄",
-      "value": "94%（431篇评论）",
-      "source_url": "https://zh.wikipedia.org/zh-cn/%E5%A5%A7%E5%BE%B7%E8%B3%BD_(%E9%9B%BB%E5%BD%B1)"
+      "name": "烂番茄影评人",
+      "value": "96%",
+      "source_url": "https://dknetwork.draftkings.com/2026/07/16/the-odyssey-ratings-rotten-tomatoes-imdb-metacritic-more"
      },
      {
       "name": "Metacritic",
-      "value": "88（62位影评人）",
-      "source_url": "https://zh.wikipedia.org/zh-cn/%E5%A5%A7%E5%BE%B7%E8%B3%BD_(%E9%9B%BB%E5%BD%B1)"
-     },
-     {
-      "name": "CinemaScore",
-      "value": "A",
-      "source_url": "https://zh.wikipedia.org/zh-cn/%E5%A5%A7%E5%BE%B7%E8%B3%BD_(%E9%9B%BB%E5%BD%B1)"
-     },
-     {
-      "name": "豆瓣",
-      "value": "8.6",
-      "source_url": "https://baike.baidu.com/item/%E5%A5%A5%E5%BE%B7%E8%B5%9B/65243968"
-     },
-     {
-      "name": "IMDb",
-      "value": "8.4",
-      "source_url": "https://baike.baidu.com/item/%E5%A5%A5%E5%BE%B7%E8%B5%9B/65243968"
+      "value": "89/100（57 篇评论）",
+      "source_url": "https://dknetwork.draftkings.com/2026/07/16/the-odyssey-ratings-rotten-tomatoes-imdb-metacritic-more"
      }
     ],
     "sources": [
      {
-      "title": "奧德賽（電影）- 维基百科",
-      "url": "https://zh.wikipedia.org/zh-cn/%E5%A5%A7%E5%BE%B7%E8%B3%BD_(%E9%9B%BB%E5%BD%B1)"
+      "title": "The Odyssey 评分汇总（DK Network）",
+      "url": "https://dknetwork.draftkings.com/2026/07/16/the-odyssey-ratings-rotten-tomatoes-imdb-metacritic-more"
      },
      {
-      "title": "奥德赛 - 百度百科",
-      "url": "https://baike.baidu.com/item/%E5%A5%A5%E5%BE%B7%E8%B5%9B/65243968"
+      "title": "Screen Rant：观众分报道",
+      "url": "https://screenrant.com/christopher-nolan-the-odyssey-rotten-tomatoes-audience-score-record"
      },
      {
-      "title": "The Odyssey (2026 film) - Wikipedia",
+      "title": "Variety：奥斯卡前景",
+      "url": "https://variety.com/2026/film/awards/odyssey-oscars-chances-christopher-nolan-best-picture-1236814404"
+     },
+     {
+      "title": "维基百科：The Odyssey (2026 film)",
       "url": "https://en.wikipedia.org/wiki/The_Odyssey_(2026_film)"
      },
      {
-      "title": "Variety 影评",
-      "url": "https://variety.com/2026/film/reviews/the-odyssey-review-christopher-nolan-1236811509"
+      "title": "IT之家：IMAX 70mm 影院数量",
+      "url": "https://www.ithome.com/0/977/288.htm"
      },
      {
-      "title": "Variety：改编差异报道",
-      "url": "https://variety.com/2026/film/news/the-odyssey-changes-christopher-nolan-adapts-homer-1236814443"
+      "title": "Answers in Genesis：影评",
+      "url": "https://answersingenesis.org/reviews/movies/christopher-nolans-odyssey-epic-or-epic-fail"
      },
      {
-      "title": "NPR 影评",
-      "url": "https://www.npr.org/2026/07/16/nx-s1-5894855/the-odyssey-christopher-nolan-review"
+      "title": "Jacobin：影评",
+      "url": "https://jacobin.com/2026/07/film-review-nolan-odyssey-epic"
      },
      {
-      "title": "Forbes 影评",
-      "url": "https://www.forbes.com/sites/erikkain/2026/07/17/the-odyssey-christopher-nolan-matt-damon-movie-review"
+      "title": "百度百科：奥德赛",
+      "url": "https://baike.baidu.com/item/%E5%A5%A5%E5%BE%B7%E8%B5%9B/65243968"
      },
      {
-      "title": "The Ringer：时间交错解析",
-      "url": "https://www.theringer.com/2026/07/23/movies/the-odyssey-christopher-nolan-flashbacks-time-jumping-explained"
-     },
-     {
-      "title": "Plugged In",
-      "url": "https://www.pluggedin.com/movie-reviews/odyssey-2026"
-     },
-     {
-      "title": "PetaPixel",
-      "url": "https://petapixel.com/2026/07/21/christopher-nolan-the-odyssey-gen-z-think-imax-70mm-is-elitist"
-     },
-     {
-      "title": "IMDb",
-      "url": "https://www.imdb.com/title/tt33764258"
-     },
-     {
-      "title": "Rotten Tomatoes editorial",
-      "url": "https://editorial.rottentomatoes.com/article/everything-we-know-about-the-odyssey"
-     },
-     {
-      "title": "Variety Australia：IMAX 摄影机报道",
-      "url": "https://au.variety.com/2025/film/global/christopher-nolan-the-odyssey-imax-cameras-2-22695"
+      "title": "中文维基：奧德賽（電影）",
+      "url": "https://zh.wikipedia.org/wiki/%E5%A5%A7%E5%BE%B7%E8%B3%BD_(%E9%9B%BB%E5%BD%B1)"
      }
     ],
     "sources_dropped": 0,
@@ -240,7 +213,7 @@
    "flags": [],
    "seen_before": true,
    "outcome": "ok",
-   "outcome_reason": "诺兰的神话史诗，不在你的六类里，但口碑很强，适合挑 IMAX 70mm 场次去看。"
+   "outcome_reason": "诺兰改编荷马史诗的神话奇幻大片，口碑很强，但不在你的七类之内。"
   },
   {
    "film_id": 37885,
@@ -316,49 +289,87 @@
    "verdict": {
     "film_id": 37885,
     "keep": true,
-    "rank": 8,
+    "rank": 9,
     "category": "horror",
-    "reason": "Zach Cregger（Barbarian、Weapons）执导的新恐怖，有作者性，值得精评。"
+    "reason": "《野蛮人》《凶器》导演扎克·克雷格重启生化危机，有作者性，值得精评确认。"
    },
    "card": {
     "tier": "ok",
     "strength": 4,
     "category": "horror",
-    "one_liner": "Zach Cregger 执导的《生化危机》重启，怪物和黑色幽默为主，不走心理压迫路线，但口碑不错，可以进影院看。",
-    "premise": "医疗快递员 Bryan 在一个雪夜接了一单送往浣熊市医院的急件，路上出了意外，之后一整晚的遭遇越来越失控。片长 94 分钟。",
-    "why_for_you": "它属于恐怖类，导演是做过《Barbarian》《Weapons》的 Zach Cregger，口碑也不错。但笔记里的评论强调怪物、血浆和黑色幽默，不是《遗传厄运》《仲夏夜惊魂》那种慢慢收紧的心理压迫，也不是纯作者向的恐怖。它改编自游戏，结构像电子游戏一关接一关，偏动作和怪物类型。它不是美式 B 级砍杀片，所以不在你排除的范围内。如果你能接受怪物狂欢的路数，值得在影院看，否则优先级可以放低。",
-    "reception": "只查到三篇正面评论，没有查到烂番茄、Metacritic 等评分汇总，也没有查到电影节入围或获奖信息，样本偏少，判断依据只有这三篇评论。THR 称它给疲软的系列打了强心针；Variety 称它比旧系列好得多，是慢慢来的黏糊糊怪物片，让人想到《Planet Terror》，同时说它带着古怪的天真；Daily Beast 说它又吓人又好笑。",
-    "background": "导演是 Zach Cregger，编剧是他和 Shay Hatten。他此前执导过《Barbarian》和《Weapons》，《Weapons》全球票房超过 2.69 亿美元，Amy Madigan 凭它拿了奥斯卡。出品方包括 Constantin Film、Davis Films、Subconscious、Vertigo Entertainment、PlayStation Productions，哥伦比亚影业与 TriStar 参与发行。",
-    "caveats": "分级为 R，有强烈血腥暴力和脏话。主角 Bryan 不是能打的角色，会吓得尖叫。评论里强调的是怪物、血浆和黑色幽默，不是心理压迫。评分汇总没有查到，评价只基于三篇评论。",
+    "one_liner": "克雷格执导的《生化危机》重启版，口碑很强，但更偏快节奏的恐怖喜剧加生存动作，不是你偏好的心理恐怖。",
+    "premise": "医疗快递员 Bryan 在浣熊市的一个夜晚，被卷入感染怪物的爆发，只能拼命求生。他是普通人，不是专业人士。",
+    "why_for_you": "属于恐怖类，导演扎克·克雷格有作者性（此前执导《野蛮人》和《凶器》），也不是 slasher，所以值得看。不过它更像快节奏的恐怖喜剧加生存动作片，不是《遗传厄运》那种心理恐怖或民俗恐怖。如果你想要慢慢收紧的不安感，这部可能不对路；想在大银幕上看刺激和笑声，值得去。",
+    "reception": "评论充足，口碑很强。烂番茄 Certified Fresh 95%，观众爆米花指数 91%；Metacritic 影评人 79 分（51 篇评论），用户分 7.4；CinemaScore B+。Radio Times 称它是克雷格目前最好的作品，有精彩的身体恐怖。电影节入围或获奖未查到。",
+    "background": "根据 Capcom 游戏改编，是系列第八部真人电影，也是重启。导演兼编剧是扎克·克雷格，联合编剧 Shay Hatten。出品公司包括哥伦比亚影业、Constantin Film、Vertigo Entertainment 和 PlayStation Productions。片中有大量游戏彩蛋，但丧尸跑得很快，更像《最后生还者》。",
+    "caveats": "幽默太多，部分游戏粉丝批评喜剧元素偏离游戏基调。吓人程度有限，有观众说现场笑声比惊吓声多，更偏恶心和紧张。IndieWire 指出节奏一慢下来，快节奏的剧情和搞笑氛围就显得单薄。有影评认为怪物的逻辑前后不一致。",
     "skip_reason": null,
-    "evidence": "thin",
+    "evidence": "ample",
     "title_zh": null,
     "title_zh_source": null,
-    "scores": [],
+    "scores": [
+     {
+      "name": "烂番茄 Tomatometer",
+      "value": "95%（Certified Fresh）",
+      "source_url": "https://editorial.rottentomatoes.com/article/resident-evil-2026-audience-reviews"
+     },
+     {
+      "name": "烂番茄 观众爆米花指数",
+      "value": "91%",
+      "source_url": "https://editorial.rottentomatoes.com/article/resident-evil-2026-audience-reviews"
+     },
+     {
+      "name": "Metacritic 影评人",
+      "value": "79（51 篇评论）",
+      "source_url": "https://www.metacritic.com/movie/resident-evil-2026"
+     },
+     {
+      "name": "Metacritic 用户分",
+      "value": "7.4",
+      "source_url": "https://www.metacritic.com/movie/resident-evil-2026"
+     },
+     {
+      "name": "CinemaScore",
+      "value": "B+",
+      "source_url": "https://www.worldofreel.com/blog/2026/9/20/zach-cregger-does-it-again-resident-evil-is-a-total-blast-and-a-hit-60m-box-office-opening-post-your-review"
+     }
+    ],
     "sources": [
      {
-      "title": "Deadline：预告与创作背景",
-      "url": "https://deadline.com/2026/07/resident-evil-trailer-zach-cregger-austin-abrams-1236876910"
-     },
-     {
-      "title": "The Hollywood Reporter 影评",
-      "url": "https://www.hollywoodreporter.com/movies/movie-reviews/resident-evil-review-zach-cregger-austin-abrams-1236702545"
-     },
-     {
-      "title": "Variety 影评",
-      "url": "https://variety.com/2026/film/reviews/resident-evil-review-zach-cregger-1236863421"
-     },
-     {
-      "title": "The Daily Beast",
-      "url": "https://www.thedailybeast.com/obsessed/resident-evil-weapons-director-zach-cregger-returns-with-his-scariest-movie-yet"
-     },
-     {
-      "title": "Wikipedia：Resident Evil (2026 film)",
+      "title": "Resident Evil (2026 film) - Wikipedia",
       "url": "https://en.wikipedia.org/wiki/Resident_Evil_(2026_film)"
      },
      {
-      "title": "Apple TV：分级与出品方",
-      "url": "https://tv.apple.com/us/movie/resident-evil/umc.cmc.1oweeytxhn136fmlgpizbxsc5"
+      "title": "Zach Cregger - Wikipedia",
+      "url": "https://en.wikipedia.org/wiki/Zach_Cregger"
+     },
+     {
+      "title": "Rotten Tomatoes 观众评论文章",
+      "url": "https://editorial.rottentomatoes.com/article/resident-evil-2026-audience-reviews"
+     },
+     {
+      "title": "Metacritic - Resident Evil (2026)",
+      "url": "https://www.metacritic.com/movie/resident-evil-2026"
+     },
+     {
+      "title": "World of Reel - CinemaScore",
+      "url": "https://www.worldofreel.com/blog/2026/9/20/zach-cregger-does-it-again-resident-evil-is-a-total-blast-and-a-hit-60m-box-office-opening-post-your-review"
+     },
+     {
+      "title": "IndieWire 影评",
+      "url": "https://www.indiewire.com/criticism/movies/resident-evil-movie-review-2026-zach-cregger-1235217403"
+     },
+     {
+      "title": "Kotaku 观众反应",
+      "url": "https://kotaku.com/resident-evil-zach-cregger-reactions-reddit-humor-ending-2000735614"
+     },
+     {
+      "title": "Yahoo 娱乐",
+      "url": "https://www.yahoo.com/entertainment/movies/articles/resident-evil-ridiculous-long-comedian-201700941.html"
+     },
+     {
+      "title": "Punished Backlog 影评",
+      "url": "https://punishedbacklog.com/resident-evil-2026-movie-review"
      }
     ],
     "sources_dropped": 0,
@@ -368,7 +379,7 @@
    "flags": [],
    "seen_before": true,
    "outcome": "ok",
-   "outcome_reason": "Zach Cregger 执导的《生化危机》重启，怪物和黑色幽默为主，不走心理压迫路线，但口碑不错，可以进影院看。"
+   "outcome_reason": "克雷格执导的《生化危机》重启版，口碑很强，但更偏快节奏的恐怖喜剧加生存动作，不是你偏好的心理恐怖。"
   },
   {
    "film_id": 37997,
@@ -439,14 +450,14 @@
     "keep": false,
     "rank": null,
     "category": "outside",
-    "reason": "超级英雄爆米花片，不在口味内。"
+    "reason": "漫威超英动作片，不对口味。"
    },
    "card": null,
    "review_error": null,
    "flags": [],
    "seen_before": false,
    "outcome": "skip",
-   "outcome_reason": "超级英雄爆米花片，不在口味内。"
+   "outcome_reason": "漫威超英动作片，不对口味。"
   },
   {
    "film_id": 38065,
@@ -521,14 +532,14 @@
     "keep": false,
     "rank": null,
     "category": "outside",
-    "reason": "家庭动画，不在口味内。"
+    "reason": "梦工厂合家欢动画，不在口味内。"
    },
    "card": null,
    "review_error": null,
    "flags": [],
    "seen_before": false,
    "outcome": "skip",
-   "outcome_reason": "家庭动画，不在口味内。"
+   "outcome_reason": "梦工厂合家欢动画，不在口味内。"
   },
   {
    "film_id": 38158,
@@ -601,52 +612,17 @@
    "details_missing": false,
    "verdict": {
     "film_id": 38158,
-    "keep": true,
-    "rank": 13,
+    "keep": false,
+    "rank": null,
     "category": "horror",
-    "reason": "Rob Savage 执导的心理恐怖，有「另一个母亲」的民俗感，可能对口味。"
+    "reason": "Blumhouse商业恐怖，名额有限，优先级低于其他恐怖片。"
    },
-   "card": {
-    "tier": "ok",
-    "strength": 2,
-    "category": "horror",
-    "one_liner": "詹姆斯·温制片的心理恐怖片，题材在你的口味内，但目前没有任何影评，建议等首批评论再决定。",
-    "premise": "8岁女孩 Bela 在家里遇到一个声音和长相都像她妈妈的邪恶存在，它对她和家人的威胁越来越大。Jessica Chastain 一人分饰母亲和这个存在。",
-    "why_for_you": "它是主流制作的心理恐怖片，不是 slasher，大类上在你的恐怖口味之内。不过笔记没有查到民俗感的依据，剧情描述里只有超自然和心理恐怖。预告里观看最多的是 jump scare 片段，我推断宣传重点可能偏惊吓，不一定是你喜欢的慢慢收紧的氛围，但这只是推断，没有影评佐证。",
-    "reception": "目前没有影评。烂番茄显示 0 条评论、0 个评分，状态为即将上映；电影节入围或获奖未查到，也没有评分网站分数。唯一的内容是烂番茄编辑把它列入10月最受期待的5部片，这只能说明期待度，不能说明片子好坏。因为没有评论，这里的判断只依据题材和主创背景，所以定为 ok 且强度偏低。",
-    "background": "导演 Rob Savage，编剧 Nathan Elston，制片人 James Wan。出品方是 Atomic Monster、Blumhouse Productions、Spin a Black Yarn，美国由环球发行。改编自 Josh Malerman 2024年的小说《Incidents Around the House》。其他演员有 Jay Duplass、Dichen Lachman、Arian Moayed、Karen Allen。多伦多上映日为2026年10月9日，片长93分钟。",
-    "caveats": "口碑无从验证。分级为 R，理由是 language 和 some bloody violence。宣传重点可能偏 jump scare（推断，无影评佐证）。建议10月9日前后等首批影评出来再决定。",
-    "skip_reason": null,
-    "evidence": "none",
-    "title_zh": null,
-    "title_zh_source": null,
-    "scores": [],
-    "sources": [
-     {
-      "title": "Other Mommy - Rotten Tomatoes",
-      "url": "https://www.rottentomatoes.com/m/other_mommy"
-     },
-     {
-      "title": "Other Mommy - IMDb",
-      "url": "https://www.imdb.com/title/tt36586020"
-     },
-     {
-      "title": "Other Mommy - Wikipedia",
-      "url": "https://en.wikipedia.org/wiki/Other_Mommy"
-     },
-     {
-      "title": "Most anticipated movies of October 2026 - Rotten Tomatoes editorial",
-      "url": "https://editorial.rottentomatoes.com/article/most-anticipated-movies-of-october-2026"
-     }
-    ],
-    "sources_dropped": 0,
-    "film_id": 38158
-   },
+   "card": null,
    "review_error": null,
    "flags": [],
    "seen_before": false,
-   "outcome": "ok",
-   "outcome_reason": "詹姆斯·温制片的心理恐怖片，题材在你的口味内，但目前没有任何影评，建议等首批评论再决定。"
+   "outcome": "skip",
+   "outcome_reason": "Blumhouse商业恐怖，名额有限，优先级低于其他恐怖片。"
   },
   {
    "film_id": 38160,
@@ -712,14 +688,14 @@
     "keep": false,
     "rank": null,
     "category": "outside",
-    "reason": "喜剧奇幻续集，不在口味内。"
+    "reason": "奇幻喜剧续集，不对口味。"
    },
    "card": null,
    "review_error": null,
    "flags": [],
    "seen_before": false,
    "outcome": "skip",
-   "outcome_reason": "喜剧奇幻续集，不在口味内。"
+   "outcome_reason": "奇幻喜剧续集，不对口味。"
   },
   {
    "film_id": 38401,
@@ -794,14 +770,14 @@
     "keep": false,
     "rank": null,
     "category": "thriller",
-    "reason": "畅销小说改编的主流心理惊悚，不是 A24 路线。"
+    "reason": "畅销小说改编的情欲惊悚，偏通俗，名额有限暂不入围。"
    },
    "card": null,
    "review_error": null,
    "flags": [],
    "seen_before": false,
    "outcome": "skip",
-   "outcome_reason": "畅销小说改编的主流心理惊悚，不是 A24 路线。"
+   "outcome_reason": "畅销小说改编的情欲惊悚，偏通俗，名额有限暂不入围。"
   },
   {
    "film_id": 38459,
@@ -882,74 +858,81 @@
    "verdict": {
     "film_id": 38459,
     "keep": true,
-    "rank": 15,
-    "category": "outside",
-    "reason": "伊尼亚里图执导、汤姆·克鲁斯主演的作者电影，口碑可能强，在口味之外。"
+    "rank": 10,
+    "category": "political_historical",
+    "reason": "伊纳里图原创，讲世界最有权势之人引发灾难，可能是政治讽刺，值得精评。"
    },
    "card": {
     "tier": "skip",
-    "strength": 3,
+    "strength": 2,
     "category": "outside",
-    "one_liner": "伊纳里图执导、汤姆·克鲁斯主演的讽刺黑色喜剧，不在你的六类之内，口碑偏差、分歧大。",
-    "premise": "影院简介说，世界上最有权势的人急着证明自己是人类的救星，因为他闯下的祸快要毁掉一切。评论提到它是一部讽刺黑色喜剧，矛头指向环境破坏、企业权力和人类对地球衰落的责任。",
-    "why_for_you": "这部片不是科幻，也不是惊悚、恐怖，不属于政治历史类，也不是华语或日本电影，不在你的六类口味之内。口碑也不够强，没有理由破例推荐。只有你本来就想看伊纳里图或克鲁斯，才值得去；想看大银幕的话，摄影师 Emmanuel Lubezki 的镜头是唯一被反复称赞的理由。",
-    "reception": "分歧大，整体偏差。烂番茄 52%（79 篇评论）；Metacritic 各站数字不一，出现过 42、44、45、46；IMDb 7.1，Letterboxd 3.7/5。Roger Ebert 网站给 2/4 星，认为像《鸟人》和《巴尔多》的拼合。THR 的影评人说它自我指涉过度，最后一个小时令人疲惫。Gold Derby 的评论批评它缺乏幽默、说教过重、风格过火。World of Reel 的影评人则喜欢它，称视觉惊人、克鲁斯表演出色，并称它是《奇爱博士》式的黑色喜剧。烂番茄观众分和 CinemaScore 暂未出。电影节入围或获奖未查到。",
-    "background": "导演伊纳里图凭《鸟人》获奥斯卡最佳影片，《荒野猎人》让他拿到最佳导演。出品方为 Legendary Pictures 和 TC Productions，华纳发行，预算 1.25 亿美元，摄影是 Emmanuel Lubezki。首映在伦敦。",
-    "caveats": "片长 129 分钟。首周末票房约 900 万美元，原文带问号，未证实。更具体的剧情未查到。烂番茄上有一部同名的 2020 年希腊片，与本片无关。",
-    "skip_reason": "不在你的六类口味之内，评论偏负面，只有本来就想看伊纳里图或克鲁斯才值得去。",
+    "one_liner": "伊纳里图执导、克鲁斯主演的气候讽刺黑色喜剧，口碑两极，也不在你的口味范围内。",
+    "premise": "一个权势极大的石油大亨，急着要向世人证明自己是人类的救世主，因为他自己引发的灾难正在毁掉一切。",
+    "why_for_you": "它带有政治讽刺的成分，但整体更接近黑色闹剧，不是你想看的严肃政治片或历史片。片中没有恐怖、惊悚或科幻元素，也没有 A24 式的氛围。唯一可能吸引你的是全片用 VistaVision 拍摄、在 IMAX 上映，影像可能值得上大银幕，但这只是制作信息，没有影评印证。想看更强的政治讽刺片，不如另选。",
+    "reception": "评价两极。烂番茄影评人 51%（255 篇），观众 71%；Metacritic 约 44（Gold Derby 的文章里有 42 和 46 两个数字，说法不一）；CinemaScore 为 C+。据报道，这是克鲁斯自 2017 年《神雕》以来口碑最差的片子，也是伊纳里图职业生涯评分最低的一部。批评集中在缺乏幽默、说教生硬、风格过火。好评多落在克鲁斯的表演和制作上，配乐和视觉受到称赞。影评人对结尾转折的评价不一。片子没有入围任何电影节，直接在伦敦举办世界首映；获奖情况未查到。",
+    "background": "导演是 Alejandro G. Iñárritu，这是他继 2022 年《巴尔多》之后的第一部电影，也是 2015 年《荒野猎人》后的第一部英语片。出品方是传奇影业和克鲁斯的 TC Productions，华纳发行，摄影是 Emmanuel Lubezki。",
+    "caveats": "节奏拖沓，THR 的评论提到片子越到后面越自我缠绕。喜剧效果不佳，信息传达重复，多伦多星报的 Peter Howell 认为它没有给出新意。不建议专程去影院看，除非你想看 VistaVision 画面和克鲁斯的表演。",
+    "skip_reason": "气候讽刺黑色喜剧不在你的口味范围内，口碑又两极，不值得专程去影院。",
     "evidence": "ample",
     "title_zh": null,
     "title_zh_source": null,
     "scores": [
      {
-      "name": "烂番茄",
-      "value": "52%（79 篇评论）",
-      "source_url": "https://cosmicbook.news/digger-rotten-tomatoes"
+      "name": "烂番茄影评人",
+      "value": "51%（255 篇）",
+      "source_url": "https://www.rottentomatoes.com/m/digger_2026"
      },
      {
-      "name": "IMDb",
-      "value": "7.1",
-      "source_url": "https://dknetwork.draftkings.com/2026/10/01/digger-movie-reviews-rotten-tomatoes-imdb-metacritic-scores"
+      "name": "烂番茄观众",
+      "value": "71%",
+      "source_url": "https://www.rottentomatoes.com/m/digger_2026"
      },
      {
-      "name": "Letterboxd",
-      "value": "3.7/5",
-      "source_url": "https://dknetwork.draftkings.com/2026/10/01/digger-movie-reviews-rotten-tomatoes-imdb-metacritic-scores"
-     },
-     {
-      "name": "Roger Ebert 网站",
-      "value": "2/4 星",
-      "source_url": "https://www.today.com/popculture/movies/digger-reviews-rcna600968"
+      "name": "CinemaScore",
+      "value": "C+",
+      "source_url": "https://screenrant.com/tom-cruise-digger-movie-rotten-tomatoes-audience-score-record"
      }
     ],
     "sources": [
      {
-      "title": "Gold Derby：评论汇总",
+      "title": "烂番茄 Digger 页面",
+      "url": "https://www.rottentomatoes.com/m/digger_2026"
+     },
+     {
+      "title": "Gulf News 报道",
+      "url": "https://gulfnews.com/entertainment/tom-cruises-digger-hits-low-53-rotten-tomatoes-score-embraces-bad-reviews-in-bold-new-ad-1.500693071"
+     },
+     {
+      "title": "Gold Derby 评论汇总",
       "url": "https://www.goldderby.com/film/2026/digger-reviews-critics-tom-cruise-rotten-tomatoes-metacritic-oscar-odds-explainer"
      },
      {
-      "title": "World of Reel：评论与票房",
-      "url": "https://www.worldofreel.com/blog/2026/9/29/digger-reviews-are-not-good-46-on-metacritic-disastrous-9m-opening-yet-irritus-big-messy-swing-deserves-better-than-its-getting"
+      "title": "Screen Rant",
+      "url": "https://screenrant.com/tom-cruise-digger-movie-rotten-tomatoes-audience-score-record"
      },
      {
-      "title": "DraftKings Network：各站评分",
-      "url": "https://dknetwork.draftkings.com/2026/10/01/digger-movie-reviews-rotten-tomatoes-imdb-metacritic-scores"
+      "title": "Hollywood Reporter 评论",
+      "url": "https://www.hollywoodreporter.com/movies/movie-reviews/digger-review-tom-cruise-alejandro-g-inarritu-1236713730"
      },
      {
-      "title": "CosmicBook：烂番茄评分",
-      "url": "https://cosmicbook.news/digger-rotten-tomatoes"
-     },
-     {
-      "title": "Today：评论汇总",
+      "title": "Today.com 评论汇总",
       "url": "https://www.today.com/popculture/movies/digger-reviews-rcna600968"
      },
      {
-      "title": "维基百科：Digger (2026 film)",
+      "title": "World of Reel",
+      "url": "https://www.worldofreel.com/blog/2026/8/18/alejandro-g-irritus-digger-to-world-premiere-in-london-on-september-22-in-major-oscar-season-gamble-for-warner-bros"
+     },
+     {
+      "title": "维基百科 Digger (2026 film)",
       "url": "https://en.wikipedia.org/wiki/Digger_(2026_film)"
      },
      {
-      "title": "烂番茄：伊纳里图",
-      "url": "https://www.rottentomatoes.com/celebrity/alejandro_gonzalez_inniaritu"
+      "title": "AOL 报道",
+      "url": "https://www.aol.com/articles/tom-cruise-shares-teaser-digger-184924719.html"
+     },
+     {
+      "title": "Average Socialite",
+      "url": "https://www.averagesocialite.com/la-events/2026/9/30/digger-premiere-la"
      }
     ],
     "sources_dropped": 0,
@@ -959,7 +942,7 @@
    "flags": [],
    "seen_before": true,
    "outcome": "skip",
-   "outcome_reason": "不在你的六类口味之内，评论偏负面，只有本来就想看伊纳里图或克鲁斯才值得去。"
+   "outcome_reason": "气候讽刺黑色喜剧不在你的口味范围内，口碑又两极，不值得专程去影院。"
   },
   {
    "film_id": 38472,
@@ -1020,14 +1003,14 @@
     "keep": false,
     "rank": null,
     "category": "outside",
-    "reason": "冒险片，无信息显示对口味。"
+    "reason": "迪士尼冒险片，信息缺失且不似对口味。"
    },
    "card": null,
    "review_error": null,
    "flags": [],
    "seen_before": false,
    "outcome": "skip",
-   "outcome_reason": "冒险片，无信息显示对口味。"
+   "outcome_reason": "迪士尼冒险片，信息缺失且不似对口味。"
   },
   {
    "film_id": 60152,
@@ -1099,20 +1082,20 @@
    "verdict": {
     "film_id": 60152,
     "keep": true,
-    "rank": 14,
+    "rank": 11,
     "category": "political_historical",
-    "reason": "索金执导，讲 Facebook 吹哨人，带有政治和时事色彩。"
+    "reason": "索金编导的Facebook吹哨人真实事件，政治社会题材。"
    },
    "card": {
     "tier": "ok",
     "strength": 2,
     "category": "political_historical",
-    "one_liner": "索金执导的 Facebook 吹哨人题材对白戏，属于你的政治类，但偏时事，口碑未明，大银幕价值有限。",
-    "premise": "改编自 Facebook 吹哨人弗朗西丝·豪根的真实经历。年轻工程师豪根找到《华尔街日报》记者杰夫·霍维茨，两人一起把这家社交网络最不愿公开的内部情况捅了出去。片子更像调查报道加办公室对峙，而不是《社交网络》那种人物传记。",
-    "why_for_you": "题材属于你的“政治、历史”类，但偏时事，不是历史片。它讨论算法放大愤怒内容的问题，也呈现了 2021 年 1 月 6 日国会冲击事件。不过笔记认为它在大银幕上的视听价值有限，主要看对白和表演。如果你只想看对白戏和表演，可以等流媒体；想去影院，建议等烂番茄和 Metacritic 出分再定。",
-    "reception": "评论很少，判断依据有限。Metacritic 显示尚无影评，烂番茄页面也没有分数，也没查到电影节入围或获奖。目前能参考的只有两类：法国 FilmDeCulte 的一篇评论，说对白和节奏有索金的味道，形式上不出彩；影评博客 World of Reel 转述的观众和同行反应，说整体偏平庸，这些只是非正式反应，不是正式影评。Letterboxd 上的零散短评普遍夸表演、说故事有力量，但嫌它不如《社交网络》。",
-    "background": "导演兼编剧是亚伦·索金，之前导演过《Molly's Game》《The Trial of the Chicago 7》《Being the Ricardos》。主演有米奇·麦迪逊（Mikey Madison）饰豪根、杰瑞米·艾伦·怀特（Jeremy Allen White）饰霍维茨，杰瑞米·斯特朗（Jeremy Strong）饰扎克伯格，但扎克伯格戏份不多。摄影是杰夫·克罗南维斯，配乐是亚历山大·德斯普拉。出品方有 Columbia Pictures、Alcon Entertainment、The Gotham Group、Escape Artists，发行方是 Sony。豪根的回忆录是原著。10 月 9 日上映。",
-    "caveats": "视觉被批像昂贵的电视剧，配乐被批用得太满，1 月 6 日那场戏被批显得廉价（仅来自单一博客的看法）。和《社交网络》比较也吃亏。以上负面意见多为非正式反应，正式影评尚未出现。",
+    "one_liner": "Sorkin 编导的 Facebook 吹哨人故事，题材对口，但早期反应平庸，建议等影评出来再决定。",
+    "premise": "根据真实事件改编。Facebook 工程师 Frances Haugen（Mikey Madison 饰）联合《华尔街日报》记者 Jeff Horwitz（Jeremy Allen White 饰），揭露公司最隐秘的内幕。这些事件是《华尔街日报》\"Facebook Files\"系列报道的来源。",
+    "why_for_you": "属于你的\"政治、历史\"类，但是当代题材，而且是剧情片。从大银幕体验看，它不是必须在影院看的片子，视听上没有特别突出的地方，所以只列为可以看。",
+    "reception": "影评人评论还没出来：Metacritic 暂无影评，烂番茄 0 条评论，电影节入围或获奖未查到，仅有 Astra Midseason Movie Awards 一项提名。因此评价依据只有早期观众反应，样本很少：World of Reel 称目前的共识是\"相当平庸\"，Letterboxd 上的评论两极分化。表演（尤其 Madison）获得认可，导演和视听手法评价偏弱。预测市场对烂番茄分数的预期约 70%，这只是押注，不是评分。另有一位看过片的媒体人说，片子讲算法如何放大仇恨和极端内容，全片朝 1 月 6 日事件推进，这只是单一来源的转述。",
+    "background": "导演兼编剧是 Aaron Sorkin，之前导演过《Molly's Game》《The Trial of the Chicago 7》《Being the Ricardos》。《The Social Network》的导演是 Fincher，这次不是他。出品方：Columbia Pictures、Alcon Entertainment、The Gotham Group、Escape Artists；摄影 Jeff Cronenweth，配乐 Alexandre Desplat。",
+    "caveats": "视觉平淡，被说像电视剧。配乐过重，1 月 6 日冲突场面显得廉价。几乎每条反应都拿它和《The Social Network》比。主题说教味重，不过这一点只来自单一匿名观众。以上多为早期、少量的观众反应，建议等首批影评出来再决定。",
     "skip_reason": null,
     "evidence": "thin",
     "title_zh": null,
@@ -1120,36 +1103,36 @@
     "scores": [],
     "sources": [
      {
-      "title": "The Hollywood Reporter：豪根回忆录与影片相关报道",
-      "url": "https://www.hollywoodreporter.com/movies/movie-features/facebook-whistleblower-mark-zuckerberg-social-reckoning-1236717678"
-     },
-     {
-      "title": "CBS News：亚伦·索金谈本片",
-      "url": "https://www.cbsnews.com/news/aaron-sorkin-on-the-social-reckoning"
-     },
-     {
-      "title": "FilmDeCulte 评论",
-      "url": "https://www.filmdeculte.com/cinema/actualite/The-Social-Reckoning-26368.html"
-     },
-     {
-      "title": "World of Reel：观众与同行反应",
-      "url": "https://www.worldofreel.com/blog/2026/10/1/social-reckoning-reactions"
-     },
-     {
-      "title": "Metacritic",
+      "title": "Metacritic - The Social Reckoning",
       "url": "https://www.metacritic.com/movie/the-social-reckoning"
      },
      {
-      "title": "Rotten Tomatoes",
+      "title": "Rotten Tomatoes - The Social Reckoning",
       "url": "https://www.rottentomatoes.com/m/the_social_reckoning"
      },
      {
-      "title": "Letterboxd",
+      "title": "World of Reel - Social Reckoning reactions",
+      "url": "https://www.worldofreel.com/blog/2026/10/1/social-reckoning-reactions"
+     },
+     {
+      "title": "World of Reel - First reaction",
+      "url": "https://www.worldofreel.com/blog/2026/9/23/the-social-reckoning-first-reaction-aaron-sorkin-delivers-a-timely-indictment-of-facebook-but-wheres-the-cinema"
+     },
+     {
+      "title": "Wikipedia - The Social Reckoning",
+      "url": "https://en.wikipedia.org/wiki/The_Social_Reckoning"
+     },
+     {
+      "title": "Letterboxd - The Social Reckoning",
       "url": "https://letterboxd.com/film/the-social-reckoning"
      },
      {
-      "title": "Wikipedia：The Social Reckoning",
-      "url": "https://en.wikipedia.org/wiki/The_Social_Reckoning"
+      "title": "Kalshi - Rotten Tomatoes scores market",
+      "url": "https://kalshi.com/markets/kxrt/rotten-tomatoes-scores/kxrt-soc"
+     },
+     {
+      "title": "Win.gg - The Social Reckoning",
+      "url": "https://win.gg/the-social-reckoning-sequel"
      }
     ],
     "sources_dropped": 0,
@@ -1159,7 +1142,7 @@
    "flags": [],
    "seen_before": false,
    "outcome": "ok",
-   "outcome_reason": "索金执导的 Facebook 吹哨人题材对白戏，属于你的政治类，但偏时事，口碑未明，大银幕价值有限。"
+   "outcome_reason": "Sorkin 编导的 Facebook 吹哨人故事，题材对口，但早期反应平庸，建议等影评出来再决定。"
   },
   {
    "film_id": 60470,
@@ -1209,17 +1192,111 @@
    "details_missing": false,
    "verdict": {
     "film_id": 60470,
-    "keep": false,
-    "rank": null,
+    "keep": true,
+    "rank": 8,
     "category": "horror",
-    "reason": "青少年向许愿恐怖，作者性不足。"
+    "reason": "Curry Barker的原创恐怖片，口碑极佳的心理恐怖，对胃口。"
    },
-   "card": null,
+   "card": {
+    "tier": "ok",
+    "strength": 4,
+    "category": "horror",
+    "one_liner": "恐怖喜剧混合体，影评口碑很强，但偏惊吓和黑色笑料，不是慢火氛围路线。",
+    "premise": "害羞的 Bear 不敢向青梅竹马 Nikki 表白，买下一件能实现一个愿望的古董玩具。Nikki 立刻爱上他，但这份爱逐渐变成疯狂的占有。影评称它一半是尴尬爱情喜剧，一半是心理恐怖。",
+    "why_for_you": "属于你最想看的恐怖类，有导演个人表达，不是 slasher，心理恐怖的成分也对路。但它偏黑色喜剧和惊吓，靠重口味见长，不是《遗传厄运》那种慢慢压抑的路线，所以放在“可以看”里偏上的位置。笔记提到，想感受现场观众的反应，值得去影院。",
+    "reception": "口碑很好。Metacritic 77（38 篇影评），烂番茄 95%（当时 43 篇，共识称其“令人不安又好笑”），另一来源写 94%。IMDb 7.4，但只有 231 个评分，样本很小。CinemaScore A-。多伦多《环球邮报》给了 90 分。影评最常夸 Inde Navarrette 的表演，Boston Hassle 称之为近年最敢投入的喜剧恐怖表演之一。2025 年 TIFF 午夜疯狂单元世界首映，出现在该单元观众选择奖名单里，但未标明名次。",
+    "background": "导演兼编剧 Curry Barker 是 YouTuber，此前拍过《Milk & Serial》（2024），这是他的长片处女作。出品公司为 Blumhouse、Capstone Studios、Tea Shop Productions，预算 60 万至 75 万美元。Focus Features 以 1500 万美元买下发行权。",
+    "caveats": "有影评认为片子太长，张力和恐怖感不足。有用户给 3 分，说想法没展开、主角令人反感。Inverse 认为它更像一串恶心笑料，缺少实质内容。World of Reel 认为设定在某些地方撑得偏薄。它是恐怖喜剧混合体，靠惊吓和重口味见长，这一条是调查者根据影评归纳的。",
+    "skip_reason": null,
+    "evidence": "ample",
+    "title_zh": null,
+    "title_zh_source": null,
+    "scores": [
+     {
+      "name": "Metacritic",
+      "value": "77（38 篇影评）",
+      "source_url": "https://www.metacritic.com/movie/obsession-2025"
+     },
+     {
+      "name": "烂番茄",
+      "value": "95%（当时 43 篇影评）",
+      "source_url": "https://rottentomatoes.com/m/obsession_2025"
+     },
+     {
+      "name": "烂番茄（另一来源）",
+      "value": "94%",
+      "source_url": "https://toddmthatcher.com/2026/05/16/oscar-predictions-obsession"
+     },
+     {
+      "name": "IMDb",
+      "value": "7.4（仅 231 个评分）",
+      "source_url": "https://www.imdb.com/title/tt37287335"
+     },
+     {
+      "name": "CinemaScore",
+      "value": "A-",
+      "source_url": "https://toddmthatcher.com/2026/05/16/oscar-predictions-obsession"
+     },
+     {
+      "name": "《环球邮报》（Metacritic 收录）",
+      "value": "90",
+      "source_url": "https://www.metacritic.com/movie/obsession-2025/critic-reviews"
+     }
+    ],
+    "sources": [
+     {
+      "title": "Metacritic：Obsession",
+      "url": "https://www.metacritic.com/movie/obsession-2025"
+     },
+     {
+      "title": "Metacritic：影评列表",
+      "url": "https://www.metacritic.com/movie/obsession-2025/critic-reviews"
+     },
+     {
+      "title": "烂番茄：Obsession",
+      "url": "https://rottentomatoes.com/m/obsession_2025"
+     },
+     {
+      "title": "IMDb：Obsession",
+      "url": "https://www.imdb.com/title/tt37287335"
+     },
+     {
+      "title": "Todd Thatcher 文章",
+      "url": "https://toddmthatcher.com/2026/05/16/oscar-predictions-obsession"
+     },
+     {
+      "title": "World of Reel：TIFF 首映影评",
+      "url": "https://www.worldofreel.com/blog/2025/9/7/obsession-curry-barkers-creepy-and-ingenious-tiff-midnight-madness-debut-lands-15m-focus-features-deal"
+     },
+     {
+      "title": "Forbes：影评人怎么说",
+      "url": "https://www.forbes.com/sites/hannahabraham/2026/05/26/ghoulish-gory-gorgeous-what-critics-are-saying-about-obsession"
+     },
+     {
+      "title": "Gold Derby：TIFF 首映与发行",
+      "url": "https://www.goldderby.com/film/2026/inde-navarrette-curry-barker-obsession-alternate-version-tiff-panel"
+     },
+     {
+      "title": "维基百科：Obsession（2025 年电影）",
+      "url": "https://en.wikipedia.org/wiki/Obsession_(2025_film)"
+     },
+     {
+      "title": "维基百科：Curry Barker",
+      "url": "https://en.wikipedia.org/wiki/Curry_Barker"
+     },
+     {
+      "title": "维基百科：TIFF 午夜疯狂观众选择奖",
+      "url": "https://en.wikipedia.org/wiki/Toronto_International_Film_Festival_People%27s_Choice_Award:_Midnight_Madness"
+     }
+    ],
+    "sources_dropped": 0,
+    "film_id": 60470
+   },
    "review_error": null,
    "flags": [],
    "seen_before": true,
-   "outcome": "skip",
-   "outcome_reason": "青少年向许愿恐怖，作者性不足。"
+   "outcome": "ok",
+   "outcome_reason": "恐怖喜剧混合体，影评口碑很强，但偏惊吓和黑色笑料，不是慢火氛围路线。"
   },
   {
    "film_id": 60481,
@@ -1287,14 +1364,14 @@
     "keep": false,
     "rank": null,
     "category": "outside",
-    "reason": "简·奥斯汀爱情片，不在口味内。"
+    "reason": "奥斯汀爱情改编，不在口味内。"
    },
    "card": null,
    "review_error": null,
    "flags": [],
    "seen_before": false,
    "outcome": "skip",
-   "outcome_reason": "简·奥斯汀爱情片，不在口味内。"
+   "outcome_reason": "奥斯汀爱情改编，不在口味内。"
   },
   {
    "film_id": 60523,
@@ -1361,14 +1438,14 @@
     "keep": false,
     "rank": null,
     "category": "outside",
-    "reason": "游戏改编格斗动作片，虽有日本 IP 但是美国制作。"
+    "reason": "游戏改编格斗动作片，不对口味。"
    },
    "card": null,
    "review_error": null,
    "flags": [],
    "seen_before": false,
    "outcome": "skip",
-   "outcome_reason": "游戏改编格斗动作片，虽有日本 IP 但是美国制作。"
+   "outcome_reason": "游戏改编格斗动作片，不对口味。"
   },
   {
    "film_id": 60636,
@@ -1433,14 +1510,14 @@
     "keep": false,
     "rank": null,
     "category": "outside",
-    "reason": "家庭喜剧动画真人混合，不在口味内。"
+    "reason": "真人动画喜剧，不对口味。"
    },
    "card": null,
    "review_error": null,
    "flags": [],
    "seen_before": false,
    "outcome": "skip",
-   "outcome_reason": "家庭喜剧动画真人混合，不在口味内。"
+   "outcome_reason": "真人动画喜剧，不对口味。"
   },
   {
    "film_id": 60897,
@@ -1492,14 +1569,14 @@
     "keep": false,
     "rank": null,
     "category": "outside",
-    "reason": "喜剧，不在口味内。"
+    "reason": "婚姻喜剧，不在口味内。"
    },
    "card": null,
    "review_error": null,
    "flags": [],
    "seen_before": false,
    "outcome": "skip",
-   "outcome_reason": "喜剧，不在口味内。"
+   "outcome_reason": "婚姻喜剧，不在口味内。"
   },
   {
    "film_id": 61021,
@@ -1551,14 +1628,14 @@
     "keep": false,
     "rank": null,
     "category": "outside",
-    "reason": "儿童动画，不在口味内。"
+    "reason": "儿童定格动画，不对口味。"
    },
    "card": null,
    "review_error": null,
    "flags": [],
    "seen_before": false,
    "outcome": "skip",
-   "outcome_reason": "儿童动画，不在口味内。"
+   "outcome_reason": "儿童定格动画，不对口味。"
   },
   {
    "film_id": 61439,
@@ -1605,14 +1682,14 @@
     "keep": false,
     "rank": null,
     "category": "horror",
-    "reason": "蜘蛛怪物片，偏 B 级，不对口味。"
+    "reason": "蜘蛛灾难类型恐怖，偏B级生物片。"
    },
    "card": null,
    "review_error": null,
    "flags": [],
    "seen_before": false,
    "outcome": "skip",
-   "outcome_reason": "蜘蛛怪物片，偏 B 级，不对口味。"
+   "outcome_reason": "蜘蛛灾难类型恐怖，偏B级生物片。"
   },
   {
    "film_id": 61548,
@@ -1685,14 +1762,14 @@
     "keep": false,
     "rank": null,
     "category": "outside",
-    "reason": "生存冒险动作片，不在口味内。"
+    "reason": "荒野求生动作冒险，不对口味。"
    },
    "card": null,
    "review_error": null,
    "flags": [],
    "seen_before": false,
    "outcome": "skip",
-   "outcome_reason": "生存冒险动作片，不在口味内。"
+   "outcome_reason": "荒野求生动作冒险，不对口味。"
   },
   {
    "film_id": 61594,
@@ -1750,49 +1827,109 @@
    "verdict": {
     "film_id": 61594,
     "keep": true,
-    "rank": 12,
+    "rank": 4,
     "category": "chinese",
-    "reason": "潮汕侨批题材华语片，带历史背景，华语片都想看。"
+    "reason": "潮汕侨批题材华语片，兼具历史时代背景。"
    },
    "card": {
     "tier": "ok",
-    "strength": 3,
+    "strength": 4,
     "category": "chinese",
-    "one_liner": "潮汕家庭情感剧，围绕侨批展开，口碑偏正面，但偏煽情、不算作者性强的艺术片。",
-    "premise": "潮汕的阿嬷一直过着安静平常的日子。欠了债的孙子瞒着家人去泰国，寻找传说中发了财的爷爷。他带回的消息打破了家里的平静，一叠泛黄的侨批（海外汇款家书）也慢慢揭开几十年前埋下的往事。语言有潮汕话、普通话和泰语。",
-    "why_for_you": "属于你想看的华语片，又有潮汕与南洋华人的历史背景，片中围绕侨批（已列入联合国教科文组织“世界记忆名录”）展开。如果你想了解这段历史，又能接受偏煽情的家庭剧，值得去影院看。但它不是作者性很强的艺术片，不属于你最偏爱的那种口味，所以放在“可以看”这一档。",
-    "reception": "评论数量有限，我的判断只依据这些影评，把握有限。Film Threat 给 7/10；新加坡的 Bakchormeeboy 给了五星满分，称其克制、真诚；Eastern Kicks、Spectrum Culture、AndAsian 等整体偏正面。查到的评论以独立小媒体为主，没有查到大媒体的评论，也没查到烂番茄、豆瓣等评分汇总，以及电影节入围或获奖的信息。Wikipedia 写票房2.955亿美元、预算约1400万人民币，但只有这一个来源，没有核对，仅供参考。",
-    "background": "导演是蓝鸿春（Lan Hongchun），与人合写剧本。出品方包括深圳金蚁影业、大麦娱乐、融德控股、深圳立春影业。北美发行商是 Well Go USA。导演过往作品没有查到。",
-    "caveats": "影评提到配乐偏煽情，慢镜头流泪的段落拖慢节奏，结局略显平淡；个别情节转折难以置信；演员多为非职业演员。片长约两小时，节奏缓慢。",
+    "one_liner": "潮汕话家庭情感片，口碑整体不错，但煽情偏重，适合能接受催泪路线的人。",
+    "premise": "潮汕的祖母叶淑柔一直过着平静的日子。欠了债的孙子瞒着家人去泰国，想找传说中已经发财的祖父。他带回来的消息打破了家里的平静，一叠泛黄的侨批也把几十年前被掩埋的真相一点点翻出来。",
+    "why_for_you": "属于你的第4类华语片，主要语言是潮汕话，演员以非职业演员为主，故事也带着侨批这段历史背景。导演自称是“散文诗”式的慢节奏。不过它是家庭情感片，不是你偏爱的作者型类型片，所以放在“可以看”这一档，不是重点推荐。",
+    "reception": "评论数量够用。烂番茄新鲜度91%（22篇影评），观众爆米花指数98%。Metacritic 70分，基于5篇影评。RogerEbert.com 给3.5/4，Austin Chronicle 给3/5，Film Threat 给7/10。豆瓣升至9.3分，和英文媒体的评价差距不小，别抱着“神作”的预期去看。奖项方面，拿过2026年亚洲艺术电影节“金海燕奖”亚洲年度最佳艺术电影，以及第21届长春电影节评委会大奖。戛纳只是电影市场放映，国际主要电影节的竞赛入围没有查到。",
+    "background": "导演蓝鸿春是广东潮阳人，此前拍过潮汕话电影《爸，我一定行的》《带你去见我妈》，还拍过纪录片《四海潮味》。成本1400万元，北美发行方是 Well Go USA。",
+    "caveats": "多家评论提到偏煽情：Spectrum Culture 说导演有时过于感伤，配乐尤其腻；Austin Chronicle 提到偶尔的“廉价煽情”；Metacritic 上有一条75分的评论批评它把一切都说满了，像教科书；Kai-Fong 给 B-，认为是套路化的家庭悲剧，细想就泄气。如果你反感催泪的家庭戏，要谨慎。",
     "skip_reason": null,
-    "evidence": "thin",
+    "evidence": "ample",
     "title_zh": "给阿嬷的情书",
     "title_zh_source": "https://en.wikipedia.org/wiki/Dear_You_(film)",
-    "scores": [],
+    "scores": [
+     {
+      "name": "烂番茄新鲜度",
+      "value": "91%（22篇影评）",
+      "source_url": "https://www.rottentomatoes.com/m/dear_you"
+     },
+     {
+      "name": "烂番茄观众爆米花指数",
+      "value": "98%",
+      "source_url": "https://www.rottentomatoes.com/m/dear_you"
+     },
+     {
+      "name": "Metacritic",
+      "value": "70（5篇影评）",
+      "source_url": "https://www.metacritic.com/movie/dear-you"
+     },
+     {
+      "name": "豆瓣",
+      "value": "9.3",
+      "source_url": "https://www.cls.cn/detail/2404373"
+     },
+     {
+      "name": "RogerEbert.com",
+      "value": "3.5/4",
+      "source_url": "https://www.rottentomatoes.com/m/dear_you"
+     },
+     {
+      "name": "Austin Chronicle",
+      "value": "3/5",
+      "source_url": "https://www.rottentomatoes.com/m/dear_you"
+     },
+     {
+      "name": "Film Threat",
+      "value": "7/10",
+      "source_url": "https://www.rottentomatoes.com/m/dear_you"
+     }
+    ],
     "sources": [
      {
-      "title": "Wikipedia: Dear You (film)",
+      "title": "Dear You (film) - Wikipedia",
       "url": "https://en.wikipedia.org/wiki/Dear_You_(film)"
      },
      {
-      "title": "Film Threat 影评",
-      "url": "https://filmthreat.com/reviews/dear-you"
+      "title": "烂番茄 Dear You",
+      "url": "https://www.rottentomatoes.com/m/dear_you"
      },
      {
-      "title": "Bakchormeeboy 影评",
-      "url": "https://bakchormeeboy.com/2026/06/25/%E2%98%85%E2%98%85%E2%98%85%E2%98%85%E2%98%85-film-review-dear-you-%E3%80%8A%E7%BB%99%E9%98%BF%E5%AC%B7%E7%9A%84%E6%83%85%E4%B9%A6%E3%80%8Bdir-lam-hongchun"
+      "title": "烂番茄 Dear You 演职员",
+      "url": "https://www.rottentomatoes.com/m/dear_you/cast-and-crew"
+     },
+     {
+      "title": "Metacritic Dear You",
+      "url": "https://www.metacritic.com/movie/dear-you"
+     },
+     {
+      "title": "财联社：豆瓣评分报道",
+      "url": "https://www.cls.cn/detail/2404373"
+     },
+     {
+      "title": "澎湃新闻：金海燕奖报道",
+      "url": "https://m.thepaper.cn/newsDetail_forward_33418831"
+     },
+     {
+      "title": "腾讯新闻：长春电影节报道",
+      "url": "https://news.qq.com/rain/a/20260908V0C2VL00"
+     },
+     {
+      "title": "Screen Daily 影评",
+      "url": "https://www.screendaily.com/reviews/dear-you-review-chinese-box-office-hit-is-sentimental-culturally-specific-teochew-family-drama/5217829.article"
+     },
+     {
+      "title": "四川在线：导演访谈",
+      "url": "https://sichuan.scol.com.cn/ggxw/202605/83253130.html"
+     },
+     {
+      "title": "中国侨网：导演过往作品",
+      "url": "https://www.gqb.gov.cn/news/2026/0518/62273.shtml"
      },
      {
       "title": "Spectrum Culture 影评",
       "url": "https://spectrumculture.com/2026/09/07/dear-you-review"
      },
      {
-      "title": "Eastern Kicks 影评",
-      "url": "https://www.easternkicks.com/reviews/dear-you"
-     },
-     {
-      "title": "Film Combat Syndicate 影评",
-      "url": "https://filmcombatsyndicate.com/dear-you-lan-hong-chun-movie-review"
+      "title": "Kai-Fong 影评",
+      "url": "https://www.kai-fong.com/movies/dear-you"
      }
     ],
     "sources_dropped": 0,
@@ -1802,7 +1939,7 @@
    "flags": [],
    "seen_before": true,
    "outcome": "ok",
-   "outcome_reason": "潮汕家庭情感剧，围绕侨批展开，口碑偏正面，但偏煽情、不算作者性强的艺术片。"
+   "outcome_reason": "潮汕话家庭情感片，口碑整体不错，但煽情偏重，适合能接受催泪路线的人。"
   },
   {
    "film_id": 61598,
@@ -1856,17 +1993,100 @@
    "details_missing": false,
    "verdict": {
     "film_id": 61598,
-    "keep": false,
-    "rank": null,
-    "category": "outside",
-    "reason": "韩国怪物动作片，不属于六类，但信息有限。"
+    "keep": true,
+    "rank": 5,
+    "category": "horror",
+    "reason": "罗泓轸新作，怪物恐怖兼科幻，作者性强，虽非七类主场但极可能口碑突出。"
    },
-   "card": null,
+   "card": {
+    "tier": "ok",
+    "strength": 3,
+    "category": "scifi",
+    "one_liner": "罗泓轸时隔十年的怪兽大片，场面够大，但口碑两极，不是《哭声》那一路。",
+    "premise": "韩国偏远渔村 Hope Harbor 出现神秘生物，警察和猎人先后进山追查，却发现事情并不像表面那样。怪物约 45 分钟后才现身，而且不止一只。",
+    "why_for_you": "归入科幻（主），兼有恐怖和动作。导演是《追击者》《黄海》《哭声》的罗泓轸，有作者性，也入围了戛纳主竞赛。但它不是《沙丘》那种世界观型科幻，更偏大银幕上的动作场面，处在你口味的边缘。想看大银幕上的动作调度和音效，值得去；想看《哭声》那样慢慢收紧的不安感，不建议。这是笔记根据影评做的判断，不是某篇评论的原话。",
+    "reception": "口碑分化。烂番茄影评人 78%（168 篇），观众 77%；Metacritic 用户分 6.0。Metacritic 影评人分数官方页没查到。入围戛纳主竞赛，获奖情况未查到。《好莱坞报道》称其有“instant cult classic”气质，IndieWire 则说前三分之一精彩，之后明显崩坏。",
+    "background": "导演罗泓轸，作品有《追击者》《黄海》《哭声》，《哭声》烂番茄 99%。本片是他自《哭声》后十年来的首部长片。制作公司 Forged Films，国际发行 Plus M Entertainment。故事发生在非军事区附近的虚构渔村。预算说法不一：Wikipedia 写 4600 万美元，中文报道称约 700 亿韩元。",
+    "caveats": "主要差评：CGI，IndieWire 称戛纳版是“自《木乃伊归来》以来最差”之一；9 月有影评称重剪后特效只好了一点。另有影评认为片子太长，故事和人物深度不足。现在上映的是戛纳后重剪的 156 分钟最终版，上面的差评多针对戛纳版，不一定完全适用。",
+    "skip_reason": null,
+    "evidence": "ample",
+    "title_zh": "希望",
+    "title_zh_source": "https://view.inews.qq.com/a/20260518A0A2PZ00",
+    "scores": [
+     {
+      "name": "烂番茄影评人",
+      "value": "78%（168 篇）",
+      "source_url": "https://www.rottentomatoes.com/m/hope_2026"
+     },
+     {
+      "name": "烂番茄观众",
+      "value": "77%",
+      "source_url": "https://www.rottentomatoes.com/m/hope_2026"
+     },
+     {
+      "name": "Metacritic 用户分",
+      "value": "6.0",
+      "source_url": "https://www.metacritic.com/movie/hope-2026/user-reviews"
+     }
+    ],
+    "sources": [
+     {
+      "title": "烂番茄 Hope 页面",
+      "url": "https://www.rottentomatoes.com/m/hope_2026"
+     },
+     {
+      "title": "Metacritic 用户评价",
+      "url": "https://www.metacritic.com/movie/hope-2026/user-reviews"
+     },
+     {
+      "title": "The Film Stage 戛纳影评",
+      "url": "https://thefilmstage.com/cannes-review-na-hong-jins-hope-is-a-high-octane-creature-feature-that-ultimately-falls-flat"
+     },
+     {
+      "title": "IndieWire 影评",
+      "url": "https://www.indiewire.com/criticism/movies/hope-review-na-hong-jin-1235194495"
+     },
+     {
+      "title": "IndieWire 重剪报道",
+      "url": "https://www.indiewire.com/features/interviews/hope-re-edit-how-na-hong-jin-movie-changed-since-cannes-1235206972"
+     },
+     {
+      "title": "34th Street 影评",
+      "url": "https://www.34st.com/article/2026/09/na-hong-jin-hope-review-chenyao-liu"
+     },
+     {
+      "title": "Wikipedia：Hope (2026 film)",
+      "url": "https://en.wikipedia.org/wiki/Hope_(2026_film)"
+     },
+     {
+      "title": "Wikipedia：罗泓轸",
+      "url": "https://en.wikipedia.org/wiki/Na_Hong-jin"
+     },
+     {
+      "title": "烂番茄：罗泓轸",
+      "url": "https://www.rottentomatoes.com/celebrity/hongjin_na"
+     },
+     {
+      "title": "腾讯新闻报道",
+      "url": "https://view.inews.qq.com/a/20260518A0A2PZ00"
+     },
+     {
+      "title": "Watch Darkly",
+      "url": "https://www.watchdarkly.com/articles/hope-2026"
+     },
+     {
+      "title": "INCG Media",
+      "url": "https://www.incgmedia.com/spotlight/hope-korean-film"
+     }
+    ],
+    "sources_dropped": 0,
+    "film_id": 61598
+   },
    "review_error": null,
    "flags": [],
    "seen_before": true,
-   "outcome": "skip",
-   "outcome_reason": "韩国怪物动作片，不属于六类，但信息有限。"
+   "outcome": "ok",
+   "outcome_reason": "罗泓轸时隔十年的怪兽大片，场面够大，但口碑两极，不是《哭声》那一路。"
   },
   {
    "film_id": 61766,
@@ -1907,15 +2127,15 @@
     "film_id": 61766,
     "keep": false,
     "rank": null,
-    "category": "thriller",
-    "reason": "宗教家庭剧情，有一定压迫感，但更偏社会剧，优先级低。"
+    "category": "outside",
+    "reason": "蒙吉的宗教家庭剧，口味之外，名额有限未入围。"
    },
    "card": null,
    "review_error": null,
    "flags": [],
    "seen_before": true,
    "outcome": "skip",
-   "outcome_reason": "宗教家庭剧情，有一定压迫感，但更偏社会剧，优先级低。"
+   "outcome_reason": "蒙吉的宗教家庭剧，口味之外，名额有限未入围。"
   },
   {
    "film_id": 61801,
@@ -1973,14 +2193,14 @@
     "keep": false,
     "rank": null,
     "category": "outside",
-    "reason": "传记剧情，不在口味内。"
+    "reason": "A24出品但为波登传记剧情片，不在口味内。"
    },
    "card": null,
    "review_error": null,
    "flags": [],
    "seen_before": false,
    "outcome": "skip",
-   "outcome_reason": "传记剧情，不在口味内。"
+   "outcome_reason": "A24出品但为波登传记剧情片，不在口味内。"
   },
   {
    "film_id": 61803,
@@ -2034,14 +2254,14 @@
     "keep": false,
     "rank": null,
     "category": "outside",
-    "reason": "加拿大体育英雄纪录片，不属于政治历史主线。"
+    "reason": "Terry Fox励志纪录片，非政治历史主线。"
    },
    "card": null,
    "review_error": null,
    "flags": [],
    "seen_before": false,
    "outcome": "skip",
-   "outcome_reason": "加拿大体育英雄纪录片，不属于政治历史主线。"
+   "outcome_reason": "Terry Fox励志纪录片，非政治历史主线。"
   },
   {
    "film_id": 61808,
@@ -2100,14 +2320,14 @@
     "keep": false,
     "rank": null,
     "category": "outside",
-    "reason": "传记喜剧，不在口味内。"
+    "reason": "特技人传记喜剧，不对口味。"
    },
    "card": null,
    "review_error": null,
    "flags": [],
    "seen_before": false,
    "outcome": "skip",
-   "outcome_reason": "传记喜剧，不在口味内。"
+   "outcome_reason": "特技人传记喜剧，不对口味。"
   },
   {
    "film_id": 61817,
@@ -2156,14 +2376,14 @@
     "keep": false,
     "rank": null,
     "category": "outside",
-    "reason": "家庭喜剧鬼故事，不在口味内。"
+    "reason": "魁北克家庭鬼魂喜剧，不是恐怖。"
    },
    "card": null,
    "review_error": null,
    "flags": [],
    "seen_before": false,
    "outcome": "skip",
-   "outcome_reason": "家庭喜剧鬼故事，不在口味内。"
+   "outcome_reason": "魁北克家庭鬼魂喜剧，不是恐怖。"
   },
   {
    "film_id": 61883,
@@ -2219,14 +2439,14 @@
     "keep": false,
     "rank": null,
     "category": "horror",
-    "reason": "黑色喜剧恐怖，偏恶搞，优先级低。"
+    "reason": "儿童节目黑色恐怖喜剧，偏噱头，名额有限未入围。"
    },
    "card": null,
    "review_error": null,
    "flags": [],
    "seen_before": false,
    "outcome": "skip",
-   "outcome_reason": "黑色喜剧恐怖，偏恶搞，优先级低。"
+   "outcome_reason": "儿童节目黑色恐怖喜剧，偏噱头，名额有限未入围。"
   },
   {
    "film_id": 61889,
@@ -2296,14 +2516,14 @@
     "keep": false,
     "rank": null,
     "category": "horror",
-    "reason": "巨型怪物生存片，偏 B 级。"
+    "reason": "巨兽生存类型片，偏B级。"
    },
    "card": null,
    "review_error": null,
    "flags": [],
    "seen_before": false,
    "outcome": "skip",
-   "outcome_reason": "巨型怪物生存片，偏 B 级。"
+   "outcome_reason": "巨兽生存类型片，偏B级。"
   },
   {
    "film_id": 61890,
@@ -2357,29 +2577,90 @@
    "verdict": {
     "film_id": 61890,
     "keep": true,
-    "rank": 11,
+    "rank": 13,
     "category": "chinese",
-    "reason": "华语奇幻喜剧，华语片都想看。"
+    "reason": "八仙题材华语奇幻喜剧，华语片都想看。"
    },
    "card": {
     "tier": "ok",
-    "strength": 1,
+    "strength": 4,
     "category": "chinese",
-    "one_liner": "八仙传说改编的中国动画冒险片，口碑信息几乎为零，属于华语片但证据不足，可看可不看。",
-    "premise": "八个凡人伪装成神仙，潜入只有神才能进的宝库。影院简介写成一场出了岔子的“天庭劫案”。",
-    "why_for_you": "它属于你的“中国电影”类，华语片你都想看。但笔记里没有查到任何能说明它值得进影院的口碑，也不是你最想看的科幻、惊悚、恐怖或日本动画。所以只放在“可以看”里最靠后的位置。",
-    "reception": "没有查到影评人评价、电影节入围或获奖，也没有豆瓣、IMDb、烂番茄评分。能查到的只有两点：微博奖年度动画电影（社交平台奖项，不是电影节奖），以及2026年7月点映和预售票房超过2000万元人民币。这两点都只来自一个可编辑的粉丝维基，没有第二来源核实。因此口碑上我无法判断。",
-    "background": "导演兼编剧牧正阳，以往作品未查到。据维基，片子是2026年中国动画奇幻冒险片，改编自明代故事，是八仙传说的前传，主要由成都的华萌成真制作，与上海的Pearl Studio合作，苏航负责动作设计。北美发行方是CMC FILMS INC.（来自影院页面）。出品方未查到。",
-    "caveats": "影院简介把它写成喜剧，维基说是动画，“喜剧”定位没有第二来源能确认。片长143分钟，对喜剧偏长。影院只列了中文配音加英文字幕版本，没有列主演。维基写大陆原定7月24日上映，影院页面写北美上映日是8月14日。建议开票前先看豆瓣和烂番茄评分，以及看过的人怎么说。",
+    "one_liner": "华语动画盗窃喜剧，八个凡人冒充神仙去偷天庭宝库，口碑稳，但偏合家欢，属于你口味的边缘。",
+    "premise": "改编自“八仙过海”传说。青年吕洞宾一心想证明自己，老练的骗子钟离权只顾自己，两人和另外六个凡人凑成一队，冒充神仙去偷仙界宝库。笔记说它像“神话版《十一罗汉》”，是八仙的出身前传，不是传统的八仙故事。选片信息没标明，其实这是一部动画片，普通话配音，带英文字幕。",
+    "why_for_you": "它是华语片，你想看的类别里有这一项。不过它是偏阖家欢的喜剧，不是你偏好的作者型类型片，所以只算口味边缘。口碑稳，大银幕效果值得看。如果你能接受两个半小时的热闹喜剧，可以去看。",
+    "reception": "烂番茄影评人 100%（11篇），观众 97%（50+评分）。《南华早报》给 3.5/5，Kai-Fong 给 B+。Metacritic 影评尚未提供，没有分数。影评样本只有 11 篇，且多是小媒体，参考价值有限。电影节入围或获奖未查到。中国内地票房已超 15 亿元，是 2026 年国内票房冠军。",
+    "background": "导演穆正阳，这是他的长片处女作，此前拍过获奖短片，如《One Small, One Big》。出品方是 Pearl Studio 与 CMC Pictures，Pearl 做过《功夫熊猫3》《月球漫游》。",
+    "caveats": "片长 143 分钟，影评人普遍指出太长、节奏不均。有评论说反派的设定行不通，故事也有点杂乱，还有评论说部分角色动机始终没交代清楚。喜剧偏阖家欢。",
     "skip_reason": null,
     "evidence": "thin",
-    "title_zh": null,
-    "title_zh_source": null,
-    "scores": [],
+    "title_zh": "八仙!",
+    "title_zh_source": "https://letterboxd.com/film/all-wishes-come-true",
+    "scores": [
+     {
+      "name": "烂番茄影评人",
+      "value": "100%（11篇）",
+      "source_url": "https://www.rottentomatoes.com/m/all_wishes_come_true"
+     },
+     {
+      "name": "烂番茄观众",
+      "value": "97%（50+评分）",
+      "source_url": "https://www.rottentomatoes.com/m/all_wishes_come_true"
+     },
+     {
+      "name": "南华早报",
+      "value": "3.5/5",
+      "source_url": "https://www.scmp.com/lifestyle/entertainment/article/3363848/all-wishes-come-true-movie-review-chinese-animation-reinvents-eight-immortals-myth"
+     },
+     {
+      "name": "Kai-Fong",
+      "value": "B+",
+      "source_url": "https://www.kai-fong.com/movies/all-wishes-come-true"
+     }
+    ],
     "sources": [
      {
-      "title": "All Wishes Come True! - 粉丝维基（fandom）",
-      "url": "https://jhwikicollection-20.fandom.com/wiki/All_Wishes_Come_True!"
+      "title": "烂番茄",
+      "url": "https://www.rottentomatoes.com/m/all_wishes_come_true"
+     },
+     {
+      "title": "Martin Cid 影评",
+      "url": "https://www.martincid.com/movies/all-wishes-come-true"
+     },
+     {
+      "title": "Simple Wikipedia",
+      "url": "https://simple.wikipedia.org/wiki/All_Wishes_Come_True"
+     },
+     {
+      "title": "Metacritic",
+      "url": "https://www.metacritic.com/movie/all-wishes-come-true"
+     },
+     {
+      "title": "南华早报影评",
+      "url": "https://www.scmp.com/lifestyle/entertainment/article/3363848/all-wishes-come-true-movie-review-chinese-animation-reinvents-eight-immortals-myth"
+     },
+     {
+      "title": "Kai-Fong 影评",
+      "url": "https://www.kai-fong.com/movies/all-wishes-come-true"
+     },
+     {
+      "title": "Animation Scoop 影评",
+      "url": "https://www.animationscoop.com/anime-review-all-wishes-come-true"
+     },
+     {
+      "title": "LRM 导演访谈",
+      "url": "https://lrmonline.com/news/mu-zhengyang-and-catherine-yin-talk-eight-unlikely-heroes-plan-a-heavenly-heist-in-pearl-studios-all-wishes-come-true"
+     },
+     {
+      "title": "Variety",
+      "url": "https://variety.com/2026/film/news/kung-fu-panda-3-studio-global-release-all-wishes-come-true-1236814439"
+     },
+     {
+      "title": "But Why Tho 影评",
+      "url": "https://butwhytho.net/2026/08/all-wishes-come-true-review"
+     },
+     {
+      "title": "Letterboxd",
+      "url": "https://letterboxd.com/film/all-wishes-come-true"
      }
     ],
     "sources_dropped": 0,
@@ -2389,7 +2670,7 @@
    "flags": [],
    "seen_before": true,
    "outcome": "ok",
-   "outcome_reason": "八仙传说改编的中国动画冒险片，口碑信息几乎为零，属于华语片但证据不足，可看可不看。"
+   "outcome_reason": "华语动画盗窃喜剧，八个凡人冒充神仙去偷天庭宝库，口碑稳，但偏合家欢，属于你口味的边缘。"
   },
   {
    "film_id": 61936,
@@ -2462,17 +2743,76 @@
    "details_missing": false,
    "verdict": {
     "film_id": 61936,
-    "keep": false,
-    "rank": null,
+    "keep": true,
+    "rank": 12,
     "category": "thriller",
-    "reason": "真实事件改编，偏社会纪实，不确定是否有氛围型惊悚特质。"
+    "reason": "Lance Oppenheim执导、帕丁森主演的真实事件惊悚，涉及犯罪与媒体。"
    },
-   "card": null,
+   "card": {
+    "tier": "ok",
+    "strength": 3,
+    "category": "thriller",
+    "one_liner": "帕丁森主演、A24出品的威尼斯主竞赛片，口碑偏正面，但更像黑色喜剧式的媒体讽刺，不是慢慢收紧的氛围惊悚。",
+    "premise": "2006年，《To Catch a Predator》主持人Chris Hansen想创造电视史。片子改编自Luke Dittrich 2007年的Esquire文章，拍这档节目的制作过程，以及新闻与娱乐之间的界线。",
+    "why_for_you": "它归在惊悚类，又是A24出品，帕丁森的表演被评论提到最多，有评论称是他的职业生涯最佳，这些都对你的口味。但要有心理预期：它更像夸张、迷幻的讽刺剧和黑色喜剧，不是靠氛围和心理一点点收紧不安感的那种A24式惊悚，所以给“可以看”而不是重点推荐。片长1小时50分。它也碰一点政治历史式的媒体题材，但主要还是惊悚片的路数。",
+    "reception": "烂番茄229篇影评中86%好评，均分7.3/10；Metacritic 67分（48篇影评），用户分6.1。CinemaScore为B，PostTrak调查中56%表示一定推荐。威尼斯首映获七分钟起立鼓掌，入围金狮奖主竞赛，但金狮奖给了《Woman Unknown》，其他奖项未查到。评价集中在帕丁森的表演，The Contending则认为Merritt Wever是表演上的惊喜。也有批评：有评论拿它跟2025年纪录片《Predators》比，认为不够深，华丽但肤浅；有评论觉得它重复、一个调子；Pajiba的评论认为全片没有人情味，自己看得又恶心又无聊。",
+    "background": "导演Lance Oppenheim，这是他的长片首作，此前拍过纪录片《Some Kind of Heaven》和HBO的《Ren Faire》。A24出品并发行，另有帕丁森的公司Icki Eneo Arlo、Range Media Partners、Square Peg参与出品。编剧Ajon Singh。",
+    "caveats": "题材沉重，Metacritic标注R级。它偏讽刺和黑色喜剧，类型与你偏好的氛围型惊悚有偏差，这一点是调查时根据评论归纳的。有评论认为深度不够、调子单一、缺少温度。另外，片单把演员拼成了“Robert Pattison”，各来源均写作Robert Pattinson。",
+    "skip_reason": null,
+    "evidence": "ample",
+    "title_zh": null,
+    "title_zh_source": null,
+    "scores": [
+     {
+      "name": "烂番茄",
+      "value": "86%好评（229篇影评），均分7.3/10",
+      "source_url": "https://en.wikipedia.org/wiki/Primetime_(film)"
+     },
+     {
+      "name": "Metacritic",
+      "value": "Metascore 67（48篇影评），用户分6.1",
+      "source_url": "https://www.metacritic.com/movie/primetime"
+     },
+     {
+      "name": "CinemaScore",
+      "value": "B",
+      "source_url": "https://en.wikipedia.org/wiki/Primetime_(film)"
+     }
+    ],
+    "sources": [
+     {
+      "title": "Wikipedia: Primetime (film)",
+      "url": "https://en.wikipedia.org/wiki/Primetime_(film)"
+     },
+     {
+      "title": "Metacritic: Primetime",
+      "url": "https://www.metacritic.com/movie/primetime"
+     },
+     {
+      "title": "Variety: 威尼斯首映报道",
+      "url": "https://variety.com/2026/film/festivals/robert-pattinson-primetime-venice-premiere-1236837079"
+     },
+     {
+      "title": "IndieWire: 2026威尼斯电影节获奖名单",
+      "url": "https://www.indiewire.com/awards/results/venice-film-festival-2026-award-winners-1235216485"
+     },
+     {
+      "title": "The Contending: 威尼斯评论",
+      "url": "https://thecontending.com/venice-2026-lance-oppenheims-primetime-features-an-egomaniacally-finessed-robert-pattinson"
+     },
+     {
+      "title": "Pajiba: Primetime影评",
+      "url": "https://www.pajiba.com/film_reviews/unpopular-opinion-primetime-is-profoundly-boring.php"
+     }
+    ],
+    "sources_dropped": 0,
+    "film_id": 61936
+   },
    "review_error": null,
    "flags": [],
    "seen_before": false,
-   "outcome": "skip",
-   "outcome_reason": "真实事件改编，偏社会纪实，不确定是否有氛围型惊悚特质。"
+   "outcome": "ok",
+   "outcome_reason": "帕丁森主演、A24出品的威尼斯主竞赛片，口碑偏正面，但更像黑色喜剧式的媒体讽刺，不是慢慢收紧的氛围惊悚。"
   },
   {
    "film_id": 61951,
@@ -2531,14 +2871,14 @@
     "keep": false,
     "rank": null,
     "category": "horror",
-    "reason": "丧尸片，偏动作，不是作者性新恐怖。"
+    "reason": "延尚昊丧尸动作片，偏类型爽片，名额有限未入围。"
    },
    "card": null,
    "review_error": null,
    "flags": [],
    "seen_before": false,
    "outcome": "skip",
-   "outcome_reason": "丧尸片，偏动作，不是作者性新恐怖。"
+   "outcome_reason": "延尚昊丧尸动作片，偏类型爽片，名额有限未入围。"
   },
   {
    "film_id": 61978,
@@ -2619,14 +2959,14 @@
     "keep": false,
     "rank": null,
     "category": "outside",
-    "reason": "超级英雄重映，不在口味内。"
+    "reason": "漫威重映，不对口味。"
    },
    "card": null,
    "review_error": null,
    "flags": [],
    "seen_before": false,
    "outcome": "skip",
-   "outcome_reason": "超级英雄重映，不在口味内。"
+   "outcome_reason": "漫威重映，不对口味。"
   },
   {
    "film_id": 61994,
@@ -2686,34 +3026,84 @@
     "keep": true,
     "rank": 1,
     "category": "japanese",
-    "reason": "《妖兽都市》川尻善昭导演的 4K 修复限定放映，正对经典动画重映口味。"
+    "reason": "川尻善昭经典动画《兽兵卫忍风帖》4K修复限定放映，正中最想看的类型。"
    },
    "card": {
     "tier": "must",
-    "strength": 3,
+    "strength": 4,
     "category": "japanese",
-    "one_liner": "川尻善昭监修的 1993 年经典动画《Ninja Scroll》4K 修复限定放映，正是你特别想看的那一类，但口碑暂时没查到。",
-    "premise": "剑客十兵卫救下一名年轻女忍者，两人一起调查整个村子离奇死亡的事，牵出一场“妖魔级”的阴谋，而妖魔势力要灭他们的口。",
-    "why_for_you": "这是日本经典动画的 4K 修复限定放映，正对你“特别想看经典动画重映和修复版”的偏好，所以放在重点推荐。限定放映场次往往很少，建议尽早查多伦多影院的场次。口碑没有查到，所以档位不给最高。",
-    "reception": "没有查到影评人评价、电影节记录或评分网站分数，无法判断口碑。这次搜索工具调用次数超限，没能完成查证，等搜索恢复后需要补查。推荐主要依据片方资料和你的口味清单。",
-    "background": "导演兼编剧是川尻善昭，配音有山寺宏一、筱原惠美、青野武。本片 1993 年首映，片长 94 分钟。修复版由川尻善昭监修，扫描自 35mm 原底片，规格 4K。本次发行方是 Iconic Events Releasing LLC。川尻的其他作品和原制作公司没有查到。",
-    "caveats": "这是活动式限定放映，具体场次没查到，可能很少。影院页面显示上映日期是 2026-10-04，状态却是“正在上映”，两者不一致，请到影院页面核对场次。内容风险和可能的失望点也没有查到。",
+    "one_liner": "1993年的经典日本动画《兽兵卫忍风帖》4K修复重映，只放三天，今天（10月4日）就是英文字幕版，想看日语原声要抓紧。",
+    "premise": "浪人兽兵卫救下一名女忍者，两人一起调查一个村子全员离奇死亡的案件，背后牵出一个图谋夺取幕府政权的妖魔忍者集团。",
+    "why_for_you": "这正是你特别想看的“日本经典动画修复重映”这一类。导演川尻善昭亲自监修，修复方式是扫描35mm原底片。限定放映只有10月4、5、7日三天，所以要早点安排。4日是英文字幕版（保留日语原声），5日是英语配音版，7日视影院而定。",
+    "reception": "烂番茄影评人好评率90%（21篇评论），观众爆米花指数89%。评论数量不算少，但影评人意见有分歧：Tasha Robinson给B，卫报给4/5，Flickering Myth只给2/5，嫌情节原地打转。有观众觉得故事和角色不够抓人，值得看的主要是视觉。Metacritic未查到。本片获夕张国际奇幻电影节市民选择奖（仅百度百科一个来源）。",
+    "background": "导演川尻善昭另执导过《妖兽都市》动画版和剧场版《吸血鬼猎人D》。制作公司为东宝、JVC、Movic，Madhouse协助动画制作。4K修复由Sentai在川尻监督下完成。这版修复今年在第76届柏林电影节首映，没查到它获奖。台湾译名为《獸兵衛忍風帖》。",
+    "caveats": "片中有多场露骨的性与暴力场面，Metro影评称其性内容令人极不舒服，要先想好能不能接受。这是1993年旧片的修复版，不是新片，故事部分有观众觉得一般。",
     "skip_reason": null,
-    "evidence": "none",
-    "title_zh": null,
-    "title_zh_source": null,
-    "scores": [],
-    "sources": [],
+    "evidence": "ample",
+    "title_zh": "兽兵卫忍风帖",
+    "title_zh_source": "https://zh.wikipedia.org/zh-sg/%E7%8D%B8%E5%85%B5%E8%A1%9B%E5%BF%8D%E9%A2%A8%E5%B8%96",
+    "scores": [
+     {
+      "name": "烂番茄 Tomatometer",
+      "value": "90%（21篇评论）",
+      "source_url": "https://rottentomatoes.com/m/ninja-scroll"
+     },
+     {
+      "name": "烂番茄 Popcornmeter",
+      "value": "89%",
+      "source_url": "https://rottentomatoes.com/m/ninja-scroll"
+     }
+    ],
+    "sources": [
+     {
+      "title": "烂番茄：Ninja Scroll",
+      "url": "https://rottentomatoes.com/m/ninja-scroll"
+     },
+     {
+      "title": "IMDb 影评页",
+      "url": "https://www.imdb.com/title/tt0107692/criticreviews"
+     },
+     {
+      "title": "百度百科：兽兵卫忍风帖",
+      "url": "https://baike.baidu.com/item/%E5%85%BD%E5%85%B5%E5%8D%AB%E5%BF%8D%E9%A3%8E%E5%B8%96/2882374"
+     },
+     {
+      "title": "AMC Global Media 新闻稿",
+      "url": "https://www.amcglobalmedia.com/2026/06/11/hidive-and-iconic-releasing-present-ninja-scroll-4k-limited-theatrical-release-october-4-5-7-in-u-s-and-canada"
+     },
+     {
+      "title": "维基百科：川尻善昭",
+      "url": "https://zh.wikipedia.org/zh-hans/%E5%B7%9D%E5%B0%BB%E5%96%84%E6%98%AD"
+     },
+     {
+      "title": "HIDIVE 新闻",
+      "url": "https://news.hidive.com/2026/6/12/hidive-and-iconic-events-releasing-announce-ninja-scroll-4k-limited-theatrical-release-october-4-5-7-in-u-s-and-canada"
+     },
+     {
+      "title": "Anitrendz：4K修复放映",
+      "url": "https://anitrendz.net/news/2026/06/12/ninja-scroll-receives-limited-time-4k-restoration-screenings-in-u-s-canada-in-october-2026"
+     },
+     {
+      "title": "Screen Rant：Ninja Scroll",
+      "url": "https://screenrant.com/db/movie/ninja-scroll"
+     },
+     {
+      "title": "Anime Corner：放映场次",
+      "url": "https://animecorner.me/ninja-scroll-4k-reveals-exclusive-clip-ahead-of-north-american-theatrical-release"
+     },
+     {
+      "title": "维基百科：兽兵卫忍风帖",
+      "url": "https://zh.wikipedia.org/zh-sg/%E7%8D%B8%E5%85%B5%E8%A1%9B%E5%BF%8D%E9%A2%A8%E5%B8%96"
+     }
+    ],
     "sources_dropped": 0,
     "film_id": 61994
    },
    "review_error": null,
-   "flags": [
-    "无有效来源，不能列入重点推荐"
-   ],
+   "flags": [],
    "seen_before": true,
-   "outcome": "ok",
-   "outcome_reason": "川尻善昭监修的 1993 年经典动画《Ninja Scroll》4K 修复限定放映，正是你特别想看的那一类，但口碑暂时没查到。"
+   "outcome": "must",
+   "outcome_reason": "1993年的经典日本动画《兽兵卫忍风帖》4K修复重映，只放三天，今天（10月4日）就是英文字幕版，想看日语原声要抓紧。"
   },
   {
    "film_id": 62014,
@@ -2773,15 +3163,15 @@
     "film_id": 62014,
     "keep": false,
     "rank": null,
-    "category": "outside",
-    "reason": "印度黑帮剧，不在口味内。"
+    "category": "crime",
+    "reason": "印度剧集衍生帮派片，依赖剧集背景，优先级低。"
    },
    "card": null,
    "review_error": null,
    "flags": [],
    "seen_before": false,
    "outcome": "skip",
-   "outcome_reason": "印度黑帮剧，不在口味内。"
+   "outcome_reason": "印度剧集衍生帮派片，依赖剧集背景，优先级低。"
   },
   {
    "film_id": 62015,
@@ -2838,14 +3228,14 @@
     "keep": false,
     "rank": null,
     "category": "outside",
-    "reason": "旁遮普语片，不在口味内。"
+    "reason": "旁遮普片，无信息且不似对口味。"
    },
    "card": null,
    "review_error": null,
    "flags": [],
    "seen_before": false,
    "outcome": "skip",
-   "outcome_reason": "旁遮普语片，不在口味内。"
+   "outcome_reason": "旁遮普片，无信息且不似对口味。"
   },
   {
    "film_id": 62019,
@@ -2887,14 +3277,14 @@
     "keep": false,
     "rank": null,
     "category": "outside",
-    "reason": "旁遮普语喜剧，不在口味内。"
+    "reason": "旁遮普家庭喜剧，不对口味。"
    },
    "card": null,
    "review_error": null,
    "flags": [],
    "seen_before": false,
    "outcome": "skip",
-   "outcome_reason": "旁遮普语喜剧，不在口味内。"
+   "outcome_reason": "旁遮普家庭喜剧，不对口味。"
   },
   {
    "film_id": 62031,
@@ -2942,14 +3332,14 @@
     "keep": false,
     "rank": null,
     "category": "outside",
-    "reason": "青春成长剧情，不在口味内。"
+    "reason": "青春成长片，不在口味内。"
    },
    "card": null,
    "review_error": null,
    "flags": [],
    "seen_before": false,
    "outcome": "skip",
-   "outcome_reason": "青春成长剧情，不在口味内。"
+   "outcome_reason": "青春成长片，不在口味内。"
   },
   {
    "film_id": 62036,
@@ -2993,14 +3383,14 @@
     "keep": false,
     "rank": null,
     "category": "outside",
-    "reason": "阿拉伯语喜剧，不在口味内。"
+    "reason": "阿拉伯喜剧，不对口味。"
    },
    "card": null,
    "review_error": null,
    "flags": [],
    "seen_before": false,
    "outcome": "skip",
-   "outcome_reason": "阿拉伯语喜剧，不在口味内。"
+   "outcome_reason": "阿拉伯喜剧，不对口味。"
   },
   {
    "film_id": 62050,
@@ -3054,29 +3444,90 @@
    "verdict": {
     "film_id": 62050,
     "keep": true,
-    "rank": 5,
+    "rank": 6,
     "category": "horror",
-    "reason": "《潘神的迷宫》20周年重映，带西班牙内战历史背景的黑暗奇幻。"
+    "reason": "《潘神的迷宫》20周年重映，作者性黑暗奇幻，兼西班牙内战历史背景。"
    },
    "card": {
     "tier": "must",
-    "strength": 3,
+    "strength": 4,
     "category": "horror",
-    "one_liner": "德尔·托罗的《潘神的迷宫》20周年重映，奇幻恐怖加西班牙内战背景，贴合你的口味；但本次没查到评分和影评。",
-    "premise": "1944年，西班牙内战结束后的法西斯统治时期。少女奥菲莉亚被带到偏远军营，由她残酷的继父指挥。她在营地附近发现一座迷宫，遇到一个自称她是失落公主的牧神，要完成三项任务。现实中的战争暴力和幻想世界交织在一起。",
-    "why_for_you": "这部片对上你的几类口味：奇幻加恐怖的类型，背景是西班牙内战后的法西斯统治，属于政治历史题材。归类时放在恐怖，政治历史是第二条线索。片方资料里没有砍杀片的迹象，不触碰你的排除项。此外，导演吉列尔莫·德尔·托罗有鲜明的个人风格，这一点只来自片方资料对他的介绍。",
-    "reception": "这次没查到任何口碑信息：影评人评价、电影节奖项、评分网站分数都没有。片方简介只写了奥斯卡获奖，没有具体奖项和来源。所以推荐主要依据类型和题材与你口味的匹配，而不是口碑，推荐力度也因此保守。",
-    "background": "导演是吉列尔莫·德尔·托罗。主演有 Maribel Verdú、Ariadna Gil、Ivana Baquero、Álex Angulo、Roger Casamajor、Doug Jones、Sergi López。西班牙语对白，配英文字幕，片长124分钟。本次重映发行方是 Fathom Events，预定10月9日上映。原片制作公司未查到。",
-    "caveats": "基调、暴力尺度等细节未查到，没有可靠的批评意见可列。多伦多的具体影院和场次未查到，也不确定是否只有限定场次，想看的话建议提前留意排片。",
+    "one_liner": "德尔·托罗的黑暗奇幻经典，西班牙内战背景，20周年重映，口碑极高，但暴力很重。",
+    "premise": "1944年，西班牙内战刚结束。小女孩奥菲利娅随母亲搬到乡下，继父是负责镇压反抗者的法西斯军官。她在屋后发现一座迷宫，遇到一个自称守护者的生物，对方说她是失踪的公主，要通过三个危险的考验才能恢复身份。",
+    "why_for_you": "这是有强烈作者性的黑暗奇幻，带民俗恐怖色彩，背景是西班牙内战，正好落在你的恐怖和政治历史两类口味上。导演是Guillermo del Toro。影评普遍强调现实比幻想更残酷，现实与幻想各占一半。主要归入恐怖类，历史题材和奇幻属性在此一并说明。能接受重口暴力的话，值得在影院看。",
+    "reception": "Metacritic 98分，37篇影评全部好评，标注“Universal Acclaim”。烂番茄影评人95%，观众91%。豆瓣7.9。获三项奥斯卡（摄影、美术、化妆）和三项BAFTA（含最佳非英语片），并入围2006年戛纳金棕榈。笔记提到Grokipedia称del Toro本人的两项提名未获奖，这与影片获三项奥斯卡并不冲突。",
+    "background": "导演Guillermo del Toro。制作公司包括Tequila Gang、Estudios Picasso、Telecinco、StudioCanal等。西班牙和墨西哥地区由华纳发行。导演其他作品，笔记只从奖项列表看到《水形物语》《匹诺曹》《弗兰肯斯坦》，其余未查到。",
+    "caveats": "暴力很重，有儿童死亡、酷刑和处决的画面。个别评论有保留：卫报Bradshaw给3/5，说自己希望能更喜欢它；有观众认为现实与幻想两部分融合得不好；也有观众认为影片把长枪党简化成了善恶二分。本次重映片长124分钟，豆瓣和Metacritic写的是118分钟左右，是否有新修复版、为何更长，笔记未查到。场次也未查。",
     "skip_reason": null,
-    "evidence": "none",
-    "title_zh": null,
-    "title_zh_source": null,
-    "scores": [],
+    "evidence": "ample",
+    "title_zh": "潘神的迷宫（大陆）／羊男的迷宫（台湾）／魔间迷宫（香港）",
+    "title_zh_source": "https://zh.wikipedia.org/wiki/%E7%BE%8A%E7%94%B7%E7%9A%84%E8%BF%B7%E5%AE%AE",
+    "scores": [
+     {
+      "name": "Metacritic",
+      "value": "98",
+      "source_url": "https://www.metacritic.com/movie/pans-labyrinth"
+     },
+     {
+      "name": "烂番茄影评人",
+      "value": "95%",
+      "source_url": "https://www.rottentomatoes.com/celebrity/ivana-baquero"
+     },
+     {
+      "name": "烂番茄观众",
+      "value": "91%",
+      "source_url": "https://www.rottentomatoes.com/celebrity/ivana-baquero"
+     },
+     {
+      "name": "豆瓣",
+      "value": "7.9",
+      "source_url": "https://list.youku.com/show/id_zcc07952e962411de83b1.html"
+     }
+    ],
     "sources": [
      {
-      "title": "Fathom Events：重映消息",
-      "url": "https://www.fathomentertainment.com/news/guillermo-del-toros-masterpiece-pans-labyrinth-returns-in-3d-for-20th-anniversary-from-cineverse-and-fathom-entertainment-on-october-9"
+      "title": "Metacritic",
+      "url": "https://www.metacritic.com/movie/pans-labyrinth"
+     },
+     {
+      "title": "Metacritic 用户评论",
+      "url": "https://www.metacritic.com/movie/pans-labyrinth/user-reviews"
+     },
+     {
+      "title": "烂番茄 Ivana Baquero 页面",
+      "url": "https://www.rottentomatoes.com/celebrity/ivana-baquero"
+     },
+     {
+      "title": "烂番茄 影评人评论",
+      "url": "https://www.rottentomatoes.com/m/pans_labyrinth/reviews?type=top_critics"
+     },
+     {
+      "title": "烂番茄 观众评论",
+      "url": "https://rtv2-production-2-6.rottentomatoes.com/m/pans_labyrinth/reviews/?type=user"
+     },
+     {
+      "title": "豆瓣评分（优酷页面）",
+      "url": "https://list.youku.com/show/id_zcc07952e962411de83b1.html"
+     },
+     {
+      "title": "Warner Bros. Fandom",
+      "url": "https://warnerbros.fandom.com/wiki/Pan's_Labyrinth"
+     },
+     {
+      "title": "Guillermo del Toro 奖项列表（维基百科）",
+      "url": "https://en.wikipedia.org/wiki/List_of_awards_and_nominations_received_by_Guillermo_del_Toro"
+     },
+     {
+      "title": "Guillermo del Toro 奖项列表（Grokipedia）",
+      "url": "https://grokipedia.com/page/List_of_awards_and_nominations_received_by_Guillermo_del_Toro"
+     },
+     {
+      "title": "Screenwise 内容分级",
+      "url": "https://screenwiseapp.com/media/pan-s-labyrinth-movie"
+     },
+     {
+      "title": "羊男的迷宫（中文维基百科）",
+      "url": "https://zh.wikipedia.org/wiki/%E7%BE%8A%E7%94%B7%E7%9A%84%E8%BF%B7%E5%AE%AE"
      }
     ],
     "sources_dropped": 0,
@@ -3086,7 +3537,7 @@
    "flags": [],
    "seen_before": true,
    "outcome": "must",
-   "outcome_reason": "德尔·托罗的《潘神的迷宫》20周年重映，奇幻恐怖加西班牙内战背景，贴合你的口味；但本次没查到评分和影评。"
+   "outcome_reason": "德尔·托罗的黑暗奇幻经典，西班牙内战背景，20周年重映，口碑极高，但暴力很重。"
   },
   {
    "film_id": 62066,
@@ -3138,14 +3589,14 @@
     "keep": false,
     "rank": null,
     "category": "outside",
-    "reason": "旁遮普语片，不在口味内。"
+    "reason": "旁遮普片，无信息不似对口味。"
    },
    "card": null,
    "review_error": null,
    "flags": [],
    "seen_before": false,
    "outcome": "skip",
-   "outcome_reason": "旁遮普语片，不在口味内。"
+   "outcome_reason": "旁遮普片，无信息不似对口味。"
   },
   {
    "film_id": 62067,
@@ -3205,14 +3656,14 @@
     "keep": false,
     "rank": null,
     "category": "outside",
-    "reason": "印地语民俗奇幻，不在口味内。"
+    "reason": "印度神话动作片，不对口味。"
    },
    "card": null,
    "review_error": null,
    "flags": [],
    "seen_before": false,
    "outcome": "skip",
-   "outcome_reason": "印地语民俗奇幻，不在口味内。"
+   "outcome_reason": "印度神话动作片，不对口味。"
   },
   {
    "film_id": 62083,
@@ -3263,68 +3714,17 @@
    "details_missing": false,
    "verdict": {
     "film_id": 62083,
-    "keep": true,
-    "rank": 10,
-    "category": "thriller",
-    "reason": "Romain Gavras 执导，信息少但是作者导演阵容强，可能是惊悚或科幻。"
-   },
-   "card": {
-    "tier": "skip",
-    "strength": 3,
+    "keep": false,
+    "rank": null,
     "category": "outside",
-    "one_liner": "Romain Gavras 的英语处女作，黑色喜剧加讽刺，惊悚只是点缀，口碑偏弱，和你的口味不太搭。",
-    "premise": "过气动作片明星 Mike Tyler（Chris Evans）去希腊参加一场环保慈善晚会，想借机翻身。晚会被 Joan（Anya Taylor-Joy）和她的教徒劫持，他们相信三天内不把三个人献祭给附近的火山，就会发生灭绝级事件。",
-    "why_for_you": "匹配度低。它不是你要的 A24 式慢性不安的惊悚，也不是有完整世界观的科幻，而是偏喧闹的黑色喜剧和讽刺。最沾边的是社会讽刺（环保、贫富、名流），勉强算政治类。只有冲着 Gavras 的视听和大银幕，才值得专门去看。",
-    "reception": "评论很少，我只读到两篇专业评论加几条短评，样本偏小。THR 说它野心大但杂乱，套路不少。Screen Daily 说影像催眠感强时最好，后半段编剧流于空泛。Letterboxd 热门短评有夸演员的，也有嫌它“白眼”的。评分数字未查到。奖项未查到：它入选了 2025 多伦多电影节 Special Presentations 并在那里世界首映，这是入选，不是获奖。",
-    "background": "导演 Romain Gavras 是法国人，Screen Daily 称《Athena》（2022）是他的第三部长片，这部是他的英语处女作。编剧是他和 Will Arbery。制片人有 Robert Walak、Gregory Jankilevitsch 等，制片公司未查到。Gizmodo 称它是 Netflix 的片子，法国 Netflix 上线日为 2026-10-16。多伦多影院放映会持续多久、加拿大 Netflix 上线日期都未查到。",
-    "caveats": "叙事和讽刺都偏散，套路也多，例如致幻段落和浪子救赎线。它不是 A24 式的慢性不安，更偏喧闹的讽刺。如果它很快上 Netflix，可以在家等。",
-    "skip_reason": "类型是黑色喜剧加讽刺，不是你想看的惊悚或科幻，口碑也偏杂乱，可以等 Netflix。",
-    "evidence": "thin",
-    "title_zh": null,
-    "title_zh_source": null,
-    "scores": [],
-    "sources": [
-     {
-      "title": "Netflix Tudum：剧情与上线信息",
-      "url": "https://www.netflix.com/tudum/articles/sacrifice-movie-release-date-plot-photos"
-     },
-     {
-      "title": "Rotten Tomatoes：Sacrifice",
-      "url": "https://www.rottentomatoes.com/m/sacrifice_2025"
-     },
-     {
-      "title": "Screen Daily 评论",
-      "url": "https://www.screendaily.com/reviews/sacrifice-review-chris-evans-and-anya-taylor-joy-head-muddled-romain-gavras-eco-thriller/5208657.article"
-     },
-     {
-      "title": "The Hollywood Reporter 评论",
-      "url": "https://www.hollywoodreporter.com/movies/movie-reviews/sacrifice-review-chris-evans-anya-taylor-joy-romain-gavras-1236363828"
-     },
-     {
-      "title": "Letterboxd：Sacrifice",
-      "url": "https://letterboxd.com/film/sacrifice-2025"
-     },
-     {
-      "title": "Wikipedia：Sacrifice (2025 film)",
-      "url": "https://en.wikipedia.org/wiki/Sacrifice_(2025_film)"
-     },
-     {
-      "title": "Gizmodo：Netflix 预告报道",
-      "url": "https://gizmodo.com/its-chris-evans-versus-the-volcano-in-the-trailer-for-netflixs-sacrifice-2000812743"
-     },
-     {
-      "title": "Sortiraparis：法国 Netflix 上线报道",
-      "url": "https://www.sortiraparis.com/en/what-to-do-in-paris/cinema-series/articles/352782-sacrifice-on-netflix-chris-evans-held-hostage-by-anya-taylor-joy-at-romain-gavras"
-     }
-    ],
-    "sources_dropped": 0,
-    "film_id": 62083
+    "reason": "罗曼·加夫拉斯新片但信息全无，名额有限未入围。"
    },
+   "card": null,
    "review_error": null,
    "flags": [],
    "seen_before": false,
    "outcome": "skip",
-   "outcome_reason": "类型是黑色喜剧加讽刺，不是你想看的惊悚或科幻，口碑也偏杂乱，可以等 Netflix。"
+   "outcome_reason": "罗曼·加夫拉斯新片但信息全无，名额有限未入围。"
   },
   {
    "film_id": 62084,
@@ -3363,14 +3763,14 @@
     "keep": false,
     "rank": null,
     "category": "outside",
-    "reason": "音乐传记喜剧，不在口味内。"
+    "reason": "音乐圈真实骗局喜剧，不在口味内。"
    },
    "card": null,
    "review_error": null,
    "flags": [],
    "seen_before": false,
    "outcome": "skip",
-   "outcome_reason": "音乐传记喜剧，不在口味内。"
+   "outcome_reason": "音乐圈真实骗局喜剧，不在口味内。"
   },
   {
    "film_id": 62103,
@@ -3419,45 +3819,72 @@
    "verdict": {
     "film_id": 62103,
     "keep": true,
-    "rank": 3,
+    "rank": 2,
     "category": "chinese",
-    "reason": "香港九十年代犯罪片，梁家辉主演，华语片。"
+    "reason": "粤语港片，九十年代劫案犯罪题材，梁家辉朱一龙主演，华语加犯罪双对口。"
    },
    "card": {
     "tier": "ok",
-    "strength": 2,
+    "strength": 4,
     "category": "chinese",
-    "one_liner": "1994年回归前的香港犯罪片，阵容不错，但口碑证据很薄，片长160分钟。",
-    "premise": "影片背景是1994年的香港，社会失序、罪案横行。内地来的工人文志强与空姐骆嘉苑合作抢劫起家，之后把目标转向富豪陈辉然。内地与香港两地警方联手追查他。",
-    "why_for_you": "这是一部粤语港片，华语片本身符合你的口味。不过犯罪片不在你最想看的六类之内，所以只算可以看。阵容有朱一龙、梁家辉、韦罗莎、谭检慈、惠英红、李心洁等。如果你想看港式犯罪片，也不介意片长，值得考虑。",
-    "reception": "评论很少，只查到一篇影评，判断依据主要是这一篇评论加阵容，把握不大。Fiction Machine 认为这是一部“被塞进160分钟里的两小时好片”，单场戏很出色，但整体看着累。该评论还把文志强比作《黑暗骑士》里的小丑，说他把犯罪当成与警方的游戏。电影节入围或获奖、豆瓣、烂番茄、IMDb 分数都没有查到。TMDB 只有6人评分，没有参考价值。",
-    "background": "导演是 Han Yan，过往作品未查到，制片或出品公司也未查到。影片在中国内地已于2026年8月19日上映，澳洲是9月24日。多伦多场次为2026年10月9日，由 CMC Films 发行，粤语配英文字幕。关于影片是否取材真实事件，说法不一：澳洲 Event Cinemas 页面称灵感来自90年代一桩震惊亚洲的真实绑架案，TMDB 则注明本片纯属虚构，我无法判断哪个对。",
-    "caveats": "片长160分钟，影评说偏臃肿（澳洲 Cineplex 页面写的是180分钟，与其他来源不一致）。该评论认为内地审查削弱了片中更有意思、更有挑衅性的部分，还说韦罗莎的角色在后半段被削弱。暴力较重，澳洲评级 MA15+，新西兰评级 R16。证据很薄，最好等更多评论或豆瓣分数出来再决定。",
+    "one_liner": "1994年香港背景的警匪犯罪片，演员阵容强，豆瓣7.2，但片长160分钟，口碑有分歧。",
+    "premise": "1994年，香港回归前三年。内地偷渡客万梓强（朱一龙）抢劫金铺和运钞车，之后盯上香港首富陈辉延（梁家辉）。广东警察亓宏刚（檀健次）和香港警察关苏辰（李施嬅）联手追查。",
+    "why_for_you": "华语片加犯罪片，两类都在你想看的范围内，粤语原声配英文字幕。笔记认为适合在大银幕看。除了警匪对决，片子还写了香港财富高度集中的问题。导演韩延第一次拍犯罪片。",
+    "reception": "豆瓣7.2分。猫眼、淘票票开分9.7。烂番茄、Metacritic评分未查到，电影节入围或获奖也未查到。英文影评只找到Fiction Machine一篇，说它是“outstanding two-hour thriller”，却被塞进臃肿的160分钟里。有评论说演员好、剧本弱，结尾被一些观众认为烂尾。评论认为内地过审要求坏人必须落败，压住了片子更有意思的部分。",
+    "background": "导演韩延，代表作是《滚蛋吧！肿瘤君》，这是他首次拍犯罪片。主演有朱一龙、梁家辉、檀健次、李施嬅、韦罗莎。Variety把出品方写作Pearl River Film Group。多伦多的发行方是CMC FILMS INC.，10月9日上映。",
+    "caveats": "片长160分钟，有影评说整体看着累。结尾有观众认为烂尾，剧本被说偏弱。香港将其评为三级片，原因是有多场高难度动作和被虐戏。口碑不到《无间道》那个级别，别抱太高期待。",
     "skip_reason": null,
     "evidence": "thin",
     "title_zh": "空枪",
-    "title_zh_source": "https://www.themoviedb.org/movie/1567937?language=en-GB",
-    "scores": [],
+    "title_zh_source": "https://zh.wikipedia.org/zh-cn/%E7%A9%BA%E6%9E%AA",
+    "scores": [
+     {
+      "name": "豆瓣",
+      "value": "7.2",
+      "source_url": "https://k.sina.com.cn/article_7879776328_1d5abd84806802apf6.html"
+     },
+     {
+      "name": "猫眼、淘票票开分",
+      "value": "9.7",
+      "source_url": "https://k.sina.com.cn/article_7879776328_1d5abd84806802apf6.html"
+     }
+    ],
     "sources": [
+     {
+      "title": "猫眼、淘票票与豆瓣评分报道（新浪）",
+      "url": "https://k.sina.com.cn/article_7879776328_1d5abd84806802apf6.html"
+     },
      {
       "title": "Fiction Machine 影评",
       "url": "https://fictionmachine.com/2026/09/25/review-v-2026"
      },
      {
-      "title": "Event Cinemas 影片页面",
-      "url": "https://www.eventcinemas.co.nz/movie/v-kongqiang"
+      "title": "导演韩延首次拍犯罪片报道（新浪）",
+      "url": "https://k.sina.com.cn/article_7879849522_1d5acf63206801j7zi.html"
      },
      {
-      "title": "TMDB 影片页面",
-      "url": "https://www.themoviedb.org/movie/1567937?language=en-GB"
+      "title": "The World of Chinese 2026夏季票房文章",
+      "url": "https://www.theworldofchinese.com/2026/08/top-china-summer-box-office-films-2026"
      },
      {
-      "title": "Palace Cinemas 影片页面",
-      "url": "https://www.palacecinemas.com.au/movies/v"
+      "title": "Variety 中国票房报道",
+      "url": "https://variety.com/2026/film/box-office/china-box-office-avengers-endgame-encore-1236877185"
      },
      {
-      "title": "Hoyts 影片页面",
-      "url": "https://www.hoyts.com.au/movies/v-catonese"
+      "title": "360娱乐评论",
+      "url": "https://m.yule.360.com/content/5164865"
+     },
+     {
+      "title": "豆瓣影评",
+      "url": "https://movie.douban.com/review/17812705"
+     },
+     {
+      "title": "香港三级片评级报道（新浪）",
+      "url": "https://www.sina.cn/news/detail/5344161554499829.html"
+     },
+     {
+      "title": "空枪（中文维基百科）",
+      "url": "https://zh.wikipedia.org/zh-cn/%E7%A9%BA%E6%9E%AA"
      }
     ],
     "sources_dropped": 0,
@@ -3467,7 +3894,7 @@
    "flags": [],
    "seen_before": true,
    "outcome": "ok",
-   "outcome_reason": "1994年回归前的香港犯罪片，阵容不错，但口碑证据很薄，片长160分钟。"
+   "outcome_reason": "1994年香港背景的警匪犯罪片，演员阵容强，豆瓣7.2，但片长160分钟，口碑有分歧。"
   },
   {
    "film_id": 62104,
@@ -3523,14 +3950,14 @@
     "keep": false,
     "rank": null,
     "category": "outside",
-    "reason": "印地语喜剧，不在口味内。"
+    "reason": "印度间谍喜剧，不对口味。"
    },
    "card": null,
    "review_error": null,
    "flags": [],
    "seen_before": false,
    "outcome": "skip",
-   "outcome_reason": "印地语喜剧，不在口味内。"
+   "outcome_reason": "印度间谍喜剧，不对口味。"
   },
   {
    "film_id": 62106,
@@ -3574,14 +4001,14 @@
     "keep": false,
     "rank": null,
     "category": "outside",
-    "reason": "旁遮普语体育片，不在口味内。"
+    "reason": "旁遮普体育片，不对口味。"
    },
    "card": null,
    "review_error": null,
    "flags": [],
    "seen_before": false,
    "outcome": "skip",
-   "outcome_reason": "旁遮普语体育片，不在口味内。"
+   "outcome_reason": "旁遮普体育片，不对口味。"
   },
   {
    "film_id": 62107,
@@ -3633,14 +4060,14 @@
     "keep": false,
     "rank": null,
     "category": "outside",
-    "reason": "信息不足，暂不判断为对口味。"
+    "reason": "信息缺失，无迹象对口味。"
    },
    "card": null,
    "review_error": null,
    "flags": [],
    "seen_before": false,
    "outcome": "skip",
-   "outcome_reason": "信息不足，暂不判断为对口味。"
+   "outcome_reason": "信息缺失，无迹象对口味。"
   },
   {
    "film_id": 62108,
@@ -3679,14 +4106,14 @@
     "keep": false,
     "rank": null,
     "category": "political_historical",
-    "reason": "伊拉克战争题材剧情，有一定政治色彩，但优先级较低。"
+    "reason": "伊拉克战争真实题材，政治历史相关但名额有限，排在其后。"
    },
    "card": null,
    "review_error": null,
    "flags": [],
    "seen_before": true,
    "outcome": "skip",
-   "outcome_reason": "伊拉克战争题材剧情，有一定政治色彩，但优先级较低。"
+   "outcome_reason": "伊拉克战争真实题材，政治历史相关但名额有限，排在其后。"
   },
   {
    "film_id": 62109,
@@ -3737,14 +4164,14 @@
     "keep": false,
     "rank": null,
     "category": "outside",
-    "reason": "宗教题材剧情，不在口味内。"
+    "reason": "宗教圣经剧，不对口味。"
    },
    "card": null,
    "review_error": null,
    "flags": [],
    "seen_before": false,
    "outcome": "skip",
-   "outcome_reason": "宗教题材剧情，不在口味内。"
+   "outcome_reason": "宗教圣经剧，不对口味。"
   },
   {
    "film_id": 62120,
@@ -3801,14 +4228,14 @@
     "keep": false,
     "rank": null,
     "category": "outside",
-    "reason": "阿拉伯语喜剧，不在口味内。"
+    "reason": "阿拉伯喜剧，不对口味。"
    },
    "card": null,
    "review_error": null,
    "flags": [],
    "seen_before": false,
    "outcome": "skip",
-   "outcome_reason": "阿拉伯语喜剧，不在口味内。"
+   "outcome_reason": "阿拉伯喜剧，不对口味。"
   },
   {
    "film_id": 62121,
@@ -3868,14 +4295,14 @@
     "keep": false,
     "rank": null,
     "category": "outside",
-    "reason": "印地语宗教传记，不在口味内。"
+    "reason": "印度宗教传记，不对口味。"
    },
    "card": null,
    "review_error": null,
    "flags": [],
    "seen_before": false,
    "outcome": "skip",
-   "outcome_reason": "印地语宗教传记，不在口味内。"
+   "outcome_reason": "印度宗教传记，不对口味。"
   },
   {
    "film_id": 62125,
@@ -3918,17 +4345,72 @@
    "details_missing": false,
    "verdict": {
     "film_id": 62125,
-    "keep": false,
-    "rank": null,
-    "category": "thriller",
-    "reason": "杀手剧情，偏人物剧，优先级低。"
+    "keep": true,
+    "rank": 14,
+    "category": "crime",
+    "reason": "Bassam Tariq编导、马赫沙拉·阿里饰杀手的犯罪剧情，有作者性。"
    },
-   "card": null,
+   "card": {
+    "tier": "ok",
+    "strength": 4,
+    "category": "crime",
+    "one_liner": "马赫沙拉·阿里饰演虔诚的穆斯林杀手，口碑很高，但更像安静的人物剧，不是动作片。",
+    "premise": "Latif 是一名虔诚的穆斯林杀手，妻子猝死后，他带着十几岁的女儿、10岁的儿子和刚出生的婴儿出逃，要给婴儿找母乳。他还得面对自己的老板，以及约翰·赵饰演的反色情基督教邪教头目。故事发生在休斯敦郊区。",
+    "why_for_you": "它属于你的犯罪类，是杀手题材，口碑一致偏高，值得在影院看。但它是动作惊悚，不是 A24 式的氛围惊悚，所以不算你最偏爱的那一路。能接受慢节奏人物剧的话值得去，想看《疾速追杀》式纯动作片的话请先调低预期。",
+    "reception": "烂番茄 72 篇影评中 97% 好评，平均 8/10（该数字来自维基百科转引，我没有查到烂番茄原页面）。Metacritic 83 分，26 篇影评，92% 好评，0 篇差评。Metacritic 观众分 6.4，只有 7 个评分，参考价值低。Screen Daily 称它用穆斯林视角重塑了动作英雄。该片在2026年多伦多国际电影节（TIFF）首映，但我没有查到任何具体获奖。",
+    "background": "导演兼编剧 Bassam Tariq 以《Mogul Mowgli》成名，该片获柏林电影节 Critics Award。他2021年被漫威聘为《Blade》导演，2022年退出，仍任执行制片人。主演 Ali 因此有一年多的武术训练基础。制片公司为 Orion Pictures、Two & Two Pictures，发行方为 Amazon MGM Studios，配乐 Son Lux。",
+    "caveats": "预告偏动作片，但多篇评论指出它更偏安静的角色剧情，而非场面。有评论认为它偶尔陷入类型片套路，比如滥用慢镜头和武士信条式的说教。上映日期有出入：维基百科写美加2日上映，Screen Rant 写10月9日全国上映，我没有核实，请以影院场次为准。",
+    "skip_reason": null,
+    "evidence": "ample",
+    "title_zh": null,
+    "title_zh_source": null,
+    "scores": [
+     {
+      "name": "烂番茄",
+      "value": "97%好评（72篇影评），平均8/10",
+      "source_url": "https://en.wikipedia.org/wiki/Your_Mother_Your_Mother_Your_Mother"
+     },
+     {
+      "name": "Metacritic 影评人分",
+      "value": "83（26篇影评，92%好评，0篇差评）",
+      "source_url": "https://www.metacritic.com/movie/your-mother-your-mother-your-mother"
+     },
+     {
+      "name": "Metacritic 观众分",
+      "value": "6.4（仅7个评分，参考价值低）",
+      "source_url": "https://www.metacritic.com/movie/your-mother-your-mother-your-mother"
+     }
+    ],
+    "sources": [
+     {
+      "title": "Wikipedia: Your Mother Your Mother Your Mother",
+      "url": "https://en.wikipedia.org/wiki/Your_Mother_Your_Mother_Your_Mother"
+     },
+     {
+      "title": "Metacritic: Your Mother Your Mother Your Mother",
+      "url": "https://www.metacritic.com/movie/your-mother-your-mother-your-mother"
+     },
+     {
+      "title": "Metacritic: 影评人评论",
+      "url": "https://www.metacritic.com/movie/your-mother-your-mother-your-mother/critic-reviews"
+     },
+     {
+      "title": "IMDb News: Bassam Tariq",
+      "url": "https://imdb.com/news/ni65139921"
+     },
+     {
+      "title": "Screen Rant: 烂番茄评分与上映日期",
+      "url": "https://screenrant.com/your-mother-your-mother-your-mother-rotten-tomatoes-score"
+     }
+    ],
+    "sources_dropped": 0,
+    "film_id": 62125
+   },
    "review_error": null,
    "flags": [],
    "seen_before": false,
-   "outcome": "skip",
-   "outcome_reason": "杀手剧情，偏人物剧，优先级低。"
+   "outcome": "ok",
+   "outcome_reason": "马赫沙拉·阿里饰演虔诚的穆斯林杀手，口碑很高，但更像安静的人物剧，不是动作片。"
   },
   {
    "film_id": 62154,
@@ -3969,44 +4451,17 @@
    "details_missing": false,
    "verdict": {
     "film_id": 62154,
-    "keep": true,
-    "rank": 7,
+    "keep": false,
+    "rank": null,
     "category": "chinese",
-    "reason": "华语片，但是超级英雄喜剧，作为华语片入围精评。"
+    "reason": "华语超英喜剧，质量存疑，名额有限未入围。"
    },
-   "card": {
-    "tier": "ok",
-    "strength": 1,
-    "category": "chinese",
-    "one_liner": "华语超级英雄喜剧，目前查不到任何评分或影评，没法判断好坏，等有口碑再决定。",
-    "premise": "外星人入侵之后，退休的超级英雄王长海被派回家乡组建超级英雄战队，要面对和平多年后复杂的人际关系。影院资料把它描述为一部讲述一连串搞笑故事的喜剧。",
-    "why_for_you": "它属于你想看的华语片，主演白敬亭、魏翔。但它是喜剧，只是借了科幻的外壳，不是你偏好的有作者性、世界观完整的科幻，也没有证据显示导演有这类表达。所以只能算勉强可看，不算重点推荐。",
-    "reception": "没有查到任何评分、影评、电影节入围或获奖信息。TMDB 页面上的评论数为 0，豆瓣、IMDb、烂番茄的数字都没拿到。目前没有口碑依据，无法判断好坏。中国上映日期是 2026-07-03，多伦多定档 2026-10-16，比国内晚三个多月，上映前可以再查豆瓣和 IMDb。",
-    "background": "导演兼编剧是邢文雄，另有编剧史倩、Li Tianliang、Li Shuye。Wikipedia 列出主演为白敬亭、魏翔，类型标为喜剧。邢文雄以往作品和制片公司都没查到。多伦多发行方是 NIU VISION MEDIA LTD。",
-    "caveats": "评论没查到，这部片好不好无法按评论回答。以下只是推断：它是喜剧，不是你偏好的有作者性的类型片；科幻只是外壳，和《沙丘》那种世界观没有可比性；笑点依赖中文语境，看英文字幕可能打折扣。",
-    "skip_reason": null,
-    "evidence": "none",
-    "title_zh": "特立独行",
-    "title_zh_source": "https://www.themoviedb.org/movie/1353926",
-    "scores": [],
-    "sources": [
-     {
-      "title": "TMDB: Keep Real",
-      "url": "https://www.themoviedb.org/movie/1353926"
-     },
-     {
-      "title": "Wikipedia: List of Chinese films of 2026",
-      "url": "https://en.wikipedia.org/wiki/List_of_Chinese_films_of_2026"
-     }
-    ],
-    "sources_dropped": 0,
-    "film_id": 62154
-   },
+   "card": null,
    "review_error": null,
    "flags": [],
    "seen_before": true,
-   "outcome": "ok",
-   "outcome_reason": "华语超级英雄喜剧，目前查不到任何评分或影评，没法判断好坏，等有口碑再决定。"
+   "outcome": "skip",
+   "outcome_reason": "华语超英喜剧，质量存疑，名额有限未入围。"
   },
   {
    "film_id": 62158,
@@ -4060,14 +4515,14 @@
     "keep": false,
     "rank": null,
     "category": "horror",
-    "reason": "伪纪录片类恐怖，但看起来偏商业。"
+    "reason": "伪纪录片跟踪惊悚，偏噱头。"
    },
    "card": null,
    "review_error": null,
    "flags": [],
    "seen_before": false,
    "outcome": "skip",
-   "outcome_reason": "伪纪录片类恐怖，但看起来偏商业。"
+   "outcome_reason": "伪纪录片跟踪惊悚，偏噱头。"
   },
   {
    "film_id": 62159,
@@ -4132,15 +4587,15 @@
     "film_id": 62159,
     "keep": false,
     "rank": null,
-    "category": "outside",
-    "reason": "印地语犯罪悬疑，不在口味内。"
+    "category": "crime",
+    "reason": "印度犯罪系列续集，名额有限未入围。"
    },
    "card": null,
    "review_error": null,
    "flags": [],
    "seen_before": false,
    "outcome": "skip",
-   "outcome_reason": "印地语犯罪悬疑，不在口味内。"
+   "outcome_reason": "印度犯罪系列续集，名额有限未入围。"
   },
   {
    "film_id": 62160,
@@ -4196,14 +4651,14 @@
     "keep": false,
     "rank": null,
     "category": "outside",
-    "reason": "尼泊尔动作冒险，不在口味内。"
+    "reason": "尼泊尔动作片，不对口味。"
    },
    "card": null,
    "review_error": null,
    "flags": [],
    "seen_before": false,
    "outcome": "skip",
-   "outcome_reason": "尼泊尔动作冒险，不在口味内。"
+   "outcome_reason": "尼泊尔动作片，不对口味。"
   },
   {
    "film_id": 62162,
@@ -4263,14 +4718,14 @@
     "keep": false,
     "rank": null,
     "category": "outside",
-    "reason": "印地语青春喜剧，不在口味内。"
+    "reason": "印度校园爱情喜剧，不对口味。"
    },
    "card": null,
    "review_error": null,
    "flags": [],
    "seen_before": false,
    "outcome": "skip",
-   "outcome_reason": "印地语青春喜剧，不在口味内。"
+   "outcome_reason": "印度校园爱情喜剧，不对口味。"
   },
   {
    "film_id": 62163,
@@ -4312,69 +4767,92 @@
    "verdict": {
     "film_id": 62163,
     "keep": true,
-    "rank": 6,
+    "rank": 3,
     "category": "chinese",
-    "reason": "沈腾主演的华语片，背景为中东战乱。"
+    "reason": "沈腾主演的中东战争题材华语片，兼政治历史背景。"
    },
    "card": {
-    "tier": "ok",
+    "tier": "must",
     "strength": 4,
     "category": "chinese",
-    "one_liner": "沈腾主演的反战剧情片，前半段是餐馆喜剧，后半段转入战争，属于华语片，也沾政治题材。",
-    "premise": "厨师徐福为了还债、养家，远赴中东，和餐馆经理马俊生一起把一家经营困难的龙餐馆做起来。战争波及这座城市后，餐馆成了避难所，他们要决定怎样保护身边的人。",
-    "why_for_you": "主类是中国电影，也沾政治历史：它从中国人的视角写美国介入中东的后果，关注普通人。如果你能接受它有明确的政治立场，也做好看反战正剧的心理准备，值得一看。笔记没查到大银幕视听方面的评价，所以不建议为了影院效果专程去看。",
-    "reception": "国内预映时，猫眼和淘票票都是9.8/10。烂番茄上能看到影评人Casey Chong给3.5/5，但没有查到烂番茄总分、豆瓣分和Letterboxd总分。电影节入围或获奖也没查到。英文评论多为博客和观众短评，偏正面：Bakchormeeboy给五星，Tatler Asia评价正面，Tonboriday的评价是“感受复杂”。这不是权威影评人汇总，只能据此判断口碑不错。",
-    "background": "导演文牧野，监制宁浩。灵感松散地取自二十年前的阿富汗和伊拉克战争。多伦多发行方是WELL GO USA。文牧野以前拍过什么、制片公司是谁，笔记都没查到。",
-    "caveats": "如果冲着沈腾的喜剧去，会觉得太沉重。有观众说前半段有点宣传味，还有一个角色动机不足。Casey Chong认为它套用了常见的战争片桥段。Anthony Kao提到它的上映时机与中国在全球南方的影响力上升有关。片长有140和141分钟两种说法。",
+    "one_liner": "文牧野执导、沈腾主演的反战正剧，前半喜剧后半战乱写实，值得按正剧预期去影院看。",
+    "premise": "厨师徐福2002年为还债远赴虚构的中东城市Bahata，和餐厅经理马俊生把一家落魄的龙餐馆经营起来。战火蔓延后，餐馆成了战乱中人们的避难处。",
+    "why_for_you": "这是华语片，属于你最想看的一类，同时带有政治历史背景：情节明显取材自美军2003年入侵伊拉克，你对政治、历史题材也感兴趣。导演文牧野拍过《我不是药神》。战争场面真实，适合在影院看。",
+    "reception": "评论样本还不多，西方影评很少，判断主要靠几家来源。烂番茄只有2条影评，没有Tomatometer分数。豆瓣8.7（另一篇报道称8.5），猫眼9.7，淘票票9.9；《南华早报》3.5/5，sino-cinema 9/10。内地票房已达3.257亿美元。电影节入围或获奖未查到。需要留意：官方媒体评价明显偏高；Cinema Escapist认为它比《药神》更煽情，爆炸场面俗气。",
+    "background": "导演文牧野，2018年拍过《我不是药神》，另有《奇迹·笨小孩》。出品方为坏猴子和梦将军影业，猫眼娱乐是第一出品方。片中有轰炸、黑狱、童兵和自杀式袭击。10月9日上映。",
+    "caveats": "它是反战正剧，不是喜剧，有观众因为没有笑点而不满。风格偏煽情，对阿拉伯人的刻画仍有刻板印象。战争场面太真实，不建议带小孩。多伦多的场次没查到。",
     "skip_reason": null,
     "evidence": "thin",
     "title_zh": "欢迎来龙餐馆",
-    "title_zh_source": "https://bakchormeeboy.com/2026/09/28/%E2%98%85%E2%98%85%E2%98%85%E2%98%85%E2%98%85-film-review-once-upon-a-time-in-the-middle-east-%E6%AC%A2%E8%BF%8E%E6%9D%A5%E9%BE%99%E9%A4%90%E9%A6%86-dir-wen-muye",
+    "title_zh_source": "https://en.wikipedia.org/wiki/Once_Upon_a_Time_in_the_Middle_East",
     "scores": [
      {
-      "name": "猫眼（国内预映）",
-      "value": "9.8/10",
-      "source_url": "https://entertainlens.com/once-upon-a-time-in-the-middle-east-review"
+      "name": "豆瓣",
+      "value": "8.7",
+      "source_url": "https://en.wikipedia.org/wiki/Once_Upon_a_Time_in_the_Middle_East"
      },
      {
-      "name": "淘票票（国内预映）",
-      "value": "9.8/10",
-      "source_url": "https://entertainlens.com/once-upon-a-time-in-the-middle-east-review"
+      "name": "猫眼",
+      "value": "9.7",
+      "source_url": "https://en.wikipedia.org/wiki/Once_Upon_a_Time_in_the_Middle_East"
      },
      {
-      "name": "烂番茄影评人 Casey Chong",
+      "name": "淘票票",
+      "value": "9.9",
+      "source_url": "https://en.wikipedia.org/wiki/Once_Upon_a_Time_in_the_Middle_East"
+     },
+     {
+      "name": "豆瓣（另一篇报道）",
+      "value": "8.5",
+      "source_url": "https://ent.sina.cn/2026-08-15/detail-ininmhua3280489.d.html?vt=4&wm=%2C%2F%3Freload"
+     },
+     {
+      "name": "《南华早报》",
       "value": "3.5/5",
-      "source_url": "https://www.rottentomatoes.com/m/once_upon_a_time_in_the_middle_east"
+      "source_url": "https://www.scmp.com/lifestyle/entertainment/article/3366846/once-upon-time-middle-east-movie-review-shen-teng-leads-bombastic-anti-war-drama"
+     },
+     {
+      "name": "sino-cinema",
+      "value": "9/10",
+      "source_url": "https://sino-cinema.com/2026/09/10/review-once-upon-a-time-in-the-middle-east-2026"
      }
     ],
     "sources": [
      {
-      "title": "Bakchormeeboy 影评",
-      "url": "https://bakchormeeboy.com/2026/09/28/%E2%98%85%E2%98%85%E2%98%85%E2%98%85%E2%98%85-film-review-once-upon-a-time-in-the-middle-east-%E6%AC%A2%E8%BF%8E%E6%9D%A5%E9%BE%99%E9%A4%90%E9%A6%86-dir-wen-muye"
+      "title": "Wikipedia: Once Upon a Time in the Middle East",
+      "url": "https://en.wikipedia.org/wiki/Once_Upon_a_Time_in_the_Middle_East"
      },
      {
-      "title": "Tonboriday",
-      "url": "https://www.tonboriday.com/2026/08/once-upon-time-in-middle-east-2026.html"
-     },
-     {
-      "title": "Kevin Mathews Substack",
-      "url": "https://kevinmathews.substack.com/p/once-upon-a-time-in-the-middle-east"
-     },
-     {
-      "title": "Tatler Asia 影评",
-      "url": "https://www.tatlerasia.com/lifestyle/entertainment/once-upon-a-time-in-the-middle-east-film-review"
-     },
-     {
-      "title": "Entertainlens 影评",
-      "url": "https://entertainlens.com/once-upon-a-time-in-the-middle-east-review"
-     },
-     {
-      "title": "烂番茄",
+      "title": "Rotten Tomatoes",
       "url": "https://www.rottentomatoes.com/m/once_upon_a_time_in_the_middle_east"
      },
      {
-      "title": "Letterboxd",
-      "url": "https://letterboxd.com/film/once-upon-a-time-in-the-middle-east"
+      "title": "sino-cinema 影评",
+      "url": "https://sino-cinema.com/2026/09/10/review-once-upon-a-time-in-the-middle-east-2026"
+     },
+     {
+      "title": "南华早报影评",
+      "url": "https://www.scmp.com/lifestyle/entertainment/article/3366846/once-upon-time-middle-east-movie-review-shen-teng-leads-bombastic-anti-war-drama"
+     },
+     {
+      "title": "Cinema Escapist 影评",
+      "url": "https://www.cinemaescapist.com/2026/09/review-once-upon-time-middle-east-china-movie"
+     },
+     {
+      "title": "新浪：豆瓣8.5报道",
+      "url": "https://ent.sina.cn/2026-08-15/detail-ininmhua3280489.d.html?vt=4&wm=%2C%2F%3Freload"
+     },
+     {
+      "title": "新浪：出品方报道",
+      "url": "https://ent.sina.cn/2026-08-09/detail-inimssst3566838.d.html?vt=4"
+     },
+     {
+      "title": "新浪看点：观众反馈",
+      "url": "https://k.sina.com.cn/article_7879922982_1d5ae15260680b90j4.html"
+     },
+     {
+      "title": "Variety：内地票房",
+      "url": "https://variety.com/2026/film/box-office/china-box-office-once-upon-a-time-in-the-middle-east-all-wishes-come-true-1236870720"
      }
     ],
     "sources_dropped": 0,
@@ -4383,8 +4861,8 @@
    "review_error": null,
    "flags": [],
    "seen_before": true,
-   "outcome": "ok",
-   "outcome_reason": "沈腾主演的反战剧情片，前半段是餐馆喜剧，后半段转入战争，属于华语片，也沾政治题材。"
+   "outcome": "must",
+   "outcome_reason": "文牧野执导、沈腾主演的反战正剧，前半喜剧后半战乱写实，值得按正剧预期去影院看。"
   },
   {
    "film_id": 62164,
@@ -4427,82 +4905,73 @@
    "verdict": {
     "film_id": 62164,
     "keep": true,
-    "rank": 2,
-    "category": "horror",
-    "reason": "肯·罗素《魔鬼》4K 修复，历史宗教政治题材，作者性很强的经典。"
+    "rank": 7,
+    "category": "political_historical",
+    "reason": "肯·罗素《魔鬼》首次4K未删节修复，历史宗教政治题材经典。"
    },
    "card": {
     "tier": "must",
     "strength": 4,
-    "category": "horror",
-    "one_liner": "肯·罗素的《魔鬼》未删节 4K 修复版重映，宗教狂热加权力腐败，风格极端，不是 A24 那种克制路线。",
-    "premise": "17 世纪法国，一位有魅力的神父成为目标。一名对他有性执念的修女指控他施行巫术，腐败的教会和官员乐于利用这件事。片子本质上讲的是权力如何利用宗教狂热。",
-    "why_for_you": "这是经典重映加 4K 修复，正是你特别想在影院看的那一类，限定放映的可能性不小，建议尽早订票（多伦多的具体影院和场次笔记里没查到）。它既沾恐怖，也有历史和政治的一面，讲的是权力操纵信仰，不是 slasher。要提前说清：它不靠慢慢收紧的氛围取胜，更接近“狂热的歌剧”，和你喜欢的 A24 式克制恐怖不一样。多伦多场次是未删节版，据宣发称是罗素本人想要的版本。",
-    "reception": "烂番茄 71%（35 篇影评），观众 88%，共识评语称它风格阴郁，并认为滥用信仰谋权才是最大的亵渎。Metacritic 49 分，属于“褒贬不一”，仅 11 篇影评。IMDb 7.7/10。修复版入选第 79 届戛纳经典单元。以上分数都是旧版的，修复版的新影评没查到。1971 年原版的奖项只查到 IMDb 写“4 wins total”，具体奖项未查到。",
-    "background": "导演是肯·罗素，烂番茄导演页列出的作品有《Women in Love》《Tommy》《Altered States》等。改编自赫胥黎的《The Devils of Loudun》和约翰·惠廷的同名剧作，主演是奥利弗·里德和凡妮莎·雷德格瑞夫。制作公司是 Russo Productions，制片人是 Robert H. Solo 和罗素本人，发行是华纳。",
-    "caveats": "评论两极，有影评认为制作讲究，但性幻想格调低。风格极度夸张，内容涉及性、亵渎和施虐，Criterion 称它为 X 级奇观。片长各来源不一（111、112 或 114 分钟）。笔记里搜到的发行日期是英国和爱尔兰 10 月 30 日，多伦多 10 月 16 日只来自片单数据，具体影院和场次未查到。",
+    "category": "political_historical",
+    "one_liner": "罗素 1971 年的争议经典首次以 4K 导演剪辑版上映，政治历史加民俗宗教恐怖，但 NC-17 内容很重，只映一周。",
+    "premise": "17世纪法国，神父格兰迪耶想保护卢丹城不被黎塞留的体制吞并。一名压抑的修女指控他行巫术，城里随即陷入集体歇斯底里。",
+    "why_for_you": "主要对你的政治历史口味：罗素称这是他“唯一的政治电影”。它同时贴近你喜欢的民俗、宗教恐怖，也可以当作有作者性的恐怖片来看。这是据原底片做的 4K 修复导演剪辑版，在影院看比较合适，也是经典修复重映，只映一周，要看就早订票。",
+    "reception": "新修复版评论很少，没有查到新版评分，只有零星影评，如 Bloody Disgusting 的好评，所以判断基于老评分和零星新评。1971 原版烂番茄三个页面数字不一致：67%（30 篇）、56%（102 篇）、71%（34 篇），观众分 88%；Metacritic 49/100，仅 11 篇评论。原版获威尼斯电影节最佳导演。修复版入选戛纳经典单元，并在 TIFF Classics 放映。",
+    "background": "导演 Ken Russell，据豆瓣列表还拍过《灵魂大搜索》《冲破黑暗谷》。制片是 Russo Productions，由 Robert H. Solo 和 Russell 监制，华纳发行；北美发行方是 Warner Bros. Clockwork。该版评级 NC-17，据称是华纳史上首部 NC-17 发行片。",
+    "caveats": "内容露骨暴力，评级 NC-17。老评论常批它为了震撼而震撼（Financial Times 的评语）。北美只映一周，部分场次是 35mm。",
     "skip_reason": null,
-    "evidence": "ample",
-    "title_zh": null,
-    "title_zh_source": null,
+    "evidence": "thin",
+    "title_zh": "卢丹的恶魔",
+    "title_zh_source": "https://movie.douban.com/celebrity/1010686/movies?sortby=vote&format=pic",
     "scores": [
      {
-      "name": "烂番茄影评人",
-      "value": "71%（35 篇影评）",
+      "name": "烂番茄（1971 原版，rottentomatoes.com/m/the_devils，102 篇）",
+      "value": "56%",
       "source_url": "https://www.rottentomatoes.com/m/the_devils"
      },
      {
-      "name": "烂番茄观众",
-      "value": "88%",
-      "source_url": "https://www.rottentomatoes.com/m/the_devils"
+      "name": "烂番茄（1971 原版，rottentomatoes.com/m/devils，34 篇）",
+      "value": "71%",
+      "source_url": "https://www.rottentomatoes.com/m/devils"
      },
      {
-      "name": "Metacritic",
-      "value": "49（11 篇影评）",
+      "name": "Metacritic（11 篇评论）",
+      "value": "49/100",
       "source_url": "https://www.metacritic.com/movie/the-devils"
-     },
-     {
-      "name": "IMDb",
-      "value": "7.7/10",
-      "source_url": "https://www.imdb.com/title/tt0066993"
      }
     ],
     "sources": [
      {
-      "title": "Letterboxd - The Devils",
-      "url": "https://letterboxd.com/film/the-devils"
-     },
-     {
-      "title": "Metacritic - The Devils",
+      "title": "Metacritic：The Devils",
       "url": "https://www.metacritic.com/movie/the-devils"
      },
      {
-      "title": "Rotten Tomatoes - The Devils",
+      "title": "烂番茄：The Devils",
       "url": "https://www.rottentomatoes.com/m/the_devils"
      },
      {
-      "title": "Rotten Tomatoes - The Devils（权力与宗教狂热）",
+      "title": "烂番茄：The Devils（另一页面）",
       "url": "https://www.rottentomatoes.com/m/devils"
      },
      {
-      "title": "IMDb - The Devils",
-      "url": "https://www.imdb.com/title/tt0066993"
+      "title": "烂番茄：Ken Russell's The Devils",
+      "url": "https://www.rottentomatoes.com/m/ken_russells_the_devils"
      },
      {
-      "title": "BFI - 4K 修复版发布",
-      "url": "https://www.bfi.org.uk/news/ken-russells-devils-definitive-4k-restoration-launch-ahead-major-bfi-retrospective"
+      "title": "IndieWire：发行报道",
+      "url": "https://www.indiewire.com/news/breaking-news/ken-russell-the-devils-release-warner-bros-clockwork-1235192564"
      },
      {
-      "title": "Rotten Tomatoes - 肯·罗素",
-      "url": "https://www.rottentomatoes.com/celebrity/ken_russell"
+      "title": "Warner Bros. Fandom：The Devils",
+      "url": "https://warnerbros.fandom.com/wiki/The_Devils"
      },
      {
-      "title": "Wikipedia - The Devils (film)",
-      "url": "https://en.wikipedia.org/wiki/The_Devils_(film)"
+      "title": "Movie Insider：Ken Russell's The Devils",
+      "url": "https://www.movieinsider.com/m25570/ken-russells-the-devils"
      },
      {
-      "title": "Letterboxd - Criterion 的 The Devils",
-      "url": "https://letterboxd.com/criterion/film/the-devils"
+      "title": "豆瓣：肯·罗素作品",
+      "url": "https://movie.douban.com/celebrity/1010686/movies?sortby=vote&format=pic"
      }
     ],
     "sources_dropped": 0,
@@ -4512,7 +4981,7 @@
    "flags": [],
    "seen_before": true,
    "outcome": "must",
-   "outcome_reason": "肯·罗素的《魔鬼》未删节 4K 修复版重映，宗教狂热加权力腐败，风格极端，不是 A24 那种克制路线。"
+   "outcome_reason": "罗素 1971 年的争议经典首次以 4K 导演剪辑版上映，政治历史加民俗宗教恐怖，但 NC-17 内容很重，只映一周。"
   },
   {
    "film_id": 62181,
@@ -4564,14 +5033,14 @@
     "keep": false,
     "rank": null,
     "category": "horror",
-    "reason": "选集式限定放映恐怖片，偏血腥类型片，匹配度低。"
+    "reason": "血腥选集短片，偏B级。"
    },
    "card": null,
    "review_error": null,
    "flags": [],
    "seen_before": false,
    "outcome": "skip",
-   "outcome_reason": "选集式限定放映恐怖片，偏血腥类型片，匹配度低。"
+   "outcome_reason": "血腥选集短片，偏B级。"
   },
   {
    "film_id": 62187,
@@ -4616,14 +5085,14 @@
     "keep": false,
     "rank": null,
     "category": "outside",
-    "reason": "儿童动画，不在口味内。"
+    "reason": "儿童动画，不对口味。"
    },
    "card": null,
    "review_error": null,
    "flags": [],
    "seen_before": false,
    "outcome": "skip",
-   "outcome_reason": "儿童动画，不在口味内。"
+   "outcome_reason": "儿童动画，不对口味。"
   },
   {
    "film_id": 62189,
@@ -4670,14 +5139,14 @@
     "keep": false,
     "rank": null,
     "category": "outside",
-    "reason": "家庭奇幻，不在口味内。"
+    "reason": "家庭奇幻片，不对口味。"
    },
    "card": null,
    "review_error": null,
    "flags": [],
    "seen_before": false,
    "outcome": "skip",
-   "outcome_reason": "家庭奇幻，不在口味内。"
+   "outcome_reason": "家庭奇幻片，不对口味。"
   },
   {
    "film_id": 62192,
@@ -4721,14 +5190,14 @@
     "keep": false,
     "rank": null,
     "category": "outside",
-    "reason": "宗教题材尼日利亚片，不在口味内。"
+    "reason": "尼日利亚宗教片，不对口味。"
    },
    "card": null,
    "review_error": null,
    "flags": [],
    "seen_before": false,
    "outcome": "skip",
-   "outcome_reason": "宗教题材尼日利亚片，不在口味内。"
+   "outcome_reason": "尼日利亚宗教片，不对口味。"
   },
   {
    "film_id": 62195,
@@ -4767,14 +5236,14 @@
     "keep": false,
     "rank": null,
     "category": "outside",
-    "reason": "体育纪录片，不在口味内。"
+    "reason": "体育纪录片，不对口味。"
    },
    "card": null,
    "review_error": null,
    "flags": [],
    "seen_before": false,
    "outcome": "skip",
-   "outcome_reason": "体育纪录片，不在口味内。"
+   "outcome_reason": "体育纪录片，不对口味。"
   },
   {
    "film_id": 62201,
@@ -4831,14 +5300,14 @@
     "keep": false,
     "rank": null,
     "category": "outside",
-    "reason": "喜剧，不在口味内。"
+    "reason": "音乐节喜剧，不对口味。"
    },
    "card": null,
    "review_error": null,
    "flags": [],
    "seen_before": false,
    "outcome": "skip",
-   "outcome_reason": "喜剧，不在口味内。"
+   "outcome_reason": "音乐节喜剧，不对口味。"
   },
   {
    "film_id": 62206,
@@ -4884,14 +5353,14 @@
     "keep": false,
     "rank": null,
     "category": "outside",
-    "reason": "信息极少，无法判断为对口味。"
+    "reason": "信息缺失，无迹象对口味。"
    },
    "card": null,
    "review_error": null,
    "flags": [],
    "seen_before": false,
    "outcome": "skip",
-   "outcome_reason": "信息极少，无法判断为对口味。"
+   "outcome_reason": "信息缺失，无迹象对口味。"
   },
   {
    "film_id": 62207,
@@ -4940,40 +5409,17 @@
    "details_missing": false,
    "verdict": {
     "film_id": 62207,
-    "keep": true,
-    "rank": 4,
+    "keep": false,
+    "rank": null,
     "category": "scifi",
-    "reason": "后苏联未来都市科幻惊悚，可能有作者性，值得精评。"
+    "reason": "低成本科幻惊悚，名额有限暂不入围。"
    },
-   "card": {
-    "tier": "ok",
-    "strength": 2,
-    "category": "scifi",
-    "one_liner": "后苏联风格未来都市里的科幻惊悚，题材对口，但目前几乎没有影评可参考。",
-    "premise": "孪生妹妹 April 失踪后，Bax 在后苏联风格的未来都市里四处寻找，最终陷入疯狂。",
-    "why_for_you": "它属于你最想看的科幻，同时带惊悚元素，题材有交集。不过笔记里没有任何依据能证实它有导演自己的表达，也没法确认视听是否值得上大银幕，所以只给一个观望性的“可以看”。",
-    "reception": "评论很少。没有查到影评人评价，也没有查到烂番茄、Metacritic 等评分。我的判断只依据它入围了 2026 年西雅图国际电影节 New American Cinema 竞赛单元（未查到获奖），以及它是第 34 届 Raindance 电影节的英国首映开幕片。这说明有电影节选片人认可，不等于口碑好。",
-    "background": "导演 Michel K. Parandi，这是他的长片导演处女作，与 Jack Coulton 共同编剧，制片人 Lavinia Postolache，美国和罗马尼亚联合制作，在布加勒斯特实景拍摄。影院列出的片长 92 分钟，多伦多上映日为 2026 年 10 月 9 日，发行方列为 Renaissance Media。维基百科写的北美发行方是 Sunrise Films / Rialto Distribution，10 月 2 日有限上映，两边不一致，原因未能核实。",
-    "caveats": "没有任何影评可参考；导演是新人；片长 92 分钟，体量不大，不一定有《沙丘》那样的宏大世界观；北美是有限上映，大银幕场次可能很少。建议等烂番茄或 Letterboxd 出现一批影评后再决定，或先看预告片确认视觉风格是不是你要的。",
-    "skip_reason": null,
-    "evidence": "thin",
-    "title_zh": null,
-    "title_zh_source": null,
-    "scores": [],
-    "sources": [
-     {
-      "title": "April X - 维基百科",
-      "url": "https://en.wikipedia.org/wiki/April_X"
-     }
-    ],
-    "sources_dropped": 0,
-    "film_id": 62207
-   },
+   "card": null,
    "review_error": null,
    "flags": [],
    "seen_before": false,
-   "outcome": "ok",
-   "outcome_reason": "后苏联风格未来都市里的科幻惊悚，题材对口，但目前几乎没有影评可参考。"
+   "outcome": "skip",
+   "outcome_reason": "低成本科幻惊悚，名额有限暂不入围。"
   },
   {
    "film_id": 62213,
@@ -5012,14 +5458,14 @@
     "keep": false,
     "rank": null,
     "category": "outside",
-    "reason": "徒步友情剧情，不在口味内。"
+    "reason": "徒步友情片，不对口味。"
    },
    "card": null,
    "review_error": null,
    "flags": [],
    "seen_before": false,
    "outcome": "skip",
-   "outcome_reason": "徒步友情剧情，不在口味内。"
+   "outcome_reason": "徒步友情片，不对口味。"
   },
   {
    "film_id": 62215,
@@ -5058,14 +5504,14 @@
     "keep": false,
     "rank": null,
     "category": "outside",
-    "reason": "法国酷儿喜剧，不在口味内。"
+    "reason": "酷儿喜剧，不对口味。"
    },
    "card": null,
    "review_error": null,
    "flags": [],
    "seen_before": false,
    "outcome": "skip",
-   "outcome_reason": "法国酷儿喜剧，不在口味内。"
+   "outcome_reason": "酷儿喜剧，不对口味。"
   },
   {
    "film_id": 62231,
@@ -5104,14 +5550,14 @@
     "keep": false,
     "rank": null,
     "category": "outside",
-    "reason": "信息不足，无迹象对口味。"
+    "reason": "信息缺失，片名似爱情片。"
    },
    "card": null,
    "review_error": null,
    "flags": [],
    "seen_before": false,
    "outcome": "skip",
-   "outcome_reason": "信息不足，无迹象对口味。"
+   "outcome_reason": "信息缺失，片名似爱情片。"
   }
  ],
  "filtered_events": [
@@ -5401,15 +5847,17 @@
  "orphan_ids": [],
  "usage": {
   "calls": 31,
-  "input_tokens": 1302408,
-  "output_tokens": 68262,
-  "searches": 74,
-  "estimated_token_cost_usd": 3.2874
+  "input_tokens": 857973,
+  "output_tokens": 65771,
+  "searches": 40,
+  "estimated_token_cost_usd": 2.4814,
+  "estimated_search_cost_usd": 0.4,
+  "estimated_cost_usd": 2.8814
  },
  "counts": {
-  "must": 2,
-  "ok": 11,
-  "skip": 57,
+  "must": 4,
+  "ok": 10,
+  "skip": 56,
   "review_failed": 0
  }
 }
