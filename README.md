@@ -67,6 +67,10 @@ open site/index.html
 
 最可能坏的地方是 Cineplex 抓取。Cineplex 没有公开 API，这里用的是它网站前端自带的订阅密钥，属于非官方用法，它改版就会断。先在 Actions 里手动跑 `probe` 工作流，看报告里 `cineplex` 那一半报什么错，再对照 `tests/fixtures/cineplex/README.md` 里记录的接口形状去查。
 
+流水线跑成功、但后面的推送 / 部署 / 开 Issue 失败时，这一期的数据在那次运行的 `edition-backup` 产物里（Actions 运行页面底部，保留 14 天），可以手工提交，不用再付一次钱重跑。
+
+重跑请用 Run workflow（手动触发）。在运行页面点 Re-run 会沿用原来的触发类型：一次失败的定时运行，如果在跳过周被重跑，会被当成跳过周，什么也不做。
+
 ## 费用
 
 每期的模型调用次数、token 数、搜索次数写在页脚和 Actions 的运行摘要里。页面上的美元数只算了 token，不含联网搜索的按次费用，实际花费以 Anthropic 控制台账单为准。

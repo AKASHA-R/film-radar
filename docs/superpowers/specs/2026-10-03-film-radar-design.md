@@ -188,8 +188,8 @@ Cineplex 没有公开 RSS，也没有官方开放 API。网站前端调用 `apis
 | `is_event` | 主条目或任一 variant 的 `isEvent` 为真 |
 | `gta_theatres` | 未来 `showtime_days` 天内有排片的 GTA 影院名列表，可为空（近期上映但排片未出） |
 | `gta_dates` | 未来 `showtime_days` 天内在 GTA 有排片的日期列表，可为空 |
-| `weeks_in_release` | 仅 `now_playing`：`(运行日期 − 上映日期).days // 7 + 1`，最小为 1 |
-| `hurry` | 仅 `now_playing`：`weeks_in_release >= 3` 且 `len(gta_theatres) <= 2` |
+| `weeks_in_release` | 仅 `now_playing`：`(运行日期 − 上映日期).days // 7 + 1`，最小为 1。**超过 52 周视为老片重映，记为 `None`**：Cineplex 重映时沿用原来的上映日期，会算出「在映第 326 周」这种没有意义的数；页面上改显示「重映（2020 年上映）」（2026-10-03 终审补） |
+| `hurry` | 仅 `now_playing` 且**非 `is_event`**：`weeks_in_release >= 3` 且 `len(gta_theatres) <= 2`。限定放映本来就只放几场，这条规则对它不适用（下文）；老片重映（`weeks_in_release` 为 `None`）也不算 |
 | `rating_on` | `ratings` 里 `provinceCode == "ON"` 的那条，没有则为空 |
 
 `hurry` 是推断，不是 Cineplex 给的下映日期。页面上标注为"推断"。
@@ -327,7 +327,7 @@ sources          [{title, url}]
 
 期号是运行日期（`America/Toronto` 时区）。同一天重跑覆盖同一期。内容：
 
-- `edition_id`、`generated_at`、`next_edition_date`
+- `edition_id`、`generated_at`、`next_edition_date`（**下一次真正会运行的日期**：从 `anchor_date` 起每 14 天一次、晚于运行日的第一个。不是「运行日 + 14 天」：手动跑的那天不在双周节奏上，首期在锚点前五天手动跑，下期是 10-08 而不是 10-17）
 - `settings` 快照（半径、窗口、名额）
 - `films`：每部候选一条，含 Cineplex 事实字段、粗筛判定、卡片或失败记录、最终去向（`must` / `ok` / `skip` / `review_failed`）及去向理由
 - `filtered_events`：被第 6 节规则 1 过滤掉的非电影活动，每条含片名与命中的类别。它们不是候选，不计入总数核对
@@ -374,12 +374,12 @@ sources          [{title, url}]
 
 1. 检出仓库，装 Python 3.11 与依赖。
 2. 运行流水线，生成当期 edition。
-3. 提交 `data/editions/<id>.json`。
+3. 把 `data/editions` 与 `out/` 备份成产物（保留 14 天），再提交 `data/editions/<id>.json`。备份在前：这一期花了几块钱，只存在临时机器上，推送、部署、开 Issue 任何一步失败，数据都还能手工提交。推送前先 `pull --rebase`，最多三次，因为跑一期要十几分钟，期间 `main` 可能有别的提交。
 4. 构建 `site/` 并部署到 GitHub Pages。
 5. 开 Issue：标题为"第 N 期 M/D：片名一、片名二、片名三"（没有重点推荐时写明"本期没有重点推荐"），正文每部重点推荐一行（片名、一句话定位、状态）加页面链接，标签 `edition`。
 6. 把用量与各去向数量写进 Actions 运行摘要。
 
-**失败时**：流水线任一步失败则后续步骤不执行，已发布的页面保持不变。末尾有一个仅在失败时执行的步骤，开一个标签为 `failure` 的 Issue，写明失败环节与运行日志链接。
+**失败时**：流水线任一步失败则后续步骤不执行，已发布的页面保持不变。末尾有一个仅在失败时执行的步骤，开一个标签为 `failure` 的 Issue，写明失败环节与运行日志链接。**失败环节按各步骤的实际结果写**，不只看 `out/failure.txt` 在不在：流水线失败（读 `failure.txt`）、环境准备失败、推送被拒、页面部署失败、页面已更新但通知 Issue 没开成，是五种不同的处境，措辞不同（尤其最后一种，页面其实已经更新了，不能写「页面没有被改动」）。
 
 `edition` 与 `failure` 两个标签在建仓库时创建一次。
 
