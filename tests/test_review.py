@@ -1,7 +1,8 @@
 import pytest
 
 from film_radar.llm import LLMError
-from film_radar.review import CARD_SCHEMA, collect_urls, enforce_sources, normalize_url, review_film
+from film_radar import triage
+from film_radar.review import CARD_SCHEMA, CARD_SYSTEM, collect_urls, enforce_sources, normalize_url, review_film
 from film_radar.schema import validate
 from film_radar.triage import CATEGORIES, TRIAGE_SCHEMA
 from helpers import FakeCaller, fixture_json, llm_reply, make_candidate, make_card
@@ -362,3 +363,13 @@ def test_searches_counts_search_queries():
               {"type": "text", "text": NOTES}]
     result, _ = run(research(blocks=blocks), llm_reply(make_card(sources=[{"title": "真", "url": SRC1}])))
     assert result["searches"] == 2
+
+
+def test_both_prompts_name_every_category():
+    """类别写在好几处：枚举、两份提示词、页面标签、口味档案。只改了枚举，模型就不知道有这一类，
+    会把它归到「口味之外」。每加一个类别，这里要红，提醒把提示词一起改。"""
+    for key in CATEGORIES:
+        if key == "outside":
+            continue
+        assert key in triage.SYSTEM, f"粗筛提示词没提到 {key}"
+        assert key in CARD_SYSTEM, f"精评整理提示词没提到 {key}"

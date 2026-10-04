@@ -6,7 +6,7 @@ import json
 from .candidates import film_brief
 from .schema import SchemaError, validate
 
-CATEGORIES = ["scifi", "thriller", "political_historical", "chinese", "horror", "japanese", "outside"]
+CATEGORIES = ["scifi", "thriller", "political_historical", "chinese", "horror", "japanese", "crime", "outside"]
 
 TRIAGE_SCHEMA = {
     "type": "object",
@@ -38,7 +38,7 @@ SYSTEM = """你在为一位住在多伦多的影迷筛选院线电影。下面�
 规则：
 1. 宁多勿漏。简介是影院的宣发文案，类型标签很粗。信息不足但有可能对口味的片，入围，交给精评去查。
 2. 入围总数不超过 {cap} 部。对入围的片给出 rank，1 最优先，不重复；未入围的 rank 填 null。
-3. category 填最主要的一类：scifi 科幻、thriller 惊悚、political_historical 政治历史、chinese 中国电影、horror 恐怖、japanese 日本电影。不属于口味档案里任何一类的填 outside。
+3. category 填最主要的一类：scifi 科幻、thriller 惊悚、political_historical 政治历史、chinese 中国电影、horror 恐怖、japanese 日本电影、crime 犯罪。不属于口味档案里任何一类的填 outside。
 4. versions 列出了这部片的全部语言版本。判断是不是日本电影、华语片时看全部版本，不要只看第一个。
 5. is_event 为真表示限定放映，场次很少。这不是降低优先级的理由。
 6. reason 用一句中文说明去留原因。

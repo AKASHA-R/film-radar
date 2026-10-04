@@ -92,7 +92,7 @@ CARD_SYSTEM = """把下面这份调查笔记整理成一张结构化的推荐卡
 1. 只用笔记里有的信息。笔记没写的不要补。
 2. tier：must 表示重点推荐，ok 表示可以看，skip 表示不推荐。按口味档案判断，同时看口碑。口味档案里明确排除的类型一律 skip。
 3. strength：同一档内的强弱，5 最强。
-4. category：scifi 科幻、thriller 惊悚、political_historical 政治历史、chinese 中国电影、horror 恐怖、japanese 日本电影；都不属于填 outside。
+4. category：scifi 科幻、thriller 惊悚、political_historical 政治历史、chinese 中国电影、horror 恐怖、japanese 日本电影、crime 犯罪；都不属于填 outside。
 5. sources、scores 里的 source_url、title_zh_source 只能从 <allowed_urls> 里原样挑选。列表之外的网址不许出现。
 6. scores 只收笔记里明确写出数字且带来源的评分。没有就给空数组。
 7. title_zh 只在笔记查到通行中文片名时填写，并在 title_zh_source 填出处；否则两项都填 null。不要自己翻译片名。

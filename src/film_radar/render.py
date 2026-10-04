@@ -12,6 +12,7 @@ CATEGORY_LABELS = {
     "chinese": "中国电影",
     "horror": "恐怖",
     "japanese": "日本电影",
+    "crime": "犯罪",
     "outside": "口味之外",
 }
 EVIDENCE_NOTES = {

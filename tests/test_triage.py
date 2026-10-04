@@ -39,8 +39,10 @@ def test_request_uses_schema_medium_effort_and_no_tools():
     assert "tools" not in call
 
 
-def test_schema_lists_all_seven_categories():
-    assert CATEGORIES == ["scifi", "thriller", "political_historical", "chinese", "horror", "japanese", "outside"]
+def test_schema_lists_every_category():
+    assert CATEGORIES == [
+        "scifi", "thriller", "political_historical", "chinese", "horror", "japanese", "crime", "outside",
+    ]
     item = TRIAGE_SCHEMA["properties"]["verdicts"]["items"]
     assert item["properties"]["category"]["enum"] == CATEGORIES
     assert item["additionalProperties"] is False
