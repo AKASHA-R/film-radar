@@ -20,12 +20,6 @@ from film_radar.settings import load_settings
 
 OUT = Path("out/research-compare")
 
-BUDGET_RULES = """
-- 你最多能用 {max_uses} 次联网搜索，用完就查不了了，所以每次搜索都要有用。每次只搜一个具体的查询，看到结果再决定下一个。
-- 不要写代码批量或循环地调用搜索：代码里一次发出的多个搜索，每个都计入这 {max_uses} 次，额度会瞬间用光，什么都拿不到。
-- 搜索的优先顺序：先查烂番茄和 Metacritic 的评分与影评概述，再查导演、制片背景和电影节获奖，最后才是中文片名。前两项查到就够了，不要为了凑齐所有项目把额度花光。
-- 影院、场次、上映日期已经在 <film> 里给你了，不用搜。"""
-
 VARIANTS = {
     "A 基线": {"allowed_callers": None, "budget_prompt": False},
     "B 写明预算": {"allowed_callers": None, "budget_prompt": True},
@@ -81,19 +75,19 @@ def summarize(film: str, variant: str, result: dict) -> dict:
 
 
 def run_variants(films: list[tuple[dict, dict]], variants: dict, taste: str, max_uses: int, make_caller) -> list[dict]:
-    """films 是 (候选, 粗筛判定) 的列表。每次运行前改模块里的提示词和搜索调用方式，运行后一定恢复。"""
+    """films 是 (候选, 粗筛判定) 的列表。每次运行前改 review 模块里的搜索调用方式和预算提示词开关，运行后一定恢复。"""
     caller = make_caller()
-    original = (review.RESEARCH_SYSTEM, review.SEARCH_ALLOWED_CALLERS)
+    original = (review.SEARCH_ALLOWED_CALLERS, review.SEARCH_BUDGET_PROMPT)
     records = []
     try:
         for candidate, verdict in films:
             for name, cfg in variants.items():
                 review.SEARCH_ALLOWED_CALLERS = cfg["allowed_callers"]
-                review.RESEARCH_SYSTEM = original[0] + (BUDGET_RULES.format(max_uses=max_uses) if cfg["budget_prompt"] else "")
+                review.SEARCH_BUDGET_PROMPT = cfg["budget_prompt"]
                 result = review.review_film(caller, taste, candidate, verdict, max_uses)
                 records.append(summarize(candidate["title"], name, result))
     finally:
-        review.RESEARCH_SYSTEM, review.SEARCH_ALLOWED_CALLERS = original
+        review.SEARCH_ALLOWED_CALLERS, review.SEARCH_BUDGET_PROMPT = original
     return records
 
 

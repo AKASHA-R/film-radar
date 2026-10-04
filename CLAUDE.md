@@ -13,6 +13,7 @@
 - **不能按 `isEvent` 一刀切过滤。** 动画重映、活动场恐怖片在 Cineplex 那边都标成 event。只过滤 `filmCategories` 命中 `non_film_categories` 的。
 - **所有 Claude 调用走 `llm.py`。** `triage` 和 `review` 只接收一个 caller，不直接碰 SDK。
 - **来源白名单只从搜索结果块（`web_search_tool_result`）和 API 附带的引用里取。** 模型写的正文、思考、搜索请求都不算，代码执行结果块（`code_execution_tool_result`）也不算：搜索工具会让模型写代码调用搜索，那些结果是模型自己代码的产出，stderr 会回显它写的网址。依据与实测见 spec 第 9 节。
+- **精评的搜索要直接调用（`allowed_callers=["direct"]`）并在提示词里写明预算，别改回默认。** 默认的动态过滤让模型在代码里批量搜索，用光 `max_uses` 后会把已拿到的结果当成「搜索失败」全扔掉（Ninja Scroll 4K 零来源）。也别换成 `response_inclusion=excluded`，它会让白名单取不到网址。依据见 spec 第 9 节「搜索额度」。
 - **失败不落盘。** `main.py` 在流水线成功之后才写当期数据和站点。任何异常都要留下 `out/failure.txt`，工作流的失败 Issue 靠它写明环节。
 - `config/taste_profile.md` 是喂给模型的提示词输入，不是工程文档。不要往里写系统机制。
 - Cineplex 订阅密钥只在内存里用，不写进任何文件。夹具里的两把是假值。

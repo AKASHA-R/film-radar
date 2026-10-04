@@ -192,7 +192,9 @@ def test_happy_path_makes_a_research_call_then_a_card_call():
     assert len(result["usage"]) == 2
 
     first, second = caller.calls
-    assert first["tools"] == [{"type": "web_search_20260209", "name": "web_search", "max_uses": 5}]
+    assert first["tools"] == [
+        {"type": "web_search_20260209", "name": "web_search", "max_uses": 5, "allowed_callers": ["direct"]},
+    ]
     assert first["effort"] == "high"
     assert "schema" not in first
     assert second["schema"] is CARD_SCHEMA
@@ -375,16 +377,30 @@ def test_both_prompts_name_every_category():
         assert key in CARD_SYSTEM, f"精评整理提示词没提到 {key}"
 
 
-def test_search_tool_is_the_dynamic_filtering_default(monkeypatch):
+def test_search_tool_calls_search_directly_by_default():
+    """默认（动态过滤）会让模型在代码里批量调搜索，每个都计入 max_uses。实测：Ninja Scroll 4K 先成功搜了 5 次，
+    再在代码里试图多搜两次，被拒绝，模型就以为「联网搜索失败了」，把已经拿到的 5 次结果全扔了。
+    直接调用（allowed_callers=["direct"]）一次一个，没有这个问题，输入 token 还少 43%。"""
     from film_radar import review
-    assert review.search_tool(5) == {"type": "web_search_20260209", "name": "web_search", "max_uses": 5}
+    assert review.search_tool(5) == {
+        "type": "web_search_20260209", "name": "web_search", "max_uses": 5, "allowed_callers": ["direct"],
+    }
 
 
-def test_search_tool_can_be_forced_to_direct_calls(monkeypatch):
-    """allowed_callers=["direct"]：模型直接调搜索，不经代码执行。默认（动态过滤）会让模型在代码里批量调搜索，
-    每个都计入 max_uses，额度瞬间用光。"""
+def test_search_tool_can_be_switched_back_to_dynamic_filtering(monkeypatch):
     from film_radar import review
-    monkeypatch.setattr(review, "SEARCH_ALLOWED_CALLERS", ["direct"])
-    assert review.search_tool(5)["allowed_callers"] == ["direct"]
+    monkeypatch.setattr(review, "SEARCH_ALLOWED_CALLERS", None)
+    assert "allowed_callers" not in review.search_tool(5)
+
+
+def test_research_prompt_states_the_search_budget():
+    """提示词不告诉模型预算的话，它会把额度花光，然后在「没查到」里自己编原因。"""
     _, caller = run(research(), llm_reply(make_card(sources=[{"title": "t", "url": SRC1}])))
-    assert caller.calls[0]["tools"][0]["allowed_callers"] == ["direct"]
+    system = caller.calls[0]["system"]
+    assert "最多能用 5 次联网搜索" in system
+    assert "不要写代码批量或循环地调用搜索" in system
+    assert "影院、场次、上映日期已经在 <film> 里给你了" in system
+    from film_radar.review import review_film
+    other = FakeCaller(research(), llm_reply(make_card(sources=[{"title": "t", "url": SRC1}])))
+    review_film(other, TASTE, FILM, VERDICT, max_uses=3)
+    assert "最多能用 3 次联网搜索" in other.calls[0]["system"]

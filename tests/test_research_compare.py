@@ -57,12 +57,12 @@ def test_each_variant_is_run_on_each_film_and_summarised():
 def test_variant_settings_reach_the_request_and_are_restored():
     compare = load_script()
     caller = FakeCaller(research_reply(GOOD), llm_reply(make_card(sources=[{"title": "t", "url": SRC}])))
-    before = (review.RESEARCH_SYSTEM, review.SEARCH_ALLOWED_CALLERS)
-    compare.run_variants([film()], {"v": {"allowed_callers": ["direct"], "budget_prompt": True}}, "口味", 5, lambda: caller)
+    before = (review.RESEARCH_SYSTEM, review.SEARCH_ALLOWED_CALLERS, review.SEARCH_BUDGET_PROMPT)
+    compare.run_variants([film()], {"v": {"allowed_callers": None, "budget_prompt": False}}, "口味", 5, lambda: caller)
     first = caller.calls[0]
-    assert first["tools"][0]["allowed_callers"] == ["direct"]
-    assert "最多" in first["system"] and "5 次" in first["system"] and first["system"].startswith(before[0])
-    assert (review.RESEARCH_SYSTEM, review.SEARCH_ALLOWED_CALLERS) == before     # 不能把改动留给后面的测试和调用方
+    assert "allowed_callers" not in first["tools"][0]          # 这个变体关掉了直接调用
+    assert "最多能用" not in first["system"]                    # 也关掉了预算提示词
+    assert (review.RESEARCH_SYSTEM, review.SEARCH_ALLOWED_CALLERS, review.SEARCH_BUDGET_PROMPT) == before   # 不能把改动留给后面的测试和调用方
 
 
 def test_a_failed_review_is_recorded_not_fatal():
