@@ -24,6 +24,13 @@ render        静态 HTML
 
 每一部进入候选的片都能在页面上找到去向：重点推荐、可以看、跳过，或者"本期未能评估"。没有哪部是被悄悄丢掉的。
 
+## 页面
+
+- 顶部是本期速览：每部片一行，类别、放映状态、限定放映日期、推荐力度，点一行跳到卡片。
+- 重点推荐是大卡片，可以看是双栏紧凑卡片，跳过的片折叠在最后。
+- 每张卡片有「我已经看过」按钮。**状态只存在这台设备的浏览器里**（`localStorage`），换设备或清缓存就没了，也不会告诉流水线，下一期仍可能推荐你看过的片。
+- 页面始终是浅色，不跟随系统暗色（`color-scheme: only light`）。
+
 ## 调口味
 
 改 `config/taste_profile.md`，提交，推送。下一期生效。这个文件原样喂给模型，只写口味，不要写别的。
@@ -52,7 +59,7 @@ python3.11 -m venv .venv
 .venv/bin/python -m pytest -q
 ```
 
-测试不访问网络，也不调 Claude。本机不需要配 API 密钥。
+测试不访问网络，也不调 Claude。本机不需要配 API 密钥。页面交互（「我已经看过」）有真实浏览器测试，需要本机装有 Chrome，没有会自动跳过。
 
 只想改页面样式时，不用重跑流水线：
 
@@ -71,6 +78,10 @@ open site/index.html
 
 重跑请用 Run workflow（手动触发）。在运行页面点 Re-run 会沿用原来的触发类型：一次失败的定时运行，如果在跳过周被重跑，会被当成跳过周，什么也不做。
 
+## 诊断工具
+
+Actions 里还有三个只能手动触发的工作流，不属于流水线（不提交、不部署、不开 Issue）：`probe`（探针）、`triage-compare`（比较各模型粗筛的稳定性，每次约 $0.1–0.2）、`research-compare`（比较精评搜索的调用方式，默认约 $3）。用法与结论见 spec 第 8、9、12 节。
+
 ## 费用
 
 粗筛（便宜、关键）用 Opus，精评（量大）用 Sonnet，模型与单价都在 `config/settings.toml`，换模型时单价要一起改。每期的 `models` 字段记下当时各阶段用的模型。
@@ -82,4 +93,4 @@ open site/index.html
 ## 文档
 
 - 设计：`docs/superpowers/specs/2026-10-03-film-radar-design.md`
-- 实施计划：`docs/superpowers/plans/2026-10-03-film-radar.md`
+- 实施计划：`docs/superpowers/plans/2026-10-03-film-radar.md`（历史记录：实施中有若干处按裁定偏离了计划，以 spec 与代码为准）
