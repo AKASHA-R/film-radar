@@ -509,7 +509,9 @@ def test_page_is_light_only_and_keeps_its_accessibility_hooks():
     """用户嫌黑底对比度太高（他的系统是暗色，页面曾经会整页变黑）：页面始终是浅色，不跟随系统暗色。"""
     from film_radar.render import STYLE
     assert "prefers-color-scheme" not in STYLE
-    assert re.search(r"^\s*:root\{color-scheme:light;", STYLE) and "light dark" not in STYLE
+    # 光写 color-scheme:light 不够：浏览器的「网页自动暗色」会把它照样变黑（实测背景采样 (18,18,18)）；
+    # 只有 only light 才是明确拒绝被强制变暗。
+    assert re.search(r"^\s*:root\{color-scheme:only light;", STYLE) and "light dark" not in STYLE
     assert "rgba(255,255,255" not in STYLE                       # 深底上用的半透明白，浅色页面上看不见
     assert "prefers-reduced-motion" in STYLE
     assert ":focus-visible" in STYLE
@@ -533,7 +535,7 @@ def test_every_large_surface_is_light(mixed):
         colour = _resolve(found.group(1))
         assert colour.startswith("#"), (selector, colour)
         assert _luminance(colour) >= 0.6, (selector, colour)
-    assert '<meta name="color-scheme" content="light">' in page(mixed)
+    assert '<meta name="color-scheme" content="only light">' in page(mixed)
 
 
 def test_style_has_no_tiny_text():

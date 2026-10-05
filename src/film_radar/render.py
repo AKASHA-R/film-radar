@@ -25,7 +25,7 @@ HUES = {"scifi": 217, "thriller": 268, "political_historical": 160, "chinese": 4
         "horror": 350, "japanese": 322, "crime": 190}
 
 _STYLE_BASE = r"""
-:root{color-scheme:light;--bg:#f4f2ec;--surface:#ffffff;--soft:#eeebe3;--ink:#111114;--mute:#5a5a62;--line:#d8d4c8;
+:root{color-scheme:only light;--bg:#f4f2ec;--surface:#ffffff;--soft:#eeebe3;--ink:#111114;--mute:#5a5a62;--line:#d8d4c8;
 --red:#e4002b;--on-red:#ffffff;--blue:#1d3cff;--on-blue:#ffffff;--yellow:#ffd400;--on-yellow:#111114;--green:#007a55;--on-green:#ffffff;
 --red-ink:#cf0026;--link:#1d3cff;--warn-bg:#fff1e6;--warn:#9a3412;--accent:var(--red);--cat-s:50%;--cat-l:32%;--catbg-l:95%;
 --shadow:0 1px 2px rgba(20,20,30,.06),0 10px 28px -14px rgba(20,20,30,.22);
@@ -549,7 +549,7 @@ def render_edition(edition: dict, number: int, archive: list[tuple[str, int]], *
     return (
         '<!DOCTYPE html><html lang="zh-Hans"><head><meta charset="utf-8">'
         '<meta name="viewport" content="width=device-width,initial-scale=1">'
-        '<meta name="color-scheme" content="light">'
+        '<meta name="color-scheme" content="only light">'
         '<meta name="robots" content="noindex">'
         f"<title>{esc(title)}</title><style>{STYLE}</style></head>"
         f"<body>{_hero(edition, title, is_latest)}"
