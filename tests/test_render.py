@@ -20,7 +20,7 @@ def page(edition, number=1, latest=True):
 
 def card_html(html, film_id):
     """取出某一部片的那张卡片。"""
-    match = re.search(rf'<article class="film" data-film="{film_id}">.*?</article>', html, re.S)
+    match = re.search(rf'<article class="film[^"]*"[^>]*data-film="{film_id}"[^>]*>.*?</article>', html, re.S)
     assert match, f"页面上没有 film {film_id} 的卡片"
     return match.group(0)
 
@@ -405,7 +405,10 @@ def test_hostile_text_is_escaped_in_every_sink(settings):
     ], filtered_events=[{"film_id": 9, "name": mark, "categories": [mark]}])
     html = page(edition)
     assert "<x-mark" not in html
-    assert html.count(escaped) == 22      # 每个字段都真的被渲染了，且都被转义了
+    assert html.count(escaped) == 25      # 每个字段都真的被渲染了，且都被转义了
+    # 22 → 25（2026-10-04 视觉改版）：新增三处输出——速览里的片名、速览里的中文名、来源胶囊的 title 属性。
+    glance = re.search(r'<section id="glance".*?</section>', html, re.S).group(0)
+    assert glance.count(escaped) == 2 and f'title="{escaped}"' in html
 
 
 def test_footer_shows_search_cost_when_the_edition_has_it(settings):
@@ -422,3 +425,129 @@ def test_footer_of_an_older_edition_still_says_search_is_not_included(settings):
     edition = build_edition(settings, [recommended(1, "One")])
     assert "estimated_search_cost_usd" not in edition["usage"]
     assert "不含搜索费" in page(edition)
+
+
+# ---- 视觉改版（2026-10-04）：速览、导航、推荐力度、分类色 ----
+
+def test_glance_lists_must_and_ok_films_with_anchors(mixed):
+    html = page(mixed)
+    glance = re.search(r'<section id="glance".*?</section>', html, re.S).group(0)
+    assert 'href="#film-1"' in glance and 'href="#film-2"' in glance
+    assert "Must One" in glance and "Ok Two" in glance
+    assert "Card Skip" not in glance and "Triage Skip" not in glance and "Broken Five" not in glance
+    assert glance.index("Must One") < glance.index("Ok Two")          # 与正文同序：重点推荐在前
+    assert 'id="film-1"' in card_html(html, 1)
+    assert "data-film" not in glance                                   # 每部片的 data-film 在整页只能出现一次
+
+
+def test_glance_shows_when_and_urgency(settings):
+    candidate = {"is_event": True, "status": "coming_soon", "release_date": "2026-10-04",
+                 "weeks_in_release": None, "gta_dates": ["2026-10-04", "2026-10-06"]}
+    html = page(build_edition(settings, [recommended(1, "Ninja Scroll 4K", candidate, tier="must")]))
+    glance = re.search(r'<section id="glance".*?</section>', html, re.S).group(0)
+    assert "限定放映：10月4日、10月6日" in glance
+
+
+def test_glance_absent_when_nothing_is_recommended(settings):
+    html = page(build_edition(settings, [skipped(1, "A")]))
+    assert 'id="glance"' not in html
+
+
+def test_glance_escapes_titles(settings):
+    html = page(build_edition(settings, [recommended(1, "<b>Bold</b> Title")]))
+    glance = re.search(r'<section id="glance".*?</section>', html, re.S).group(0)
+    assert "<b>Bold</b>" not in glance and "&lt;b&gt;Bold&lt;/b&gt; Title" in glance
+
+
+def test_jump_nav_only_links_to_sections_that_exist(settings, mixed):
+    html = page(mixed)
+    nav = re.search(r'<nav class="jump".*?</nav>', html, re.S).group(0)
+    for anchor in ("#must", "#ok", "#skip"):
+        assert f'href="{anchor}"' in nav
+        assert f'id="{anchor[1:]}"' in html
+    only_ok = page(build_edition(settings, [recommended(1, "A", tier="ok")]))
+    nav = re.search(r'<nav class="jump".*?</nav>', only_ok, re.S).group(0)
+    assert 'href="#must"' not in nav and 'href="#skip"' not in nav
+    assert 'href="#ok"' in nav
+
+
+def test_hero_shows_counts(mixed):
+    hero = re.search(r"<header.*?</header>", page(mixed), re.S).group(0)
+    counts = mixed["counts"]
+    for key, label in (("must", "重点推荐"), ("ok", "可以看"), ("skip", "跳过")):
+        assert re.search(rf'<b>{counts[key]}</b>\s*{label}', hero), (key, label)
+
+
+def test_strength_meter_matches_the_card(settings):
+    html = page(build_edition(settings, [recommended(1, "A", strength=4, tier="must")]))
+    card = card_html(html, 1)
+    assert 'aria-label="推荐力度 4/5"' in card
+    assert card.count('<i class="on"></i>') == 4 and card.count("<i></i>") == 1
+
+
+def test_card_carries_its_category_for_styling(settings):
+    html = page(build_edition(settings, [recommended(1, "A", category="horror")]))
+    assert 'data-cat="horror"' in card_html(html, 1)
+
+
+def test_every_category_has_a_colour():
+    from film_radar.render import STYLE
+    for category in CATEGORY_LABELS:
+        assert f'[data-cat="{category}"]' in STYLE, category
+
+
+def test_cta_and_chips_replace_the_link_wall(settings):
+    edition = build_edition(settings, [recommended(1, "A", tier="must", scores=[{"name": "Metacritic", "value": "81", "source_url": SRC}],
+                                                   sources=[{"title": "影评", "url": SRC}])])
+    card = card_html(page(edition), 1)
+    assert 'class="buy" href="https://www.cineplex.com/movie/film-1"' in card
+    assert card.count("Cineplex 页面与购票") == 1
+    assert 'class="chips"' in card
+
+
+def test_style_supports_dark_mode_and_reduced_motion():
+    from film_radar.render import STYLE
+    assert "prefers-color-scheme:dark" in STYLE.replace(" ", "")
+    assert "prefers-reduced-motion" in STYLE
+    assert ":focus-visible" in STYLE
+    assert "[hidden]{display:none!important}" in STYLE.replace(" ", "")      # 过期提示靠 hidden 属性，别被 display 盖掉
+
+
+def test_style_has_no_tiny_text():
+    from film_radar.render import STYLE
+    sizes = [float(s) for s in re.findall(r"font-size:\s*([\d.]+)px", STYLE)]
+    assert sizes and min(sizes) >= 11.5, sorted(sizes)[:3]
+
+
+# ---- 紧凑卡片的影院名单（2026-10-04 视觉改版）----
+
+MANY = [f"Cineplex Cinemas Place {i}" for i in range(1, 7)]
+
+
+def test_compact_card_with_many_theatres_shows_a_count_and_folds_the_list(settings):
+    html = page(build_edition(settings, [recommended(1, "A", {"gta_theatres": MANY}, tier="ok")]))
+    card = card_html(html, 1)
+    before, after = card.split("<details>", 1)
+    assert "6 家影院" in before
+    assert "Place 1" not in before                     # 名单不在首屏
+    assert "、".join(MANY) in after                    # 但完整名单一个字不少地在展开里
+
+
+def test_compact_card_with_few_theatres_lists_them_inline(settings):
+    few = MANY[:4]
+    card = card_html(page(build_edition(settings, [recommended(1, "A", {"gta_theatres": few}, tier="ok")])), 1)
+    before = card.split("<details>", 1)[0]
+    assert "、".join(few) in before and "家影院" not in before
+
+
+def test_feature_card_always_lists_every_theatre(settings):
+    card = card_html(page(build_edition(settings, [recommended(1, "A", {"gta_theatres": MANY}, tier="must")])), 1)
+    assert "、".join(MANY) in card and "<details>" not in card and "6 家影院" not in card
+
+
+def test_missing_poster_placeholder_has_an_inline_glyph():
+    """没有海报的片不能露出一块空白色块：占位块自带内联 SVG 图标，不依赖任何外部资源。"""
+    from film_radar.render import STYLE
+    poster_rule = re.search(r"\.poster\{[^}]*\}", STYLE).group(0)
+    assert "data:image/svg+xml" in poster_rule and "http://www.w3.org" in poster_rule
+    assert "url(http" not in STYLE and "@import" not in STYLE      # 样式里没有外部请求
