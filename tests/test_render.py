@@ -505,12 +505,35 @@ def test_cta_and_chips_replace_the_link_wall(settings):
     assert 'class="chips"' in card
 
 
-def test_style_supports_dark_mode_and_reduced_motion():
+def test_page_is_light_only_and_keeps_its_accessibility_hooks():
+    """用户嫌黑底对比度太高（他的系统是暗色，页面曾经会整页变黑）：页面始终是浅色，不跟随系统暗色。"""
     from film_radar.render import STYLE
-    assert "prefers-color-scheme:dark" in STYLE.replace(" ", "")
+    assert "prefers-color-scheme" not in STYLE
+    assert re.search(r"^\s*:root\{color-scheme:light;", STYLE) and "light dark" not in STYLE
+    assert "rgba(255,255,255" not in STYLE                       # 深底上用的半透明白，浅色页面上看不见
     assert "prefers-reduced-motion" in STYLE
     assert ":focus-visible" in STYLE
     assert "[hidden]{display:none!important}" in STYLE.replace(" ", "")      # 过期提示靠 hidden 属性，别被 display 盖掉
+
+
+def _resolve(value):
+    value = value.strip()
+    token = re.fullmatch(r"var\(--([a-z-]+)\)", value)
+    return SCOPES["light"][token.group(1)] if token else value
+
+
+def test_every_large_surface_is_light(mixed):
+    """顶部英雄区、页面、吸顶导航、卡片、速览：底色亮度都要够高，不能再出现大块的黑。"""
+    rules = {}
+    for selector, body in _css_rules():
+        rules.setdefault(selector.strip(), body)
+    for selector in ("body", ".hero", ".jump", ".film", ".glance"):
+        found = re.search(r"(?<![-\w])background:([^;}]+)", rules[selector])
+        assert found, selector
+        colour = _resolve(found.group(1))
+        assert colour.startswith("#"), (selector, colour)
+        assert _luminance(colour) >= 0.6, (selector, colour)
+    assert '<meta name="color-scheme" content="light">' in page(mixed)
 
 
 def test_style_has_no_tiny_text():
@@ -580,11 +603,7 @@ def _scope(pattern):
     return dict(re.findall(r"--([a-z-]+):\s*(#[0-9a-fA-F]{6}|\d+%)(?=[;}\s]|$)", re.search(pattern, _STYLE, re.S).group(1)))
 
 
-SCOPES = {
-    "light": _scope(r"^\s*:root\{([^}]*)\}"),
-    "dark": _scope(r"prefers-color-scheme: dark\)\{:root\{([^}]*)\}"),
-    "hero": _scope(r"\.hero\{([^}]*)\}"),
-}
+SCOPES = {"light": _scope(r"^\s*:root\{([^}]*)\}")}       # 页面始终是浅色：不跟随系统暗色，英雄区也是浅色（用户嫌黑底对比度太高）
 
 
 def _luminance(hex_colour):
@@ -601,13 +620,13 @@ def _contrast(a, b):
 @_pytest.mark.parametrize("scope", sorted(SCOPES))
 @_pytest.mark.parametrize("colour", BRAND)
 def test_every_brand_colour_is_readable_with_its_text_colour(scope, colour):
-    """品牌色做底色时，文字必须用配套的 --on-* 色，且对比度达到 WCAG AA（4.5）。三个作用域各自校验：亮色、暗色、始终深色的顶部。"""
+    """品牌色做底色时，文字必须用配套的 --on-* 色，且对比度达到 WCAG AA（4.5）。"""
     tokens = SCOPES[scope]
     assert colour in tokens and f"on-{colour}" in tokens, (scope, colour)
     assert _contrast(tokens[colour], tokens[f"on-{colour}"]) >= 4.5, (scope, colour)
 
 
-@_pytest.mark.parametrize("scope", ["light", "dark"])
+@_pytest.mark.parametrize("scope", ["light"])
 def test_body_text_and_links_are_readable(scope):
     t = SCOPES[scope]
     assert _contrast(t["ink"], t["bg"]) >= 7 and _contrast(t["ink"], t["surface"]) >= 7
@@ -800,7 +819,7 @@ def _hsl(h, s, l):
     return "#%02x%02x%02x" % tuple(round(v * 255) for v in (r, g, b))
 
 
-@_pytest.mark.parametrize("scheme", ["light", "dark"])
+@_pytest.mark.parametrize("scheme", ["light"])
 def test_category_colours_are_readable_on_every_background_they_sit_on(scheme):
     """七个类别色相：类别色文字压在卡片底色和自己的淡底上，链接压在评分胶囊的淡底上，都要 >= 4.5。
     这个测试是评审后补的：亮色下政治历史 / 中国电影 / 犯罪不达标，暗色下评分胶囊里的链接不达标，之前的测试都没覆盖到。"""
@@ -816,7 +835,7 @@ def test_category_colours_are_readable_on_every_background_they_sit_on(scheme):
         assert _contrast(t["ink"], wash) >= 7, (scheme, category, "正文 / 淡底")
 
 
-@_pytest.mark.parametrize("scheme", ["light", "dark"])
+@_pytest.mark.parametrize("scheme", ["light"])
 def test_red_is_readable_when_it_is_used_as_text(scheme):
     t = SCOPES[scheme]
     assert _contrast(t["red-ink"], t["bg"]) >= 4.5 and _contrast(t["red-ink"], t["surface"]) >= 4.5
