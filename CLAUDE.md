@@ -14,8 +14,12 @@
 - **所有 Claude 调用走 `llm.py`。** `triage` 和 `review` 只接收一个 caller，不直接碰 SDK。
 - **来源白名单只从搜索结果块（`web_search_tool_result`）和 API 附带的引用里取。** 模型写的正文、思考、搜索请求都不算，代码执行结果块（`code_execution_tool_result`）也不算：搜索工具会让模型写代码调用搜索，那些结果是模型自己代码的产出，stderr 会回显它写的网址。依据与实测见 spec 第 9 节。
 - **精评的搜索要直接调用（`allowed_callers=["direct"]`）并在提示词里写明预算，别改回默认。** 默认的动态过滤让模型在代码里批量搜索，用光 `max_uses` 后会把已拿到的结果当成「搜索失败」全扔掉（Ninja Scroll 4K 零来源）。也别换成 `response_inclusion=excluded`，它会让白名单取不到网址。依据见 spec 第 9 节「搜索额度」。
-- **页面样式 `_STYLE_BASE` 是原始字符串（`r"""`），改回普通字符串会坏。** CSS 的 `\2713`、`\2212` 在普通 Python 字符串里被当成八进制，角标会渲染成「¹3 已看过」。页面对比度、品牌色配对、「我已经看过」的浏览器行为都有测试守着（spec 第 11 节）。
+- **页面样式 `_STYLE_BASE` 是原始字符串（`r"""`），改回普通字符串会坏。** CSS 的 `\2713`、`\2212` 在普通 Python 字符串里被当成八进制，角标会渲染成「¹3 已看过」。页面对比度、品牌色配对、「隐藏已看过」开关的浏览器行为都有测试守着（spec 第 11 节）。
 - **页面始终浅色：`color-scheme: only light`（CSS 与 meta 各一处），不要加回 `prefers-color-scheme: dark`。** 用户的系统是暗色，嫌黑底刺眼；光写 `light` 挡不住浏览器的网页自动暗色，实测会被变黑。有测试守着（spec 第 11 节）。
+- **`watched`（用户看过）和 `seen_before`（上一期也推荐过，决定「新」徽标）是两回事**，别混用。设计见 `docs/superpowers/specs/2026-10-17-watched-list-design.md`。
+- **`data/watched.json` 只有同步（`sync-watched`）写。** 出刊运行只读：在内存里算「名单＋还没同步的勾」，不提交名单，不改 Issue。名单格式不对必须失败，绝不能当成空名单（会把所有 Issue 里的勾清掉）。
+- **同步先提交名单、再改写 Issue；同步检出必须带 `ref: main`；只有同步工作流部署页面；同步不和出刊共用并发组。** 这几条由 `tests/test_workflows.py` 读 YAML 守着，改工作流前先读那个测试的说明。
+- **本机跑 `run`、`sync-watched`、`migrate-issues` 要令牌：** 命令前加 `GH_TOKEN=$(gh auth token)`。没有令牌时出刊以「GitHub 接口」环节失败，不会悄悄只用文件里的名单。
 - **浏览器端到端测试要本机 Chrome**（没有就跳过）。headless Chrome 的 `--dump-dom` 打印完不会自己退出，读到 `</html>` 就要杀进程组；macOS 没有 `timeout` 命令。
 - **失败不落盘。** `main.py` 在流水线成功之后才写当期数据和站点。任何异常都要留下 `out/failure.txt`，工作流的失败 Issue 靠它写明环节。
 - `config/taste_profile.md` 是喂给模型的提示词输入，不是工程文档。不要往里写系统机制。
