@@ -88,7 +88,8 @@ def next_scheduled_date(run_date: date, anchor: date) -> date:
 
 def assemble(*, candidates: list[dict], verdicts: list[dict], reviews: list[dict],
              previous: dict | None, filtered_events: list[dict], orphan_ids: list[int],
-             usage: dict, run_date: date, generated_at: str, settings: Settings) -> dict:
+             usage: dict, run_date: date, generated_at: str, settings: Settings,
+             watched_showing: list[dict] | None = None) -> dict:
     ids = [c["film_id"] for c in candidates]
     if len(set(ids)) != len(ids):
         raise AssembleError("候选里有重复的 film_id")
@@ -126,6 +127,8 @@ def assemble(*, candidates: list[dict], verdicts: list[dict], reviews: list[dict
         "films": films,
         "filtered_events": list(filtered_events),
         "orphan_ids": list(orphan_ids),
+        # 因为看过而没参加评估、但仍在映的片（spec 2026-10-17 第 8 节）。不进 films、不进 counts、不参加总数核对
+        "watched_showing": list(watched_showing or []),
         "usage": dict(usage),
         "counts": counts,
     }

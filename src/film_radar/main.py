@@ -8,6 +8,7 @@ from __future__ import annotations
 import argparse
 import json
 import os
+import subprocess
 import sys
 import traceback
 from collections import Counter
@@ -20,12 +21,13 @@ from . import llm
 from .assemble import AssembleError, assemble
 from .candidates import build_candidates, gta_theatres
 from .cineplex import CineplexClient, CineplexError
+from .github import GitHubError, client_from_env
 from .llm import LLMError
 from .render import cost_text, issue_body, issue_title, render_site
 from .review import review_film
 from .settings import Settings, SettingsError, load_settings
 from .triage import TriageError, triage
-from .watched import WatchedError, load_watched_file, watched_ids
+from .watched import WatchedError, build_catalog, load_watched, load_watched_file, split_watched, sync, watched_ids
 
 
 class PipelineError(Exception):
@@ -45,6 +47,7 @@ STAGES = {
     LLMError: "Claude 调用",
     AssembleError: "汇总",
     WatchedError: "读取已看过名单",
+    GitHubError: "GitHub 接口",
 }
 UNEXPECTED_STAGE = "未预期的错误"
 
@@ -129,13 +132,15 @@ def summarize_usage(triage_results, review_results, searches: int, settings: Set
 
 
 def run_pipeline(*, client, caller, settings: Settings, taste: str, run_date: date,
-                 previous: dict | None, generated_at: str, triage_caller=None) -> dict:
+                 previous: dict | None, generated_at: str, triage_caller=None,
+                 watched: frozenset[int] = frozenset()) -> dict:
     """caller 做精评；triage_caller 做粗筛，不给就和精评共用同一个。"""
     triage_caller = triage_caller or caller
     movies, theatres, showtimes = collect(client, settings, run_date)
     candidates, filtered_events, orphan_ids = build_candidates(movies, showtimes, run_date, settings)
-    check_sanity(movies, theatres, showtimes, candidates)
-    attach_details(client, candidates)
+    check_sanity(movies, theatres, showtimes, candidates)        # 用排除前的候选，「候选为 0」的含义不变
+    candidates, watched_showing = split_watched(candidates, watched)
+    attach_details(client, candidates)                             # 看过的片不抓详情页、不粗筛、不精评
 
     verdicts, triage_results = triage(triage_caller, taste, candidates, settings.shortlist_cap)
     by_id = {c["film_id"]: c for c in candidates}
@@ -154,7 +159,7 @@ def run_pipeline(*, client, caller, settings: Settings, taste: str, run_date: da
     return assemble(
         candidates=candidates, verdicts=verdicts, reviews=reviews, previous=previous,
         filtered_events=filtered_events, orphan_ids=orphan_ids, usage=usage,
-        run_date=run_date, generated_at=generated_at, settings=settings,
+        run_date=run_date, generated_at=generated_at, settings=settings, watched_showing=watched_showing,
     )
 
 
@@ -180,6 +185,40 @@ def build_clients(settings: Settings):
     caller = partial(llm.call, anthropic_client, model=settings.model)
     triage_caller = partial(llm.call, anthropic_client, model=settings.triage_model)
     return client, caller, triage_caller
+
+
+github_client = client_from_env        # 测试里换成替身，不联网
+
+
+def remote_watched_text(root: Path) -> str | None:
+    """origin/main 上最新的 data/watched.json；那里没有这个文件时返回 None。
+    出刊要跑十几分钟，检出时的那份可能已经旧了，所以先 fetch 再读（spec 第 8 节）。"""
+    def git(*args: str):
+        return subprocess.run(["git", "-C", str(root), *args], capture_output=True, text=True, encoding="utf-8")
+
+    fetched = git("fetch", "--quiet", "origin", "main")
+    if fetched.returncode != 0:
+        raise WatchedError(f"取最新名单失败（git fetch）：{fetched.stderr.strip()}")
+    listed = git("ls-tree", "--name-only", "FETCH_HEAD", "--", "data/watched.json")
+    if listed.returncode != 0:
+        raise WatchedError(f"取最新名单失败（git ls-tree）：{listed.stderr.strip()}")
+    if not listed.stdout.strip():
+        return None
+    shown = git("show", "FETCH_HEAD:data/watched.json")
+    if shown.returncode != 0:
+        raise WatchedError(f"取最新名单失败（git show）：{shown.stderr.strip()}")
+    return shown.stdout
+
+
+def effective_watched(root: Path, settings: Settings, editions: list[dict], now: datetime) -> frozenset[int]:
+    """名单＋Issue 里还没同步的勾，只在内存里算，不提交名单、不改 Issue（spec 第 6 节末段、第 8 节）。
+    先读名单、后读 Issue。"""
+    films = load_watched(remote_watched_text(root))
+    issues = github_client(settings).edition_issues()
+    result = sync(films, issues, build_catalog(editions), now.isoformat(timespec="seconds"))
+    for problem in result.problems:
+        print(f"Issue #{problem.issue} 无法解析，这一期不采用它里面的勾：{'；'.join(problem.reasons)}")
+    return watched_ids(result.films)
 
 
 def _set_output(name: str, value: str) -> None:
@@ -218,11 +257,14 @@ def _run(root: Path, manual: bool, date_arg: str | None) -> int:
 
     taste = (root / "config" / "taste_profile.md").read_text(encoding="utf-8")
     editions_dir = root / "data" / "editions"
-    previous = previous_edition(load_editions(editions_dir), run_date)
+    editions = load_editions(editions_dir)
+    # 在任何 Claude 调用之前：读名单或 Issue 失败不花钱
+    watched = effective_watched(root, settings, editions, now)
+    previous = previous_edition(editions, run_date)
     client, caller, triage_caller = build_clients(settings)
     edition = run_pipeline(
         client=client, caller=caller, triage_caller=triage_caller, settings=settings, taste=taste, run_date=run_date,
-        previous=previous, generated_at=now.isoformat(timespec="seconds"),
+        previous=previous, generated_at=now.isoformat(timespec="seconds"), watched=watched,
     )
 
     editions_dir.mkdir(parents=True, exist_ok=True)
@@ -230,13 +272,13 @@ def _run(root: Path, manual: bool, date_arg: str | None) -> int:
         json.dumps(edition, ensure_ascii=False, indent=1), encoding="utf-8"
     )
     editions = load_editions(editions_dir)
-    render_site(editions, root / "site", repo=settings.repo)
+    render_site(editions, root / "site", watched=watched, repo=settings.repo)
     number = [e["edition_id"] for e in editions].index(edition["edition_id"]) + 1
 
     out = root / "out"
     out.mkdir(parents=True, exist_ok=True)
     (out / "issue_title.txt").write_text(issue_title(edition, number), encoding="utf-8")
-    (out / "issue_body.md").write_text(issue_body(edition, number, settings.page_url), encoding="utf-8")
+    (out / "issue_body.md").write_text(issue_body(edition, number, settings.page_url, watched), encoding="utf-8")
     _set_output("skipped", "false")
     _set_output("edition_id", edition["edition_id"])
     _write_summary(edition, number)

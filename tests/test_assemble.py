@@ -252,3 +252,15 @@ def test_edition_records_the_model_of_each_stage(settings):
     """比较两期时只能靠日期猜当时用的哪个模型。期数据里要直接写明。"""
     edition = build_edition(settings, [recommended(1, "A")])
     assert edition["models"] == {"triage": settings.triage_model, "review": settings.model}
+
+
+def test_watched_showing_is_carried_but_not_counted(settings):
+    showing = [{"film_id": 9, "title": "Seen", "status": "now_playing", "release_date": "2006-10-11",
+                "weeks_in_release": None, "detail_url": "https://www.cineplex.com/movie/seen", "version_ids": [9]}]
+    edition = assemble(**kwargs(settings, watched_showing=showing))
+    assert edition["watched_showing"] == showing
+    assert edition["counts"] == {"must": 1, "ok": 0, "skip": 1, "review_failed": 0}
+
+
+def test_watched_showing_defaults_to_empty(settings):
+    assert assemble(**kwargs(settings))["watched_showing"] == []
