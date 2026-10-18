@@ -10,8 +10,10 @@ import json
 import os
 import subprocess
 import sys
+import time
 import traceback
 from collections import Counter
+from dataclasses import asdict
 from datetime import date, datetime, timedelta
 from functools import partial
 from pathlib import Path
@@ -27,7 +29,10 @@ from .render import cost_text, issue_body, issue_title, render_site
 from .review import review_film
 from .settings import Settings, SettingsError, load_settings
 from .triage import TriageError, triage
-from .watched import WatchedError, build_catalog, load_watched, load_watched_file, split_watched, sync, watched_ids
+from .watched import (
+    Issue, IssueFormatError, Problem, Rewrite, WatchedError, apply_rewrites, build_catalog, dump_watched,
+    load_watched, load_watched_file, parse_issue, split_watched, sync, watched_ids,
+)
 
 
 class PipelineError(Exception):
@@ -294,6 +299,100 @@ def _build_site(root: Path) -> int:
     return 0
 
 
+REWRITE_ATTEMPTS = 3
+
+
+def _write_problems(out: Path, problems: list[Problem]) -> None:
+    """无法解析的 Issue 各写一个文件：第一行是失败 Issue 的标题，其余是正文。工作流逐个开 Issue（同标题还开着就不重复开）。"""
+    folder = out / "problems"
+    folder.mkdir(parents=True, exist_ok=True)
+    for problem in problems:
+        lines = [f"已看过同步：Issue #{problem.issue} 无法解析",
+                 f"Issue #{problem.issue} 里有几行不符合格式，这个 Issue 里的勾这次都没有采用，其他 Issue 照常同步：", ""]
+        lines += [f"- {reason}" for reason in problem.reasons]
+        lines += ["", "在这个 Issue 的编辑历史里把这几行改回原样，然后在任意一个 edition Issue 里勾一下（或手动运行 watched-sync），就会重新同步。"]
+        (folder / f"issue-{problem.issue}.md").write_text("\n".join(lines) + "\n", encoding="utf-8")
+
+
+def _write_sync_summary(result, issue_count: int) -> None:
+    path = os.environ.get("GITHUB_STEP_SUMMARY")
+    if not path:
+        return
+    lines = ["## 已看过同步", "", f"- 读到 {issue_count} 个 edition Issue，名单现在 {len(result.films)} 部"]
+    lines += [f"- #{a.issue} {'勾上' if a.watched else '取消'} {a.film_id}" for a in result.actions]
+    if result.conflicts:
+        lines.append("- 同一部片在不同 Issue 里操作相反，以编号大的 Issue 为准：" + "、".join(str(i) for i in result.conflicts))
+    lines += [f"- Issue #{p.issue} 无法解析，跳过" for p in result.problems]
+    lines += [f"- 计划改写 {len(result.rewrites)} 行", ""]
+    with open(path, "a", encoding="utf-8") as f:
+        f.write("\n".join(lines))
+
+
+def _sync_watched(root: Path) -> int:
+    """spec 第 6 节第 2 步：读 Issue、计算、写名单和改写计划。提交和改写是工作流里后面的两步。"""
+    settings = load_settings(root / "config" / "settings.toml")
+    path = root / "data" / "watched.json"
+    films = load_watched_file(path)
+    issues = github_client(settings).edition_issues()
+    now = datetime.now(ZoneInfo(settings.timezone)).isoformat(timespec="seconds")
+    result = sync(films, issues, build_catalog(load_editions(root / "data" / "editions")), now)
+    if result.changed:
+        path.parent.mkdir(parents=True, exist_ok=True)
+        path.write_text(dump_watched(result.films), encoding="utf-8")
+    out = root / "out"
+    out.mkdir(parents=True, exist_ok=True)
+    plan = {"rewrites": [asdict(r) for r in result.rewrites]}
+    (out / "watched_plan.json").write_text(json.dumps(plan, ensure_ascii=False, indent=1), encoding="utf-8")
+    _write_problems(out, result.problems)
+    _set_output("changed", "true" if result.changed else "false")
+    _write_sync_summary(result, len(issues))
+    print(f"读到 {len(issues)} 个 edition Issue：操作 {len(result.actions)} 个，计划改写 {len(result.rewrites)} 行，"
+          f"无法解析 {len(result.problems)} 个。")
+    return 0
+
+
+def _apply_watched_rewrites(root: Path) -> int:
+    """spec 第 6 节第 4 步：名单已经提交之后才跑。每个 Issue 重新读取正文、在新正文上合并再写回。"""
+    settings = load_settings(root / "config" / "settings.toml")
+    out = root / "out"
+    plan = json.loads((out / "watched_plan.json").read_text(encoding="utf-8"))
+    rewrites = [Rewrite(**r) for r in plan["rewrites"]]
+    client = github_client(settings)
+    problems, failed = [], []
+    for number in sorted({r.issue for r in rewrites}):
+        mine = [r for r in rewrites if r.issue == number]
+        for attempt in range(REWRITE_ATTEMPTS):
+            try:
+                body = client.issue_body(number)
+                try:
+                    parsed = parse_issue(Issue(number, body))
+                except IssueFormatError as e:
+                    problems.append(Problem(number, tuple(e.reasons)))
+                    break
+                if parsed is None:
+                    problems.append(Problem(number, ("改写前重新读取时，第一行的 edition 标记不见了",)))
+                    break
+                new = apply_rewrites(body, mine)
+                if new != body:
+                    client.update_body(number, new)
+                break
+            except GitHubError as e:
+                error = e
+                if attempt + 1 < REWRITE_ATTEMPTS:
+                    time.sleep(5)
+        else:
+            failed.append(f"#{number}（{error}）")
+    _write_problems(out, problems)
+    if failed:
+        raise GitHubError(
+            "名单已提交，但这几个 Issue 没改写完：" + "、".join(failed) + "。"
+            "下一次同步成功之前，不要在这几个 Issue 里撤销刚才的勾（会被认成「没有操作」，"
+            "见 spec 2026-10-17 第 15 节）。手动运行 watched-sync 就会补上。"
+        )
+    print(f"改写完成：{len({r.issue for r in rewrites})} 个 Issue，跳过无法解析的 {len(problems)} 个。")
+    return 0
+
+
 def _fail(root: Path, stage: str, reason: str) -> int:
     message = f"失败环节：{stage}\n原因：{reason}"
     print(message, file=sys.stderr)
@@ -311,11 +410,17 @@ def main(argv: list[str] | None = None) -> int:
     run.add_argument("--manual", action="store_true")
     run.add_argument("--date")
     commands.add_parser("build-site")
+    commands.add_parser("sync-watched")
+    commands.add_parser("apply-watched-rewrites")
     args = parser.parse_args(argv)
     root = Path(args.root)
     try:
         if args.command == "run":
             return _run(root, args.manual, args.date)
+        if args.command == "sync-watched":
+            return _sync_watched(root)
+        if args.command == "apply-watched-rewrites":
+            return _apply_watched_rewrites(root)
         return _build_site(root)
     except tuple(STAGES) as e:
         stage = next(label for kind, label in STAGES.items() if isinstance(e, kind))
