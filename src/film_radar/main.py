@@ -25,6 +25,7 @@ from .render import cost_text, issue_body, issue_title, render_site
 from .review import review_film
 from .settings import Settings, SettingsError, load_settings
 from .triage import TriageError, triage
+from .watched import WatchedError, load_watched_file, watched_ids
 
 
 class PipelineError(Exception):
@@ -43,6 +44,7 @@ STAGES = {
     TriageError: "粗筛",
     LLMError: "Claude 调用",
     AssembleError: "汇总",
+    WatchedError: "读取已看过名单",
 }
 UNEXPECTED_STAGE = "未预期的错误"
 
@@ -228,7 +230,7 @@ def _run(root: Path, manual: bool, date_arg: str | None) -> int:
         json.dumps(edition, ensure_ascii=False, indent=1), encoding="utf-8"
     )
     editions = load_editions(editions_dir)
-    render_site(editions, root / "site")
+    render_site(editions, root / "site", repo=settings.repo)
     number = [e["edition_id"] for e in editions].index(edition["edition_id"]) + 1
 
     out = root / "out"
@@ -243,7 +245,10 @@ def _run(root: Path, manual: bool, date_arg: str | None) -> int:
 
 
 def _build_site(root: Path) -> int:
-    render_site(load_editions(root / "data" / "editions"), root / "site")
+    """工作流部署页面走这里：已看过以仓库里的名单为准。"""
+    settings = load_settings(root / "config" / "settings.toml")
+    watched = watched_ids(load_watched_file(root / "data" / "watched.json"))
+    render_site(load_editions(root / "data" / "editions"), root / "site", watched=watched, repo=settings.repo)
     return 0
 
 

@@ -13,6 +13,7 @@ from film_radar.main import (
     run_pipeline, should_run, summarize_usage,
 )
 from film_radar.triage import TRIAGE_SCHEMA
+from film_radar.watched import dump_watched
 from helpers import ROOT, build_edition, fixture_json, llm_reply, make_candidate, make_card, recommended
 
 MOVIES = fixture_json("cineplex", "movies_v2.json")["items"]
@@ -425,6 +426,23 @@ def test_cli_build_site_rebuilds_from_data(root, settings):
     assert main(["--root", str(root), "build-site"]) == 0
     assert "第 2 期" in (root / "site" / "index.html").read_text(encoding="utf-8")
     assert (root / "site" / "editions" / "2026-09-19.html").exists()
+
+
+def test_cli_build_site_marks_listed_films_and_links_to_the_issues(root, settings):
+    write_edition(root, build_edition(settings, [recommended(1, "A"), recommended(2, "B")], run_date=date(2026, 10, 3)))
+    (root / "data" / "watched.json").write_text(dump_watched({1: {"title": "A", "since": "s", "ids": [1]}}), encoding="utf-8")
+    assert main(["--root", str(root), "build-site"]) == 0
+    index = (root / "site" / "index.html").read_text(encoding="utf-8")
+    assert '<article class="film feature is-seen" id="film-1"' in index
+    assert '<article class="film feature" id="film-2"' in index
+    assert "https://github.com/AKASHA-R/film-radar/issues?q=is%3Aissue+label%3Aedition" in index
+
+
+def test_cli_build_site_fails_on_a_malformed_watched_list(root, settings):
+    write_edition(root, build_edition(settings, [recommended(1, "A")], run_date=date(2026, 10, 3)))
+    (root / "data" / "watched.json").write_text("{not json", encoding="utf-8")
+    assert main(["--root", str(root), "build-site"]) == 1
+    assert "失败环节：读取已看过名单" in (root / "out" / "failure.txt").read_text(encoding="utf-8")
 
 
 def test_triage_and_review_use_their_own_callers(settings):

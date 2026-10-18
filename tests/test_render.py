@@ -11,12 +11,15 @@ from film_radar.watched import Issue, parse_issue
 from helpers import broken, build_edition, failed_review, make_candidate, make_verdict, recommended, skipped
 
 PAGE_URL = "https://akasha-r.github.io/film-radar/"
+REPO = "AKASHA-R/film-radar"
+ISSUES = "https://github.com/AKASHA-R/film-radar/issues?q=is%3Aissue+label%3Aedition"
 SRC = "https://example.com/review"
 
 
-def page(edition, number=1, latest=True):
+def page(edition, number=1, latest=True, watched=frozenset(), repo=REPO):
     archive = [(edition["edition_id"], number)]
-    return render_edition(edition, number, archive, is_latest=latest, prefix="" if latest else "../")
+    return render_edition(edition, number, archive, is_latest=latest, prefix="" if latest else "../",
+                          watched=watched, repo=repo)
 
 
 def card_html(html, film_id):
@@ -645,7 +648,7 @@ from pathlib import Path as _Path
 
 import pytest as _pytest
 
-from film_radar.render import SEEN_SCRIPT, STYLE as _STYLE
+from film_radar.render import HIDE_SEEN_SCRIPT, STYLE as _STYLE
 
 CHROME = "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome"
 BRAND = ("red", "blue", "yellow", "green")
@@ -701,52 +704,91 @@ def test_urgency_badges_say_which_kind_they_are(settings):
     assert 'class="badge warn hurry">抓紧（推断）</span>' in card
 
 
-# ---- 我已经看过：标记 ----
+# ---- 已看过：生成时画出来（spec 2026-10-17 第 9 节）----
 
-def test_every_recommended_card_has_one_hidden_seen_button(mixed):
+def test_watched_films_are_drawn_as_seen_on_every_page(mixed):
+    for html in (page(mixed, watched=frozenset({1})), page(mixed, latest=False, watched=frozenset({1}))):
+        card = card_html(html, 1)
+        assert card.startswith('<article class="film feature is-seen" id="film-1"')
+        assert '<span class="sr-only">（已看过）</span>' in card
+        assert "is-seen" not in card_html(html, 2)
+        glance = re.search(r'<section id="glance".*?</section>', html, re.S).group(0)
+        assert '<li class="is-seen" data-cat="horror" data-fid="1">' in glance
+        assert '<li data-cat="japanese" data-fid="2">' in glance
+
+
+def test_a_watched_version_marks_the_whole_film(settings):
+    versions = [{"film_id": 1, "name": "A", "language": "English", "subtitle": ""},
+                {"film_id": 62252, "name": "A (Spanish)", "language": "Spanish", "subtitle": ""}]
+    edition = build_edition(settings, [recommended(1, "A", {"versions": versions})])
+    assert "is-seen" in card_html(page(edition, watched=frozenset({62252})), 1)
+
+
+def test_cards_link_to_the_edition_issues_instead_of_a_button(mixed):
+    html = page(mixed, watched=frozenset({1}))
+    assert "data-seen" not in html and html.count("<button") == 1          # 只剩导航里的「隐藏已看过」开关
+    assert f'<a class="seen" href="{ISSUES}" rel="noopener">看过了？去 Issue 打勾</a>' in card_html(html, 2)
+    assert f'<a class="seen" href="{ISSUES}" rel="noopener">去 Issue 撤销</a>' in card_html(html, 1)
+    assert html.count('class="seen"') == 2                                   # 跳过、未能评估的片没有
+
+
+def test_no_issue_link_without_a_repo(mixed):
+    assert 'class="seen"' not in page(mixed, repo=None)
+
+
+def test_hide_chip_counts_the_seen_cards_and_always_starts_hidden(mixed):
+    def nav(html):
+        return re.search(r'<nav class="jump".*?</nav>', html, re.S).group(0)
+    two = nav(page(mixed, watched=frozenset({1, 2})))
+    assert ('<button type="button" class="chip" data-hide-seen aria-label="隐藏已看过（2 部）" aria-pressed="false" hidden>'
+            '<span class="lbl">隐藏已看过</span><span class="n">2</span></button>') in two
+    assert 'aria-label="隐藏已看过（0 部）"' in nav(page(mixed))
+    assert 'aria-label="隐藏已看过（0 部）"' in nav(page(mixed, watched=frozenset({3, 5})))   # 跳过、未能评估的片不算
+
+
+def test_hide_script_is_on_every_page_and_the_old_storage_key_is_gone(mixed):
+    latest, archived = page(mixed), page(mixed, latest=False)
+    for html in (latest, archived):
+        assert "film-radar:hide-seen:v1" in html and "film-radar:seen:v1" not in html
+    assert 'getElementById("stale")' in latest and 'getElementById("stale")' not in archived
+    assert 'id="stale"' not in archived
+
+
+def test_hide_script_is_static_and_carries_no_page_data(settings):
+    def script_of(edition):
+        return re.search(r"<script>(\(function\(\)\{var HIDE=.*?)</script>", page(edition), re.S).group(1)
+    one = build_edition(settings, [recommended(1, "First Title")])
+    two = build_edition(settings, [recommended(2, "Another <b>Title</b>")])
+    assert script_of(one) == script_of(two) == HIDE_SEEN_SCRIPT
+    assert "First Title" not in HIDE_SEEN_SCRIPT
+
+
+@_pytest.mark.skipif(not _shutil.which("node"), reason="需要 node 做语法检查")
+def test_hide_script_is_valid_javascript(tmp_path):
+    path = tmp_path / "hide.js"
+    path.write_text(HIDE_SEEN_SCRIPT, encoding="utf-8")
+    result = _subprocess.run(["node", "--check", str(path)], capture_output=True, text=True)
+    assert result.returncode == 0, result.stderr
+
+
+def test_page_has_no_live_region_any_more(mixed):
     html = page(mixed)
-    for film_id in (1, 2):                      # mixed 里 1 是重点推荐、2 是可以看
-        card = card_html(html, film_id)
-        button = re.findall(rf'<button[^>]*data-seen="{film_id}"[^>]*>[^<]*</button>', card)
-        assert len(button) == 1, film_id
-        assert "hidden" in button[0] and 'aria-pressed="false"' in button[0] and "我已经看过" in button[0]
-        assert 'aria-label="我已经看过"' in button[0]          # 无障碍名称固定，状态只由 aria-pressed 表达
-    assert html.count("data-seen=") == 2                         # 跳过、未能评估的片没有这个按钮
+    assert "data-live" not in html and "aria-live" not in html
+
+
+def test_render_site_draws_the_watched_list_on_every_page(settings, tmp_path):
+    older = build_edition(settings, [recommended(1, "Older Pick")], run_date=date(2026, 9, 24),
+                          generated_at="2026-09-24T07:05:00-04:00")
+    newer = build_edition(settings, [recommended(1, "Older Pick"), recommended(2, "Newer Pick")])
+    render_site([older, newer], tmp_path, watched=frozenset({1}), repo=REPO)
+    for path in (tmp_path / "index.html", tmp_path / "editions" / "2026-09-24.html"):
+        html = path.read_text(encoding="utf-8")
+        assert '<article class="film feature is-seen" id="film-1"' in html and ISSUES in html
 
 
 def test_glance_rows_carry_the_film_id_for_seen_state(mixed):
     glance = re.search(r'<section id="glance".*?</section>', page(mixed), re.S).group(0)
     assert 'data-fid="1"' in glance and 'data-fid="2"' in glance and "data-film" not in glance
-
-
-def test_nav_has_a_hidden_hide_seen_chip(mixed):
-    nav = re.search(r'<nav class="jump".*?</nav>', page(mixed), re.S).group(0)
-    assert re.search(r'<button type="button" class="chip" data-hide-seen aria-label="隐藏已看过（0 部）" aria-pressed="false" hidden>', nav)
-
-
-def test_seen_script_is_on_every_page_but_the_stale_script_only_on_the_latest(mixed):
-    latest, archived = page(mixed), page(mixed, latest=False)
-    for html in (latest, archived):
-        assert "film-radar:seen:v1" in html
-    assert 'getElementById("stale")' in latest and 'getElementById("stale")' not in archived
-    assert 'id="stale"' not in archived
-
-
-def test_seen_script_is_static_and_carries_no_page_data(settings):
-    def script_of(edition):
-        return re.search(r"<script>(\(function\(\)\{var KEY=.*?)</script>", page(edition), re.S).group(1)
-    one = build_edition(settings, [recommended(1, "First Title")])
-    two = build_edition(settings, [recommended(2, "Another <b>Title</b>")])
-    assert script_of(one) == script_of(two) == SEEN_SCRIPT
-    assert "First Title" not in SEEN_SCRIPT
-
-
-@_pytest.mark.skipif(not _shutil.which("node"), reason="需要 node 做语法检查")
-def test_seen_script_is_valid_javascript(tmp_path):
-    path = tmp_path / "seen.js"
-    path.write_text(SEEN_SCRIPT, encoding="utf-8")
-    result = _subprocess.run(["node", "--check", str(path)], capture_output=True, text=True)
-    assert result.returncode == 0, result.stderr
 
 
 # ---- 我已经看过：真实浏览器里的行为 ----
@@ -788,71 +830,101 @@ browser = _pytest.mark.skipif(not _Path(CHROME).exists(), reason="需要本机 C
 
 PROBE = """
 var q=function(s){return document.querySelector(s)};
-var state=function(id){var b=q('[data-seen="'+id+'"]');var c=document.getElementById("film-"+id);var g=q('[data-fid="'+id+'"]');
- return {pressed:b.getAttribute("aria-pressed"),label:b.textContent,hidden:b.hidden,card:c.classList.contains("is-seen"),row:g.classList.contains("is-seen")}};
+var state=function(id){var c=document.getElementById("film-"+id);var g=q('[data-fid="'+id+'"]');
+ return {card:c.classList.contains("is-seen"),row:g.classList.contains("is-seen"),shown:getComputedStyle(c).display!=="none"}};
 """
+SEEN = frozenset({1})          # mixed 里 1 是重点推荐、2 是可以看
 
 
 @browser
-def test_browser_a_seen_film_is_restored_from_storage_on_load(mixed):
-    result = _run_in_chrome(
-        page(mixed),
-        before='localStorage.setItem("film-radar:seen:v1", JSON.stringify({"1": 1700000000000}));',
-        after=PROBE + 'var chip=q("[data-hide-seen]");document.title="RESULT:"+JSON.stringify({one:state(1),two:state(2),'
-                      'chipHidden:chip.hidden,chipCount:chip.querySelector("span.n").textContent});')
-    assert result["one"] == {"pressed": "true", "label": "✓ 已看过", "hidden": False, "card": True, "row": True}
-    assert result["two"] == {"pressed": "false", "label": "我已经看过", "hidden": False, "card": False, "row": False}
-    assert result["chipHidden"] is False and result["chipCount"] == "1"
-
-
-@browser
-def test_browser_clicking_toggles_and_persists(mixed):
-    result = _run_in_chrome(
-        page(mixed),
-        after=PROBE + 'q(\'[data-seen="2"]\').click();var afterMark=state(2);var stored=JSON.parse(localStorage.getItem("film-radar:seen:v1"));'
-                      'q(\'[data-seen="2"]\').click();var afterUndo=state(2);var storedAfterUndo=localStorage.getItem("film-radar:seen:v1");'
-                      'document.title="RESULT:"+JSON.stringify({afterMark:afterMark,keys:Object.keys(stored),'
-                      'afterUndo:afterUndo,storedAfterUndo:storedAfterUndo,chipHidden:q("[data-hide-seen]").hidden});')
-    assert result["afterMark"]["pressed"] == "true" and result["afterMark"]["card"] and result["afterMark"]["row"]
-    assert result["keys"] == ["2"]
-    assert result["afterUndo"]["pressed"] == "false" and not result["afterUndo"]["card"]
-    assert result["storedAfterUndo"] == "{}" and result["chipHidden"] is True
-
-
-@browser
-def test_browser_corrupted_storage_does_not_break_the_page(mixed):
-    result = _run_in_chrome(
-        page(mixed),
-        before='localStorage.setItem("film-radar:seen:v1", "{not json");',
-        after=PROBE + 'var before=state(1);q(\'[data-seen="1"]\').click();var after=state(1);'
-                      'document.title="RESULT:"+JSON.stringify({before:before,after:after,stored:localStorage.getItem("film-radar:seen:v1")});')
-    assert result["before"]["hidden"] is False and result["before"]["pressed"] == "false"      # 坏数据当作「没看过」，按钮照常出现
-    assert result["after"]["pressed"] == "true"
-    assert list(_json.loads(result["stored"])) == ["1"]                                           # 点击后写回合法 JSON
+def test_browser_chip_appears_with_the_count_of_seen_films(mixed):
+    result = _run_in_chrome(page(mixed, watched=SEEN), after=PROBE +
+        'var chip=q("[data-hide-seen]");document.title="RESULT:"+JSON.stringify({one:state(1),two:state(2),'
+        'chipHidden:chip.hidden,label:chip.getAttribute("aria-label"),pressed:chip.getAttribute("aria-pressed")});')
+    assert result["one"] == {"card": True, "row": True, "shown": True}
+    assert result["two"] == {"card": False, "row": False, "shown": True}
+    assert result["chipHidden"] is False and result["label"] == "隐藏已看过（1 部）" and result["pressed"] == "false"
 
 
 @browser
 def test_browser_hide_seen_chip_hides_and_remembers(mixed):
-    result = _run_in_chrome(
-        page(mixed),
-        before='localStorage.setItem("film-radar:seen:v1", JSON.stringify({"1": 1}));',
-        after=PROBE + 'var chip=q("[data-hide-seen]");chip.click();var hiddenNow=getComputedStyle(document.getElementById("film-1")).display;'
-                      'var rowHidden=getComputedStyle(q(\'[data-fid="1"]\')).display;var other=getComputedStyle(document.getElementById("film-2")).display;'
-                      'var pressed=chip.getAttribute("aria-pressed");var label=chip.querySelector(".lbl").textContent;var remembered=localStorage.getItem("film-radar:hide-seen:v1");'
-                      'chip.click();document.title="RESULT:"+JSON.stringify({hiddenNow:hiddenNow,rowHidden:rowHidden,other:other,pressed:pressed,'
-                      'label:label,remembered:remembered,shownAgain:getComputedStyle(document.getElementById("film-1")).display});')
-    assert result["hiddenNow"] == "none" and result["rowHidden"] == "none" and result["other"] != "none"
+    result = _run_in_chrome(page(mixed, watched=SEEN), after=PROBE +
+        'var chip=q("[data-hide-seen]");chip.click();var a=state(1),row=getComputedStyle(q(\'[data-fid="1"]\')).display,other=state(2);'
+        'var pressed=chip.getAttribute("aria-pressed"),label=chip.querySelector(".lbl").textContent,remembered=localStorage.getItem("film-radar:hide-seen:v1");'
+        'chip.click();document.title="RESULT:"+JSON.stringify({a:a,row:row,other:other,pressed:pressed,label:label,remembered:remembered,again:state(1)});')
+    assert result["a"]["shown"] is False and result["row"] == "none" and result["other"]["shown"] is True
     assert result["pressed"] == "true" and result["label"] == "显示已看过" and result["remembered"] == "1"
-    assert result["shownAgain"] != "none"
+    assert result["again"]["shown"] is True
 
 
 @browser
-def test_browser_storage_failure_still_lets_you_mark_for_this_visit(mixed):
-    result = _run_in_chrome(
-        page(mixed),
-        before='Object.defineProperty(window,"localStorage",{get:function(){throw new Error("denied")}});',
-        after=PROBE + 'q(\'[data-seen="1"]\').click();document.title="RESULT:"+JSON.stringify({one:state(1)});')
-    assert result["one"]["pressed"] == "true" and result["one"]["card"] is True
+def test_browser_a_remembered_preference_hides_on_load(mixed):
+    result = _run_in_chrome(page(mixed, watched=SEEN), before='localStorage.setItem("film-radar:hide-seen:v1","1");', after=PROBE +
+        'document.title="RESULT:"+JSON.stringify({one:state(1),pressed:q("[data-hide-seen]").getAttribute("aria-pressed")});')
+    assert result == {"one": {"card": True, "row": True, "shown": False}, "pressed": "true"}
+
+
+@browser
+def test_browser_a_leftover_preference_does_nothing_on_a_page_without_seen_films(mixed):
+    result = _run_in_chrome(page(mixed), before='localStorage.setItem("film-radar:hide-seen:v1","1");', after=PROBE +
+        'document.title="RESULT:"+JSON.stringify({chipHidden:q("[data-hide-seen]").hidden,'
+        'root:document.documentElement.classList.contains("hide-seen"),two:state(2)});')
+    assert result == {"chipHidden": True, "root": False, "two": {"card": False, "row": False, "shown": True}}
+
+
+@browser
+def test_browser_the_old_button_storage_is_neither_read_nor_deleted(mixed):
+    result = _run_in_chrome(page(mixed), before='localStorage.setItem("film-radar:seen:v1",JSON.stringify({"2":1}));', after=PROBE +
+        'document.title="RESULT:"+JSON.stringify({two:state(2),stored:localStorage.getItem("film-radar:seen:v1")});')
+    assert result == {"two": {"card": False, "row": False, "shown": True}, "stored": '{"2":1}'}
+
+
+@browser
+def test_browser_hide_chip_works_when_only_writing_fails(mixed):
+    result = _run_in_chrome(page(mixed, watched=SEEN), before=QUOTA, after=PROBE +
+        'var chip=q("[data-hide-seen]");chip.click();var a=state(1).shown;chip.click();var b=state(1).shown;'
+        'document.title="RESULT:"+JSON.stringify({a:a,b:b});')
+    assert result == {"a": False, "b": True}
+
+
+@browser
+def test_browser_hide_chip_works_when_storage_is_unavailable(mixed):
+    result = _run_in_chrome(page(mixed, watched=SEEN), before=DENIED, after=PROBE +
+        'var chip=q("[data-hide-seen]");chip.click();'
+        'document.title="RESULT:"+JSON.stringify({pressed:chip.getAttribute("aria-pressed"),root:document.documentElement.classList.contains("hide-seen"),'
+        'card:getComputedStyle(document.getElementById("film-1")).display});')
+    assert result == {"pressed": "true", "root": True, "card": "none"}
+
+
+@browser
+def test_browser_chip_state_is_carried_by_aria_pressed_not_by_a_changing_name(mixed):
+    result = _run_in_chrome(page(mixed, watched=SEEN), after=
+        'var c=document.querySelector("[data-hide-seen]");c.click();'
+        'document.title="RESULT:"+JSON.stringify({label:c.getAttribute("aria-label"),pressed:c.getAttribute("aria-pressed")});')
+    assert result == {"label": "隐藏已看过（1 部）", "pressed": "true"}
+
+
+@browser
+def test_browser_storage_clear_and_bfcache_restore_resync_the_preference(mixed):
+    result = _run_in_chrome(page(mixed, watched=SEEN), before='localStorage.setItem("film-radar:hide-seen:v1","1");', after=PROBE +
+        'var root=document.documentElement;var a=root.classList.contains("hide-seen");'
+        'localStorage.clear();window.dispatchEvent(new StorageEvent("storage",{key:null}));var b=root.classList.contains("hide-seen");'
+        'localStorage.setItem("film-radar:hide-seen:v1","1");window.dispatchEvent(new PageTransitionEvent("pageshow",{persisted:true}));'
+        'document.title="RESULT:"+JSON.stringify({a:a,b:b,c:root.classList.contains("hide-seen")});')
+    assert result == {"a": True, "b": False, "c": True}
+
+
+@browser
+def test_browser_pseudo_element_text_renders_what_the_css_says(mixed):
+    result = _run_in_chrome(page(mixed, watched=SEEN), after=
+        'var card=document.getElementById("film-1");var det=document.querySelector("#film-2 details");det.open=true;'
+        'document.title="RESULT:"+JSON.stringify({stamp:getComputedStyle(card.querySelector(".eyebrow"),"::after").content,'
+        'minus:getComputedStyle(det.querySelector("summary"),"::after").content,numContent:getComputedStyle(document.querySelector("h2"),"::before").content,'
+        'inc:getComputedStyle(document.querySelector("h2")).counterIncrement,reset:getComputedStyle(document.querySelector("main")).counterReset,'
+        'link:getComputedStyle(document.querySelector("#film-2 a.seen")).minHeight});')
+    assert result["stamp"] == '"✓ 已看过"' and result["minus"] == '"−"' and result["numContent"] == "counter(sec, decimal-leading-zero)"
+    assert result["inc"] == "sec 1" and result["reset"] == "sec 0"          # 章节序号：main 归零、每个 h2 加一
+    assert result["link"] == "44px"                                         # 「去 Issue 打勾」的触控目标
 
 
 
@@ -928,92 +1000,7 @@ def test_seen_state_is_not_expressed_with_a_category_hue():
             assert "var(--green)" not in body, selector.strip()
 
 
-def test_page_has_a_polite_live_region_for_seen_announcements(mixed):
-    html = page(mixed)
-    assert html.count('<div class="sr-only" role="status" aria-live="polite" data-live></div>') == 1 and "sr-only" in _STYLE
-
-
 # ---- 评审后加固：浏览器里的行为 ----
 
 QUOTA = 'Storage.prototype.setItem=function(){throw new DOMException("full","QuotaExceededError")};'
 DENIED = 'Object.defineProperty(window,"localStorage",{get:function(){throw new Error("denied")}});'
-SEED = lambda o, hide=None: ('localStorage.setItem("film-radar:seen:v1", JSON.stringify(%s));' % _json.dumps(o)
-                             + ('localStorage.setItem("film-radar:hide-seen:v1","%s");' % hide if hide is not None else ""))
-
-
-@browser
-def test_browser_marking_works_when_only_writing_fails(mixed):
-    """配额满了或旧版 Safari 无痕：getItem 正常、setItem 抛错。之前点了没反应，因为读回来的永远是旧值。"""
-    result = _run_in_chrome(page(mixed), before=QUOTA, after=PROBE +
-        'q(\'[data-seen="2"]\').click();var a=state(2);q(\'[data-seen="2"]\').click();var b=state(2);'
-        'document.title="RESULT:"+JSON.stringify({a:a,b:b});')
-    assert result["a"]["pressed"] == "true" and result["a"]["card"] and result["a"]["row"]
-    assert result["b"]["pressed"] == "false" and not result["b"]["card"]
-
-
-@browser
-def test_browser_hide_chip_works_when_storage_is_unavailable(mixed):
-    result = _run_in_chrome(page(mixed), before=DENIED, after=PROBE +
-        'q(\'[data-seen="1"]\').click();var chip=q("[data-hide-seen]");chip.click();'
-        'document.title="RESULT:"+JSON.stringify({pressed:chip.getAttribute("aria-pressed"),root:document.documentElement.classList.contains("hide-seen"),'
-        'card:getComputedStyle(document.getElementById("film-1")).display});')
-    assert result == {"pressed": "true", "root": True, "card": "none"}
-
-
-@browser
-def test_browser_a_leftover_hide_preference_does_not_swallow_the_first_mark(mixed):
-    """上次在别的页面打开了「隐藏已看过」，这一页还没有任何已看过的片：标记第一部时它不能立刻消失。"""
-    result = _run_in_chrome(page(mixed), before='localStorage.setItem("film-radar:hide-seen:v1","1");', after=PROBE +
-        'q(\'[data-seen="2"]\').click();document.title="RESULT:"+JSON.stringify({card:getComputedStyle(document.getElementById("film-2")).display,'
-        'pressed:state(2).pressed,hide:localStorage.getItem("film-radar:hide-seen:v1")});')
-    assert result["card"] != "none" and result["pressed"] == "true" and result["hide"] == "0"
-
-
-@browser
-def test_browser_marking_in_hide_mode_keeps_keyboard_focus(mixed):
-    result = _run_in_chrome(page(mixed), before=SEED({"1": 1}, hide="1"), after=PROBE +
-        'var b=q(\'[data-seen="2"]\');b.focus();b.click();'
-        'document.title="RESULT:"+JSON.stringify({onChip:document.activeElement===q("[data-hide-seen]"),'
-        'gone:getComputedStyle(document.getElementById("film-2")).display});')
-    assert result == {"onChip": True, "gone": "none"}              # 卡片消失了，焦点落在「显示已看过」上，没有掉到 body
-
-
-@browser
-def test_browser_changes_are_announced_politely(mixed):
-    result = _run_in_chrome(page(mixed), after=PROBE +
-        'q(\'[data-seen="1"]\').click();var a=q("[data-live]").textContent;q(\'[data-seen="1"]\').click();var b=q("[data-live]").textContent;'
-        'document.title="RESULT:"+JSON.stringify({a:a,b:b});')
-    assert "Must One" in result["a"] and "标为已看过" in result["a"]
-    assert "Must One" in result["b"] and "撤销" in result["b"]
-
-
-@browser
-def test_browser_state_is_carried_by_aria_pressed_not_by_a_changing_name(mixed):
-    result = _run_in_chrome(page(mixed), before=SEED({"1": 1}), after=
-        'var q=function(s){return document.querySelector(s)};var b=q(\'[data-seen="1"]\'),c=q("[data-hide-seen]");'
-        'document.title="RESULT:"+JSON.stringify({bLabel:b.getAttribute("aria-label"),bText:b.textContent,bPressed:b.getAttribute("aria-pressed"),'
-        'cLabel:c.getAttribute("aria-label"),cPressed:c.getAttribute("aria-pressed")});c.click();')
-    assert result == {"bLabel": "我已经看过", "bText": "✓ 已看过", "bPressed": "true", "cLabel": "隐藏已看过（1 部）", "cPressed": "false"}
-
-
-@browser
-def test_browser_storage_clear_and_bfcache_restore_resync_the_page(mixed):
-    result = _run_in_chrome(page(mixed), before=SEED({"1": 1}), after=PROBE +
-        'localStorage.clear();window.dispatchEvent(new StorageEvent("storage",{key:null}));var cleared=state(1).pressed;'
-        'localStorage.setItem("film-radar:seen:v1",JSON.stringify({"2":1}));window.dispatchEvent(new PageTransitionEvent("pageshow",{persisted:true}));'
-        'document.title="RESULT:"+JSON.stringify({cleared:cleared,restored:state(2).pressed});')
-    assert result == {"cleared": "false", "restored": "true"}
-
-
-@browser
-def test_browser_pseudo_element_text_renders_what_the_css_says(mixed):
-    result = _run_in_chrome(page(mixed), before=SEED({"1": 1}), after=
-        'var q=function(s){return document.querySelector(s)};var card=document.getElementById("film-1");'
-        'var det=document.querySelector("#film-2 details");det.open=true;'
-        'var probe=document.createElement("i");probe.style.color="var(--green)";document.body.appendChild(probe);'
-        'document.title="RESULT:"+JSON.stringify({stamp:getComputedStyle(card.querySelector(".eyebrow"),"::after").content,'
-        'minus:getComputedStyle(det.querySelector("summary"),"::after").content,numContent:getComputedStyle(document.querySelector("h2"),"::before").content,inc:getComputedStyle(document.querySelector("h2")).counterIncrement,reset:getComputedStyle(document.querySelector("main")).counterReset,'
-        'pressedBg:getComputedStyle(q(\'[data-seen="1"]\')).backgroundColor===getComputedStyle(probe).color});')
-    assert result["stamp"] == '"✓ 已看过"' and result["minus"] == '"−"' and result["numContent"] == "counter(sec, decimal-leading-zero)"
-    assert result["inc"] == "sec 1" and result["reset"] == "sec 0"             # 章节序号：main 归零、每个 h2 加一'
-    assert result["pressedBg"] is True                                     # 已看过的按钮底色就是 --green

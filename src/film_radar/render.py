@@ -121,9 +121,8 @@ h2 .count{font-size:14px;font-weight:800;letter-spacing:0;background:var(--yello
 .cta{display:flex;flex-wrap:wrap;gap:10px;margin-top:16px}
 .buy{display:inline-flex;align-items:center;min-height:44px;padding:10px 20px;background:var(--red);color:var(--on-red);font-size:14px;font-weight:800;letter-spacing:.02em;text-decoration:none;transition:background .15s,color .15s}
 .buy:hover{background:var(--ink);color:var(--bg)}
-.seen{display:inline-flex;align-items:center;min-height:44px;appearance:none;font:inherit;font-size:14px;font-weight:800;padding:8px 18px;border:2px solid var(--ink);background:transparent;color:var(--ink);cursor:pointer;transition:background .15s,color .15s}
+.seen{display:inline-flex;align-items:center;min-height:44px;appearance:none;font:inherit;font-size:14px;font-weight:800;padding:8px 18px;border:2px solid var(--ink);background:transparent;color:var(--ink);text-decoration:none;cursor:pointer;transition:background .15s,color .15s}
 .seen:hover{background:var(--yellow);border-color:var(--yellow);color:var(--on-yellow)}
-.seen[aria-pressed="true"]{background:var(--green);border-color:var(--green);color:var(--on-green)}
 .film.is-seen::before{background:var(--mute)}
 .film.is-seen .poster img{filter:grayscale(1);opacity:.7}
 .film.is-seen .eyebrow::after{content:"\2713  已看过";background:var(--green);color:var(--on-green);font-size:12px;font-weight:800;padding:2px 10px}
@@ -188,32 +187,18 @@ main{padding:0 14px 56px}
 }
 """
 
-SEEN_SCRIPT = r"""(function(){var KEY="film-radar:seen:v1",HIDE="film-radar:hide-seen:v1",root=document.documentElement,state={},hide=false;
-var live=document.querySelector("[data-live]"),chip=document.querySelector("[data-hide-seen]"),buttons=[].slice.call(document.querySelectorAll("[data-seen]"));
-/* 状态以内存为准，存储只负责持久化：存储读不了、写不了（配额满、无痕模式）时，这次访问里照常能标记和切换 */
-function own(o,k){return Object.prototype.hasOwnProperty.call(o,k)}
-function readState(){try{var o=JSON.parse(localStorage.getItem(KEY)||"{}");return o&&typeof o==="object"&&!Array.isArray(o)?o:{}}catch(e){return null}}
-function readHide(){try{return localStorage.getItem(HIDE)==="1"}catch(e){return null}}
-function sync(){var s=readState(),h=readHide();if(s!==null)state=s;if(h!==null)hide=h}
-function persist(){try{localStorage.setItem(KEY,JSON.stringify(state))}catch(e){}try{localStorage.setItem(HIDE,hide?"1":"0")}catch(e){}}
-function mark(el,on){if(el)el.classList.toggle("is-seen",on)}
-function count(){var n=0;buttons.forEach(function(b){if(own(state,b.getAttribute("data-seen")))n++});return n}
-function say(text){if(live)live.textContent=text}
-function titleOf(id){var c=document.getElementById("film-"+id),h=c&&c.querySelector("h3");return h&&h.firstChild?h.firstChild.textContent:""}
-function render(){var n=0;
-buttons.forEach(function(b){var id=b.getAttribute("data-seen"),on=own(state,id);if(on)n++;
-b.hidden=false;b.setAttribute("aria-pressed",on?"true":"false");b.textContent=on?"✓ 已看过":"我已经看过";
-mark(document.getElementById("film-"+id),on);mark(document.querySelector("[data-fid=\""+id+"\"]"),on)});
-if(chip){var h=hide&&n>0;chip.hidden=n===0;chip.querySelector(".n").textContent=n;chip.setAttribute("aria-pressed",h?"true":"false");
-chip.setAttribute("aria-label","隐藏已看过（"+n+" 部）");
-chip.querySelector(".lbl").textContent=h?"显示已看过":"隐藏已看过";root.classList.toggle("hide-seen",h)}}
-document.addEventListener("click",function(e){var t=e.target&&e.target.closest?e.target.closest("[data-seen],[data-hide-seen]"):null;if(!t)return;
-if(t.hasAttribute("data-seen")){var id=t.getAttribute("data-seen"),before=count();
-if(own(state,id)){delete state[id];say("已撤销「"+titleOf(id)+"」的已看过标记")}
-else{state[id]=Date.now();if(hide&&before===0)hide=false;say("已把「"+titleOf(id)+"」标为已看过")}
-persist();render();if(hide&&own(state,id)&&chip)chip.focus()}
-else{hide=!hide;persist();render()}});
-window.addEventListener("storage",function(e){if(e.key===null||e.key===KEY||e.key===HIDE){sync();render()}});
+HIDE_SEEN_SCRIPT = r"""(function(){var HIDE="film-radar:hide-seen:v1",root=document.documentElement,chip=document.querySelector("[data-hide-seen]");
+if(!chip)return;
+/* 已看过的样式在生成页面时就画好了（名单在仓库里）；这段脚本只管「隐藏已看过」这个本机显示偏好。
+   偏好以内存为准，存储只负责记住：存储读不了、写不了（配额满、无痕模式）时，这次访问里照常能切换 */
+var n=document.querySelectorAll(".film.is-seen").length,hide=false;
+function read(){try{return localStorage.getItem(HIDE)==="1"}catch(e){return null}}
+function sync(){var h=read();if(h!==null)hide=h}
+function persist(){try{localStorage.setItem(HIDE,hide?"1":"0")}catch(e){}}
+function render(){var h=hide&&n>0;chip.hidden=n===0;chip.setAttribute("aria-pressed",h?"true":"false");
+chip.querySelector(".lbl").textContent=h?"显示已看过":"隐藏已看过";root.classList.toggle("hide-seen",h)}
+chip.addEventListener("click",function(){hide=!hide;persist();render()});
+window.addEventListener("storage",function(e){if(e.key===null||e.key===HIDE){sync();render()}});
 window.addEventListener("pageshow",function(e){if(e.persisted){sync();render()}});
 sync();render()})();"""
 
@@ -228,6 +213,11 @@ def safe_url(url) -> str | None:
     if isinstance(url, str) and url.startswith(("http://", "https://")):
         return url
     return None
+
+
+def issues_url(repo: str) -> str:
+    """所有 edition Issue 的列表：页面上「去 Issue 打勾」指向这里。"""
+    return f"https://github.com/{repo}/issues?q=is%3Aissue+label%3Aedition"
 
 
 def _md(day: str) -> str:
@@ -323,7 +313,7 @@ def _links(film: dict) -> str:
     return f'<div class="links"><h4>评分与来源</h4><ul class="chips">{"".join(items)}</ul></div>'
 
 
-def _film_card(film: dict, compact: bool) -> str:
+def _film_card(film: dict, compact: bool, watched: frozenset[int] = frozenset(), link: str | None = None) -> str:
     card = film["card"]
     # 海报外面套一个占位块：没有海报、或者海报地址失效（onerror 把 img 移除）时，露出来的是按类别着色的占位块而不是破图标
     poster = safe_url(film["poster_url"])
@@ -357,15 +347,19 @@ def _film_card(film: dict, compact: bool) -> str:
     detail = safe_url(film["detail_url"])
     buy = f'<a class="buy" href="{esc(detail)}" rel="noopener">Cineplex 页面与购票</a>' if detail else ""
     fid = int(film["film_id"])
-    # 没有脚本就没有这个按钮：先藏起来，页面脚本跑起来之后才显示（状态存在浏览器里）
-    seen = f'<button type="button" class="seen" data-seen="{fid}" aria-label="我已经看过" aria-pressed="false" hidden>我已经看过</button>'
-    cta = f'<div class="cta">{buy}{seen}</div>'
+    seen = is_watched(film, watched)
+    # 「已看过」记在仓库的名单里，标记入口是 edition Issue 的勾选框（spec 2026-10-17）；页面只负责画出来、指过去
+    label = "去 Issue 撤销" if seen else "看过了？去 Issue 打勾"
+    to_issue = f'<a class="seen" href="{esc(link)}" rel="noopener">{label}</a>' if link else ""
+    cta = f'<div class="cta">{buy}{to_issue}</div>'
     kind = "compact" if compact else "feature"
+    state = " is-seen" if seen else ""
+    hint = '<span class="sr-only">（已看过）</span>' if seen else ""
     return (
-        f'<article class="film {kind}" id="film-{fid}" data-film="{fid}" data-cat="{esc(card["category"])}">'
+        f'<article class="film {kind}{state}" id="film-{fid}" data-film="{fid}" data-cat="{esc(card["category"])}">'
         f'<div class="top">{poster_html}<div class="head">'
         f'<div class="eyebrow"><span class="badge cat">{esc(category)}</span>{_meter(card["strength"])}</div>'
-        f'<h3>{esc(film["title"])}{title_zh}</h3>'
+        f'<h3>{esc(film["title"])}{title_zh}{hint}</h3>'
         f"{_badges(film)}{lead}{_facts(film, compact)}{cta}"
         f"</div></div>{body}</article>"
     )
@@ -379,25 +373,29 @@ def _by_title(films: list[dict]) -> list[dict]:
     return sorted(films, key=lambda f: (f["title"], f["film_id"]))
 
 
-def _glance_row(film: dict, tier: str) -> str:
+def _glance_row(film: dict, tier: str, watched: frozenset[int]) -> str:
     card = film["card"]
     fid = int(film["film_id"])
+    seen = is_watched(film, watched)
     title_zh = f"<small>{esc(card['title_zh'])}</small>" if card["title_zh"] else ""
+    hint = '<span class="sr-only">（已看过）</span>' if seen else ""
     tier_tag = '<span class="g-tier">重点</span>' if tier == "must" else ""
     hot = "".join(f'<span class="g-hot {kind}">{esc(label)}</span>' for kind, label in _urgency(film))
     category = CATEGORY_LABELS.get(card["category"], card["category"])
+    state = ' class="is-seen"' if seen else ""
     return (
-        f'<li data-cat="{esc(card["category"])}" data-fid="{fid}"><a href="#film-{fid}"><i class="g-dot"></i>'
-        f'<span class="g-title">{esc(film["title"])}{title_zh}</span>'
+        f'<li{state} data-cat="{esc(card["category"])}" data-fid="{fid}"><a href="#film-{fid}"><i class="g-dot"></i>'
+        f'<span class="g-title">{esc(film["title"])}{title_zh}{hint}</span>'
         f'<span class="g-meta">{tier_tag}<span class="g-cat">{esc(category)}</span>'
         f'<span>{esc(status_text(film))}</span>{hot}{_meter(card["strength"])}</span></a></li>'
     )
 
 
-def _glance_section(must: list[dict], ok: list[dict]) -> str:
+def _glance_section(must: list[dict], ok: list[dict], watched: frozenset[int]) -> str:
     if not must and not ok:
         return ""
-    rows = "".join(_glance_row(f, "must") for f in _by_strength(must)) + "".join(_glance_row(f, "ok") for f in _by_strength(ok))
+    rows = ("".join(_glance_row(f, "must", watched) for f in _by_strength(must))
+            + "".join(_glance_row(f, "ok", watched) for f in _by_strength(ok)))
     return f'<section id="glance"><h2>本期速览</h2><ul class="glance">{rows}</ul></section>'
 
 
@@ -405,16 +403,17 @@ def _count(n: int) -> str:
     return f'<span class="count">{n}</span>'
 
 
-def _must_section(films: list[dict]) -> str:
+def _must_section(films: list[dict], watched: frozenset[int], link: str | None) -> str:
     if not films:
         return '<h2 id="must">重点推荐</h2><p class="empty">本期没有重点推荐。</p>'
-    return f'<h2 id="must">重点推荐{_count(len(films))}</h2>' + "".join(_film_card(f, compact=False) for f in _by_strength(films))
+    cards = "".join(_film_card(f, False, watched, link) for f in _by_strength(films))
+    return f'<h2 id="must">重点推荐{_count(len(films))}</h2>' + cards
 
 
-def _ok_section(films: list[dict]) -> str:
+def _ok_section(films: list[dict], watched: frozenset[int], link: str | None) -> str:
     if not films:
         return ""
-    cards = "".join(_film_card(f, compact=True) for f in _by_strength(films))
+    cards = "".join(_film_card(f, True, watched, link) for f in _by_strength(films))
     return f'<h2 id="ok">可以看{_count(len(films))}</h2><div class="grid">{cards}</div>'
 
 
@@ -517,7 +516,7 @@ def _hero(edition: dict, title: str, is_latest: bool) -> str:
     )
 
 
-def _nav(has_glance: bool, must: int, ok: int, skip: int) -> str:
+def _nav(has_glance: bool, must: int, ok: int, skip: int, seen: int) -> str:
     links = []
     if has_glance:
         links.append('<a href="#glance">速览</a>')
@@ -528,24 +527,29 @@ def _nav(has_glance: bool, must: int, ok: int, skip: int) -> str:
     if skip:
         links.append(f'<a href="#skip">跳过<span>{skip}</span></a>')
     links.append('<a href="#archive">历史期数</a>')
-    links.append('<button type="button" class="chip" data-hide-seen aria-label="隐藏已看过（0 部）" aria-pressed="false" hidden>'
-                 '<span class="lbl">隐藏已看过</span><span class="n">0</span></button>')
+    # 开关生成时一律带 hidden：脚本跑起来、本页有已看过的片才显示，脚本不可用时不会留下点不动的按钮
+    links.append(f'<button type="button" class="chip" data-hide-seen aria-label="隐藏已看过（{seen} 部）" aria-pressed="false" hidden>'
+                 f'<span class="lbl">隐藏已看过</span><span class="n">{seen}</span></button>')
     return f'<nav class="jump" aria-label="本期章节"><div class="wrap">{"".join(links)}</div></nav>'
 
 
 def render_edition(edition: dict, number: int, archive: list[tuple[str, int]], *,
-                   is_latest: bool, prefix: str) -> str:
+                   is_latest: bool, prefix: str, watched: frozenset[int] = frozenset(),
+                   repo: str | None = None) -> str:
     films = edition["films"]
 
     def of(outcome: str) -> list[dict]:
         return [f for f in films if f["outcome"] == outcome]
 
+    musts, oks = of("must"), of("ok")
+    link = issues_url(repo) if repo else None
+    seen = sum(1 for f in musts + oks if is_watched(f, watched))
     title = f"多伦多院线 · 第 {number} 期"
-    glance = _glance_section(of("must"), of("ok"))
+    glance = _glance_section(musts, oks, watched)
     body = (
         glance
-        + _must_section(of("must"))
-        + _ok_section(of("ok"))
+        + _must_section(musts, watched, link)
+        + _ok_section(oks, watched, link)
         + _failed_section(of("review_failed"))
         + _skip_section(of("skip"))
         + _events_section(edition["filtered_events"])
@@ -558,13 +562,15 @@ def render_edition(edition: dict, number: int, archive: list[tuple[str, int]], *
         '<meta name="robots" content="noindex">'
         f"<title>{esc(title)}</title><style>{STYLE}</style></head>"
         f"<body>{_hero(edition, title, is_latest)}"
-        f"{_nav(bool(glance), len(of('must')), len(of('ok')), len(of('skip')))}"
-        f'<main>{body}</main><div class="sr-only" role="status" aria-live="polite" data-live></div>'
-        f"<script>{SEEN_SCRIPT}</script></body></html>"
+        f"{_nav(bool(glance), len(musts), len(oks), len(of('skip')), seen)}"
+        f"<main>{body}</main>"
+        f"<script>{HIDE_SEEN_SCRIPT}</script></body></html>"
     )
 
 
-def render_site(editions: list[dict], out_dir: Path) -> None:
+def render_site(editions: list[dict], out_dir: Path, *, watched: frozenset[int] = frozenset(),
+                repo: str | None = None) -> None:
+    """watched 用在所有页面上（包括往期）：名单是现在的名单，不是当期的。"""
     if not editions:
         raise ValueError("没有任何一期数据，无法生成站点")
     ordered = sorted(editions, key=lambda e: e["edition_id"])
@@ -573,10 +579,10 @@ def render_site(editions: list[dict], out_dir: Path) -> None:
     pages = out_dir / "editions"
     pages.mkdir(parents=True, exist_ok=True)
     for edition, number in numbered:
-        page = render_edition(edition, number, archive, is_latest=False, prefix="../")
+        page = render_edition(edition, number, archive, is_latest=False, prefix="../", watched=watched, repo=repo)
         (pages / f'{edition["edition_id"]}.html').write_text(page, encoding="utf-8")
     latest, number = numbered[-1]
-    index = render_edition(latest, number, archive, is_latest=True, prefix="")
+    index = render_edition(latest, number, archive, is_latest=True, prefix="", watched=watched, repo=repo)
     (out_dir / "index.html").write_text(index, encoding="utf-8")
 
 
