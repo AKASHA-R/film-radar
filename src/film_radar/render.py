@@ -2,8 +2,11 @@
 from __future__ import annotations
 
 import html
+import re
 from datetime import date, datetime
 from pathlib import Path
+
+from .watched import edition_marker, is_watched, task_line
 
 CATEGORY_LABELS = {
     "scifi": "科幻",
@@ -20,6 +23,8 @@ EVIDENCE_NOTES = {
     "none": "没有通过校验的来源，下面的内容未经查证。",
 }
 ISSUE_TITLE_LIMIT = 200
+ISSUE_HOWTO = "勾选＝我已经看过，取消勾选＝撤销。几分钟后页面和其他期 Issue 会同步；页面没变化就强制刷新一下。"
+_LINE_BREAKS = re.compile(r"[\r\n\t\v\f\x1c-\x1e\x85\u2028\u2029]")
 
 HUES = {"scifi": 217, "thriller": 268, "political_historical": 160, "chinese": 40,
         "horror": 350, "japanese": 322, "crime": 190}
@@ -590,21 +595,39 @@ def issue_title(edition: dict, number: int) -> str:
     return title
 
 
-def issue_body(edition: dict, number: int, page_url: str) -> str:
-    musts = _by_strength([f for f in edition["films"] if f["outcome"] == "must"])
-    lines = []
+def _issue_text(text: str) -> str:
+    """写进 Issue 任务项的数据文字（片名、一句话推荐）先清理（spec 第 4 节）：换行和制表符换成空格，
+    否则一行任务项会被拆成两行，整个 Issue 生来就无法解析；尖括号换成全角，免得拼出假的 <!-- film: --> 标记
+    （逐字替换，不会像删掉 <!-- 那样拼出新标记）；@ 照旧插零宽空格。"""
+    return _no_mention(_LINE_BREAKS.sub(" ", text).replace("<", "＜").replace(">", "＞"))
+
+
+def _issue_line(film: dict, watched: frozenset[int], one_liner: str = "") -> str:
+    # 片名和状态之间所有行都用「 · 」：重映的状态文字自带括号，外面再套括号就成了双层
+    text = f"**{film['title']}** · {status_text(film)}"
+    if one_liner.strip():
+        text += f"：{one_liner}"
+    return task_line(_issue_text(text), film["film_id"], is_watched(film, watched))
+
+
+def issue_body(edition: dict, number: int, page_url: str, watched: frozenset[int] = frozenset()) -> str:
+    """edition Issue 正文：每部推荐片一行勾选框，勾选＝看过（spec 2026-10-17 第 4 节）。"""
+    films = edition["films"]
+    musts = _by_strength([f for f in films if f["outcome"] == "must"])
+    oks = _by_strength([f for f in films if f["outcome"] == "ok"])
+    showing = edition.get("watched_showing", [])        # 老数据没有这个字段
+    lines = [edition_marker(edition["edition_id"])]
     if musts:
-        lines.append(f"第 {number} 期重点推荐：")
-        lines.append("")
-        for film in musts:
-            lines.append(_no_mention(
-                f"- **{film['title']}**（{status_text(film)}）：{film['card']['one_liner']}"
-            ))
+        lines += [f"第 {number} 期重点推荐：", ""] + [_issue_line(f, watched, f["card"]["one_liner"]) for f in musts]
     else:
         lines.append("本期没有重点推荐。")
+    if oks:
+        lines += ["", "可以看：", ""] + [_issue_line(f, watched, f["card"]["one_liner"]) for f in oks]
+    if showing:
+        lines += ["", "看过、仍在映（取消勾选可撤销）：", ""] + [_issue_line(e, watched) for e in showing]
     counts = edition["counts"]
-    summary = f"可以看 {counts['ok']} 部，跳过 {counts['skip']} 部"
+    summary = f"跳过 {counts['skip']} 部"
     if counts["review_failed"]:
         summary += f"，未能评估 {counts['review_failed']} 部"
-    lines += ["", summary + "。", "", f"完整页面：{page_url}"]
+    lines += ["", summary + "。", "", ISSUE_HOWTO, f"完整页面：{page_url}"]
     return "\n".join(lines) + "\n"

@@ -9,6 +9,7 @@ from __future__ import annotations
 
 import json
 import re
+from dataclasses import dataclass
 from pathlib import Path
 
 WATCHED_VERSION = 1
@@ -83,3 +84,85 @@ def split_watched(candidates: list[dict], watched: frozenset[int]) -> tuple[list
         "version_ids": sorted(version_ids(c)),
     } for c in showing]
     return rest, sorted(entries, key=lambda e: (e["title"], e["film_id"]))
+
+
+# ---- Issue 任务项（spec 第 4 节）----
+
+EDITION_MARKER = re.compile(r"<!-- film-radar:edition (\d{4}-\d{2}-\d{2}) -->")
+FILM_MARK = "<!-- film:"
+TASK_LINE = re.compile(r"^- \[( |x|X)\] .*<!-- film:(\d+) bot:([01]) -->\s*$")
+
+
+@dataclass(frozen=True)
+class Issue:
+    number: int
+    body: str
+
+
+@dataclass(frozen=True)
+class Line:
+    film_id: int
+    checked: bool
+    bot: bool          # 程序最后一次写入时这一行勾没勾；用户的操作＝当前勾选 ≠ bot
+
+
+@dataclass(frozen=True)
+class ParsedIssue:
+    number: int
+    edition_id: str
+    lines: tuple[Line, ...]
+
+
+class IssueFormatError(Exception):
+    def __init__(self, number: int, reasons: list[str]):
+        super().__init__(f"Issue #{number} 无法解析：" + "；".join(reasons))
+        self.number = number
+        self.reasons = list(reasons)
+
+
+def edition_marker(edition_id: str) -> str:
+    return f"<!-- film-radar:edition {edition_id} -->"
+
+
+def task_line(text: str, film_id: int, checked: bool) -> str:
+    """一部片一行任务项。text 必须已经清理过（render._issue_text）。"""
+    return f"- [{'x' if checked else ' '}] {text} <!-- film:{film_id} bot:{int(checked)} -->"
+
+
+def _first_line(body: str) -> str:
+    return body.split("\n", 1)[0].lstrip("\ufeff").strip()
+
+
+def has_edition_marker(body: str) -> bool:
+    return EDITION_MARKER.fullmatch(_first_line(body)) is not None
+
+
+def parse_issue(issue: Issue) -> ParsedIssue | None:
+    """不是程序管理的 Issue（没有标记、也没有任何任务项标记）返回 None。
+
+    是程序管理的、但有坏行或重复编号，抛 IssueFormatError：整个 Issue 跳过、一个勾都不采用，
+    手改坏的 Issue 里分不清哪些勾是用户的意图。标记不在第一行（用户在上面加了字）也算坏，
+    否则这个 Issue 会被静默忽略。按 "\\n" 分行，行尾的 "\\r" 由正则的 \\s* 吸收。"""
+    rows = issue.body.split("\n")
+    marker = EDITION_MARKER.fullmatch(_first_line(issue.body))
+    if marker is None:
+        if any(FILM_MARK in row or EDITION_MARKER.search(row) for row in rows):
+            raise IssueFormatError(issue.number, ["第一行的 edition 标记不见了（是不是在它上面加了文字？）"])
+        return None
+    lines, reasons, seen = [], [], set()
+    for n, row in enumerate(rows, 1):
+        if FILM_MARK not in row:
+            continue
+        hit = TASK_LINE.match(row)
+        if hit is None:
+            reasons.append(f"第 {n} 行格式不对：{row.strip()[:80]}")
+            continue
+        film_id = int(hit.group(2))
+        if film_id in seen:
+            reasons.append(f"第 {n} 行：编号 {film_id} 出现了两次")
+            continue
+        seen.add(film_id)
+        lines.append(Line(film_id, hit.group(1) != " ", hit.group(3) == "1"))
+    if reasons:
+        raise IssueFormatError(issue.number, reasons)
+    return ParsedIssue(issue.number, marker.group(1), tuple(lines))

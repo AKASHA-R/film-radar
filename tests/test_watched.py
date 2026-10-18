@@ -78,3 +78,73 @@ def test_split_keeps_the_order_of_the_rest_and_sorts_watched_by_title():
         "film_id": 2, "title": "Alpha", "status": "now_playing", "release_date": "2026-10-02",
         "weeks_in_release": 1, "detail_url": "https://www.cineplex.com/movie/film-2", "version_ids": [2],
     }
+
+
+# ---- Issue 任务项（spec 第 4 节）----
+
+from film_radar.watched import (  # noqa: E402
+    Issue, IssueFormatError, Line, ParsedIssue, edition_marker, has_edition_marker, parse_issue, task_line,
+)
+
+FJORD = "- [ ] **Fjord** · 在映第 2 周：一句话 <!-- film:62301 bot:0 -->"
+BODY = "\n".join([
+    "<!-- film-radar:edition 2026-10-22 -->",
+    "第 4 期重点推荐：",
+    "",
+    FJORD,
+    "",
+    "看过、仍在映（取消勾选可撤销）：",
+    "",
+    "- [x] **Pan** · 重映（2006 年上映） <!-- film:62050 bot:1 -->",
+    "",
+    "cc @AKASHA-R",
+    "",
+])
+
+
+def test_marker_and_task_line_formats():
+    assert edition_marker("2026-10-22") == "<!-- film-radar:edition 2026-10-22 -->"
+    assert task_line("**A** · 在映第 1 周", 5, True) == "- [x] **A** · 在映第 1 周 <!-- film:5 bot:1 -->"
+    assert task_line("**A** · 在映第 1 周", 5, False) == "- [ ] **A** · 在映第 1 周 <!-- film:5 bot:0 -->"
+    assert has_edition_marker(BODY) and not has_edition_marker("备注\n" + BODY) and not has_edition_marker("")
+
+
+def test_parse_reads_every_task_line():
+    assert parse_issue(Issue(7, BODY)) == ParsedIssue(7, "2026-10-22", (Line(62301, False, False), Line(62050, True, True)))
+
+
+def test_parse_accepts_uppercase_x_and_crlf():
+    """GitHub 网页编辑过的正文可能是 \\r\\n 换行（Review Focus 1）。"""
+    body = BODY.replace("- [ ] **Fjord**", "- [X] **Fjord**").replace("\n", "\r\n")
+    parsed = parse_issue(Issue(7, body))
+    assert parsed.edition_id == "2026-10-22"
+    assert parsed.lines == (Line(62301, True, False), Line(62050, True, True))
+
+
+def test_an_issue_without_marker_or_film_lines_is_ignored():
+    assert parse_issue(Issue(3, "第 2 期重点推荐：\n\n- **A**（在映第 1 周）：旧格式\n")) is None
+    assert parse_issue(Issue(9, "")) is None
+
+
+def test_text_inserted_above_the_marker_is_reported_not_ignored():
+    """静默忽略的话，这个 Issue 里的勾永远不生效（Review Focus 2）。"""
+    with pytest.raises(IssueFormatError, match="第一行"):
+        parse_issue(Issue(7, "我的备注\n" + BODY))
+
+
+@pytest.mark.parametrize("broken", [
+    "- [ ] **Fjord** · x <!-- film:62301 bot:2 -->",
+    "- [ ] **Fjord** · x <!-- film:abc bot:0 -->",
+    "* [ ] **Fjord** · x <!-- film:62301 bot:0 -->",
+    "  - [ ] **Fjord** · x <!-- film:62301 bot:0 -->",
+    "- [ ] **Fjord** · x <!-- film:62301 bot:0 --> 我加的字",
+])
+def test_a_broken_line_makes_the_whole_issue_unparsable(broken):
+    with pytest.raises(IssueFormatError) as caught:
+        parse_issue(Issue(7, BODY.replace(FJORD, broken)))
+    assert caught.value.number == 7 and "第 4 行" in caught.value.reasons[0]
+
+
+def test_a_film_listed_twice_makes_the_whole_issue_unparsable():
+    with pytest.raises(IssueFormatError, match="两次"):
+        parse_issue(Issue(7, BODY.replace("film:62050", "film:62301")))

@@ -5,8 +5,9 @@ from datetime import date
 import pytest
 
 from film_radar.render import (
-    CATEGORY_LABELS, ISSUE_TITLE_LIMIT, issue_body, issue_title, render_edition, render_site, status_text,
+    CATEGORY_LABELS, ISSUE_HOWTO, ISSUE_TITLE_LIMIT, issue_body, issue_title, render_edition, render_site, status_text,
 )
+from film_radar.watched import Issue, parse_issue
 from helpers import broken, build_edition, failed_review, make_candidate, make_verdict, recommended, skipped
 
 PAGE_URL = "https://akasha-r.github.io/film-radar/"
@@ -350,25 +351,74 @@ def test_issue_title_is_truncated(settings):
     assert title.startswith("第 1 期 10/8：")
 
 
-def test_issue_body(settings):
+SEEN_ENTRY = {"film_id": 9, "title": "Seen", "status": "now_playing", "release_date": "2006-10-11",
+              "weeks_in_release": None, "detail_url": "https://www.cineplex.com/movie/seen", "version_ids": [9]}
+
+
+def test_issue_body_lists_must_and_ok_as_checkboxes(settings):
     edition = build_edition(settings, [
         recommended(1, "Pick", {"status": "coming_soon", "release_date": "2026-10-09", "weeks_in_release": None},
                     tier="must", one_liner="一部民俗恐怖片。"),
-        recommended(2, "Fine", tier="ok"),
+        recommended(2, "Fine", tier="ok", one_liner="还行。"),
         skipped(3, "Nope"),
         broken(4, "Broken"),
     ])
     body = issue_body(edition, 1, PAGE_URL)
-    assert "- **Pick**（10月9日上映）：一部民俗恐怖片。" in body
-    assert "可以看 1 部，跳过 1 部，未能评估 1 部。" in body
-    assert f"完整页面：{PAGE_URL}" in body
-    assert "Fine" not in body
+    lines = body.split("\n")
+    assert lines[0] == "<!-- film-radar:edition 2026-10-08 -->"
+    assert "- [ ] **Pick** · 10月9日上映：一部民俗恐怖片。 <!-- film:1 bot:0 -->" in lines
+    assert "- [ ] **Fine** · 在映第 1 周：还行。 <!-- film:2 bot:0 -->" in lines
+    assert lines.index("第 1 期重点推荐：") < lines.index("可以看：")
+    assert "跳过 1 部，未能评估 1 部。" in lines
+    assert ISSUE_HOWTO in lines and f"完整页面：{PAGE_URL}" in lines
+    assert "Nope" not in body and "Broken" not in body and "<details" not in body
 
 
 def test_issue_body_without_must_or_failures(settings):
     body = issue_body(build_edition(settings, [skipped(1, "A")]), 1, PAGE_URL)
-    assert "本期没有重点推荐。" in body
-    assert "未能评估" not in body
+    assert "本期没有重点推荐。" in body and "可以看：" not in body
+    assert "未能评估" not in body and "跳过 1 部。" in body
+
+
+def test_issue_body_round_trips_through_the_parser(settings):
+    edition = build_edition(settings, [recommended(1, "A", tier="must"), recommended(2, "B", tier="ok")])
+    edition["watched_showing"] = [dict(SEEN_ENTRY)]
+    parsed = parse_issue(Issue(5, issue_body(edition, 3, PAGE_URL, frozenset({9}))))
+    assert parsed.edition_id == "2026-10-08"
+    assert [(l.film_id, l.checked, l.bot) for l in parsed.lines] == [(1, False, False), (2, False, False), (9, True, True)]
+
+
+def test_watched_section_lists_films_checked(settings):
+    edition = build_edition(settings, [recommended(1, "A", tier="must")])
+    edition["watched_showing"] = [dict(SEEN_ENTRY)]
+    lines = issue_body(edition, 1, PAGE_URL, frozenset({9})).split("\n")
+    assert "看过、仍在映（取消勾选可撤销）：" in lines
+    assert "- [x] **Seen** · 重映（2006 年上映） <!-- film:9 bot:1 -->" in lines
+
+
+def test_watched_section_absent_when_empty_or_missing(settings):
+    """老数据没有 watched_showing 字段（Review Focus 4）。"""
+    edition = build_edition(settings, [recommended(1, "A", tier="must")])
+    edition.pop("watched_showing", None)
+    assert "看过、仍在映" not in issue_body(edition, 1, PAGE_URL)
+    edition["watched_showing"] = []
+    assert "看过、仍在映" not in issue_body(edition, 1, PAGE_URL)
+
+
+def test_a_recommended_film_already_on_the_list_is_checked(settings):
+    """迁移旧 Issue 时按当时的名单生成勾选状态（spec 第 10 节）。"""
+    edition = build_edition(settings, [recommended(1, "A", tier="must")])
+    assert "- [x] **A** · 在映第 1 周：一句话定位。 <!-- film:1 bot:1 -->" in issue_body(edition, 1, PAGE_URL, frozenset({1}))
+
+
+def test_issue_lines_are_cleaned_so_the_issue_always_parses(settings):
+    hostile = "Line\r\nbreak\tand <!-- film:1 bot:1 --> @octocat\u2028end"
+    edition = build_edition(settings, [recommended(7, hostile, tier="must", one_liner=hostile),
+                                       recommended(8, "B **bold** · dot", tier="ok")])
+    body = issue_body(edition, 1, PAGE_URL)
+    assert [l.film_id for l in parse_issue(Issue(1, body)).lines] == [7, 8]
+    assert "<!-- film:1 " not in body and "＜!-- film:1 bot:1 --＞" in body
+    assert "@octocat" not in body and "\t" not in body and "\u2028" not in body
 
 
 def test_issue_text_never_mentions_github_users(settings):
