@@ -19,7 +19,7 @@
 - **`watched`（用户看过）和 `seen_before`（上一期也推荐过，决定「新」徽标）是两回事**，别混用。设计见 `docs/superpowers/specs/2026-10-17-watched-list-design.md`。
 - **`data/watched.json` 只有同步（`sync-watched`）写。** 出刊运行只读：在内存里算「名单＋还没同步的勾」，不提交名单，不改 Issue。名单格式不对必须失败，绝不能当成空名单（会把所有 Issue 里的勾清掉）。
 - **同步先提交名单、再改写 Issue；同步检出必须带 `ref: main`；只有同步工作流部署页面；同步不和出刊共用并发组。** 这几条由 `tests/test_workflows.py` 读 YAML 守着，改工作流前先读那个测试的说明。
-- **本机跑 `run`、`sync-watched`、`migrate-issues` 要令牌：** 命令前加 `GH_TOKEN=$(gh auth token)`。没有令牌时出刊以「GitHub 接口」环节失败，不会悄悄只用文件里的名单。
+- **本机跑 `run`、`sync-watched`、`migrate-issues` 要令牌：** 命令前加 `GH_TOKEN=$(gh auth token)`。没有令牌时出刊以「GitHub 接口」环节失败，不会悄悄只用文件里的名单。本机跑 `sync-watched` 只写本地文件（`data/watched.json`、`out/`），不改 Issue。**`apply-watched-rewrites` 绝不在本机跑：**它按本机的名单改写 Issue，这份名单还没进 main 的话，下一次 CI 同步会按 main 上的名单把 Issue 改回去，那个勾就丢了。
 - **浏览器端到端测试要本机 Chrome**（没有就跳过）。headless Chrome 的 `--dump-dom` 打印完不会自己退出，读到 `</html>` 就要杀进程组；macOS 没有 `timeout` 命令。
 - **失败不落盘。** `main.py` 在流水线成功之后才写当期数据和站点。任何异常都要留下 `out/failure.txt`，工作流的失败 Issue 靠它写明环节。
 - `config/taste_profile.md` 是喂给模型的提示词输入，不是工程文档。不要往里写系统机制。

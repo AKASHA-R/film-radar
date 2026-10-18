@@ -57,7 +57,7 @@ GitHub 仓库的 Actions 页面 → edition → Run workflow。或者：
 gh workflow run edition.yml
 ```
 
-手动触发不受隔周限制。同一天重跑会覆盖当天那一期。
+手动触发不受隔周限制。同一天重跑会覆盖当天那一期，也会再开一个这一期的 Issue：把当天较早开的那个 Issue 去掉 `edition` 标签并关闭（像 #3 那样），否则同一期会有两个 Issue 同时生效。
 
 ## 本地开发
 
@@ -80,11 +80,13 @@ open site/index.html
 
 ## 出了问题
 
-运行失败时会开一个带 `failure` 标签的 Issue，写明失败在哪个环节。失败时已发布的页面不会被改动；页面超过 16 天没更新会自己在顶部提示过期。
+运行失败时会开一个带 `failure` 标签的 Issue，写明失败在哪个环节；同标题的失败 Issue 还开着时不另开，改在那个 Issue 下追加一条评论。失败时已发布的页面一般不会被改动，例外是数据已经提交之后的失败：出刊数据已提交、只是开通知 Issue 失败时，同步照样会触发，页面照常更新到新一期；同步时名单已提交、只是改写 Issue 失败时，页面也照常按新名单更新。失败 Issue 里会写明页面更新了没有。页面超过 16 天没更新会自己在顶部提示过期。
 
 最可能坏的地方是 Cineplex 抓取。Cineplex 没有公开 API，这里用的是它网站前端自带的订阅密钥，属于非官方用法，它改版就会断。先在 Actions 里手动跑 `probe` 工作流，看报告里 `cineplex` 那一半报什么错，再对照 `tests/fixtures/cineplex/README.md` 里记录的接口形状去查。
 
-流水线跑成功、但后面的推送 / 开 Issue / 触发同步失败时，这一期的数据在那次运行的 `edition-backup` 产物里（Actions 运行页面底部，保留 14 天），可以手工提交，不用再付一次钱重跑。
+流水线跑成功、但推送新一期数据失败时，这一期的数据在那次运行的 `edition-backup` 产物里（Actions 运行页面底部，保留 14 天），不用再付一次钱重跑：把产物里的 `data/editions` 手工提交到 main，再手动运行 watched-sync 更新页面。想补开这一期的 Issue，标题和正文在产物的 `out/issue_title.txt`、`out/issue_body.md` 里；手工开的时候要加上 `edition` 标签，里面的勾才会同步。
+
+数据已经推送到 main、只是开 Issue 或触发同步失败时，不用手工提交，手动运行 watched-sync 就行；Issue 没开成的话，照上面的办法从产物补开。
 
 重跑请用 Run workflow（手动触发）。在运行页面点 Re-run 会沿用原来的触发类型：一次失败的定时运行，如果在跳过周被重跑，会被当成跳过周，什么也不做。
 

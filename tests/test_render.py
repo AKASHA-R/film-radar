@@ -764,6 +764,13 @@ def test_watched_films_are_drawn_as_seen_on_every_page(mixed):
         assert '<li data-cat="japanese" data-fid="2">' in glance
 
 
+def test_the_seen_hint_is_only_for_screen_readers():
+    """「（已看过）」只给读屏软件读。.sr-only 规则被当成死 CSS 删掉的话，它会直接显示在卡片上，别的测试都看不出来。"""
+    rule = re.search(r"\.sr-only\{([^}]*)\}", _STYLE)
+    assert rule, ".sr-only 规则不见了"
+    assert "position:absolute" in rule.group(1) and "clip:rect(0 0 0 0)" in rule.group(1)
+
+
 def test_a_watched_version_marks_the_whole_film(settings):
     versions = [{"film_id": 1, "name": "A", "language": "English", "subtitle": ""},
                 {"film_id": 62252, "name": "A (Spanish)", "language": "Spanish", "subtitle": ""}]
