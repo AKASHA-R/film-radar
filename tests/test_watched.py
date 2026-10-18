@@ -207,8 +207,10 @@ def test_the_list_wins_over_an_issue_left_behind_by_a_failed_rewrite():
 def test_conflicting_actions_are_settled_by_the_newer_issue():
     newer_unticks = run({}, {5: task_issue("2026-10-08", (1, False, True)), 2: task_issue("2026-10-03", (1, True, False))})
     assert newer_unticks.films == {} and newer_unticks.conflicts == [1]
-    newer_ticks = run({1: entry(1)}, {2: task_issue("2026-10-03", (1, False, True)), 5: task_issue("2026-10-08", (1, True, False))})
-    assert list(newer_ticks.films) == [1] and newer_ticks.conflicts == [1]
+    listed = {1: entry(1, since="2026-10-01T00:00:00-04:00")}
+    newer_ticks = run(listed, {2: task_issue("2026-10-03", (1, False, True)), 5: task_issue("2026-10-08", (1, True, False))})
+    assert newer_ticks.conflicts == [1]
+    assert newer_ticks.films == listed and not newer_ticks.changed          # 名单里已有的片再被勾上：原条目原样保留
 
 
 def test_an_unparsable_issue_is_skipped_without_blocking_the_others():
@@ -271,3 +273,17 @@ def test_catalog_reads_watched_showing_and_tolerates_old_editions():
     assert catalog.versions("2026-10-03", 1) == {1}
     assert catalog.versions("2026-10-03", 77) == {77}          # 没见过的片只认它自己的编号
     assert catalog.titles[5] == "Film 5"
+
+
+def test_a_conflict_across_primary_ids_keeps_the_original_entry():
+    catalog = build_catalog([edition("2026-10-08", 1, versions={1: [1, 4]}), edition("2026-10-22", 4)])
+    listed = {1: entry(1, since="2026-10-01T00:00:00-04:00", ids=[1, 4])}
+    result = run(listed, {5: task_issue("2026-10-08", (1, False, True)), 7: task_issue("2026-10-22", (4, True, False))}, catalog)
+    assert result.films == listed and not result.changed
+
+
+def test_an_issue_ticked_for_a_film_missing_from_the_list_is_unticked():
+    """名单是事实来源，这个方向也一样：勾选和 bot 一致、名单里却没有，按名单把勾去掉。"""
+    result = run({}, {5: task_issue("2026-10-08", (1, True, True))})
+    assert result.films == {} and not result.changed and result.actions == []
+    assert result.rewrites == [Rewrite(5, 1, True, False)]

@@ -249,11 +249,17 @@ def sync(films: dict[int, dict], issues: list[Issue], catalog: Catalog, now: str
         ids = catalog.versions(edition_of[action.issue], action.film_id)
         covering = [key for key, entry in new.items() if not ids.isdisjoint(entry["ids"])]
         if action.watched and not covering:          # 已经在名单里的片再勾一次，不改动已有条目
-            new[action.film_id] = {
-                "title": catalog.titles.get(action.film_id, str(action.film_id)),
-                "since": now,
-                "ids": sorted(ids | catalog.by_primary.get(action.film_id, frozenset())),
-            }
+            # 本轮里较旧的 Issue 刚把它取消、较新的又勾上：原条目原样放回，不刷新 since（spec 第 3 节）
+            deleted = {key: entry for key, entry in films.items() if key not in new and not ids.isdisjoint(entry["ids"])}
+            if deleted:
+                for key, entry in deleted.items():
+                    new[key] = {**entry, "ids": list(entry["ids"])}
+            else:
+                new[action.film_id] = {
+                    "title": catalog.titles.get(action.film_id, str(action.film_id)),
+                    "since": now,
+                    "ids": sorted(ids | catalog.by_primary.get(action.film_id, frozenset())),
+                }
         elif not action.watched:
             for key in covering:
                 del new[key]
