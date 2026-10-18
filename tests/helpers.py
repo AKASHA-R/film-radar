@@ -183,3 +183,27 @@ def build_edition(settings, entries, previous=None, filtered_events=(), orphan_i
         generated_at=generated_at,
         settings=settings,
     )
+
+
+# ---- 「已看过」同步用到 ----
+
+def task_issue(edition_id: str, *rows) -> str:
+    """一个最小的 edition Issue 正文。rows 是 (film_id, 当前勾选, bot)。"""
+    from film_radar.watched import edition_marker, task_line
+
+    lines = [edition_marker(edition_id), "", "第 N 期重点推荐：", ""]
+    for film_id, checked, bot in rows:
+        line = task_line(f"**Film {film_id}** · 在映第 1 周", film_id, bot)
+        if checked != bot:
+            line = f"- [{'x' if checked else ' '}]" + line[5:]
+        lines.append(line)
+    return "\n".join(lines) + "\n\ncc @AKASHA-R\n"
+
+
+def toggle(body: str, film_id: int) -> str:
+    """模拟用户在网页上点一下某一行的勾选框。"""
+    rows = body.split("\n")
+    for i, row in enumerate(rows):
+        if f"<!-- film:{film_id} " in row:
+            rows[i] = ("- [x]" if row.startswith("- [ ]") else "- [ ]") + row[5:]
+    return "\n".join(rows)

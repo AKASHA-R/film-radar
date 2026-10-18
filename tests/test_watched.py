@@ -148,3 +148,126 @@ def test_a_broken_line_makes_the_whole_issue_unparsable(broken):
 def test_a_film_listed_twice_makes_the_whole_issue_unparsable():
     with pytest.raises(IssueFormatError, match="两次"):
         parse_issue(Issue(7, BODY.replace("film:62050", "film:62301")))
+
+
+# ---- 同步（spec 第 5 节）----
+
+from film_radar.watched import Action, Rewrite, build_catalog, sync  # noqa: E402
+from helpers import task_issue  # noqa: E402
+
+NOW = "2026-10-18T09:00:00-04:00"
+
+
+def edition(edition_id, *film_ids, versions=None, showing=()):
+    versions = versions or {}
+    data = {"edition_id": edition_id, "films": [
+        {"film_id": f, "title": f"Film {f}", "versions": [{"film_id": v} for v in versions.get(f, [f])]}
+        for f in film_ids
+    ]}
+    if showing:
+        data["watched_showing"] = [{"film_id": f, "title": f"Film {f}", "version_ids": [f]} for f in showing]
+    return data
+
+
+CATALOG = build_catalog([edition("2026-10-03", 1, 2), edition("2026-10-08", 1, 3)])
+
+
+def entry(film_id, since=NOW, ids=None):
+    return {"title": f"Film {film_id}", "since": since, "ids": ids or [film_id]}
+
+
+def run(films, issues, catalog=CATALOG):
+    return sync(films, [Issue(number, body) for number, body in issues.items()], catalog, NOW)
+
+
+def test_a_tick_adds_the_film_and_plans_every_issue_that_shows_it():
+    result = run({}, {2: task_issue("2026-10-03", (1, True, False), (2, False, False)),
+                      5: task_issue("2026-10-08", (1, False, False), (3, False, False))})
+    assert result.films == {1: entry(1)} and result.changed
+    assert result.actions == [Action(2, 1, True)]
+    assert result.rewrites == [Rewrite(2, 1, True, True), Rewrite(5, 1, False, True)]
+    assert result.conflicts == [] and result.problems == []
+
+
+def test_an_untick_removes_the_film_everywhere():
+    result = run({1: entry(1)}, {2: task_issue("2026-10-03", (1, False, True)),
+                                 5: task_issue("2026-10-08", (1, True, True))})
+    assert result.films == {} and result.changed
+    assert result.actions == [Action(2, 1, False)]
+    assert result.rewrites == [Rewrite(2, 1, False, False), Rewrite(5, 1, True, False)]
+
+
+def test_the_list_wins_over_an_issue_left_behind_by_a_failed_rewrite():
+    """名单是事实来源：Issue 和名单不一致、却没有用户操作（勾选＝bot），按名单改 Issue，不反过来改名单。"""
+    result = run({1: entry(1)}, {5: task_issue("2026-10-08", (1, False, False))})
+    assert result.films == {1: entry(1)} and not result.changed and result.actions == []
+    assert result.rewrites == [Rewrite(5, 1, False, True)]
+
+
+def test_conflicting_actions_are_settled_by_the_newer_issue():
+    newer_unticks = run({}, {5: task_issue("2026-10-08", (1, False, True)), 2: task_issue("2026-10-03", (1, True, False))})
+    assert newer_unticks.films == {} and newer_unticks.conflicts == [1]
+    newer_ticks = run({1: entry(1)}, {2: task_issue("2026-10-03", (1, False, True)), 5: task_issue("2026-10-08", (1, True, False))})
+    assert list(newer_ticks.films) == [1] and newer_ticks.conflicts == [1]
+
+
+def test_an_unparsable_issue_is_skipped_without_blocking_the_others():
+    unparsable = task_issue("2026-10-03", (1, True, False)).replace("bot:0", "bot:9")
+    result = run({}, {2: unparsable, 5: task_issue("2026-10-08", (3, True, False))})
+    assert result.films == {3: entry(3)}
+    assert [p.issue for p in result.problems] == [2] and "格式不对" in result.problems[0].reasons[0]
+    assert {r.issue for r in result.rewrites} == {5}
+
+
+def test_issues_without_the_edition_marker_are_ignored():
+    result = run({}, {3: "第 2 期重点推荐：\n\n- **Film 1**（在映第 1 周）：旧格式\n",
+                      9: "film-radar 运行失败\n\ncc @AKASHA-R\n"})
+    assert result.films == {} and result.actions == [] and result.rewrites == [] and result.problems == []
+
+
+def test_a_second_run_on_the_settled_issues_does_nothing():
+    first = run({}, {2: task_issue("2026-10-03", (1, True, False), (2, False, False)),
+                     5: task_issue("2026-10-08", (1, False, False))})
+    second = run(first.films, {2: task_issue("2026-10-03", (1, True, True), (2, False, False)),
+                               5: task_issue("2026-10-08", (1, True, True))})
+    assert second.films == first.films
+    assert not second.changed and second.actions == [] and second.rewrites == []
+
+
+def test_ticking_a_listed_film_again_keeps_its_entry():
+    old = entry(1, since="2026-10-01T00:00:00-04:00")
+    result = run({1: old}, {5: task_issue("2026-10-08", (1, True, False))})
+    assert result.films == {1: old} and not result.changed
+
+
+def test_unticking_a_film_that_is_not_listed_changes_nothing():
+    result = run({}, {5: task_issue("2026-10-08", (1, False, True))})
+    assert result.films == {} and not result.changed
+    assert result.rewrites == [Rewrite(5, 1, False, False)]          # 只把 bot 对齐
+
+
+def test_a_tick_records_every_version_seen_for_that_film():
+    catalog = build_catalog([edition("2026-10-03", 1), edition("2026-10-08", 1, versions={1: [1, 4]})])
+    result = run({}, {2: task_issue("2026-10-03", (1, True, False))}, catalog)
+    assert result.films == {1: entry(1, ids=[1, 4])}
+
+
+def test_films_are_matched_by_any_version_when_the_primary_id_changes():
+    catalog = build_catalog([edition("2026-10-08", 1, versions={1: [1, 4]}), edition("2026-10-22", 4)])
+    listed = {1: entry(1, ids=[1, 4])}
+    result = run(listed, {7: task_issue("2026-10-22", (4, False, False))}, catalog)
+    assert result.rewrites == [Rewrite(7, 4, False, True)] and not result.changed
+    assert run(listed, {7: task_issue("2026-10-22", (4, False, True))}, catalog).films == {}
+
+
+def test_a_film_missing_from_the_editions_is_still_recorded():
+    result = run({}, {5: task_issue("2026-10-08", (9000001, True, False))})
+    assert result.films == {9000001: {"title": "9000001", "since": NOW, "ids": [9000001]}}
+
+
+def test_catalog_reads_watched_showing_and_tolerates_old_editions():
+    catalog = build_catalog([edition("2026-10-03", 1), edition("2026-10-22", 2, showing=(5,))])
+    assert catalog.versions("2026-10-22", 5) == {5}
+    assert catalog.versions("2026-10-03", 1) == {1}
+    assert catalog.versions("2026-10-03", 77) == {77}          # 没见过的片只认它自己的编号
+    assert catalog.titles[5] == "Film 5"

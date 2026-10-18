@@ -166,3 +166,103 @@ def parse_issue(issue: Issue) -> ParsedIssue | None:
     if reasons:
         raise IssueFormatError(issue.number, reasons)
     return ParsedIssue(issue.number, marker.group(1), tuple(lines))
+
+
+# ---- 同步（spec 第 5 节）----
+
+@dataclass(frozen=True)
+class Action:
+    issue: int
+    film_id: int
+    watched: bool          # True＝勾上（标为看过），False＝取消（撤销）
+
+
+@dataclass(frozen=True)
+class Rewrite:
+    issue: int
+    film_id: int
+    observed: bool         # 计算时读到的勾选：改写时用它判断用户之后有没有又改过（spec 第 6 节第 4 步）
+    target: bool
+
+
+@dataclass(frozen=True)
+class Problem:
+    issue: int
+    reasons: tuple[str, ...]
+
+
+@dataclass(frozen=True)
+class Catalog:
+    """data/editions 里的编号：某一期里某部片的版本编号；每个主编号跨期合并后的版本编号；片名。"""
+    by_edition: dict
+    by_primary: dict
+    titles: dict
+
+    def versions(self, edition_id: str, film_id: int) -> frozenset[int]:
+        return self.by_edition.get((edition_id, film_id), frozenset({film_id}))
+
+
+@dataclass
+class SyncResult:
+    films: dict[int, dict]
+    changed: bool
+    actions: list[Action]
+    conflicts: list[int]
+    rewrites: list[Rewrite]
+    problems: list[Problem]
+
+
+def build_catalog(editions: list[dict]) -> Catalog:
+    by_edition, by_primary, titles = {}, {}, {}
+    for edition in sorted(editions, key=lambda e: e["edition_id"]):
+        for film in [*edition["films"], *edition.get("watched_showing", [])]:      # 老数据没有 watched_showing
+            ids = version_ids(film)
+            by_edition[(edition["edition_id"], film["film_id"])] = ids
+            by_primary[film["film_id"]] = by_primary.get(film["film_id"], frozenset()) | ids
+            titles[film["film_id"]] = film["title"]
+    return Catalog(by_edition, by_primary, titles)
+
+
+def sync(films: dict[int, dict], issues: list[Issue], catalog: Catalog, now: str) -> SyncResult:
+    """films 是旧名单，issues 是所有 edition Issue（含已关闭的），now 是多伦多时区的 ISO 时间。"""
+    parsed, problems = [], []
+    for issue in sorted(issues, key=lambda i: i.number):
+        try:
+            result = parse_issue(issue)
+        except IssueFormatError as e:
+            problems.append(Problem(e.number, tuple(e.reasons)))
+            continue
+        if result is not None:
+            parsed.append(result)
+
+    # 用户的操作＝当前勾选和 bot 不一致的行。按 Issue 编号从小到大应用，冲突时编号大的（较新的一期）自然胜出。
+    # 不用 updated_at：评论、关闭、改标签都会刷新它，反映不了勾选的先后
+    actions = [Action(p.number, line.film_id, line.checked) for p in parsed for line in p.lines if line.checked != line.bot]
+    kinds: dict[int, set[bool]] = {}
+    for action in actions:
+        kinds.setdefault(action.film_id, set()).add(action.watched)
+    conflicts = sorted(film_id for film_id, seen in kinds.items() if len(seen) > 1)
+
+    edition_of = {p.number: p.edition_id for p in parsed}
+    new = {film_id: {**entry, "ids": list(entry["ids"])} for film_id, entry in films.items()}
+    for action in actions:
+        ids = catalog.versions(edition_of[action.issue], action.film_id)
+        covering = [key for key, entry in new.items() if not ids.isdisjoint(entry["ids"])]
+        if action.watched and not covering:          # 已经在名单里的片再勾一次，不改动已有条目
+            new[action.film_id] = {
+                "title": catalog.titles.get(action.film_id, str(action.film_id)),
+                "since": now,
+                "ids": sorted(ids | catalog.by_primary.get(action.film_id, frozenset())),
+            }
+        elif not action.watched:
+            for key in covering:
+                del new[key]
+
+    listed = watched_ids(new)
+    rewrites = []
+    for p in parsed:
+        for line in p.lines:
+            target = not catalog.versions(p.edition_id, line.film_id).isdisjoint(listed)
+            if line.checked != target or line.bot != target:
+                rewrites.append(Rewrite(p.number, line.film_id, line.checked, target))
+    return SyncResult(new, new != films, actions, conflicts, rewrites, problems)
