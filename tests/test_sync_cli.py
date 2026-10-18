@@ -80,6 +80,7 @@ def test_an_unparsable_issue_is_reported_and_the_rest_still_sync(root, monkeypat
     problem = read(root / "out" / "problems" / "issue-4.md").split("\n")
     assert problem[0] == "已看过同步：Issue #4 无法解析"
     assert any("格式不对" in row for row in problem)
+    assert "这次都没有采用" in problem[1]
     assert "Issue #4 无法解析" in read(root / "gh_summary")
 
 
@@ -123,7 +124,9 @@ def test_an_issue_broken_between_sync_and_rewrite_is_skipped_and_reported(root, 
     github.bodies[5] = github.bodies[5].replace("bot:0", "bot:8")
     assert apply_rewrites(root) == 0
     assert ("update_body", 5) not in github.calls
-    assert read(root / "out" / "problems" / "issue-5.md").startswith("已看过同步：Issue #5 无法解析\n")
+    problem = read(root / "out" / "problems" / "issue-5.md")
+    assert problem.startswith("已看过同步：Issue #5 无法解析\n")
+    assert "已经计入名单" in problem and "这次都没有采用" not in problem          # 这时勾已经进了名单，不能说成没采用
 
 
 def test_an_untick_in_one_issue_is_spread_to_the_others_with_their_own_observed_state(root, monkeypatch):
@@ -149,3 +152,21 @@ def test_an_issue_that_lost_its_marker_between_sync_and_rewrite_is_skipped_and_r
     assert lines(github, 2) == (Line(1, True, True),)
     problem = read(root / "out" / "problems" / "issue-5.md")
     assert problem.startswith("已看过同步：Issue #5 无法解析\n") and "edition 标记不见了" in problem
+
+
+def test_an_unexpected_error_during_apply_still_leaves_the_collected_problem_files(root, monkeypatch):
+    class Crashing(FakeGitHub):
+        def update_body(self, number, body):
+            if number == 5:
+                raise RuntimeError("boom")
+            super().update_body(number, body)
+
+    github = use_github(monkeypatch, Crashing({4: task_issue("2026-10-03", (1, True, False)),
+                                               5: task_issue("2026-10-08", (1, False, False))}))
+    assert sync_watched(root) == 0
+    assert not (root / "out" / "problems" / "issue-4.md").exists()     # 同步时 #4 是好的，问题只会来自改写阶段
+    github.bodies[4] = github.bodies[4].replace("bot:0", "bot:8")
+    assert apply_rewrites(root) == 1                                   # 先处理 #4（收集到问题），再在 #5 上炸
+    assert "失败环节：未预期的错误" in read(root / "out" / "failure.txt")
+    problem = read(root / "out" / "problems" / "issue-4.md")
+    assert problem.startswith("已看过同步：Issue #4 无法解析\n") and "已经计入名单" in problem

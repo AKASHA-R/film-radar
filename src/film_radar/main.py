@@ -300,15 +300,19 @@ def _build_site(root: Path) -> int:
 
 
 REWRITE_ATTEMPTS = 3
+# 提醒正文的第二行。同步阶段发现的和改写阶段发现的说法不同：后者的勾已经计入并提交了名单，只是勾选框没对齐。
+SYNC_PROBLEM_LEAD = "Issue #{issue} 里有几行不符合格式，这个 Issue 里的勾这次都没有采用，其他 Issue 照常同步："
+APPLY_PROBLEM_LEAD = ("Issue #{issue} 里的勾已经计入名单，只是改写前重新读取时它不符合格式了，"
+                      "所以它的勾选框这次没有对齐，其他 Issue 照常改写：")
 
 
-def _write_problems(out: Path, problems: list[Problem]) -> None:
-    """无法解析的 Issue 各写一个文件：第一行是失败 Issue 的标题，其余是正文。工作流逐个开 Issue（同标题还开着就不重复开）。"""
+def _write_problems(out: Path, problems: list[Problem], *, lead: str) -> None:
+    """无法解析的 Issue 各写一个文件：第一行是失败 Issue 的标题，其余是正文。工作流逐个开 Issue（同标题还开着就不重复开）。
+    lead 是标题下面那句话的模板，含 {issue}。"""
     folder = out / "problems"
     folder.mkdir(parents=True, exist_ok=True)
     for problem in problems:
-        lines = [f"已看过同步：Issue #{problem.issue} 无法解析",
-                 f"Issue #{problem.issue} 里有几行不符合格式，这个 Issue 里的勾这次都没有采用，其他 Issue 照常同步：", ""]
+        lines = [f"已看过同步：Issue #{problem.issue} 无法解析", lead.format(issue=problem.issue), ""]
         lines += [f"- {reason}" for reason in problem.reasons]
         lines += ["", "在这个 Issue 的编辑历史里把这几行改回原样，然后在任意一个 edition Issue 里勾一下（或手动运行 watched-sync），就会重新同步。"]
         (folder / f"issue-{problem.issue}.md").write_text("\n".join(lines) + "\n", encoding="utf-8")
@@ -343,7 +347,7 @@ def _sync_watched(root: Path) -> int:
     out.mkdir(parents=True, exist_ok=True)
     plan = {"rewrites": [asdict(r) for r in result.rewrites]}
     (out / "watched_plan.json").write_text(json.dumps(plan, ensure_ascii=False, indent=1), encoding="utf-8")
-    _write_problems(out, result.problems)
+    _write_problems(out, result.problems, lead=SYNC_PROBLEM_LEAD)
     _set_output("changed", "true" if result.changed else "false")
     _write_sync_summary(result, len(issues))
     print(f"读到 {len(issues)} 个 edition Issue：操作 {len(result.actions)} 个，计划改写 {len(result.rewrites)} 行，"
@@ -359,30 +363,32 @@ def _apply_watched_rewrites(root: Path) -> int:
     rewrites = [Rewrite(**r) for r in plan["rewrites"]]
     client = github_client(settings)
     problems, failed = [], []
-    for number in sorted({r.issue for r in rewrites}):
-        mine = [r for r in rewrites if r.issue == number]
-        for attempt in range(REWRITE_ATTEMPTS):
-            try:
-                body = client.issue_body(number)
+    try:
+        for number in sorted({r.issue for r in rewrites}):
+            mine = [r for r in rewrites if r.issue == number]
+            for attempt in range(REWRITE_ATTEMPTS):
                 try:
-                    parsed = parse_issue(Issue(number, body))
-                except IssueFormatError as e:
-                    problems.append(Problem(number, tuple(e.reasons)))
+                    body = client.issue_body(number)
+                    try:
+                        parsed = parse_issue(Issue(number, body))
+                    except IssueFormatError as e:
+                        problems.append(Problem(number, tuple(e.reasons)))
+                        break
+                    if parsed is None:
+                        problems.append(Problem(number, ("改写前重新读取时，第一行的 edition 标记不见了",)))
+                        break
+                    new = apply_rewrites(body, mine)
+                    if new != body:
+                        client.update_body(number, new)
                     break
-                if parsed is None:
-                    problems.append(Problem(number, ("改写前重新读取时，第一行的 edition 标记不见了",)))
-                    break
-                new = apply_rewrites(body, mine)
-                if new != body:
-                    client.update_body(number, new)
-                break
-            except GitHubError as e:
-                error = e
-                if attempt + 1 < REWRITE_ATTEMPTS:
-                    time.sleep(5)
-        else:
-            failed.append(f"#{number}（{error}）")
-    _write_problems(out, problems)
+                except GitHubError as e:
+                    error = e
+                    if attempt + 1 < REWRITE_ATTEMPTS:
+                        time.sleep(5)
+            else:
+                failed.append(f"#{number}（{error}）")
+    finally:       # 中途出了没预料到的异常，已经收集到的问题也要留下文件
+        _write_problems(out, problems, lead=APPLY_PROBLEM_LEAD)
     if failed:
         raise GitHubError(
             "名单已提交，但这几个 Issue 没改写完：" + "、".join(failed) + "。"
