@@ -534,8 +534,8 @@ def test_cli_skip_week_reads_nothing_from_github(root, monkeypatch):
     assert main(["--root", str(root), "run", "--date", "2026-10-15"]) == 0
 
 
-def test_cli_reads_the_list_before_the_issues(root, monkeypatch):
-    """反过来的话，两次读取之间刚好完成一次同步（先提交名单、后改写 Issue），会同时漏掉两边的这个勾。"""
+def test_cli_reads_the_issues_before_the_list(root, monkeypatch):
+    """反过来先读名单的话，两次读取之间刚好完成一次同步——先提交名单、后改写 Issue——会同时漏掉两边的这个勾。"""
     order = []
 
     class Recording(FakeGitHub):
@@ -546,7 +546,7 @@ def test_cli_reads_the_list_before_the_issues(root, monkeypatch):
     use_fakes(monkeypatch, github=Recording())
     monkeypatch.setattr(main_module, "remote_watched_text", lambda root: order.append("list"))
     assert main(["--root", str(root), "run", "--manual", "--date", "2026-10-03"]) == 0
-    assert order == ["list", "issues"]
+    assert order == ["issues", "list"]
 
 
 def test_cli_a_pending_tick_counts_but_nothing_is_written_back(root, monkeypatch, settings):
@@ -561,6 +561,8 @@ def test_cli_a_pending_tick_counts_but_nothing_is_written_back(root, monkeypatch
     assert github.updates == []                                          # 也不改 Issue
     index = (root / "site" / "index.html").read_text(encoding="utf-8")
     assert "看过、仍在映（1）" in index
+    archived = (root / "site" / "editions" / "2026-09-19.html").read_text(encoding="utf-8")
+    assert '<article class="film feature is-seen" id="film-61994"' in archived      # 往期页面也按未同步的勾画出已看过
 
 
 def test_cli_an_edition_where_everything_was_watched_still_publishes(root, monkeypatch):
@@ -589,6 +591,7 @@ def test_cli_a_malformed_watched_list_fails_before_any_claude_call(root, monkeyp
     monkeypatch.setattr(main_module, "build_clients", lambda settings: (_ for _ in ()).throw(AssertionError("不应该建客户端")))
     assert main(["--root", str(root), "run", "--manual", "--date", "2026-10-03"]) == 1
     assert "失败环节：读取已看过名单" in (root / "out" / "failure.txt").read_text(encoding="utf-8")
+    assert not (root / "data").exists()
 
 
 def test_cli_an_unparsable_issue_does_not_stop_the_edition(root, monkeypatch, capsys):

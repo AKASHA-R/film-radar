@@ -212,9 +212,9 @@ def remote_watched_text(root: Path) -> str | None:
 
 def effective_watched(root: Path, settings: Settings, editions: list[dict], now: datetime) -> frozenset[int]:
     """名单＋Issue 里还没同步的勾，只在内存里算，不提交名单、不改 Issue（spec 第 6 节末段、第 8 节）。
-    先读名单、后读 Issue。"""
-    films = load_watched(remote_watched_text(root))
+    先读 Issue、后读名单：同步先提交名单、后改写 Issue，所以只要读 Issue 在前，任何一个勾要么还在 Issue 里显示为操作，要么已经在后读到的名单里。"""
     issues = github_client(settings).edition_issues()
+    films = load_watched(remote_watched_text(root))
     result = sync(films, issues, build_catalog(editions), now.isoformat(timespec="seconds"))
     for problem in result.problems:
         print(f"Issue #{problem.issue} 无法解析，这一期不采用它里面的勾：{'；'.join(problem.reasons)}")

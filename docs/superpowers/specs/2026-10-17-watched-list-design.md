@@ -178,7 +178,7 @@
 
 ## 8. 出刊流水线改动
 
-- **顺序：**先过双周门控（跳过周照旧什么都不做、不建任何客户端、不读 GitHub），然后从 `origin/main` 取最新的 `data/watched.json`（`git fetch` 后读取，不用检出时的那份），再读 Issue，用第 5 节的纯函数算出「有效名单」（只在内存里）。先读名单、后读 Issue：反过来的话，两次读取之间如果刚好完成一次同步（先提交名单、后改写 Issue），会同时漏掉名单里和 Issue 里的这个勾。
+- **顺序：**先过双周门控（跳过周照旧什么都不做、不建任何客户端、不读 GitHub），然后读 Issue，再从 `origin/main` 取最新的 `data/watched.json`（`git fetch` 后读取，不用检出时的那份），用第 5 节的纯函数算出「有效名单」（只在内存里）。**先读 Issue、后读名单**：同步是先提交名单、后改写 Issue，所以读 Issue 在前时，任何一个勾要么还在 Issue 里显示为操作，要么已经在后读到的名单里；反过来先读名单的话，两次读取之间刚好完成一次同步，会同时漏掉两边的这个勾。（2026-10-18 实施时的任务审查纠正：此前版本把顺序写反了。）
 - **注入：**`_run` 像 `build_clients` 那样通过一个可替换的 `issue_reader` 取 Issue，测试里换成替身，不联网。没有 `GITHUB_TOKEN`（例如本机手动跑）时按失败处理，不悄悄只用文件里的名单。
 - **失败环节：**新增异常类 `WatchedError`（名单格式不对）和 `GitHubError`（接口出错），登记进 `STAGES`，环节名分别是「读取已看过名单」「GitHub 接口」，照旧写 `out/failure.txt`。这一步在任何 Claude 调用之前，失败不花钱。`sync-watched`、`apply-watched-rewrites`、`migrate-issues` 三个新子命令共用 `main()` 的异常处理，同步工作流的失败 Issue 也读 `out/failure.txt`。
 - `run_pipeline(..., watched: frozenset[int] = frozenset())`（给默认值，现有测试不用改）：
