@@ -161,6 +161,7 @@ h2 .count{font-size:14px;font-weight:800;letter-spacing:0;background:var(--yello
 ul.plain{list-style:none;padding:0;margin:8px 0 0;font-size:14px}
 .fold ul.plain{columns:2 340px;column-gap:36px}
 ul.plain li{padding:8px 0;border-top:1px solid var(--line);overflow-wrap:anywhere;break-inside:avoid}
+.revoked{margin-left:10px;color:var(--warn);font-weight:700}
 .pills{display:flex;flex-wrap:wrap;gap:8px;list-style:none;margin:0;padding:0}
 .pills a{display:inline-block;padding:6px 14px;border:2px solid var(--ink);background:var(--surface);color:var(--ink);text-decoration:none;font-size:14px;font-weight:700;transition:background .15s}
 .pills a:hover{background:var(--yellow);color:var(--on-yellow)}
@@ -438,6 +439,21 @@ def _skip_section(films: list[dict]) -> str:
     return f'<details class="fold" id="skip"><summary>跳过的片（{len(films)}）</summary><ul class="plain">{rows}</ul></details>'
 
 
+def _watched_section(entries: list[dict], watched: frozenset[int]) -> str:
+    """当期因为看过而没参加评估、但仍在映或即将上映的片（spec 2026-10-17 第 9 节）。
+    生成页面时名单里已经没有它（用户后来撤销了），就注明下期会重新评估。"""
+    if not entries:
+        return ""
+    rows = []
+    for entry in entries:
+        url = safe_url(entry["detail_url"])
+        link = f' · <a href="{esc(url)}" rel="noopener">Cineplex</a>' if url else ""
+        revoked = "" if is_watched(entry, watched) else '<span class="revoked">已撤销，下期会重新评估</span>'
+        rows.append(f'<li><b>{esc(entry["title"])}</b> · {esc(status_text(entry))}{link}{revoked}</li>')
+    return (f'<details class="fold"><summary>看过、仍在映（{len(entries)}）</summary>'
+            f'<ul class="plain">{"".join(rows)}</ul></details>')
+
+
 def _events_section(events: list[dict]) -> str:
     if not events:
         return ""
@@ -552,6 +568,7 @@ def render_edition(edition: dict, number: int, archive: list[tuple[str, int]], *
         + _ok_section(oks, watched, link)
         + _failed_section(of("review_failed"))
         + _skip_section(of("skip"))
+        + _watched_section(edition.get("watched_showing", []), watched)
         + _events_section(edition["filtered_events"])
         + _footer(edition, archive, is_latest, prefix)
     )

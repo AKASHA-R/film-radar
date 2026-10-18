@@ -123,6 +123,53 @@ def test_skip_list_shows_reasons(mixed):
     assert "儿童动画" in re.search(r'<li data-film="4">.*?</li>', html, re.S).group(0)
 
 
+SHOWING = [{"film_id": 9, "title": "Pan's Labyrinth", "status": "now_playing", "release_date": "2006-10-11",
+            "weeks_in_release": None, "detail_url": "https://www.cineplex.com/movie/pans-labyrinth", "version_ids": [9]}]
+
+
+def with_showing(edition, entries=SHOWING):
+    edition["watched_showing"] = [dict(e) for e in entries]
+    return edition
+
+
+def watched_fold(html):
+    return re.search(r'<details class="fold"><summary>看过、仍在映.*?</details>', html, re.S).group(0)
+
+
+def test_watched_fold_sits_between_skipped_and_filtered_events(mixed):
+    html = page(with_showing(mixed), watched=frozenset({9}))
+    order = [html.index(m) for m in ("跳过的片（2）", "看过、仍在映（1）", "已过滤的非电影活动（1）")]
+    assert order == sorted(order)
+    nav = re.search(r'<nav class="jump".*?</nav>', html, re.S).group(0)
+    hero = re.search(r"<header.*?</header>", html, re.S).group(0)
+    assert "看过、仍在映" not in nav and "看过、仍在映" not in hero
+
+
+def test_watched_fold_lists_title_status_and_link(mixed):
+    fold = watched_fold(page(with_showing(mixed), watched=frozenset({9})))
+    assert "<b>Pan&#x27;s Labyrinth</b> · 重映（2006 年上映）" in fold
+    assert '<a href="https://www.cineplex.com/movie/pans-labyrinth" rel="noopener">Cineplex</a>' in fold
+    assert "已撤销" not in fold
+
+
+def test_a_film_unticked_since_the_edition_is_marked_revoked(mixed):
+    fold = watched_fold(page(with_showing(mixed), watched=frozenset()))
+    assert '<span class="revoked">已撤销，下期会重新评估</span>' in fold
+
+
+def test_watched_fold_absent_when_empty_or_missing(mixed):
+    """老数据没有 watched_showing 字段（Review Focus 4）。"""
+    mixed.pop("watched_showing", None)
+    assert "看过、仍在映" not in page(mixed)
+    assert "看过、仍在映" not in page(with_showing(mixed, []))
+
+
+def test_watched_fold_escapes_text_and_drops_unsafe_links(mixed):
+    hostile = [{**SHOWING[0], "title": "<x-mark>", "detail_url": "javascript:alert(1)"}]
+    html = page(with_showing(mixed, hostile))
+    assert "<x-mark>" not in html and "&lt;x-mark&gt;" in html and "javascript:" not in html
+
+
 def test_filtered_events_are_listed_with_categories(mixed):
     html = page(mixed)
     assert "已过滤的非电影活动（1）" in html
