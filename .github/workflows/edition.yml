@@ -6,11 +6,11 @@ on:
     - cron: "0 11 * * 4"
   workflow_dispatch:
 
+# 页面不在这里部署：提交新一期之后触发 watched-sync，由它生成并部署页面，整个仓库只有一个部署者（spec 2026-10-17 第 6 节）
 permissions:
   contents: write
-  pages: write
-  id-token: write
   issues: write
+  actions: write
 
 concurrency:
   group: edition
@@ -19,9 +19,6 @@ concurrency:
 jobs:
   edition:
     runs-on: ubuntu-latest
-    environment:
-      name: github-pages
-      url: ${{ steps.deploy.outputs.page_url }}
     steps:
       - uses: actions/checkout@v4
 
@@ -35,9 +32,11 @@ jobs:
         id: run
         env:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          # 只读：取最新的已看过名单和 Issue 里还没同步的勾，用来排除看过的片（GITHUB_REPOSITORY 是 Actions 默认就有的）
+          GITHUB_TOKEN: ${{ github.token }}
         run: python -m film_radar.main run ${{ github.event_name == 'workflow_dispatch' && '--manual' || '' }}
 
-      # 这一期花了几块钱，只存在这台临时机器上。先备份成产物：后面的推送、部署、开 Issue 任何一步失败，
+      # 这一期花了几块钱，只存在这台临时机器上。先备份成产物：后面的推送、开 Issue 任何一步失败，
       # 数据都还在，可以手工提交，不用再付一次钱重跑
       - name: Back up the new edition
         if: steps.run.outputs.skipped == 'false'
@@ -65,20 +64,8 @@ jobs:
           echo "git push 三次都没成功。这一期的数据在本次运行的 edition-backup 产物里。" >&2
           exit 1
 
-      - uses: actions/configure-pages@v5
-        if: steps.run.outputs.skipped == 'false'
-
-      - uses: actions/upload-pages-artifact@v3
-        if: steps.run.outputs.skipped == 'false'
-        with:
-          path: site
-
-      - name: Deploy pages
-        id: deploy
-        if: steps.run.outputs.skipped == 'false'
-        uses: actions/deploy-pages@v4
-
       - name: Open edition issue
+        id: issue
         if: steps.run.outputs.skipped == 'false'
         env:
           GH_TOKEN: ${{ github.token }}
@@ -89,23 +76,35 @@ jobs:
             --body-file out/issue_body.md \
             --label edition
 
+      # 开 Issue 失败也要触发，否则页面就没人更新了。用 GITHUB_TOKEN 触发 workflow_dispatch 是允许的（闸门 G4）
+      - name: Trigger watched-sync
+        id: dispatch
+        if: always() && steps.commit.outcome == 'success'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh workflow run watched-sync.yml --repo "${{ github.repository }}" --ref main
+
       - name: Open failure issue
         if: failure()
         env:
           GH_TOKEN: ${{ github.token }}
           RUN_OUTCOME: ${{ steps.run.outcome }}
           COMMIT_OUTCOME: ${{ steps.commit.outcome }}
-          DEPLOY_OUTCOME: ${{ steps.deploy.outcome }}
+          ISSUE_OUTCOME: ${{ steps.issue.outcome }}
+          DISPATCH_OUTCOME: ${{ steps.dispatch.outcome }}
         run: |
           {
             echo "运行日志：${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"
             echo
-            if [ "$DEPLOY_OUTCOME" = "success" ]; then
-              echo "页面已经更新到新一期，数据也已提交，只是通知 Issue 没开成（比如 edition 标签被删了）。直接打开页面看新一期。"
+            if [ "$COMMIT_OUTCOME" = "success" ] && [ "$DISPATCH_OUTCOME" != "success" ]; then
+              echo "新一期数据已提交，但页面还没更新（同步没有触发）。手动运行 watched-sync，或者在任意一个 Issue 里勾一下。"
+              if [ "$ISSUE_OUTCOME" != "success" ]; then
+                echo "通知 Issue 也没开成。"
+              fi
+            elif [ "$COMMIT_OUTCOME" = "success" ] && [ "$ISSUE_OUTCOME" != "success" ]; then
+              echo "页面会在几分钟内更新到新一期，只是通知 Issue 没开成（比如 edition 标签被删了）。"
             elif [ "$RUN_OUTCOME" = "success" ] && [ "$COMMIT_OUTCOME" != "success" ]; then
               echo "流水线跑成功了，但提交数据这一步没完成（推送被拒，或备份上传失败）。页面没有更新。能找到本次运行的 edition-backup 产物的话，这一期的数据就在里面。"
-            elif [ "$RUN_OUTCOME" = "success" ]; then
-              echo "流水线跑成功、数据已提交，但页面部署失败，页面还是上一期。"
             elif [ -f out/failure.txt ]; then
               cat out/failure.txt
               echo
@@ -115,10 +114,5 @@ jobs:
             else
               echo "失败在流水线之前的环境准备（检出代码或安装依赖），详见运行日志。已发布的页面没有被改动。"
             fi
-            echo
-            echo "cc @${{ github.repository_owner }}"
           } > failure_body.md
-          gh issue create --repo "${{ github.repository }}" \
-            --title "film-radar 运行失败 $(date -u +%F)" \
-            --body-file failure_body.md \
-            --label failure
+          sh scripts/open_issue_once.sh "film-radar 运行失败 $(date -u +%F)" failure_body.md

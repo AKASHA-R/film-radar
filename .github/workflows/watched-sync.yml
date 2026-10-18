@@ -1,0 +1,145 @@
+name: watched-sync
+
+# 「已看过」名单的同步，也是整个仓库唯一部署页面的地方（spec 2026-10-17 第 6、7 节）。
+# 任何 Issue 被编辑都完整跑一轮，不加任务级的过滤条件：同组里新排队的运行会顶掉原来排队的那个，
+# 只对 edition Issue 运行的话，编辑别的 Issue 产生的运行会顶掉一次真正的同步、自己却什么都不做，那次部署就丢了。
+on:
+  issues:
+    types: [edited]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  issues: write
+  pages: write
+  id-token: write
+
+# 同步之间串行。不和 edition 共用并发组：共用的话，出刊排队时用户正好打勾，出刊运行会被同步顶掉，而且不报错。
+concurrency:
+  group: watched-sync
+  cancel-in-progress: false
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deploy.outputs.page_url }}
+    steps:
+      # 必须写 ref: main。issues 和 workflow_dispatch 的运行在创建时就固定了要检出的提交，
+      # 排队等到开始执行时，默认检出的是几分钟前的旧名单，会按旧名单把刚同步好的 Issue 改回去
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - run: pip install -e .
+
+      - name: Sync watched list
+        id: sync
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        run: python -m film_radar.main sync-watched
+
+      # 先提交名单，再改写 Issue：反过来的话，Issue 改写成功而提交失败时，用户的勾在 Issue 里已被「对齐」掉、
+      # 名单里却没有，这个勾就悄无声息地丢了。顺序和条件由 tests/test_workflows.py 守着
+      - name: Commit watched list
+        id: commit
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/watched.json 2>/dev/null || true
+          if git diff --cached --quiet; then
+            echo "名单没有变化。"
+            exit 0
+          fi
+          git commit -m "data: 同步已看过名单"
+          # 只有同步写这个文件、同步之间又是串行的，变基不会在它上面冲突（出刊只提交 data/editions）
+          for attempt in 1 2 3; do
+            git pull --rebase --quiet origin main && git push && exit 0
+            sleep 5
+          done
+          echo "git push 三次都没成功，名单没提交。" >&2
+          exit 1
+
+      - name: Rewrite issues
+        id: apply
+        if: steps.commit.outcome == 'success'
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        run: python -m film_radar.main apply-watched-rewrites
+
+      # 每次同步都部署，不管名单变没变：同组排队的运行被顶掉时，顶替者开始得更晚、从更新的 main 出发，
+      # 所以后一次部署一定不比前一次旧。改写 Issue 失败也照样部署：页面按已提交的名单生成
+      - name: Build site
+        id: build
+        if: always() && steps.commit.outcome == 'success'
+        run: |
+          git pull --ff-only --quiet origin main
+          python -m film_radar.main build-site
+
+      - uses: actions/configure-pages@v5
+        id: pages
+        if: always() && steps.build.outcome == 'success'
+
+      - uses: actions/upload-pages-artifact@v3
+        id: upload
+        if: always() && steps.pages.outcome == 'success'
+        with:
+          path: site
+
+      - name: Deploy pages
+        id: deploy
+        if: always() && steps.upload.outcome == 'success'
+        uses: actions/deploy-pages@v4
+
+      - name: Report unparsable issues
+        if: always()
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          for f in out/problems/*.md; do
+            [ -e "$f" ] || continue
+            tail -n +2 "$f" > problem_body.md
+            printf '\n运行日志：%s/%s/actions/runs/%s\n' "${{ github.server_url }}" "${{ github.repository }}" "${{ github.run_id }}" >> problem_body.md
+            sh scripts/open_issue_once.sh "$(head -n 1 "$f")" problem_body.md
+          done
+
+      - name: Open failure issue
+        if: failure()
+        env:
+          GH_TOKEN: ${{ github.token }}
+          SYNC_OUTCOME: ${{ steps.sync.outcome }}
+          COMMIT_OUTCOME: ${{ steps.commit.outcome }}
+          APPLY_OUTCOME: ${{ steps.apply.outcome }}
+          DEPLOY_OUTCOME: ${{ steps.deploy.outcome }}
+        run: |
+          {
+            echo "运行日志：${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"
+            echo
+            if [ "$APPLY_OUTCOME" = "failure" ]; then
+              cat out/failure.txt
+              echo
+              if [ "$DEPLOY_OUTCOME" = "success" ]; then
+                echo "页面已按新名单更新。"
+              else
+                echo "页面也没更新成功。"
+              fi
+            elif [ "$APPLY_OUTCOME" = "success" ] && [ "$DEPLOY_OUTCOME" != "success" ]; then
+              echo "名单和 Issue 已经更新，只是页面还是旧的；手动运行 watched-sync 重新部署。"
+            elif [ "$COMMIT_OUTCOME" = "failure" ]; then
+              echo "推送三次都被拒，名单没提交，什么都没变。你的勾还在 Issue 里，下一次同步会补上；想马上补就手动运行 watched-sync。页面这次没有部署。"
+            elif [ "$SYNC_OUTCOME" = "failure" ]; then
+              cat out/failure.txt 2>/dev/null || echo "同步程序失败了，但没有留下失败说明，详见运行日志。"
+              echo
+              echo "名单没提交，什么都没变。你的勾还在 Issue 里，下一次同步会补上。页面这次没有部署：如果刚出了新一期，手动运行 watched-sync。"
+            elif [ "$SYNC_OUTCOME" = "success" ]; then
+              echo "名单、Issue 和页面都处理完了，失败在开「Issue 无法解析」提醒这一步，详见运行日志。"
+            else
+              echo "失败在同步之前的环境准备（检出代码或安装依赖），详见运行日志。什么都没变。"
+            fi
+          } > failure_body.md
+          sh scripts/open_issue_once.sh "已看过同步失败" failure_body.md
