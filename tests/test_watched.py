@@ -287,3 +287,79 @@ def test_an_issue_ticked_for_a_film_missing_from_the_list_is_unticked():
     result = run({}, {5: task_issue("2026-10-08", (1, True, True))})
     assert result.films == {} and not result.changed and result.actions == []
     assert result.rewrites == [Rewrite(5, 1, True, False)]
+
+
+# ---- 改写合并（spec 第 6 节第 4 步）----
+
+from film_radar.watched import apply_rewrites  # noqa: E402
+from helpers import toggle  # noqa: E402
+
+
+def lines_of(body):
+    return parse_issue(Issue(0, body)).lines
+
+
+def test_a_rewrite_sets_checkbox_and_bot_to_the_target():
+    out = apply_rewrites(task_issue("2026-10-08", (1, False, False), (3, False, False)), [Rewrite(5, 1, False, True)])
+    assert lines_of(out) == (Line(1, True, True), Line(3, False, False))
+
+
+def test_a_rewrite_only_touches_the_checkbox_and_the_bot_digit():
+    body = task_issue("2026-10-08", (1, False, False)).replace("**Film 1**", "**Film 1** 和朋友一起看").replace("\n", "\r\n")
+    out = apply_rewrites(body, [Rewrite(5, 1, False, True)])
+    assert out == body.replace("- [ ] **Film 1**", "- [x] **Film 1**").replace("film:1 bot:0", "film:1 bot:1")
+
+
+def test_a_box_the_user_changed_after_the_computation_keeps_the_users_choice():
+    body = task_issue("2026-10-08", (1, False, False))          # 计算时读到「勾上」，改写前用户又取消了
+    out = apply_rewrites(body, [Rewrite(5, 1, True, True)])
+    assert lines_of(out) == (Line(1, False, True),)             # 勾选保留用户的，bot 写成目标：下一轮认得出这是撤销
+
+
+def round_trip(films, bodies, user=None):
+    """跑一轮同步再改写。user(bodies) 在计算之后、改写之前修改正文，模拟用户手快。"""
+    result = sync(films, [Issue(n, b) for n, b in bodies.items()], CATALOG, NOW)
+    if user:
+        user(bodies)
+    for number in sorted({r.issue for r in result.rewrites}):
+        bodies[number] = apply_rewrites(bodies[number], [r for r in result.rewrites if r.issue == number])
+    return result.films, bodies
+
+
+def settled(films, bodies):
+    """再跑一轮应当什么都不做。"""
+    again = sync(films, [Issue(n, b) for n, b in bodies.items()], CATALOG, NOW)
+    return again.actions == [] and again.rewrites == [] and not again.changed
+
+
+def test_unticking_right_after_ticking_is_not_swallowed():
+    bodies = {5: task_issue("2026-10-08", (1, True, False))}
+    films, bodies = round_trip({}, bodies, user=lambda b: b.update({5: toggle(b[5], 1)}))
+    assert list(films) == [1]                                   # 第一轮记下了勾
+    films, bodies = round_trip(films, bodies)
+    assert films == {} and lines_of(bodies[5]) == (Line(1, False, False),) and settled(films, bodies)
+
+
+def test_reticking_right_after_unticking_is_not_swallowed():
+    bodies = {5: task_issue("2026-10-08", (1, False, True))}
+    films, bodies = round_trip({1: entry(1)}, bodies, user=lambda b: b.update({5: toggle(b[5], 1)}))
+    assert films == {}
+    films, bodies = round_trip(films, bodies)
+    assert list(films) == [1] and lines_of(bodies[5]) == (Line(1, True, True),) and settled(films, bodies)
+
+
+def test_another_line_changed_in_the_same_issue_is_not_overwritten():
+    bodies = {5: task_issue("2026-10-08", (1, True, False), (3, False, False))}
+    films, bodies = round_trip({}, bodies, user=lambda b: b.update({5: toggle(b[5], 3)}))
+    assert list(films) == [1]
+    films, bodies = round_trip(films, bodies)
+    assert sorted(films) == [1, 3] and settled(films, bodies)
+
+
+def test_a_rewrite_that_never_happened_is_repaired_by_the_next_run():
+    bodies = {2: task_issue("2026-10-03", (1, True, False)), 5: task_issue("2026-10-08", (1, False, False))}
+    first = sync({}, [Issue(n, b) for n, b in bodies.items()], CATALOG, NOW)       # 名单已提交，改写全部失败
+    films, bodies = round_trip(first.films, bodies)
+    assert films == first.films
+    assert lines_of(bodies[2]) == (Line(1, True, True),) and lines_of(bodies[5]) == (Line(1, True, True),)
+    assert settled(films, bodies)

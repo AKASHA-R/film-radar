@@ -272,3 +272,22 @@ def sync(films: dict[int, dict], issues: list[Issue], catalog: Catalog, now: str
             if line.checked != target or line.bot != target:
                 rewrites.append(Rewrite(p.number, line.film_id, line.checked, target))
     return SyncResult(new, new != films, actions, conflicts, rewrites, problems)
+
+
+def apply_rewrites(body: str, rewrites: list[Rewrite]) -> str:
+    """在改写前新读到的正文上逐行合并（spec 第 6 节第 4 步），只动勾选框和 bot 两处，其他文字原样保留。
+
+    bot 一律写成目标；勾选框只在「新读到的勾选」等于「计算时读到的勾选」时才改，否则保留用户刚改的勾选：
+    那一行变成「当前 ≠ bot」，下一次同步能认出这个操作。"""
+    plan = {r.film_id: r for r in rewrites}
+    rows = body.split("\n")
+    for i, row in enumerate(rows):
+        hit = TASK_LINE.match(row)
+        if hit is None or int(hit.group(2)) not in plan:
+            continue
+        rewrite = plan[int(hit.group(2))]
+        current = hit.group(1) != " "
+        checked = rewrite.target if current == rewrite.observed else current
+        start, end = hit.span(3)
+        rows[i] = f"- [{'x' if checked else ' '}]" + row[5:start] + str(int(rewrite.target)) + row[end:]
+    return "\n".join(rows)
