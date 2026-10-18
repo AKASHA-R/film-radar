@@ -1,12 +1,14 @@
 """读取并校验 config/settings.toml。"""
 from __future__ import annotations
 
+import re
 import tomllib
 from dataclasses import dataclass, fields
 from datetime import date
 from pathlib import Path
 
 CADENCE_DAYS = 14
+_REPO = re.compile(r"[A-Za-z0-9-]+/[A-Za-z0-9._-]+")
 
 
 class SettingsError(Exception):
@@ -36,6 +38,7 @@ class Settings:
     search_price_per_search: float
     timezone: str
     page_url: str
+    repo: str
 
 
 def load_settings(path: Path) -> Settings:
@@ -57,4 +60,6 @@ def load_settings(path: Path) -> Settings:
             f"showtime_days = {settings.showtime_days}，小于两期间隔 {CADENCE_DAYS} 天。"
             "排片窗口比两期间隔短时，零星放映的片会两期都查不到。"
         )
+    if not _REPO.fullmatch(settings.repo):
+        raise SettingsError(f"repo 要写成 owner/name，例如 AKASHA-R/film-radar：{settings.repo!r}")
     return settings

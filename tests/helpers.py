@@ -207,3 +207,39 @@ def toggle(body: str, film_id: int) -> str:
         if f"<!-- film:{film_id} " in row:
             rows[i] = ("- [x]" if row.startswith("- [ ]") else "- [ ]") + row[5:]
     return "\n".join(rows)
+
+
+class FakeGitHub:
+    """github.GitHubClient 的替身：Issue 正文存在内存里（{编号: 正文}）。方法与真客户端一致（test_github.py 守着）。
+
+    fail_updates：接下来这么多次 update_body 抛 GitHubError。before_update(number, body)：真正写入前回调，
+    用来断言「改写前已经写好备份」这类顺序。"""
+
+    def __init__(self, bodies=None, fail_updates=0, before_update=None):
+        self.bodies = dict(bodies or {})
+        self.fail_updates = fail_updates
+        self.before_update = before_update
+        self.updates: list[tuple[int, str]] = []
+        self.calls: list = []
+
+    def edition_issues(self):
+        from film_radar.watched import Issue
+
+        self.calls.append("edition_issues")
+        return [Issue(number, body) for number, body in sorted(self.bodies.items())]
+
+    def issue_body(self, number):
+        self.calls.append(("issue_body", number))
+        return self.bodies[number]
+
+    def update_body(self, number, body):
+        from film_radar.github import GitHubError
+
+        self.calls.append(("update_body", number))
+        if self.fail_updates:
+            self.fail_updates -= 1
+            raise GitHubError(f"PATCH issues/{number}: HTTP 502")
+        if self.before_update:
+            self.before_update(number, body)
+        self.updates.append((number, body))
+        self.bodies[number] = body

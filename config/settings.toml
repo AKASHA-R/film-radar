@@ -38,3 +38,5 @@ search_price_per_search = 0.01
 
 timezone = "America/Toronto"
 page_url = "https://akasha-r.github.io/film-radar/"
+# GitHub 仓库（owner/name）。页面上「去 Issue 打勾」的链接和本机跑迁移时的接口用它；Actions 里接口以 GITHUB_REPOSITORY 为准。
+repo = "AKASHA-R/film-radar"

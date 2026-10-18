@@ -40,6 +40,7 @@ def test_loads_repo_settings(settings):
     assert settings.search_price_per_search == 0.01
     assert settings.timezone == "America/Toronto"
     assert settings.page_url == "https://akasha-r.github.io/film-radar/"
+    assert settings.repo == "AKASHA-R/film-radar"
 
 
 def test_anchor_date_is_a_thursday(settings):
@@ -76,4 +77,11 @@ def test_rejects_unknown_key(tmp_path):
 def test_rejects_anchor_date_written_as_string(tmp_path):
     path = variant(tmp_path, "anchor_date = 2026-10-08", 'anchor_date = "2026-10-08"')
     with pytest.raises(SettingsError, match="anchor_date"):
+        load_settings(path)
+
+
+@pytest.mark.parametrize("bad", ["film-radar", "https://github.com/AKASHA-R/film-radar", "AKASHA-R/film-radar/x", "AKASHA R/film-radar"])
+def test_rejects_a_repo_that_is_not_owner_slash_name(tmp_path, bad):
+    path = variant(tmp_path, 'repo = "AKASHA-R/film-radar"', f'repo = "{bad}"')
+    with pytest.raises(SettingsError, match="repo"):
         load_settings(path)
