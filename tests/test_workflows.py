@@ -103,3 +103,24 @@ def test_sync_failure_wording():
 def test_unparsable_issues_are_reported_every_run():
     report = next(s for s in steps(SYNC, "sync") if s.get("name") == "Report unparsable issues")
     assert report["if"] == "always()" and "out/problems" in report["run"] and "open_issue_once.sh" in report["run"]
+
+
+def test_only_the_unparsable_report_skips_an_open_duplicate():
+    """失败 Issue 没人关：同标题还开着时，失败要追加成评论，不能被吞掉。只有内容稳定的「无法解析」提醒跳过（否则每次编辑都刷屏）。"""
+    report = next(s for s in steps(SYNC, "sync") if s.get("name") == "Report unparsable issues")
+    assert "problem_body.md skip-if-open" in report["run"]
+    for wf, job in ((SYNC, "sync"), (EDITION, "edition")):
+        script = failure_script(wf, job)
+        assert "open_issue_once.sh" in script and "skip-if-open" not in script, job
+
+
+def test_a_rewrite_failure_keeps_its_own_description():
+    """改写失败之后 build-site 也可能失败、覆盖 out/failure.txt；改写那一步要留自己的一份。
+    失败 Issue 读它时不能用裸 cat：bash -e 下 cat 失败会让这一步在开 Issue 之前就退出。"""
+    apply = step(SYNC, "sync", "apply")
+    assert apply["run"].startswith("python -m film_radar.main apply-watched-rewrites || ")
+    assert "cp out/failure.txt out/apply_failure.txt" in apply["run"] and "exit 1" in apply["run"]
+    script = failure_script(SYNC, "sync")
+    branch = script[script.index('"$APPLY_OUTCOME" = "failure"'):script.index("elif")]
+    assert "cat out/apply_failure.txt 2>/dev/null || echo " in branch
+    assert "out/failure.txt" not in branch

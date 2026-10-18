@@ -65,12 +65,14 @@ jobs:
           echo "git push 三次都没成功，名单没提交。" >&2
           exit 1
 
+      # 失败说明另存一份：后面的 build-site 失败会覆盖 out/failure.txt，失败 Issue 里就看不到改写为什么失败、
+      # 也看不到「别撤销刚才的勾」的提醒（spec 第 15 节）
       - name: Rewrite issues
         id: apply
         if: steps.commit.outcome == 'success'
         env:
           GITHUB_TOKEN: ${{ github.token }}
-        run: python -m film_radar.main apply-watched-rewrites
+        run: python -m film_radar.main apply-watched-rewrites || { cp out/failure.txt out/apply_failure.txt 2>/dev/null; exit 1; }
 
       # 每次同步都部署，不管名单变没变：同组排队的运行被顶掉时，顶替者开始得更晚、从更新的 main 出发，
       # 所以后一次部署一定不比前一次旧。改写 Issue 失败也照样部署：页面按已提交的名单生成
@@ -105,7 +107,8 @@ jobs:
             [ -e "$f" ] || continue
             tail -n +2 "$f" > problem_body.md
             printf '\n运行日志：%s/%s/actions/runs/%s\n' "${{ github.server_url }}" "${{ github.repository }}" "${{ github.run_id }}" >> problem_body.md
-            sh scripts/open_issue_once.sh "$(head -n 1 "$f")" problem_body.md
+            # skip-if-open：同一个提醒还开着就不再评论，否则每次编辑 Issue 都会刷屏
+            sh scripts/open_issue_once.sh "$(head -n 1 "$f")" problem_body.md skip-if-open
           done
 
       - name: Open failure issue
@@ -121,7 +124,7 @@ jobs:
             echo "运行日志：${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"
             echo
             if [ "$APPLY_OUTCOME" = "failure" ]; then
-              cat out/failure.txt
+              cat out/apply_failure.txt 2>/dev/null || echo "改写 Issue 失败了，但没有留下失败说明，详见运行日志。"
               echo
               if [ "$DEPLOY_OUTCOME" = "success" ]; then
                 echo "页面已按新名单更新。"
