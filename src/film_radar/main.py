@@ -8,6 +8,7 @@ from __future__ import annotations
 import argparse
 import json
 import os
+import re
 import subprocess
 import sys
 import time
@@ -30,8 +31,8 @@ from .review import review_film
 from .settings import Settings, SettingsError, load_settings
 from .triage import TriageError, triage
 from .watched import (
-    Issue, IssueFormatError, Problem, Rewrite, WatchedError, apply_rewrites, build_catalog, dump_watched,
-    load_watched, load_watched_file, parse_issue, split_watched, sync, watched_ids,
+    EDITION_MARKER, FILM_MARK, Issue, IssueFormatError, Problem, Rewrite, WatchedError, apply_rewrites,
+    build_catalog, dump_watched, load_watched, load_watched_file, parse_issue, split_watched, sync, watched_ids,
 )
 
 
@@ -41,6 +42,10 @@ class PipelineError(Exception):
 
 class ReviewError(Exception):
     """入围片里超过一半精评失败。单独一类，失败 Issue 才能写成「联网精评」而不是「数据核对」。"""
+
+
+class MigrateError(Exception):
+    pass
 
 
 STAGES = {
@@ -53,6 +58,7 @@ STAGES = {
     AssembleError: "汇总",
     WatchedError: "读取已看过名单",
     GitHubError: "GitHub 接口",
+    MigrateError: "迁移旧 Issue",
 }
 UNEXPECTED_STAGE = "未预期的错误"
 
@@ -399,6 +405,45 @@ def _apply_watched_rewrites(root: Path) -> int:
     return 0
 
 
+def _map_arg(text: str) -> tuple[int, str]:
+    number, sep, edition_id = text.partition("=")
+    if not (sep and number.isdigit() and re.fullmatch(r"\d{4}-\d{2}-\d{2}", edition_id)):
+        raise argparse.ArgumentTypeError(f"--map 要写成 Issue编号=期号，例如 2=2026-10-03：{text!r}")
+    return int(number), edition_id
+
+
+def _migrate_issues(root: Path, maps: list[tuple[int, str]], apply: bool) -> int:
+    """一次性把旧 Issue 改成勾选格式（spec 第 10 节）。默认只打印；--apply 才改写，改写前先备份旧正文。
+    已经是勾选格式的一律跳过，没有强制覆盖的选项：重跑不会清掉用户在已迁移 Issue 里打的勾。
+    判「已迁移」要宽：edition 标记出现在正文任何位置、或任何一行带任务行标记都算。只看第一行的话，
+    用户在标记上面加一行备注，就会被当成旧格式整个覆盖。"""
+    settings = load_settings(root / "config" / "settings.toml")
+    editions = load_editions(root / "data" / "editions")
+    by_id = {e["edition_id"]: e for e in editions}
+    numbers = {e["edition_id"]: i + 1 for i, e in enumerate(editions)}
+    missing = [edition_id for _, edition_id in maps if edition_id not in by_id]
+    if missing:
+        raise MigrateError("data/editions 里没有这几期：" + "、".join(missing))
+    watched = watched_ids(load_watched_file(root / "data" / "watched.json"))
+    client = github_client(settings)
+    owner = settings.repo.split("/")[0]
+    backup = root / "out" / "migrate-backup"
+    for number, edition_id in maps:
+        old = client.issue_body(number)
+        if EDITION_MARKER.search(old) or FILM_MARK in old:
+            print(f"#{number} 已经是勾选格式，跳过（不提供强制覆盖：会清掉你在里面打的勾）。")
+            continue
+        new = issue_body(by_id[edition_id], numbers[edition_id], settings.page_url, watched) + f"\ncc @{owner}\n"
+        if not apply:
+            print(f"----- #{number} → 第 {numbers[edition_id]} 期 {edition_id}（预览，加 --apply 才改写）-----\n{new}")
+            continue
+        backup.mkdir(parents=True, exist_ok=True)
+        (backup / f"{number}.md").write_text(old, encoding="utf-8")
+        client.update_body(number, new)
+        print(f"#{number} 已改写，旧正文备份在 {backup / f'{number}.md'}")
+    return 0
+
+
 def _fail(root: Path, stage: str, reason: str) -> int:
     message = f"失败环节：{stage}\n原因：{reason}"
     print(message, file=sys.stderr)
@@ -418,6 +463,9 @@ def main(argv: list[str] | None = None) -> int:
     commands.add_parser("build-site")
     commands.add_parser("sync-watched")
     commands.add_parser("apply-watched-rewrites")
+    migrate = commands.add_parser("migrate-issues")
+    migrate.add_argument("--map", dest="maps", action="append", type=_map_arg, required=True)
+    migrate.add_argument("--apply", action="store_true")
     args = parser.parse_args(argv)
     root = Path(args.root)
     try:
@@ -427,6 +475,8 @@ def main(argv: list[str] | None = None) -> int:
             return _sync_watched(root)
         if args.command == "apply-watched-rewrites":
             return _apply_watched_rewrites(root)
+        if args.command == "migrate-issues":
+            return _migrate_issues(root, args.maps, args.apply)
         return _build_site(root)
     except tuple(STAGES) as e:
         stage = next(label for kind, label in STAGES.items() if isinstance(e, kind))
