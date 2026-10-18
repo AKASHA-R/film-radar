@@ -10,7 +10,6 @@ from .settings import Settings
 from .watched import Issue
 
 API = "https://api.github.com"
-BOT_LOGIN = "github-actions[bot]"
 TIMEOUT = 30
 _NEXT = re.compile(r'<([^>]+)>;\s*rel="next"')
 
@@ -35,18 +34,29 @@ class GitHubClient:
         except requests.RequestException as e:
             raise GitHubError(f"{method} {url}: {type(e).__name__}") from e
         if not 200 <= response.status_code < 300:
-            raise GitHubError(f"{method} {url}: HTTP {response.status_code}")
+            # 带上 GitHub 说的原因（403 可能是权限不够，也可能是限流）。GitHub 的错误正文不回显令牌
+            text = " ".join((response.text or "")[:200].split())
+            raise GitHubError(f"{method} {url}: HTTP {response.status_code} {text}".rstrip())
         return response
+
+    def _get_json(self, url: str):
+        """GET 并解析 JSON。代理或认证页可能回 200 加一张网页，那也是接口出错，不能漏成 ValueError。"""
+        response = self._request("GET", url)
+        try:
+            return response, response.json()
+        except ValueError as e:
+            raise GitHubError(f"GET {url}: 响应不是 JSON") from e
 
     def edition_issues(self) -> list[Issue]:
         """所有带 edition 标签的 Issue，包括已关闭的（用户可能勾完顺手关掉），跟着 Link 头按页读完，去掉 PR。
-        只认机器人开的：有分诊权限的人也能给自己开的 Issue 打 edition 标签，那不是程序管理的 Issue。"""
+        不看作者：推送失败时用户会照 README 从 edition-backup 产物手工开 edition Issue，只认机器人开的话，
+        那里面的勾会被永远悄悄忽略。是不是程序管理的 Issue 由 edition 标签和 parse_issue 的标记规则决定。"""
         url = f"{API}/repos/{self.repo}/issues?labels=edition&state=all&per_page=100"
         issues = []
         while url:
-            response = self._request("GET", url)
-            for item in response.json():
-                if "pull_request" in item or (item.get("user") or {}).get("login") != BOT_LOGIN:
+            response, items = self._get_json(url)
+            for item in items:
+                if "pull_request" in item:
                     continue
                 issues.append(Issue(item["number"], item.get("body") or ""))
             found = _NEXT.search(response.headers.get("Link", ""))
@@ -54,7 +64,8 @@ class GitHubClient:
         return issues
 
     def issue_body(self, number: int) -> str:
-        return self._request("GET", f"{API}/repos/{self.repo}/issues/{number}").json().get("body") or ""
+        _, item = self._get_json(f"{API}/repos/{self.repo}/issues/{number}")
+        return item.get("body") or ""
 
     def update_body(self, number: int, body: str) -> None:
         self._request("PATCH", f"{API}/repos/{self.repo}/issues/{number}", json={"body": body})

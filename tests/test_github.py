@@ -9,15 +9,19 @@ REPO = "AKASHA-R/film-radar"
 FIRST = f"{API}/repos/{REPO}/issues?labels=edition&state=all&per_page=100"
 SECOND = f"{API}/repositories/1/issues?labels=edition&state=all&per_page=100&page=2"
 BOT = {"login": "github-actions[bot]"}
+NOT_JSON = object()
 
 
 class Response:
-    def __init__(self, status=200, data=None, link=""):
+    def __init__(self, status=200, data=None, link="", text=""):
         self.status_code = status
         self._data = data
+        self.text = text
         self.headers = {"Link": link} if link else {}
 
     def json(self):
+        if self._data is NOT_JSON:                      # 和 requests 一样：正文不是 JSON 时抛 ValueError 的子类
+            raise requests.JSONDecodeError("Expecting value", self.text, 0)
         return self._data
 
 
@@ -55,10 +59,12 @@ def test_reads_every_page_including_closed_issues_and_drops_pull_requests():
     assert http.calls[0]["timeout"] == 30
 
 
-def test_issues_not_opened_by_the_bot_are_ignored():
-    """有分诊权限的人也能给自己开的 Issue 打 edition 标签；那不是程序管理的 Issue。"""
-    gh, _ = client({("GET", FIRST): Response(data=[item(7, user={"login": "someone"}), item(8, user=None), item(5)])})
-    assert [i.number for i in gh.edition_issues()] == [5]
+def test_edition_issues_opened_by_hand_are_read_too():
+    """推送失败后，用户照 README 从 edition-backup 产物手工开 edition Issue；只认机器人开的话，里面的勾永远不生效。
+    是不是程序管理的 Issue 由 edition 标签和 parse_issue 的标记规则决定，不看作者。"""
+    gh, _ = client({("GET", FIRST): Response(data=[item(7, user={"login": "AKASHA-R"}), item(8, user=None), item(5),
+                                                  item(4, user={"login": "AKASHA-R"}, pull_request={"url": "x"})])})
+    assert [i.number for i in gh.edition_issues()] == [7, 8, 5]
 
 
 def test_an_empty_body_comes_back_as_an_empty_string():
@@ -80,11 +86,26 @@ def test_update_sends_only_the_body():
 @pytest.mark.parametrize("route, message", [
     (Response(status=502), "HTTP 502"),
     (requests.ConnectionError("boom"), "ConnectionError"),
+    (Response(data=NOT_JSON, text="<html>Sign in to the Wi-Fi</html>"), "不是 JSON"),     # 代理或认证页回了 200
 ])
 def test_http_and_network_errors_become_github_errors(route, message):
-    gh, _ = client({("GET", FIRST): route})
+    gh, _ = client({("GET", FIRST): route, ("GET", f"{API}/repos/{REPO}/issues/5"): route})
     with pytest.raises(GitHubError, match=message):
         gh.edition_issues()
+    with pytest.raises(GitHubError, match=message):
+        gh.issue_body(5)
+
+
+def test_http_errors_say_what_github_said():
+    """403 有好几种原因（权限不够、限流），只写状态码的话失败 Issue 里看不出是哪一种。"""
+    url = f"{API}/repos/{REPO}/issues/5"
+    gh, _ = client({("PATCH", url): Response(status=403, text='{"message":"Resource not accessible by integration",\n'
+                                                                 '"documentation_url":"https://docs.github.com"}')})
+    with pytest.raises(GitHubError) as caught:
+        gh.update_body(5, "新正文")
+    message = str(caught.value)
+    assert message.startswith(f"PATCH {url}: HTTP 403 ") and "Resource not accessible by integration" in message
+    assert "\n" not in message
 
 
 def test_client_from_env_needs_a_token(settings):
