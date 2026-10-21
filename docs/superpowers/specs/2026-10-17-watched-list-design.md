@@ -223,7 +223,7 @@
 
 ## 11. 失败处理
 
-所有失败 Issue 都带 `failure` 标签、不带 `edition` 标签，正文末尾带 `cc @<仓库所有者>`（和现有失败 Issue 一样，靠它确保通知）。**同标题的失败 Issue 还开着就不重复开**：用 REST 接口列出 `labels=failure&state=open` 的 Issue 逐个比较标题，不用搜索接口（搜索索引有延迟，连续两次同步仍会重复开）。
+所有失败 Issue 都带 `failure` 标签、不带 `edition` 标签，正文末尾带 `cc @<仓库所有者>`（和现有失败 Issue 一样，靠它确保通知）。**同标题的失败 Issue 还开着就不重复开，而是把这次的情况追加为它下面的一条评论**（评论同样带 cc，会通知）；只有「Issue 无法解析」的通知在同标题 Issue 开着时直接跳过（它的内容不变，每次编辑 Issue 都追加评论会刷屏）。不能只跳过：没有任何步骤会关掉失败 Issue，一个旧的「已看过同步失败」开着，就会让之后的每次同步失败悄无声息，包括第 15 节依赖的改写失败提醒。用 REST 接口列出 `labels=failure&state=open` 的 Issue 逐个比较标题，不用搜索接口（搜索索引有延迟，连续两次同步仍会重复开）。列不出来时照常新开（宁可重复，不能漏报）；追加评论失败（比如 Issue 被锁）时也改为新开。实现在 `scripts/open_issue_once.sh`。
 
 | 情况 | 处理 |
 |---|---|
@@ -251,6 +251,23 @@
 | G4 | 用 `GITHUB_TOKEN` 执行 `gh workflow run` 能创建 `workflow_dispatch` 运行（需要 `actions: write`） | 探针里触发一次 | 改用 `workflow_run`（出刊工作流完成后触发同步） |
 | G5 | 任务项行尾的 HTML 注释在网页和 App 上都不可见，勾选框仍可点 | G1、G2 的测试 Issue 上肉眼确认 | 把标记集中放到正文末尾的一行注释里，按顺序对应 |
 | G6 | 只有对仓库有写权限的人能勾选别人开的 Issue | 探针 Issue 留给用户用一个没有权限的账号打开看是否可勾（用户没有第二个账号就查文档确认） | 只同步仓库所有者编辑后的状态；设计需要重新讨论 |
+
+### 实测结果（2026-10-20，测试 Issue #6，探针 `watched-probe.yml`）
+
+| # | 结果 | 证据 | 结论 |
+|---|---|---|---|
+| G1 | 成立。网页勾「Probe 1」只把那一行的 `[ ]` 改成 `[x]`，行尾注释原样；触发 `issues` 运行，`actor=AKASHA-R` | 运行 39532525757 | 不改设计 |
+| G1b | **按位置修改**。DevTools 离线期间机器人把「Probe 2」改成 `[x] … bot:1`；恢复在线不刷新勾「Probe 3」，「Probe 2」没被盖回，页面无任何提示 | 改写运行 39532877349；之后正文两行都是 `[x]` | 不改设计，Issue 尾注不加句 |
+| G2 | 成立，同 G1b。手机 App 能勾（「Probe 4」）；飞行模式期间机器人 02:40:04 改「Probe 5」，关飞行模式不下拉刷新 02:40:35 勾「Probe 6」，「Probe 5」保留 `[x] … bot:1`，无提示 | 运行 39534251777、39534272330、39534331669 | README 不加限制 |
+| G3 | 成立。两次机器人改写之后都没有新的 `issues` 运行，之后出现的 `issues` 运行日志里 `actor` 全是 `AKASHA-R` | 上述运行列表 | 不加 `github.actor` 条件 |
+| G4 | 成立。运行内用 `GITHUB_TOKEN` 执行 `gh workflow run` 创建了新的 `workflow_dispatch` 运行，`triggering_actor=github-actions[bot]` | 运行 39534570640 → 39534578868 | 不用 `workflow_run` 退路 |
+| G5 | 成立。网页上行尾注释看不见、勾选框可点；App 上用户确认操作正常 | 用户肉眼确认 | 不改格式 |
+| G6 | **按文档成立，未实测**（用户没有第二个账号）。勾选是编辑 Issue 正文；GitHub 仓库角色表里「Edit and delete anyone's comments on commits, pull requests, and issues」只有 Write、Maintain、Admin 有，「Apply/dismiss labels」要 Triage 以上。任务列表文档本身没写权限 | docs.github.com「Repository roles for an organization」权限表；「Permission levels for a personal account repository」 | 不改设计；仓库只有所有者一人，加协作者前再看一次 |
+
+附带观察：
+- 正文换行：网页、App 勾选后都仍是 `\n`，没有变成 `\r\n`（改写合并对 `\r` 的保留照样留着）。
+- Issue 作者：探针开的 Issue 是 `github-actions[bot]`。
+- **关闭的 Issue 也能勾**：#6 关闭后取消「Probe 1」，正文照改，并触发 `issues` 运行（39534700296）；关闭本身不是 `edited` 事件。同步按 `state=all` 读，关掉的旧期 Issue 照样生效。
 
 ## 13. 测试
 
