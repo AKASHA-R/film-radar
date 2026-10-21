@@ -1,0 +1,70 @@
+name: watched-probe
+
+# 「已看过」功能的前提探针（spec 2026-10-17 第 12 节 G1–G6）。验证完随功能分支合并时删掉。
+on:
+  issues:
+    types: [edited]
+  workflow_dispatch:
+    inputs:
+      step:
+        description: "open：开测试 Issue；rewrite：以机器人身份勾上 film 那一行；dispatch：用 GITHUB_TOKEN 触发一次 noop；noop：什么都不做"
+        type: choice
+        options: [noop, open, rewrite, dispatch]
+        default: noop
+      issue:
+        description: "测试 Issue 编号（rewrite 用）"
+        default: ""
+      film:
+        description: "要勾上的假编号（rewrite 用），如 9000002"
+        default: ""
+
+permissions:
+  contents: read
+  issues: write
+  actions: write
+
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Record the event
+        env:
+          ISSUE_AUTHOR: ${{ github.event.issue.user.login }}
+        run: echo "event=${{ github.event_name }} actor=${{ github.actor }} issue=${{ github.event.issue.number }} author=$ISSUE_AUTHOR step=${{ inputs.step }}"
+
+      - name: Open a probe issue
+        if: inputs.step == 'open'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh label create probe --repo "${{ github.repository }}" --color ededed --description "前提探针，验证完删除" 2>/dev/null || true
+          {
+            echo "<!-- film-radar:probe -->"
+            echo "前提探针（spec 2026-10-17 第 12 节），验证完删除。请按会话里的步骤操作。"
+            echo
+            for n in 1 2 3 4 5 6; do
+              echo "- [ ] **Probe $n** · 在映第 1 周：第 $n 行 <!-- film:900000$n bot:0 -->"
+            done
+            echo
+            echo "cc @${{ github.repository_owner }}"
+          } > probe_body.md
+          gh issue create --repo "${{ github.repository }}" --title "film-radar 已看过前提探针（验证完删除）" \
+            --body-file probe_body.md --label probe
+
+      - name: Rewrite one line as the bot
+        if: inputs.step == 'rewrite'
+        env:
+          GH_TOKEN: ${{ github.token }}
+          ISSUE: ${{ inputs.issue }}
+          FILM: ${{ inputs.film }}
+        run: |
+          gh api "repos/${{ github.repository }}/issues/$ISSUE" --jq .body > body.md
+          sed -i "s/^- \[ \] \(.*<!-- film:$FILM bot:\)0 -->/- [x] \11 -->/" body.md
+          gh api -X PATCH "repos/${{ github.repository }}/issues/$ISSUE" -F "body=@body.md" --silent
+          gh api "repos/${{ github.repository }}/issues/$ISSUE" --jq .body
+
+      - name: Dispatch a noop run
+        if: inputs.step == 'dispatch'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh workflow run watched-probe.yml --repo "${{ github.repository }}" --ref main -f step=noop
