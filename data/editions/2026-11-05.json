@@ -1,0 +1,5472 @@
+{
+ "edition_id": "2026-11-05",
+ "generated_at": "2026-11-05T13:22:39-05:00",
+ "next_edition_date": "2026-11-19",
+ "settings": {
+  "radius_km": 40,
+  "showtime_days": 14,
+  "coming_soon_days": 14,
+  "shortlist_cap": 15,
+  "must_cap": 6,
+  "outside_cap": 2,
+  "stale_after_days": 16
+ },
+ "models": {
+  "triage": "claude-opus-5-5",
+  "review": "claude-sonnet-5-5"
+ },
+ "films": [
+  {
+   "film_id": 36481,
+   "title": "The Cat in the Hat",
+   "film_url": "the-cat-in-the-hat",
+   "versions": [
+    {
+     "film_id": 36481,
+     "name": "The Cat in the Hat",
+     "language": "English",
+     "subtitle": ""
+    }
+   ],
+   "status": "coming_soon",
+   "is_event": false,
+   "release_date": "2026-11-06",
+   "runtime": 113,
+   "genres": [
+    "Animation"
+   ],
+   "film_categories": [
+    "Animation",
+    "Film Presentation"
+   ],
+   "distributor": "Warner Bros Entertainment Canada Inc",
+   "poster_url": "https://mediafiles.cineplex.com/Central/Film/Posters/36481_320_470.jpg",
+   "detail_url": "https://www.cineplex.com/movie/the-cat-in-the-hat",
+   "gta_theatres": [
+    "Cineplex Cinemas Courtney Park",
+    "Cineplex Cinemas Empress Walk",
+    "Cineplex Cinemas Fairview Mall",
+    "Cineplex Cinemas Markham and VIP",
+    "Cineplex Cinemas Mississauga Square One",
+    "Cineplex Cinemas Pickering and VIP",
+    "Cineplex Cinemas Queensway and VIP",
+    "Cineplex Cinemas Scarborough",
+    "Cineplex Cinemas Vaughan",
+    "Cineplex Cinemas Winston Churchill & VIP",
+    "Cineplex Cinemas Yonge-Dundas and VIP",
+    "Cineplex Cinemas Yonge-Eglinton and VIP",
+    "Cineplex Cinemas Yorkdale",
+    "Cineplex Junxion Erin Mills",
+    "Cineplex Odeon Ajax Cinemas",
+    "Cineplex Odeon Eglinton Town Centre Cinemas",
+    "Cineplex Odeon Morningside Cinemas",
+    "Scotiabank Theatre Toronto",
+    "SilverCity Brampton Cinemas",
+    "SilverCity Richmond Hill Cinemas"
+   ],
+   "gta_dates": [
+    "2026-11-05",
+    "2026-11-06",
+    "2026-11-07",
+    "2026-11-08",
+    "2026-11-09",
+    "2026-11-10",
+    "2026-11-11",
+    "2026-11-12"
+   ],
+   "weeks_in_release": null,
+   "hurry": false,
+   "rating_on": {
+    "rating": "G",
+    "warnings": []
+   },
+   "synopsis": "Meet the Cat in the Hat you don’t know! In the wonderfully whimsical tradition of Dr. Seuss, The Cat in the Hat comes to the big screen in his animated theatrical feature film debut, an all-new, epic adventure with an edge, where mischief, magic and mayhem reign supreme. \n\nDoing what he does best, the Cat—voiced by Bill Hader—spreads joy to kids in his hilarious, signature and singularly irreverent way, transporting them and audiences on a fantastical journey through a world they’ve never seen before.\n\nIn the film, our hero takes on his toughest assignment yet for the I.I.I.I. (Institute for the Institution of Imagination and Inspiration, LLC): to cheer Gabby and Sebastian, a pair of siblings struggling with their move to a new town. Known for taking things too far, this could be this agent of chaos’s last chance to prove himself...or lose his magical hat! \n\nStarring alongside Hader are Xochitl Gomez, Matt Berry, Quinta Brunson, and Paula Pell, and featuring Tiago Martinez, Giancarlo Esposito, America Ferrera, Bowen Yang, and Tituss Burgess. \n\nDirected by Alessandro Carloni and Erica Rivinoja, Warner Bros. Pictures Animation’s first full-length feature film, The Cat in the Hat, comes to theatres and IMAX® across North America and internationally in November 2026. It will be distributed worldwide by Warner Bros. Pictures.",
+   "director": "Alessandro Carloni & Erica Rivinoja",
+   "starring": "",
+   "details_missing": false,
+   "verdict": {
+    "film_id": 36481,
+    "keep": false,
+    "rank": null,
+    "category": "outside",
+    "reason": "苏斯博士合家欢动画，不在口味范围内。"
+   },
+   "card": null,
+   "review_error": null,
+   "flags": [],
+   "seen_before": false,
+   "outcome": "skip",
+   "outcome_reason": "苏斯博士合家欢动画，不在口味范围内。"
+  },
+  {
+   "film_id": 37617,
+   "title": "The Odyssey",
+   "film_url": "the-odyssey",
+   "versions": [
+    {
+     "film_id": 37617,
+     "name": "The Odyssey",
+     "language": "English",
+     "subtitle": ""
+    }
+   ],
+   "status": "now_playing",
+   "is_event": false,
+   "release_date": "2026-07-17",
+   "runtime": 172,
+   "genres": [
+    "Action"
+   ],
+   "film_categories": [
+    "Action",
+    "Film Presentation"
+   ],
+   "distributor": "Universal Film Exchange",
+   "poster_url": "https://mediafiles.cineplex.com/Central/Film/Posters/37617_320_470.jpg",
+   "detail_url": "https://www.cineplex.com/movie/the-odyssey",
+   "gta_theatres": [
+    "Cineplex Cinemas Mississauga Square One",
+    "Cineplex Cinemas Queensway and VIP",
+    "Cineplex Cinemas Varsity and VIP",
+    "Scotiabank Theatre Toronto"
+   ],
+   "gta_dates": [
+    "2026-11-05",
+    "2026-11-06",
+    "2026-11-07",
+    "2026-11-08",
+    "2026-11-09",
+    "2026-11-10",
+    "2026-11-11",
+    "2026-11-12"
+   ],
+   "weeks_in_release": 16,
+   "hurry": false,
+   "rating_on": {
+    "rating": "PG",
+    "warnings": [
+     "Violence",
+     "Not Recommended for Young Children",
+     "Coarse Language",
+     "Photosensitivity Warning"
+    ]
+   },
+   "synopsis": "Christopher Nolan’s next film, The Odyssey, is a mythic action epic shot across the world using brand new IMAX® film technology. The film brings Homer’s foundational saga to IMAX® film screens for the first time and opens in theatres everywhere on July 17, 2026.",
+   "director": "Christopher Nolan",
+   "starring": "Matt Damon, Tom Holland, Anne Hathaway, Robert Pattinson & Lupita Nyong’o, Zendaya & Charlize Theron",
+   "details_missing": false,
+   "verdict": {
+    "film_id": 37617,
+    "keep": false,
+    "rank": null,
+    "category": "outside",
+    "reason": "诺兰神话动作史诗，口碑可期，但属于口味之外，名额有限未入围。"
+   },
+   "card": null,
+   "review_error": null,
+   "flags": [],
+   "seen_before": false,
+   "outcome": "skip",
+   "outcome_reason": "诺兰神话动作史诗，口碑可期，但属于口味之外，名额有限未入围。"
+  },
+  {
+   "film_id": 38010,
+   "title": "The Hunger Games: Sunrise on the Reaping",
+   "film_url": "the-hunger-games-sunrise-on-the-reaping",
+   "versions": [
+    {
+     "film_id": 38010,
+     "name": "The Hunger Games: Sunrise on the Reaping",
+     "language": "English",
+     "subtitle": ""
+    }
+   ],
+   "status": "coming_soon",
+   "is_event": false,
+   "release_date": "2026-11-20",
+   "runtime": 158,
+   "genres": [
+    "Action",
+    "Adventure"
+   ],
+   "film_categories": [
+    "Action",
+    "Adventure",
+    "Film Presentation"
+   ],
+   "distributor": "CINEPLEX PICTURES",
+   "poster_url": "https://mediafiles.cineplex.com/Central/Film/Posters/38010_320_470.jpg",
+   "detail_url": "https://www.cineplex.com/movie/the-hunger-games-sunrise-on-the-reaping",
+   "gta_theatres": [
+    "Cineplex Cinemas Courtney Park",
+    "Cineplex Cinemas Empress Walk",
+    "Cineplex Cinemas Markham and VIP",
+    "Cineplex Cinemas Mississauga Square One",
+    "Cineplex Cinemas Queensway and VIP",
+    "Cineplex Cinemas Scarborough",
+    "Cineplex Cinemas Vaughan",
+    "Cineplex Cinemas Winston Churchill & VIP",
+    "Cineplex Cinemas Yonge-Dundas and VIP",
+    "Cineplex Cinemas Yonge-Eglinton and VIP",
+    "Cineplex Cinemas Yorkdale",
+    "Cineplex Odeon Eglinton Town Centre Cinemas",
+    "Scotiabank Theatre Toronto",
+    "SilverCity Brampton Cinemas",
+    "SilverCity Richmond Hill Cinemas"
+   ],
+   "gta_dates": [
+    "2026-11-18"
+   ],
+   "weeks_in_release": null,
+   "hurry": false,
+   "rating_on": {
+    "rating": "STC",
+    "warnings": []
+   },
+   "synopsis": "THE HUNGER GAMES: SUNRISE ON THE REAPING will revisit the world of Panem 24 years before the events of The Hunger Games, starting on the morning of the reaping of the 50th Hunger Games, also known as the Second Quarter Quell.",
+   "director": "Francis Lawrence",
+   "starring": "Glenn Close, Kieran Culkin, McKenna Grace, Elle Fanning, Jesse Plemons, Ralph Fiennes, Maya Hawke, Joseph Zada",
+   "details_missing": false,
+   "verdict": {
+    "film_id": 38010,
+    "keep": false,
+    "rank": null,
+    "category": "scifi",
+    "reason": "饥饿游戏前传，偏商业青少年动作，不像沙丘式作者科幻。"
+   },
+   "card": null,
+   "review_error": null,
+   "flags": [],
+   "seen_before": false,
+   "outcome": "skip",
+   "outcome_reason": "饥饿游戏前传，偏商业青少年动作，不像沙丘式作者科幻。"
+  },
+  {
+   "film_id": 38065,
+   "title": "Forgotten Island",
+   "film_url": "forgotten-island",
+   "versions": [
+    {
+     "film_id": 38065,
+     "name": "Forgotten Island",
+     "language": "English",
+     "subtitle": ""
+    }
+   ],
+   "status": "now_playing",
+   "is_event": false,
+   "release_date": "2026-09-25",
+   "runtime": 109,
+   "genres": [
+    "Animation",
+    "Drama"
+   ],
+   "film_categories": [
+    "Animation",
+    "Drama",
+    "Film Presentation"
+   ],
+   "distributor": "Universal Film Exchange",
+   "poster_url": "https://mediafiles.cineplex.com/Central/Film/Posters/38065_320_470.jpg",
+   "detail_url": "https://www.cineplex.com/movie/forgotten-island",
+   "gta_theatres": [
+    "Cineplex Cinemas Pickering and VIP",
+    "Cineplex Cinemas Scarborough",
+    "Cineplex Cinemas Yonge-Dundas and VIP",
+    "Cineplex Cinemas Yorkdale",
+    "Cineplex Junxion Erin Mills",
+    "Cineplex Odeon Eglinton Town Centre Cinemas",
+    "Cineplex Odeon Morningside Cinemas",
+    "SilverCity Brampton Cinemas"
+   ],
+   "gta_dates": [
+    "2026-11-05",
+    "2026-11-06",
+    "2026-11-07",
+    "2026-11-08",
+    "2026-11-09",
+    "2026-11-10",
+    "2026-11-11",
+    "2026-11-12"
+   ],
+   "weeks_in_release": 6,
+   "hurry": false,
+   "rating_on": {
+    "rating": "PG",
+    "warnings": [
+     "Frightening Scenes",
+     "Photosensitivity Warning"
+    ]
+   },
+   "synopsis": "Your best friendship is worth fighting for.\nDreamWorks Animation, the studio that brought you unforgettable bonds between a boy and a dragon in How to Train Your Dragon, an ogre and a donkey in Shrek, and a robot and a gosling in The Wild Robot, now welcomes a dazzling and emotional story about two lifelong best friends who must come together before they drift apart in Forgotten Island.\n\nThe new original film is written and directed by Academy Award® nominee Joel Crawford and Januel Mercado and is produced by Academy Award® nominee Mark Swift, the filmmaking team behind Puss in Boots: The Last Wish.\n\nGrammy and Academy Award® winning supernova H.E.R. and Liza Soberano (Lisa Frankenstein, Alone/Together) star as high school graduates Jo and Raissa, who have been best friends since grade school but are now about to embark on separate life paths.\n\nWhile celebrating their last night together, Jo and Raissa stumble upon a mysterious portal that transports them to the fantastical island of Nakali, packed with magical and mythological creatures they grew up hearing stories about from their Filipino families.\n\nSome of these figures will become friends, some foes. Joined by well-meaning-but- hapless weredog Raww (Dave Franco) and a small-but-mighty pack of pals, Jo and Raissa must face The Dreaded Manananggal (Tony winning icon Lea Salonga), the most feared creature on the island. When they discover that the memories of their entire friendship are the price for returning home, Jo and Raissa will race to find a way to leave the island before they forget each other forever.\n\nThe film’s all-star voice cast also includes Emmy nominee Jenny Slate (Marcel the Shell with Shoes On, Dying for Sex), Manny Jacinto (The Good Place, Top Gun: Maverick), BAFTA nominee Dolly de Leon (Triangle of Sadness, Ghostlight), global comedy superstar Jo Koy (Haunted Mansion, Jo Koy: Live from Brooklyn) and Emmy winner Ronny Chieng (The Daily Show, M3GAN).\n\nDreamWorks Animation’s Forgotten Island is distributed by Universal Pictures.",
+   "director": "",
+   "starring": "",
+   "details_missing": false,
+   "verdict": {
+    "film_id": 38065,
+    "keep": false,
+    "rank": null,
+    "category": "outside",
+    "reason": "梦工厂合家欢动画，不对口味。"
+   },
+   "card": null,
+   "review_error": null,
+   "flags": [],
+   "seen_before": false,
+   "outcome": "skip",
+   "outcome_reason": "梦工厂合家欢动画，不对口味。"
+  },
+  {
+   "film_id": 38158,
+   "title": "Other Mommy",
+   "film_url": "other-mommy",
+   "versions": [
+    {
+     "film_id": 38158,
+     "name": "Other Mommy",
+     "language": "English",
+     "subtitle": ""
+    }
+   ],
+   "status": "now_playing",
+   "is_event": false,
+   "release_date": "2026-10-09",
+   "runtime": 93,
+   "genres": [
+    "Horror"
+   ],
+   "film_categories": [
+    "Horror",
+    "Film Presentation"
+   ],
+   "distributor": "Universal Film Exchange",
+   "poster_url": "https://mediafiles.cineplex.com/Central/Film/Posters/38158_320_470.jpg",
+   "detail_url": "https://www.cineplex.com/movie/other-mommy",
+   "gta_theatres": [
+    "Cineplex Cinemas Courtney Park",
+    "Cineplex Cinemas Markham and VIP",
+    "Cineplex Cinemas Mississauga Square One",
+    "Cineplex Cinemas Pickering and VIP",
+    "Cineplex Cinemas Queensway and VIP",
+    "Cineplex Cinemas Scarborough",
+    "Cineplex Cinemas Vaughan",
+    "Cineplex Cinemas Winston Churchill & VIP",
+    "Cineplex Cinemas Yonge-Dundas and VIP",
+    "Cineplex Cinemas Yorkdale",
+    "Cineplex Junxion Erin Mills",
+    "Cineplex Odeon Ajax Cinemas",
+    "Cineplex Odeon Eglinton Town Centre Cinemas",
+    "Cineplex Odeon Morningside Cinemas",
+    "SilverCity Brampton Cinemas"
+   ],
+   "gta_dates": [
+    "2026-11-05",
+    "2026-11-06",
+    "2026-11-07",
+    "2026-11-08",
+    "2026-11-09",
+    "2026-11-10",
+    "2026-11-11",
+    "2026-11-12"
+   ],
+   "weeks_in_release": 4,
+   "hurry": false,
+   "rating_on": {
+    "rating": "14A",
+    "warnings": [
+     "Violence",
+     "Frightening Scenes"
+    ]
+   },
+   "synopsis": "Can I go inside your heart?\nFrom producer James Wan, one of the most influential architects of modern horror, and Blumhouse Atomic Monster, the studio behind Backrooms and Obsession, comes a terrifying trip from breakout genre director Rob Savage, into the darkening world of a young girl, Bela, who forms a relationship with a sinister entity in her home who looks uncannily like her own mother.",
+   "director": "",
+   "starring": "",
+   "details_missing": false,
+   "verdict": {
+    "film_id": 38158,
+    "keep": true,
+    "rank": 9,
+    "category": "horror",
+    "reason": "Rob Savage 执导的母亲替身心理恐怖，有可能是作者性现代恐怖，值得精评核实。"
+   },
+   "card": {
+    "tier": "skip",
+    "strength": 4,
+    "category": "horror",
+    "one_liner": "詹姆斯·温制片的恐怖片，走跳吓路线，口碑很差，不建议专门进影院。",
+    "premise": "8岁女孩 Bela 生活在婚姻出问题的家庭里，衣柜里出现一个邪恶的存在，她管它叫“Other Mommy”。它长得很像她的母亲，对她和家人的威胁越来越大。",
+    "why_for_you": "它属于恐怖类，但从评论看，走的是跳吓路线，不是你偏好的氛围型、作者性恐怖。导演 Rob Savage 的《Host》口碑很好，但这部的评论普遍认为缺乏张力。如果仍想看，可以当作一部带有 Savage 视觉风格的跳吓片，预期放低。",
+    "reception": "评论不少，口碑已有定论，很差。烂番茄影评人分数约16%到19%，Metacritic 39 分，标注为“普遍不佳”，观众分 47%。Forbes 称它是 2026 年口碑最差的电影之一。Bloody Disgusting 说它靠空洞的跳吓和花哨镜头堆砌；IGN 说它没有统一的风格，到处借用别的电影；《好莱坞报道者》说它好看但空洞。也有少数好评，称赞 Savage 对球池、塑料滑梯等空间的质感。票房与口碑背离，北美约 5600 万美元，全球约 1.08 亿美元。片方没有提前给影评人放映。电影节入围或获奖：未查到。",
+    "background": "导演 Rob Savage，作品有《Host》和《The Boogeyman》；编剧 Nathan Elston，曾为《继承之战》写剧本。制片人有 James Wan，片方是 Blumhouse 和 Atomic Monster。Jessica Chastain 一人分饰两角，也演这个恶魔。改编自 Josh Malerman 的小说《Incidents Around the House》。",
+    "caveats": "有观众说预告片就是开场，也是全片最高点。脸部特效和快速剪辑盖住了 Chastain 的表演（IGN）。神话设定像是半成品（《好莱坞报道者》）。",
+    "skip_reason": "跳吓路线，口碑很差，和你偏好的氛围型作者性恐怖不对路。",
+    "evidence": "ample",
+    "title_zh": null,
+    "title_zh_source": null,
+    "scores": [
+     {
+      "name": "烂番茄影评人",
+      "value": "16%，平均 4.5/10",
+      "source_url": "https://dknetwork.draftkings.com/2026/10/09/other-mommy-ratings-rotten-tomatoes-imdb-metacritic-more"
+     },
+     {
+      "name": "烂番茄影评人（维基百科引用）",
+      "value": "19%（99 篇影评），平均 4.4/10",
+      "source_url": "https://en.wikipedia.org/wiki/Other_Mommy"
+     },
+     {
+      "name": "观众分",
+      "value": "47%",
+      "source_url": "https://dknetwork.draftkings.com/2026/10/09/other-mommy-ratings-rotten-tomatoes-imdb-metacritic-more"
+     },
+     {
+      "name": "Metacritic",
+      "value": "39，普遍不佳",
+      "source_url": "https://dknetwork.draftkings.com/2026/10/09/other-mommy-ratings-rotten-tomatoes-imdb-metacritic-more"
+     }
+    ],
+    "sources": [
+     {
+      "title": "DK Network：Other Mommy 评分汇总",
+      "url": "https://dknetwork.draftkings.com/2026/10/09/other-mommy-ratings-rotten-tomatoes-imdb-metacritic-more"
+     },
+     {
+      "title": "维基百科：Other Mommy",
+      "url": "https://en.wikipedia.org/wiki/Other_Mommy"
+     },
+     {
+      "title": "Forbes：Other Mommy 口碑与票房",
+      "url": "https://www.forbes.com/sites/paultassi/2026/10/09/other-mommy-will-win-the-box-office-with-catastrophic-review-scores"
+     }
+    ],
+    "sources_dropped": 0,
+    "film_id": 38158
+   },
+   "review_error": null,
+   "flags": [],
+   "seen_before": false,
+   "outcome": "skip",
+   "outcome_reason": "跳吓路线，口碑很差，和你偏好的氛围型作者性恐怖不对路。"
+  },
+  {
+   "film_id": 38166,
+   "title": "How to Rob a Bank",
+   "film_url": "how-to-rob-a-bank",
+   "versions": [
+    {
+     "film_id": 38166,
+     "name": "How to Rob a Bank",
+     "language": "English",
+     "subtitle": ""
+    }
+   ],
+   "status": "coming_soon",
+   "is_event": false,
+   "release_date": "2026-11-13",
+   "runtime": 121,
+   "genres": [
+    "Action"
+   ],
+   "film_categories": [
+    "Action",
+    "Film Presentation"
+   ],
+   "distributor": "14051483 CANADA INC dba IMMINA FILMS",
+   "poster_url": "https://mediafiles.cineplex.com/Central/Film/Posters/38166_320_470.jpg",
+   "detail_url": "https://www.cineplex.com/movie/how-to-rob-a-bank",
+   "gta_theatres": [
+    "Cineplex Cinemas Courtney Park",
+    "Cineplex Cinemas Empress Walk",
+    "Cineplex Cinemas Fairview Mall",
+    "Cineplex Cinemas Mississauga Square One",
+    "Cineplex Cinemas Queensway and VIP",
+    "Cineplex Cinemas Scarborough",
+    "Cineplex Cinemas Vaughan",
+    "Cineplex Cinemas Winston Churchill & VIP",
+    "Cineplex Cinemas Yonge-Dundas and VIP",
+    "Cineplex Cinemas Yonge-Eglinton and VIP",
+    "Cineplex Cinemas Yorkdale",
+    "Cineplex Odeon Ajax Cinemas",
+    "Cineplex Odeon Eglinton Town Centre Cinemas",
+    "Cineplex Odeon Morningside Cinemas",
+    "Scotiabank Theatre Toronto",
+    "SilverCity Brampton Cinemas",
+    "SilverCity Richmond Hill Cinemas"
+   ],
+   "gta_dates": [
+    "2026-11-11",
+    "2026-11-12",
+    "2026-11-13",
+    "2026-11-14",
+    "2026-11-15",
+    "2026-11-16",
+    "2026-11-17"
+   ],
+   "weeks_in_release": null,
+   "hurry": false,
+   "rating_on": {
+    "rating": "STC",
+    "warnings": []
+   },
+   "synopsis": "In HOW TO ROB A BANK, a crew of social media-savvy bank robbers broadcasts their daring heists, unaware that their growing viral fame has put them in the crosshairs of a veteran FBI agent and a brilliant software engineer. Despite the unlikely duo closing in, the crime ring pushes past their limits, putting everything on the line for their beliefs - and their most ambitious heist yet.",
+   "director": "",
+   "starring": "",
+   "details_missing": false,
+   "verdict": {
+    "film_id": 38166,
+    "keep": false,
+    "rank": null,
+    "category": "crime",
+    "reason": "网红抢银行动作片，偏商业娱乐，名额有限未入围。"
+   },
+   "card": null,
+   "review_error": null,
+   "flags": [],
+   "seen_before": false,
+   "outcome": "skip",
+   "outcome_reason": "网红抢银行动作片，偏商业娱乐，名额有限未入围。"
+  },
+  {
+   "film_id": 38401,
+   "title": "Verity",
+   "film_url": "verity",
+   "versions": [
+    {
+     "film_id": 38401,
+     "name": "Verity",
+     "language": "English",
+     "subtitle": ""
+    }
+   ],
+   "status": "now_playing",
+   "is_event": false,
+   "release_date": "2026-10-02",
+   "runtime": 117,
+   "genres": [
+    "Thriller"
+   ],
+   "film_categories": [
+    "Thriller",
+    "Film Presentation"
+   ],
+   "distributor": "14051483 CANADA INC dba IMMINA FILMS",
+   "poster_url": "https://mediafiles.cineplex.com/Central/Film/Posters/38401_320_470.jpg",
+   "detail_url": "https://www.cineplex.com/movie/verity",
+   "gta_theatres": [
+    "Cineplex Cinemas Courtney Park",
+    "Cineplex Cinemas Mississauga Square One",
+    "Cineplex Cinemas Pickering and VIP",
+    "Cineplex Cinemas Vaughan",
+    "Cineplex Cinemas Winston Churchill & VIP",
+    "Cineplex Cinemas Yonge-Dundas and VIP",
+    "Cineplex Cinemas Yonge-Eglinton and VIP",
+    "Cineplex Junxion Erin Mills",
+    "Scotiabank Theatre Toronto",
+    "SilverCity Richmond Hill Cinemas"
+   ],
+   "gta_dates": [
+    "2026-11-05",
+    "2026-11-06",
+    "2026-11-07",
+    "2026-11-08",
+    "2026-11-09",
+    "2026-11-10",
+    "2026-11-11",
+    "2026-11-12"
+   ],
+   "weeks_in_release": 5,
+   "hurry": false,
+   "rating_on": {
+    "rating": "14A",
+    "warnings": [
+     "Sexually suggestive scenes"
+    ]
+   },
+   "synopsis": "Adapted from Colleen Hoover’s best-selling novel, this seductive, psychological thriller follows renowned author Verity Crawford (Anne Hathaway) and Lowen Ashleigh (Dakota Johnson), a struggling writer who relocates to the remote Crawford estate to ghostwrite for Verity. After Lowen uncovers what appears to be Verity’s chilling autobiographical notes, she wrestles with the disturbing and twisted confessions about Verity’s husband Jeremy (Josh Hartnett), and finds it hard to separate fiction from reality, manipulation from attraction, and opportunity from obsession.",
+   "director": "Michael Showalter",
+   "starring": "Anne Hathaway, Dakota Johnson, Josh Hartnett, Ismael Cruz Cordova, Brady Wagner",
+   "details_missing": false,
+   "verdict": {
+    "film_id": 38401,
+    "keep": false,
+    "rank": null,
+    "category": "thriller",
+    "reason": "畅销小说改编的情欲惊悚，偏通俗，名额有限未入围。"
+   },
+   "card": null,
+   "review_error": null,
+   "flags": [],
+   "seen_before": false,
+   "outcome": "skip",
+   "outcome_reason": "畅销小说改编的情欲惊悚，偏通俗，名额有限未入围。"
+  },
+  {
+   "film_id": 38459,
+   "title": "Digger",
+   "film_url": "digger",
+   "versions": [
+    {
+     "film_id": 38459,
+     "name": "Digger",
+     "language": "English",
+     "subtitle": ""
+    }
+   ],
+   "status": "now_playing",
+   "is_event": false,
+   "release_date": "2026-10-02",
+   "runtime": 129,
+   "genres": [
+    "Comedy",
+    "Drama"
+   ],
+   "film_categories": [
+    "Comedy",
+    "Drama",
+    "Film Presentation"
+   ],
+   "distributor": "Warner Bros Entertainment Canada Inc",
+   "poster_url": "https://mediafiles.cineplex.com/Central/Film/Posters/38459_320_470.jpg",
+   "detail_url": "https://www.cineplex.com/movie/digger",
+   "gta_theatres": [
+    "Scotiabank Theatre Toronto"
+   ],
+   "gta_dates": [
+    "2026-11-05",
+    "2026-11-06",
+    "2026-11-07",
+    "2026-11-08",
+    "2026-11-09",
+    "2026-11-10",
+    "2026-11-11",
+    "2026-11-12"
+   ],
+   "weeks_in_release": 5,
+   "hurry": true,
+   "rating_on": {
+    "rating": "14A",
+    "warnings": [
+     "Coarse Language"
+    ]
+   },
+   "synopsis": "Academy Award winner Tom Cruise stars in Academy Award-winning filmmaker Alejandro G. Iñárritu’s original film “Digger,” from Warner Bros. Pictures and Legendary Pictures.\n\nThe most powerful man in the world embarks on a frantic mission to prove he is humanity’s saviour before the disaster he’s unleashed destroys everything.\nCruise stars in the title role, alongside Oscar winner Riz Ahmed, John Goodman, Oscar nominee Sandra Hüller, Michael Stuhlbarg, and Oscar nominee Jesse Plemons. Robert John Burke, Emma D’Arcy, Burn Gorman and Sophie Wilde also star. ",
+   "director": "Alejandro G. Iñárritu",
+   "starring": "Tom Cruise",
+   "details_missing": false,
+   "verdict": {
+    "film_id": 38459,
+    "keep": false,
+    "rank": null,
+    "category": "outside",
+    "reason": "伊纳里图政治讽刺喜剧，有作者性但名额有限暂不入围。"
+   },
+   "card": null,
+   "review_error": null,
+   "flags": [],
+   "seen_before": false,
+   "outcome": "skip",
+   "outcome_reason": "伊纳里图政治讽刺喜剧，有作者性但名额有限暂不入围。"
+  },
+  {
+   "film_id": 38472,
+   "title": "Whalefall",
+   "film_url": "whalefall",
+   "versions": [
+    {
+     "film_id": 38472,
+     "name": "Whalefall",
+     "language": "English",
+     "subtitle": ""
+    }
+   ],
+   "status": "now_playing",
+   "is_event": false,
+   "release_date": "2026-10-16",
+   "runtime": 106,
+   "genres": [
+    "Adventure"
+   ],
+   "film_categories": [
+    "Adventure",
+    "Film Presentation"
+   ],
+   "distributor": "The Walt Disney Company (CANADA) LTD",
+   "poster_url": "https://mediafiles.cineplex.com/Central/Film/Posters/38472_320_470.jpg",
+   "detail_url": "https://www.cineplex.com/movie/whalefall",
+   "gta_theatres": [
+    "Cineplex Cinemas Markham and VIP",
+    "Cineplex Cinemas Queensway and VIP",
+    "SilverCity Brampton Cinemas",
+    "SilverCity Richmond Hill Cinemas"
+   ],
+   "gta_dates": [
+    "2026-11-05",
+    "2026-11-06",
+    "2026-11-07",
+    "2026-11-08",
+    "2026-11-09"
+   ],
+   "weeks_in_release": 3,
+   "hurry": false,
+   "rating_on": {
+    "rating": "PG",
+    "warnings": [
+     "Mature Theme",
+     "Frightening Scenes"
+    ]
+   },
+   "synopsis": "Jay Gardiner’s father, Mitt, was the most influential figure in his upbringing. When Mitt suddenly passes, Jay embarks on a diving mission off the central Coast of California to recover his remains, but is swallowed by a massive sperm whale. With only an hour of oxygen left, Jay must rely on his father’s lessons to escape before it’s too late.",
+   "director": "Brian Duffield",
+   "starring": "Austin Abrams, Josh Brolin, Elisabeth Shue, John Ortiz, Jane Levy, & Emily Rudd",
+   "details_missing": false,
+   "verdict": {
+    "film_id": 38472,
+    "keep": false,
+    "rank": null,
+    "category": "outside",
+    "reason": "被鲸吞的冒险生存片，不在七类内。"
+   },
+   "card": null,
+   "review_error": null,
+   "flags": [],
+   "seen_before": false,
+   "outcome": "skip",
+   "outcome_reason": "被鲸吞的冒险生存片，不在七类内。"
+  },
+  {
+   "film_id": 38558,
+   "title": "Villeneuve : The Rise of a legend",
+   "film_url": "est-villeneuve-the-rise-of-a-legend-french-wes",
+   "versions": [
+    {
+     "film_id": 38558,
+     "name": "Villeneuve : The Rise of a legend (French w/est)",
+     "language": "French",
+     "subtitle": "English"
+    }
+   ],
+   "status": "coming_soon",
+   "is_event": false,
+   "release_date": "2026-11-11",
+   "runtime": 105,
+   "genres": [
+    "Biography",
+    "Drama",
+    "Sport"
+   ],
+   "film_categories": [
+    "Biography",
+    "Drama",
+    "Sport",
+    "Film Presentation"
+   ],
+   "distributor": "ENTRACT FILMS INC.",
+   "poster_url": "https://mediafiles.cineplex.com/Central/Film/Posters/38558_320_470.jpg",
+   "detail_url": "https://www.cineplex.com/movie/est-villeneuve-the-rise-of-a-legend-french-wes",
+   "gta_theatres": [],
+   "gta_dates": [],
+   "weeks_in_release": null,
+   "hurry": false,
+   "rating_on": {
+    "rating": "STC",
+    "warnings": []
+   },
+   "synopsis": "",
+   "director": "Yan Lanouette Turgeon",
+   "starring": "Rémi Goulet, Rosalie Bonenfant, Patrice Robitaille, Anick Lemay, Luc Picard, Fabien Cloutier",
+   "details_missing": false,
+   "verdict": {
+    "film_id": 38558,
+    "keep": false,
+    "rank": null,
+    "category": "outside",
+    "reason": "魁北克赛车手传记体育片，不对口味。"
+   },
+   "card": null,
+   "review_error": null,
+   "flags": [],
+   "seen_before": false,
+   "outcome": "skip",
+   "outcome_reason": "魁北克赛车手传记体育片，不对口味。"
+  },
+  {
+   "film_id": 60391,
+   "title": "Ebenezer",
+   "film_url": "ebenezer",
+   "versions": [
+    {
+     "film_id": 60391,
+     "name": "Ebenezer",
+     "language": "English",
+     "subtitle": ""
+    }
+   ],
+   "status": "coming_soon",
+   "is_event": false,
+   "release_date": "2026-11-13",
+   "runtime": 115,
+   "genres": [
+    "Family"
+   ],
+   "film_categories": [
+    "Family",
+    "Film Presentation"
+   ],
+   "distributor": "PARAMOUNT ENTERTAINMENT CANADA ULC. ",
+   "poster_url": "https://mediafiles.cineplex.com/Central/Film/Posters/60391_320_470.jpg",
+   "detail_url": "https://www.cineplex.com/movie/ebenezer",
+   "gta_theatres": [
+    "Cineplex Cinemas Courtney Park",
+    "Cineplex Cinemas Empress Walk",
+    "Cineplex Cinemas Fairview Mall",
+    "Cineplex Cinemas Mississauga Square One",
+    "Cineplex Cinemas Queensway and VIP",
+    "Cineplex Cinemas Scarborough",
+    "Cineplex Cinemas Vaughan",
+    "Cineplex Cinemas Winston Churchill & VIP",
+    "Cineplex Cinemas Yonge-Dundas and VIP",
+    "Cineplex Cinemas Yonge-Eglinton and VIP",
+    "Cineplex Cinemas Yorkdale",
+    "Cineplex Odeon Ajax Cinemas",
+    "Cineplex Odeon Eglinton Town Centre Cinemas",
+    "Cineplex Odeon Morningside Cinemas",
+    "SilverCity Brampton Cinemas",
+    "SilverCity Richmond Hill Cinemas"
+   ],
+   "gta_dates": [
+    "2026-11-12",
+    "2026-11-13",
+    "2026-11-14",
+    "2026-11-15",
+    "2026-11-16",
+    "2026-11-17",
+    "2026-11-18"
+   ],
+   "weeks_in_release": null,
+   "hurry": false,
+   "rating_on": null,
+   "synopsis": "This November, Johnny Depp is Ebenezer Scrooge. The name you know, the story you don’t. From Ti West, EBENEZER also stars Rupert Grint, Andrea Riseborough, Sam Claflin, Daisy Ridley, Arthur Conti, Ellie Bamber, Henry Lloyd-Hughes, Charlie Murphy, with Tramell Tillman and Ian McKellen.",
+   "director": "Ti West",
+   "starring": "Johnny Depp, Rupert Grint, Andrea Riseborough, Sam Claflin, Daisy Ridley, Arthur Conti, Ellie Bamber, Henry Lloyd-Hughes, Charlie Murphy, with Tramell Tillman and Ian McKellen",
+   "details_missing": false,
+   "verdict": {
+    "film_id": 60391,
+    "keep": false,
+    "rank": null,
+    "category": "horror",
+    "reason": "Ti West 的圣诞颂歌改编，可能带恐怖色彩但标为家庭片，名额有限未入围。"
+   },
+   "card": null,
+   "review_error": null,
+   "flags": [],
+   "seen_before": false,
+   "outcome": "skip",
+   "outcome_reason": "Ti West 的圣诞颂歌改编，可能带恐怖色彩但标为家庭片，名额有限未入围。"
+  },
+  {
+   "film_id": 60481,
+   "title": "Sense and Sensibility",
+   "film_url": "sense-and-sensibility-2026",
+   "versions": [
+    {
+     "film_id": 60481,
+     "name": "Sense and Sensibility",
+     "language": "English",
+     "subtitle": ""
+    }
+   ],
+   "status": "now_playing",
+   "is_event": false,
+   "release_date": "2026-10-16",
+   "runtime": 132,
+   "genres": [
+    "Drama"
+   ],
+   "film_categories": [
+    "Drama",
+    "Film Presentation"
+   ],
+   "distributor": "Universal Film Exchange",
+   "poster_url": "https://mediafiles.cineplex.com/Central/Film/Posters/60481_320_470.jpg",
+   "detail_url": "https://www.cineplex.com/movie/sense-and-sensibility-2026",
+   "gta_theatres": [
+    "Cineplex Cinemas Courtney Park",
+    "Cineplex Cinemas Queensway and VIP",
+    "Cineplex Cinemas Varsity and VIP",
+    "Cineplex Cinemas Winston Churchill & VIP",
+    "Cineplex Cinemas Yonge-Dundas and VIP",
+    "Cineplex Cinemas Yonge-Eglinton and VIP",
+    "SilverCity Richmond Hill Cinemas"
+   ],
+   "gta_dates": [
+    "2026-11-05",
+    "2026-11-06",
+    "2026-11-07",
+    "2026-11-08",
+    "2026-11-09",
+    "2026-11-10",
+    "2026-11-11",
+    "2026-11-12"
+   ],
+   "weeks_in_release": 3,
+   "hurry": false,
+   "rating_on": {
+    "rating": "PG",
+    "warnings": []
+   },
+   "synopsis": "From Focus Features and Working Title comes an irresistible new take on Jane Austen’siconic Sense and Sensibility: a charming, witty, and deeply relatable story of love andsisterhood starring Daisy Edgar-Jones and Esmé Creed-Miles.",
+   "director": "Georgia Oakley",
+   "starring": "Daisy Edgar-Jones, George MacKay, Caltríona Balfe, Fiona Shaw, Esmé Creed-Miles, Frank Dillane, Herbert Nordrum",
+   "details_missing": false,
+   "verdict": {
+    "film_id": 60481,
+    "keep": false,
+    "rank": null,
+    "category": "outside",
+    "reason": "简·奥斯汀爱情改编，不在口味内。"
+   },
+   "card": null,
+   "review_error": null,
+   "flags": [],
+   "seen_before": false,
+   "outcome": "skip",
+   "outcome_reason": "简·奥斯汀爱情改编，不在口味内。"
+  },
+  {
+   "film_id": 60523,
+   "title": "Street Fighter",
+   "film_url": "street-fighter-2026",
+   "versions": [
+    {
+     "film_id": 60523,
+     "name": "Street Fighter",
+     "language": "English",
+     "subtitle": ""
+    }
+   ],
+   "status": "now_playing",
+   "is_event": false,
+   "release_date": "2026-10-16",
+   "runtime": 119,
+   "genres": [
+    "Action"
+   ],
+   "film_categories": [
+    "Action",
+    "Film Presentation"
+   ],
+   "distributor": "PARAMOUNT ENTERTAINMENT CANADA ULC. ",
+   "poster_url": "https://mediafiles.cineplex.com/Central/Film/Posters/60523_320_470.jpg",
+   "detail_url": "https://www.cineplex.com/movie/street-fighter-2026",
+   "gta_theatres": [
+    "Cineplex Cinemas Courtney Park",
+    "Cineplex Cinemas Empress Walk",
+    "Cineplex Cinemas Fairview Mall",
+    "Cineplex Cinemas Markham and VIP",
+    "Cineplex Cinemas Mississauga Square One",
+    "Cineplex Cinemas Pickering and VIP",
+    "Cineplex Cinemas Queensway and VIP",
+    "Cineplex Cinemas Scarborough",
+    "Cineplex Cinemas Vaughan",
+    "Cineplex Cinemas Winston Churchill & VIP",
+    "Cineplex Cinemas Yonge-Dundas and VIP",
+    "Cineplex Cinemas Yonge-Eglinton and VIP",
+    "Cineplex Cinemas Yorkdale",
+    "Cineplex Junxion Erin Mills",
+    "Cineplex Odeon Ajax Cinemas",
+    "Cineplex Odeon Eglinton Town Centre Cinemas",
+    "Cineplex Odeon Morningside Cinemas",
+    "Scotiabank Theatre Toronto",
+    "SilverCity Brampton Cinemas",
+    "SilverCity Richmond Hill Cinemas"
+   ],
+   "gta_dates": [
+    "2026-11-05",
+    "2026-11-06",
+    "2026-11-07",
+    "2026-11-08",
+    "2026-11-09",
+    "2026-11-10",
+    "2026-11-11",
+    "2026-11-12"
+   ],
+   "weeks_in_release": 3,
+   "hurry": false,
+   "rating_on": {
+    "rating": "PG",
+    "warnings": [
+     "Violence",
+     "Coarse Language"
+    ]
+   },
+   "synopsis": "Set in 1993, estranged Street Fighters Ryu (Andrew Koji) and Ken Masters (Noah Centineo) are thrown back into combat when the mysterious Chun-Li (Callina Liang) recruits them for the next World Warrior Tournament: a brutal clash of fists, fate, and fury. But behind this battle royale lies a deadly conspiracy that forces them to face off against each other and the demons of their past. And if they don’t, it’s GAME OVER!",
+   "director": "",
+   "starring": "",
+   "details_missing": false,
+   "verdict": {
+    "film_id": 60523,
+    "keep": false,
+    "rank": null,
+    "category": "outside",
+    "reason": "游戏改编格斗动作片，不对口味。"
+   },
+   "card": null,
+   "review_error": null,
+   "flags": [],
+   "seen_before": false,
+   "outcome": "skip",
+   "outcome_reason": "游戏改编格斗动作片，不对口味。"
+  },
+  {
+   "film_id": 60710,
+   "title": "Godzilla Minus Zero",
+   "film_url": "godzilla-minus-zero-japanese-west",
+   "versions": [
+    {
+     "film_id": 60710,
+     "name": "Godzilla Minus Zero (Japanese w/e.s.t.)",
+     "language": "Japanese",
+     "subtitle": "English"
+    }
+   ],
+   "status": "coming_soon",
+   "is_event": false,
+   "release_date": "2026-11-06",
+   "runtime": 135,
+   "genres": [
+    "Action"
+   ],
+   "film_categories": [
+    "Action",
+    "Film Presentation"
+   ],
+   "distributor": "CINEPLEX PICTURES",
+   "poster_url": "https://mediafiles.cineplex.com/Central/Film/Posters/60710_320_470.jpg",
+   "detail_url": "https://www.cineplex.com/movie/godzilla-minus-zero-japanese-west",
+   "gta_theatres": [
+    "Cineplex Cinemas Courtney Park",
+    "Cineplex Cinemas Empress Walk",
+    "Cineplex Cinemas Fairview Mall",
+    "Cineplex Cinemas Markham and VIP",
+    "Cineplex Cinemas Mississauga Square One",
+    "Cineplex Cinemas Pickering and VIP",
+    "Cineplex Cinemas Queensway and VIP",
+    "Cineplex Cinemas Scarborough",
+    "Cineplex Cinemas Varsity and VIP",
+    "Cineplex Cinemas Vaughan",
+    "Cineplex Cinemas Winston Churchill & VIP",
+    "Cineplex Cinemas Yonge-Dundas and VIP",
+    "Cineplex Cinemas Yonge-Eglinton and VIP",
+    "Cineplex Cinemas Yorkdale",
+    "Cineplex Junxion Erin Mills",
+    "Cineplex Odeon Ajax Cinemas",
+    "Cineplex Odeon Eglinton Town Centre Cinemas",
+    "Cineplex Odeon Morningside Cinemas",
+    "Cineplex VIP Cinemas Don Mills (age restricted 19+)",
+    "Scotiabank Theatre Toronto",
+    "SilverCity Brampton Cinemas",
+    "SilverCity Richmond Hill Cinemas"
+   ],
+   "gta_dates": [
+    "2026-11-05",
+    "2026-11-06",
+    "2026-11-07",
+    "2026-11-08",
+    "2026-11-09",
+    "2026-11-10",
+    "2026-11-11",
+    "2026-11-12"
+   ],
+   "weeks_in_release": null,
+   "hurry": false,
+   "rating_on": {
+    "rating": "14A",
+    "warnings": [
+     "Violence"
+    ]
+   },
+   "synopsis": "War reduced Japan to zero, and Godzilla plunged it into minus. Two years have passed since then, and the country has faced agonizing struggles to achieve recovery and finally reclaim its daily life. Just as humanity managed to cling to a hard-won peace, a new threat strikes, crushing hope in an instant. There is no third time. Everything ends here.",
+   "director": "",
+   "starring": "",
+   "details_missing": false,
+   "verdict": {
+    "film_id": 60710,
+    "keep": true,
+    "rank": 2,
+    "category": "japanese",
+    "reason": "日语原版的《哥斯拉-1.0》续作，日本怪兽片兼战后历史，必须优先关注。"
+   },
+   "card": {
+    "tier": "must",
+    "strength": 3,
+    "category": "japanese",
+    "one_liner": "《哥斯拉-1.0》的续作，口碑稳定偏高，评论都说该上大银幕看，但不是你要的经典修复重映。",
+    "premise": "故事设在1949年，也就是前作两年之后。日本刚从战后的困境里一点点缓过来，新的灾难又来了。片中新增一只怪兽，身份不在这里透露。",
+    "why_for_you": "归类上属日本电影，同时带有科幻和战后历史的成分，主题仍是二战后日本的政治与社会处境。它是商业怪兽片，不是你特别想看的经典动画重映或修复版，所以放在重点推荐里偏中等的位置。评论反复强调它适合大银幕，有评论称它“要在尽可能大的银幕上看”，值得去影院。",
+    "reception": "评论数量充足，整体稳定偏高。烂番茄92%（53篇影评），Metacritic 75（27篇，目前无负面，6篇中性），Letterboxd 4.18/5。评分略低于前作（烂番茄99%，Metacritic 81）。世界首映在纽约电影节，为Spotlight Gala场次，未查到获奖。",
+    "background": "导演兼编剧是山崎贵，他凭前作的视觉效果拿过奥斯卡。港站资料称他还执导过《寄生兽》和《STAND BY ME 哆啦A梦》系列。出品方为东宝工作室、Robot Communications，美国发行方是GKIDS。",
+    "caveats": "差评多认为它比首作更大，但不如首作紧凑。美联社认为结尾没有收好，Screen Rant给5/10。有评论说它是“偶尔才见怪兽”的年代情节剧。这是系列首部R级，片长135分钟。多伦多是否有IMAX场次没有查。加拿大发行方是Cineplex Pictures，这一点没有查证。",
+    "skip_reason": null,
+    "evidence": "ample",
+    "title_zh": "哥斯拉-0.0",
+    "title_zh_source": "https://zh.wikipedia.org/zh-cn/%E5%93%A5%E5%90%89%E6%8B%89-0.0",
+    "scores": [
+     {
+      "name": "烂番茄",
+      "value": "92%（53篇影评）",
+      "source_url": "https://www.forbes.com/sites/timlammers/2026/11/02/godzilla-minus-zero-retains-superior-rotten-tomatoes-critics-score-following-early-reviews"
+     },
+     {
+      "name": "Metacritic",
+      "value": "75（27篇影评）",
+      "source_url": "https://www.metacritic.com/movie/godzilla-minus-zero"
+     },
+     {
+      "name": "Letterboxd",
+      "value": "4.18/5",
+      "source_url": "https://letterboxd.com/film/godzilla-minus-zero"
+     }
+    ],
+    "sources": [
+     {
+      "title": "Metacritic - Godzilla Minus Zero",
+      "url": "https://www.metacritic.com/movie/godzilla-minus-zero"
+     },
+     {
+      "title": "Forbes - 烂番茄评分",
+      "url": "https://www.forbes.com/sites/timlammers/2026/11/02/godzilla-minus-zero-retains-superior-rotten-tomatoes-critics-score-following-early-reviews"
+     },
+     {
+      "title": "Letterboxd - Godzilla Minus Zero",
+      "url": "https://letterboxd.com/film/godzilla-minus-zero"
+     },
+     {
+      "title": "IndieWire - 纽约电影节世界首映",
+      "url": "https://www.indiewire.com/news/festivals/godzilla-minus-zero-world-premiere-new-york-film-festival-1235208254"
+     },
+     {
+      "title": "Gold Derby - 首映与剧情",
+      "url": "https://www.goldderby.com/film/2026/godzilla-minus-zero-premiere-2026-nyff-2027-oscars"
+     },
+     {
+      "title": "中文维基百科 - 哥吉拉-0.0",
+      "url": "https://zh.wikipedia.org/zh-cn/%E5%93%A5%E5%90%89%E6%8B%89-0.0"
+     }
+    ],
+    "sources_dropped": 0,
+    "film_id": 60710
+   },
+   "review_error": null,
+   "flags": [],
+   "seen_before": true,
+   "outcome": "must",
+   "outcome_reason": "《哥斯拉-1.0》的续作，口碑稳定偏高，评论都说该上大银幕看，但不是你要的经典修复重映。"
+  },
+  {
+   "film_id": 61022,
+   "title": "Victorian Psycho",
+   "film_url": "victorian-psycho",
+   "versions": [
+    {
+     "film_id": 61022,
+     "name": "Victorian Psycho",
+     "language": "English",
+     "subtitle": ""
+    }
+   ],
+   "status": "coming_soon",
+   "is_event": false,
+   "release_date": "2026-11-13",
+   "runtime": 102,
+   "genres": [],
+   "film_categories": [
+    "Film Presentation"
+   ],
+   "distributor": "VVS FILMS",
+   "poster_url": "https://mediafiles.cineplex.com/Central/Film/Posters/61022_320_470.jpg",
+   "detail_url": "https://www.cineplex.com/movie/victorian-psycho",
+   "gta_theatres": [],
+   "gta_dates": [],
+   "weeks_in_release": null,
+   "hurry": false,
+   "rating_on": {
+    "rating": "STC",
+    "warnings": []
+   },
+   "synopsis": "In 1858, an eccentric young governess named Winifred Notty arrives at the remote gothic manor known as Ensor House. As Winifred assimilates into life at Ensor House, staff members begin to inexplicably disappear, and the owners of the estate begin to wonder if there is something amiss about their new governess.",
+   "director": "",
+   "starring": "",
+   "details_missing": false,
+   "verdict": {
+    "film_id": 61022,
+    "keep": false,
+    "rank": null,
+    "category": "horror",
+    "reason": "哥特庄园杀人题材，恐偏砍杀风格，名额有限未入围。"
+   },
+   "card": null,
+   "review_error": null,
+   "flags": [],
+   "seen_before": false,
+   "outcome": "skip",
+   "outcome_reason": "哥特庄园杀人题材，恐偏砍杀风格，名额有限未入围。"
+  },
+  {
+   "film_id": 61062,
+   "title": "Wild Horse Nine",
+   "film_url": "wild-horse-nine",
+   "versions": [
+    {
+     "film_id": 61062,
+     "name": "Wild Horse Nine",
+     "language": "English",
+     "subtitle": ""
+    }
+   ],
+   "status": "coming_soon",
+   "is_event": false,
+   "release_date": "2026-11-06",
+   "runtime": 116,
+   "genres": [
+    "Comedy",
+    "Drama"
+   ],
+   "film_categories": [
+    "Comedy",
+    "Drama",
+    "Film Presentation"
+   ],
+   "distributor": "The Walt Disney Company (CANADA) LTD",
+   "poster_url": "https://mediafiles.cineplex.com/Central/Film/Posters/61062_320_470.jpg",
+   "detail_url": "https://www.cineplex.com/movie/wild-horse-nine",
+   "gta_theatres": [
+    "Cineplex Cinemas Empress Walk",
+    "Cineplex Cinemas Fairview Mall",
+    "Cineplex Cinemas Markham and VIP",
+    "Cineplex Cinemas Mississauga Square One",
+    "Cineplex Cinemas Pickering and VIP",
+    "Cineplex Cinemas Queensway and VIP",
+    "Cineplex Cinemas Varsity and VIP",
+    "Cineplex Cinemas Vaughan",
+    "Cineplex Cinemas Winston Churchill & VIP",
+    "Cineplex Cinemas Yonge-Dundas and VIP",
+    "Cineplex Cinemas Yonge-Eglinton and VIP",
+    "Cineplex Cinemas Yorkdale",
+    "Cineplex Odeon Eglinton Town Centre Cinemas",
+    "Cineplex VIP Cinemas Don Mills (age restricted 19+)",
+    "Scotiabank Theatre Toronto",
+    "SilverCity Richmond Hill Cinemas"
+   ],
+   "gta_dates": [
+    "2026-11-05",
+    "2026-11-06",
+    "2026-11-07",
+    "2026-11-08",
+    "2026-11-09",
+    "2026-11-10",
+    "2026-11-11",
+    "2026-11-12"
+   ],
+   "weeks_in_release": null,
+   "hurry": false,
+   "rating_on": {
+    "rating": "14A",
+    "warnings": [
+     "Violence",
+     "Coarse Language"
+    ]
+   },
+   "synopsis": "Shortly before the 1973 Chilean coup, CIA agents Chris (John Malkovich) and Lee (Sam Rockwell) are dispatched from Santiago to Easter island by their bureau chief, MJ (Steve Buscemi). Amongst the Island's iconic statues, and as the longtime partners wrestle with their dark pasts and present conspiracies, Chris's newfound bond with a pair of rebellious students (Mariana di Girolamo and Ailín Salas) threatens to send everyone’s trip to this remote paradise sideways.",
+   "director": "",
+   "starring": "",
+   "details_missing": false,
+   "verdict": {
+    "film_id": 61062,
+    "keep": true,
+    "rank": 11,
+    "category": "political_historical",
+    "reason": "1973年智利政变前夕的CIA特工故事，政治历史题材。"
+   },
+   "card": {
+    "tier": "ok",
+    "strength": 4,
+    "category": "outside",
+    "one_liner": "Martin McDonagh 的 CIA 喜剧：两个老搭档在智利政变前夕被派去复活节岛，口碑很强，但政治味很淡。",
+    "premise": "1973年智利政变前夕，CIA 特工 Chris 和 Lee 被局长 MJ 从圣地亚哥派往复活节岛。两人是多年搭档，Chris 和两名叛逆学生走近，让这趟差事出了岔子。",
+    "why_for_you": "它在你的“政治、历史”类边缘，但更像人物喜剧，不算你要的严肃政治片，所以归在口味之外。如果你喜欢 McDonagh 式的黑色幽默和对白，值得去看；如果是冲智利政变题材去的，容易落差。时间背景在政变前夕，内容主要是两个老男人的友情、孤独和面对死亡。",
+    "reception": "口碑很强，评论数量充足。烂番茄 Certified Fresh，93%，120篇评论；Metacritic 78分，基于40篇评论，不同页面数字略有浮动。影片入围威尼斯主竞赛单元，John Malkovich 获沃尔皮杯最佳男演员。多伦多本地的 Original-Cin 给了100分。也有保留意见：IndieWire 给 B-，称它“带刺但不够有说服力”；Variety 认为有些地方太工整；Empire 给4星，但指出政治背景写得不够充分；Screen Daily 说影片对个人的兴趣远大于政治。Gold Derby 把 Malkovich 列为最佳男主角热门，但这只是预测，不是提名。",
+    "background": "导演兼编剧是 Martin McDonagh，此前长片有《In Bruges》《Seven Psychopaths》《Three Billboards Outside Ebbing, Missouri》《The Banshees of Inisherin》。主演有 John Malkovich、Sam Rockwell、Steve Buscemi、Tom Waits、Parker Posey。出品公司是 Blueprint Pictures 和 TSG Entertainment，发行方是 Searchlight Pictures，加拿大发行方是迪士尼加拿大。预计2026年11月6日上映，时长约116分钟，各处资料略有差别。",
+    "caveats": "它是喜剧，不是严肃的政治惊悚，政治背景写得比较薄。多家评论把它形容为两个老男人的“闲聊片”，节奏和重点在对白与人物。",
+    "skip_reason": null,
+    "evidence": "ample",
+    "title_zh": null,
+    "title_zh_source": null,
+    "scores": [
+     {
+      "name": "烂番茄",
+      "value": "93%（Certified Fresh，120篇评论）",
+      "source_url": "https://www.comicbasics.com/wild-horse-nine-earns-fresh-praise-on-rotten-tomatoes-and-critics-say-martin-mcdonaghs-cia-comedy-is-a-double-act-for-the-ages"
+     },
+     {
+      "name": "Metacritic",
+      "value": "78（基于40篇评论）",
+      "source_url": "https://www.metacritic.com/movie/wild-horse-nine"
+     }
+    ],
+    "sources": [
+     {
+      "title": "Wild Horse Nine - Wikipedia",
+      "url": "https://en.wikipedia.org/wiki/Wild_Horse_Nine"
+     },
+     {
+      "title": "Metacritic - Wild Horse Nine",
+      "url": "https://www.metacritic.com/movie/wild-horse-nine"
+     },
+     {
+      "title": "Comic Basics - 烂番茄好评报道",
+      "url": "https://www.comicbasics.com/wild-horse-nine-earns-fresh-praise-on-rotten-tomatoes-and-critics-say-martin-mcdonaghs-cia-comedy-is-a-double-act-for-the-ages"
+     },
+     {
+      "title": "Fiction Horizon - 威尼斯获奖报道",
+      "url": "https://fictionhorizon.com/martin-mcdonaghs-wild-horse-nine-earns-rotten-tomatoes-seal-of-approval-ahead-of-theatrical-release"
+     },
+     {
+      "title": "Gold Derby - 奥斯卡预测",
+      "url": "https://www.goldderby.com/film/2026/martin-mcdonagh-oscar-history-wins-nominations-wild-horse-nine-analysis"
+     },
+     {
+      "title": "Britannica - Martin McDonagh",
+      "url": "https://www.britannica.com/biography/Martin-McDonagh"
+     }
+    ],
+    "sources_dropped": 0,
+    "film_id": 61062
+   },
+   "review_error": null,
+   "flags": [],
+   "seen_before": true,
+   "outcome": "ok",
+   "outcome_reason": "Martin McDonagh 的 CIA 喜剧：两个老搭档在智利政变前夕被派去复活节岛，口碑很强，但政治味很淡。"
+  },
+  {
+   "film_id": 61220,
+   "title": "Wildwood",
+   "film_url": "wildwood",
+   "versions": [
+    {
+     "film_id": 61220,
+     "name": "Wildwood",
+     "language": "English",
+     "subtitle": ""
+    }
+   ],
+   "status": "now_playing",
+   "is_event": false,
+   "release_date": "2026-10-23",
+   "runtime": 130,
+   "genres": [
+    "Animation"
+   ],
+   "film_categories": [
+    "Animation",
+    "Film Presentation"
+   ],
+   "distributor": "VVS FILMS",
+   "poster_url": "https://mediafiles.cineplex.com/Central/Film/Posters/61220_320_470.jpg",
+   "detail_url": "https://www.cineplex.com/movie/wildwood",
+   "gta_theatres": [
+    "Cineplex Cinemas Courtney Park",
+    "Cineplex Cinemas Empress Walk",
+    "Cineplex Cinemas Fairview Mall",
+    "Cineplex Cinemas Markham and VIP",
+    "Cineplex Cinemas Mississauga Square One",
+    "Cineplex Cinemas Pickering and VIP",
+    "Cineplex Cinemas Queensway and VIP",
+    "Cineplex Cinemas Scarborough",
+    "Cineplex Cinemas Vaughan",
+    "Cineplex Cinemas Winston Churchill & VIP",
+    "Cineplex Cinemas Yonge-Dundas and VIP",
+    "Cineplex Cinemas Yonge-Eglinton and VIP",
+    "Cineplex Cinemas Yorkdale",
+    "Cineplex Junxion Erin Mills",
+    "Cineplex Odeon Ajax Cinemas",
+    "Cineplex Odeon Eglinton Town Centre Cinemas",
+    "Cineplex Odeon Morningside Cinemas",
+    "SilverCity Brampton Cinemas",
+    "SilverCity Richmond Hill Cinemas"
+   ],
+   "gta_dates": [
+    "2026-11-05",
+    "2026-11-06",
+    "2026-11-07",
+    "2026-11-08",
+    "2026-11-09",
+    "2026-11-10",
+    "2026-11-11",
+    "2026-11-12"
+   ],
+   "weeks_in_release": 2,
+   "hurry": false,
+   "rating_on": {
+    "rating": "PG",
+    "warnings": [
+     "Violence",
+     "May frighten young children"
+    ]
+   },
+   "synopsis": "After her baby brother is abducted by a murder of crows, headstrong teenager Prue McKeel launches a desperate rescue mission into the Impassable Wilderness—an enchanted forest hidden just beyond Portland, Oregon. Joined by her hapless but loyal classmate Curtis Mehlberg, Prue navigates a world of talking animals, bandits, and powerful figures driven by grief and ambition.  As the pair is drawn into a conflict threatening the balance of the forest itself, Prue must discover strength and belief she never knew she possessed. If she hopes to save her brother and protect Wildwood’s fragile future, she will have to risk everything.  From Oscar®-nominated and BAFTA®-winning LAIKA, Wildwood is a sweeping adventure about love, sacrifice, and the magic that reveals itself when we dare to look beyond the familiar.",
+   "director": "Travis Knight",
+   "starring": "Carey Mulligan, Angela Bassett, Richard E. Grant, Jemaine Clement, Amandla Stenberg",
+   "details_missing": false,
+   "verdict": {
+    "film_id": 61220,
+    "keep": false,
+    "rank": null,
+    "category": "outside",
+    "reason": "LAIKA定格奇幻动画，品质可期但不在口味七类内。"
+   },
+   "card": null,
+   "review_error": null,
+   "flags": [],
+   "seen_before": false,
+   "outcome": "skip",
+   "outcome_reason": "LAIKA定格奇幻动画，品质可期但不在口味七类内。"
+  },
+  {
+   "film_id": 61222,
+   "title": "Klara and the Sun",
+   "film_url": "klara-and-the-sun",
+   "versions": [
+    {
+     "film_id": 61222,
+     "name": "Klara and the Sun",
+     "language": "English",
+     "subtitle": ""
+    }
+   ],
+   "status": "now_playing",
+   "is_event": false,
+   "release_date": "2026-10-23",
+   "runtime": 116,
+   "genres": [
+    "Drama"
+   ],
+   "film_categories": [
+    "Drama",
+    "Film Presentation"
+   ],
+   "distributor": "Sony Pictures Entertainment Canada Ltd.",
+   "poster_url": "https://mediafiles.cineplex.com/Central/Film/Posters/61222_320_470.jpg",
+   "detail_url": "https://www.cineplex.com/movie/klara-and-the-sun",
+   "gta_theatres": [
+    "Cineplex Cinemas Winston Churchill & VIP",
+    "Cineplex Cinemas Yonge-Dundas and VIP",
+    "SilverCity Richmond Hill Cinemas"
+   ],
+   "gta_dates": [
+    "2026-11-05"
+   ],
+   "weeks_in_release": 2,
+   "hurry": false,
+   "rating_on": {
+    "rating": "PG",
+    "warnings": [
+     "Coarse Language"
+    ]
+   },
+   "synopsis": "Based on the bestselling novel from Nobel Prize-winner Kazuo Ishiguro and written and directed by Academy-Award® winner Taika Waititi (Jojo Rabbit), Klara and the Sun introduces audiences to Klara (Jenna Ortega), an Artificial Friend who wants nothing more than to find the perfect home. When Klara meets Josie (Mia Tharia), each immediately senses a kindred spirit in the other. Josie has a fraught relationship with her mother (Amy Adams) and they’ve suffered great loss, but Klara’s innocent wonder and unwavering loyalty begin to heal the family and bring light to Josie’s complicated world.",
+   "director": "Taika Waititi",
+   "starring": "Jenna Ortega, Amy Adams, Mia Tharia, Aran Murphy, with Steve Buscemi and Natasha Lyonne",
+   "details_missing": false,
+   "verdict": {
+    "film_id": 61222,
+    "keep": true,
+    "rank": 13,
+    "category": "scifi",
+    "reason": "石黑一雄AI小说改编，有作者表达的软科幻。"
+   },
+   "card": {
+    "tier": "skip",
+    "strength": 4,
+    "category": "scifi",
+    "one_liner": "石黑一雄小说改编的软科幻，口碑很差，不值得专程去影院。",
+    "premise": "Jenna Ortega 饰演的 Klara 是一个“人工朋友”，被患有神秘疾病的小女孩 Josie 买下。Klara 把太阳当成能实现愿望的神明，通过观察学习理解人类情感。这是一个关于陪伴、信仰和失去的寓言，节奏不快。",
+    "why_for_you": "它属于你的科幻类，但按评论看，它是软科幻加煽情喜剧，不是有作者野心、世界观完整的那种科幻。如果你想要《沙丘》那样的世界观和大银幕视听，这部大概不是。评价这么差，不建议专程去影院。",
+    "reception": "影评人评价很差：烂番茄影评人分数在 24%–29% 之间，Metacritic 为 23–30 分，具体数字因来源和时间点而异。《卫报》给 1/5，称其“unbearably mannered”；《好莱坞报道者》称它“cloying, clumsy”。多篇评论说 Waititi 的喜剧腔调压平了原著的克制，笑点和煽情都用力过猛。观众分 74%，明显高于影评人，但没查到这部分观众具体喜欢什么。首周全球票房约 170 万美元，影院排片可能很快减少。",
+    "background": "导演兼编剧是 Taika Waititi，代表作有《犹大兔》（获奥斯卡最佳改编剧本，评价两极）、《雷神3》、《雷神4》和《Next Goal Wins》。联合编剧是 Dahvi Waller。Sony 发行，影片 2024 年杀青，在 Sony 搁置了两年。世界首映在 BFI 伦敦电影节，入围竞赛单元或获奖未查到。",
+    "caveats": "想看的话，可以等流媒体，或者先读原著。观众分明显高于影评人，口味合适的人可能会喜欢，但笔记没查到具体原因。",
+    "skip_reason": "口碑很差，且是软科幻加煽情喜剧，不是有作者野心、世界观完整的科幻，不值得专程去影院。",
+    "evidence": "ample",
+    "title_zh": null,
+    "title_zh_source": null,
+    "scores": [
+     {
+      "name": "烂番茄影评人分数",
+      "value": "26%（90 篇评论）",
+      "source_url": "https://tribune.com.pk/story/2638095/taika-waititi-criticises-film-reviewers-after-klara-and-the-sun-receives-a-26-rotten-tomatoes-score"
+     },
+     {
+      "name": "烂番茄影评人分数",
+      "value": "29%",
+      "source_url": "https://www.goldderby.com/film/2026/klara-and-the-sun-reviews-taika-waititi-jenna-ortega"
+     },
+     {
+      "name": "Metacritic",
+      "value": "26 分",
+      "source_url": "https://www.goldderby.com/film/2026/klara-and-the-sun-reviews-taika-waititi-jenna-ortega"
+     },
+     {
+      "name": "烂番茄影评人分数",
+      "value": "25%",
+      "source_url": "https://cosmicbook.news/klara-and-the-sun-box-office"
+     },
+     {
+      "name": "Metacritic",
+      "value": "30 分",
+      "source_url": "https://cosmicbook.news/klara-and-the-sun-box-office"
+     },
+     {
+      "name": "观众分",
+      "value": "74%",
+      "source_url": "https://www.cbr.com/taika-waititi-critics-klara-and-the-sun"
+     }
+    ],
+    "sources": [
+     {
+      "title": "Tribune：Taika Waititi 批评影评人，影片烂番茄 26%",
+      "url": "https://tribune.com.pk/story/2638095/taika-waititi-criticises-film-reviewers-after-klara-and-the-sun-receives-a-26-rotten-tomatoes-score"
+     },
+     {
+      "title": "Gold Derby：影评汇总",
+      "url": "https://www.goldderby.com/film/2026/klara-and-the-sun-reviews-taika-waititi-jenna-ortega"
+     },
+     {
+      "title": "Cosmic Book News：票房与评分",
+      "url": "https://cosmicbook.news/klara-and-the-sun-box-office"
+     },
+     {
+      "title": "CBR：观众分与影评人分歧",
+      "url": "https://www.cbr.com/taika-waititi-critics-klara-and-the-sun"
+     },
+     {
+      "title": "MovieWeb：烂番茄分数与评论摘录",
+      "url": "https://movieweb.com/klara-and-the-sun-rotten-tomatoes-score"
+     },
+     {
+      "title": "The Hollywood Reporter：影评",
+      "url": "https://www.hollywoodreporter.com/movies/movie-reviews/klara-and-the-sun-review-jenna-ortega-taika-waititi-1236735986"
+     },
+     {
+      "title": "World of Reel：伦敦首映",
+      "url": "https://www.worldofreel.com/blog/2026/10/15/taika-waititis-klara-and-the-sun-panned-by-critics-gets-1-star-reviews-at-london-premiere"
+     },
+     {
+      "title": "Wikipedia：Klara and the Sun (film)",
+      "url": "https://en.wikipedia.org/wiki/Klara_and_the_Sun_(film)"
+     }
+    ],
+    "sources_dropped": 0,
+    "film_id": 61222
+   },
+   "review_error": null,
+   "flags": [],
+   "seen_before": false,
+   "outcome": "skip",
+   "outcome_reason": "口碑很差，且是软科幻加煽情喜剧，不是有作者野心、世界观完整的科幻，不值得专程去影院。"
+  },
+  {
+   "film_id": 61280,
+   "title": "Clayface",
+   "film_url": "clayface",
+   "versions": [
+    {
+     "film_id": 61280,
+     "name": "Clayface",
+     "language": "English",
+     "subtitle": ""
+    }
+   ],
+   "status": "now_playing",
+   "is_event": false,
+   "release_date": "2026-10-23",
+   "runtime": 108,
+   "genres": [
+    "Horror"
+   ],
+   "film_categories": [
+    "Horror",
+    "Film Presentation"
+   ],
+   "distributor": "Warner Bros Entertainment Canada Inc",
+   "poster_url": "https://mediafiles.cineplex.com/Central/Film/Posters/61280_320_470.jpg",
+   "detail_url": "https://www.cineplex.com/movie/clayface",
+   "gta_theatres": [
+    "Cineplex Cinemas Courtney Park",
+    "Cineplex Cinemas Empress Walk",
+    "Cineplex Cinemas Fairview Mall",
+    "Cineplex Cinemas Markham and VIP",
+    "Cineplex Cinemas Mississauga Square One",
+    "Cineplex Cinemas Pickering and VIP",
+    "Cineplex Cinemas Queensway and VIP",
+    "Cineplex Cinemas Scarborough",
+    "Cineplex Cinemas Vaughan",
+    "Cineplex Cinemas Winston Churchill & VIP",
+    "Cineplex Cinemas Yonge-Dundas and VIP",
+    "Cineplex Cinemas Yonge-Eglinton and VIP",
+    "Cineplex Cinemas Yorkdale",
+    "Cineplex Junxion Erin Mills",
+    "Cineplex Odeon Ajax Cinemas",
+    "Cineplex Odeon Eglinton Town Centre Cinemas",
+    "Cineplex Odeon Morningside Cinemas",
+    "Cineplex VIP Cinemas Don Mills (age restricted 19+)",
+    "Scotiabank Theatre Toronto",
+    "SilverCity Brampton Cinemas",
+    "SilverCity Richmond Hill Cinemas"
+   ],
+   "gta_dates": [
+    "2026-11-05",
+    "2026-11-06",
+    "2026-11-07",
+    "2026-11-08",
+    "2026-11-09",
+    "2026-11-10",
+    "2026-11-11",
+    "2026-11-12"
+   ],
+   "weeks_in_release": 2,
+   "hurry": false,
+   "rating_on": {
+    "rating": "14A",
+    "warnings": [
+     "Gory violence"
+    ]
+   },
+   "synopsis": "DC Studios’ “Clayface” is a horror thriller from director James Watkins, starring Tom Rhys Harries in the title role of the cult favourite villain from Gotham’s rogues gallery.\n\nMatt Hagen’s meteoric rise from Gotham street kid to Hollywood leading man is tragically cut short when a local crime boss’s actions leave him horribly disfigured. Abandoned by his team and with nothing left, Matt seeks out a cutting edge treatment that miraculously returns him to his former self… but also unexpectedly affects his grip on reality, spiraling him down a destructive path of all-consuming revenge.\n\nThe film also stars Naomi Ackie, David Dencik, Max Minghella and Eddie Marsan, as well as Nancy Carroll and Joshua James.",
+   "director": "James Watkins",
+   "starring": "Tom Rhys Harries, Naomi Ackie, David Dencik, Max Minghella, Eddie Marsan, Nancy Carroll & Joshua James.",
+   "details_missing": false,
+   "verdict": {
+    "film_id": 61280,
+    "keep": false,
+    "rank": null,
+    "category": "horror",
+    "reason": "DC超级英雄衍生的身体恐怖，偏IP商业片，名额有限未入围。"
+   },
+   "card": null,
+   "review_error": null,
+   "flags": [],
+   "seen_before": false,
+   "outcome": "skip",
+   "outcome_reason": "DC超级英雄衍生的身体恐怖，偏IP商业片，名额有限未入围。"
+  },
+  {
+   "film_id": 61281,
+   "title": "I Play Rocky",
+   "film_url": "i-play-rocky",
+   "versions": [
+    {
+     "film_id": 61281,
+     "name": "I Play Rocky",
+     "language": "English",
+     "subtitle": ""
+    }
+   ],
+   "status": "coming_soon",
+   "is_event": false,
+   "release_date": "2026-11-13",
+   "runtime": 127,
+   "genres": [
+    "Biography",
+    "Drama"
+   ],
+   "film_categories": [
+    "Biography",
+    "Drama",
+    "Film Presentation"
+   ],
+   "distributor": "ELEVATION PICTURES CORP.",
+   "poster_url": "https://mediafiles.cineplex.com/Central/Film/Posters/61281_320_470.jpg",
+   "detail_url": "https://www.cineplex.com/movie/i-play-rocky",
+   "gta_theatres": [
+    "Cineplex Cinemas Varsity and VIP",
+    "Scotiabank Theatre Toronto"
+   ],
+   "gta_dates": [
+    "2026-11-11",
+    "2026-11-12",
+    "2026-11-13",
+    "2026-11-14",
+    "2026-11-15",
+    "2026-11-16",
+    "2026-11-17"
+   ],
+   "weeks_in_release": null,
+   "hurry": false,
+   "rating_on": null,
+   "synopsis": "",
+   "director": "",
+   "starring": "",
+   "details_missing": false,
+   "verdict": {
+    "film_id": 61281,
+    "keep": false,
+    "rank": null,
+    "category": "outside",
+    "reason": "史泰龙拍洛奇的幕后传记，不在口味内。"
+   },
+   "card": null,
+   "review_error": null,
+   "flags": [],
+   "seen_before": false,
+   "outcome": "skip",
+   "outcome_reason": "史泰龙拍洛奇的幕后传记，不在口味内。"
+  },
+  {
+   "film_id": 61439,
+   "title": "Crawlers",
+   "film_url": "crawlers",
+   "versions": [
+    {
+     "film_id": 61439,
+     "name": "Crawlers",
+     "language": "English",
+     "subtitle": ""
+    }
+   ],
+   "status": "now_playing",
+   "is_event": false,
+   "release_date": "2026-10-30",
+   "runtime": 81,
+   "genres": [
+    "Thriller",
+    "Horror"
+   ],
+   "film_categories": [
+    "Thriller",
+    "Horror",
+    "Film Presentation"
+   ],
+   "distributor": "VVS FILMS",
+   "poster_url": "https://mediafiles.cineplex.com/Central/Film/Posters/61439_320_470.jpg",
+   "detail_url": "https://www.cineplex.com/movie/crawlers",
+   "gta_theatres": [
+    "Cineplex Cinemas Vaughan",
+    "Cineplex Odeon Eglinton Town Centre Cinemas",
+    "Scotiabank Theatre Toronto",
+    "SilverCity Richmond Hill Cinemas"
+   ],
+   "gta_dates": [
+    "2026-11-05"
+   ],
+   "weeks_in_release": 1,
+   "hurry": false,
+   "rating_on": {
+    "rating": "14A",
+    "warnings": [
+     "Frightening Scenes",
+     "Gory Scenes"
+    ]
+   },
+   "synopsis": "In CRAWLERS, a catastrophic infestation of venomous and deadly spiders sends an apartment building into lockdown. Trapped inside by a police-mandated quarantine, building manager Serena (Lutz) and her residents battle to survive as the creatures multiply by the second. Armed with her intimate knowledge of the complex, Serena may be the only one who can keep them alive—if she can confront her deepest fear. ",
+   "director": "Ángel Gómez Hernández",
+   "starring": "Matilda Lutz",
+   "details_missing": false,
+   "verdict": {
+    "film_id": 61439,
+    "keep": false,
+    "rank": null,
+    "category": "horror",
+    "reason": "蜘蛛围城生物恐怖，偏类型爽片，非作者性恐怖。"
+   },
+   "card": null,
+   "review_error": null,
+   "flags": [],
+   "seen_before": false,
+   "outcome": "skip",
+   "outcome_reason": "蜘蛛围城生物恐怖，偏类型爽片，非作者性恐怖。"
+  },
+  {
+   "film_id": 61766,
+   "title": "Fjord",
+   "film_url": "fjord-multilingual-west",
+   "versions": [
+    {
+     "film_id": 61766,
+     "name": "Fjord (Multilingual w/e.s.t.)",
+     "language": "English",
+     "subtitle": "English"
+    }
+   ],
+   "status": "now_playing",
+   "is_event": false,
+   "release_date": "2026-10-16",
+   "runtime": 146,
+   "genres": [
+    "Drama"
+   ],
+   "film_categories": [
+    "Drama",
+    "Film Presentation"
+   ],
+   "distributor": "ELEVATION PICTURES CORP.",
+   "poster_url": "https://mediafiles.cineplex.com/Central/Film/Posters/61766_320_470.jpg",
+   "detail_url": "https://www.cineplex.com/movie/fjord-multilingual-west",
+   "gta_theatres": [
+    "Cineplex Cinemas Varsity and VIP"
+   ],
+   "gta_dates": [
+    "2026-11-05",
+    "2026-11-06",
+    "2026-11-07",
+    "2026-11-08",
+    "2026-11-09",
+    "2026-11-10",
+    "2026-11-11"
+   ],
+   "weeks_in_release": 3,
+   "hurry": true,
+   "rating_on": {
+    "rating": "PG",
+    "warnings": [
+     "Violence",
+     "Coarse Language"
+    ]
+   },
+   "synopsis": "After the deaths of Mihai’s parents, Mihai and Lisbeth Gheorghiu leave everything behind in Romania and move with their children to a remote village in Norway, hoping to rebuild their lives near Lisbeth’s family. There, they grow close to their neighbors, the Halbergs, whose warmth offers the promise of a fresh start. But the fragile peace begins to unravel when the Gheorghius’ young daughter, Elia, arrives at school covered in bruises.",
+   "director": "Cristian Mungu",
+   "starring": "Sebastian Stan, Renate Reinsve, Lisa Loven Kongsli, Giulia Nahmany",
+   "details_missing": false,
+   "verdict": {
+    "film_id": 61766,
+    "keep": true,
+    "rank": 8,
+    "category": "thriller",
+    "reason": "蒙吉执导，孩子身上淤青引发的社区猜疑，慢慢收紧的心理张力很对A24惊悚口味。"
+   },
+   "card": {
+    "tier": "ok",
+    "strength": 4,
+    "category": "political_historical",
+    "one_liner": "金棕榈得主，取材真实移民案件的法庭社会剧，口碑强但评价两极，不是氛围惊悚。",
+    "premise": "罗马尼亚夫妇带着孩子搬到挪威偏远村庄，想重新开始。女儿带着一身淤青到校后，儿童保护机构介入，家庭陷入与官僚体系的对抗。后半段转为法庭戏。",
+    "why_for_you": "它只部分对应你的“政治”一类：题材是移民家庭与国家机构的冲突，取材自 2015 年罗马尼亚移民 Bodnariu 夫妇的真实案件。如果你想要 A24 式的氛围惊悚，它不在这个范围内，强口碑来自社会议题和表演，不是类型片的紧张感。不过有好评提到它像绞索慢慢收紧的纪实质感，可能有一点相通之处。笔记里没有影评人对大银幕视听效果的具体评价，所以是否必须上影院看没有依据。",
+    "reception": "获戛纳金棕榈。烂番茄 91%（79 篇评论，均分 7.7/10），Metacritic 80 分。评价两极：NPR 认为它明显带有操纵性，并刻意隐瞒信息；《卫报》给 2/5，称其令人失望；《视与听》认为人物塑造缺乏说服力；《新共和》指出导演的“含蓄”常常写得很露骨；观众对开放式结局很不满。",
+    "background": "导演兼编剧是 Cristian Mungiu（片方资料写作“Mungu”，应为笔误），他的另一部金棕榈作品是《4 月 3 周又 2 天》（2007）。主要制作公司是 Mobra Films，另有 Why Not Productions 等联合出品。导演刻意不给出暴力的确凿证据，由观众自己判断。该片语言为英语、罗马尼亚语和挪威语。",
+    "caveats": "片长 146 分钟。结局开放，不少观众不满。评价两极，有评论认为它操纵性强、人物塑造不足。它不是惊悚片，不要按氛围惊悚的预期去看。",
+    "skip_reason": null,
+    "evidence": "ample",
+    "title_zh": "峡湾",
+    "title_zh_source": "https://zh.wikipedia.org/wiki/%E5%B3%A1%E6%B9%BE_(%E7%94%B5%E5%BD%B1)",
+    "scores": [
+     {
+      "name": "烂番茄",
+      "value": "91%（79 篇评论，均分 7.7/10）",
+      "source_url": "https://www.fxoxo.com/334202"
+     },
+     {
+      "name": "Metacritic",
+      "value": "80",
+      "source_url": "https://www.metacritic.com/movie/fjord"
+     },
+     {
+      "name": "《卫报》",
+      "value": "2/5",
+      "source_url": "https://www.fxoxo.com/334202"
+     }
+    ],
+    "sources": [
+     {
+      "title": "CNBC：戛纳金棕榈报道",
+      "url": "https://www.cnbc.com/2026/05/23/cannes-film-festival-fjord-wins-palme-dor.html"
+     },
+     {
+      "title": "fxoxo：评分汇总",
+      "url": "https://www.fxoxo.com/334202"
+     },
+     {
+      "title": "Metacritic：Fjord",
+      "url": "https://www.metacritic.com/movie/fjord"
+     },
+     {
+      "title": "Wikipedia：Cristian Mungiu",
+      "url": "https://en.wikipedia.org/wiki/Cristian_Mungiu"
+     },
+     {
+      "title": "Wikipedia：Fjord (film)",
+      "url": "https://en.wikipedia.org/wiki/Fjord_(film)"
+     },
+     {
+      "title": "Gold Derby：导演访谈",
+      "url": "https://www.goldderby.com/film/2026/fjord-director-cristian-mungiu-interview"
+     },
+     {
+      "title": "中文维基百科：峡湾（电影）",
+      "url": "https://zh.wikipedia.org/wiki/%E5%B3%A1%E6%B9%BE_(%E7%94%B5%E5%BD%B1)"
+     },
+     {
+      "title": "百度百科：峡湾",
+      "url": "https://baike.baidu.com/item/%E5%B3%A1%E6%B9%BE/65684109"
+     }
+    ],
+    "sources_dropped": 0,
+    "film_id": 61766
+   },
+   "review_error": null,
+   "flags": [],
+   "seen_before": true,
+   "outcome": "ok",
+   "outcome_reason": "金棕榈得主，取材真实移民案件的法庭社会剧，口碑强但评价两极，不是氛围惊悚。"
+  },
+  {
+   "film_id": 61767,
+   "title": "Wicker",
+   "film_url": "wicker",
+   "versions": [
+    {
+     "film_id": 61767,
+     "name": "Wicker",
+     "language": "English",
+     "subtitle": ""
+    }
+   ],
+   "status": "now_playing",
+   "is_event": false,
+   "release_date": "2026-10-23",
+   "runtime": 105,
+   "genres": [
+    "Drama"
+   ],
+   "film_categories": [
+    "Drama",
+    "Film Presentation"
+   ],
+   "distributor": "ELEVATION PICTURES CORP.",
+   "poster_url": "https://mediafiles.cineplex.com/Central/Film/Posters/61767_320_470.jpg",
+   "detail_url": "https://www.cineplex.com/movie/wicker",
+   "gta_theatres": [
+    "Cineplex Cinemas Courtney Park",
+    "Cineplex Cinemas Markham and VIP",
+    "Cineplex Cinemas Mississauga Square One",
+    "Cineplex Cinemas Pickering and VIP",
+    "Cineplex Cinemas Queensway and VIP",
+    "Cineplex Cinemas Varsity and VIP",
+    "Cineplex Cinemas Vaughan",
+    "Cineplex Cinemas Winston Churchill & VIP",
+    "Cineplex Cinemas Yonge-Dundas and VIP",
+    "Cineplex Cinemas Yonge-Eglinton and VIP",
+    "Cineplex Odeon Ajax Cinemas",
+    "Cineplex Odeon Eglinton Town Centre Cinemas",
+    "Cineplex Odeon Morningside Cinemas",
+    "Scotiabank Theatre Toronto",
+    "SilverCity Brampton Cinemas",
+    "SilverCity Richmond Hill Cinemas"
+   ],
+   "gta_dates": [
+    "2026-11-05",
+    "2026-11-06",
+    "2026-11-07",
+    "2026-11-08",
+    "2026-11-09",
+    "2026-11-10",
+    "2026-11-11",
+    "2026-11-12"
+   ],
+   "weeks_in_release": 2,
+   "hurry": false,
+   "rating_on": {
+    "rating": "14A",
+    "warnings": [
+     "Sexually suggestive scenes"
+    ]
+   },
+   "synopsis": "An ostracized fisherwoman commissions the local basketmaker to weave her a husband, but when her wicker creation proves unexpectedly extraordinary, his presence ignites jealousy and upheaval that threatens their quiet village.",
+   "director": "Eleanor Wilson, Alex Huston Fischer",
+   "starring": "Olivia Colman, Alexander Skarsgård, Peter Dinklage, Elizabeth Debicki",
+   "details_missing": false,
+   "verdict": {
+    "film_id": 61767,
+    "keep": false,
+    "rank": null,
+    "category": "outside",
+    "reason": "柳条丈夫的寓言式奇幻剧情，不在七类内。"
+   },
+   "card": null,
+   "review_error": null,
+   "flags": [],
+   "seen_before": false,
+   "outcome": "skip",
+   "outcome_reason": "柳条丈夫的寓言式奇幻剧情，不在七类内。"
+  },
+  {
+   "film_id": 61770,
+   "title": "Udta Teer",
+   "film_url": "udta-teer-hindi-west",
+   "versions": [
+    {
+     "film_id": 61770,
+     "name": "Udta Teer (Hindi w/e.s.t.)",
+     "language": "Hindi",
+     "subtitle": "English"
+    }
+   ],
+   "status": "now_playing",
+   "is_event": false,
+   "release_date": "2026-10-23",
+   "runtime": 135,
+   "genres": [
+    "International"
+   ],
+   "film_categories": [
+    "International",
+    "Film Presentation"
+   ],
+   "distributor": "Moviegoers Entertainment Inc.",
+   "poster_url": "https://mediafiles.cineplex.com/Central/Film/Posters/61770_320_470.jpg",
+   "detail_url": "https://www.cineplex.com/movie/udta-teer-hindi-west",
+   "gta_theatres": [
+    "Cineplex Cinemas Courtney Park",
+    "Cineplex Cinemas Mississauga Square One",
+    "Cineplex Cinemas Scarborough",
+    "Cineplex Cinemas Vaughan",
+    "Cineplex Cinemas Winston Churchill & VIP",
+    "Cineplex Odeon Ajax Cinemas",
+    "Cineplex Odeon Morningside Cinemas",
+    "SilverCity Brampton Cinemas"
+   ],
+   "gta_dates": [
+    "2026-11-05",
+    "2026-11-06",
+    "2026-11-07",
+    "2026-11-08",
+    "2026-11-09",
+    "2026-11-10",
+    "2026-11-11",
+    "2026-11-12"
+   ],
+   "weeks_in_release": 2,
+   "hurry": false,
+   "rating_on": {
+    "rating": "14A",
+    "warnings": [
+     "Violence"
+    ]
+   },
+   "synopsis": "In a world where everyone has a secret and nobody can be trusted, one spy accidentally turns the\nentire game upside down. Blending high-stakes espionage with big laughs, comic chaos, and crowd-pleasing\nentertainment, this fresh spin on the spy genre delivers a complete family entertainer. It's a fast-paced spy\ncomedy where nobody knows what's going on, least of all the hero.",
+   "director": "Akash A Kaushik ",
+   "starring": "Ayushman Khurana ,Sara Ali Khan",
+   "details_missing": false,
+   "verdict": {
+    "film_id": 61770,
+    "keep": false,
+    "rank": null,
+    "category": "outside",
+    "reason": "印地语间谍喜剧，不对口味。"
+   },
+   "card": null,
+   "review_error": null,
+   "flags": [],
+   "seen_before": false,
+   "outcome": "skip",
+   "outcome_reason": "印地语间谍喜剧，不对口味。"
+  },
+  {
+   "film_id": 61936,
+   "title": "Primetime",
+   "film_url": "primetime",
+   "versions": [
+    {
+     "film_id": 61936,
+     "name": "Primetime",
+     "language": "English",
+     "subtitle": ""
+    }
+   ],
+   "status": "now_playing",
+   "is_event": false,
+   "release_date": "2026-09-25",
+   "runtime": 110,
+   "genres": [
+    "Thriller",
+    "Suspense"
+   ],
+   "film_categories": [
+    "Thriller",
+    "Suspense",
+    "Film Presentation"
+   ],
+   "distributor": "ELEVATION PICTURES CORP.",
+   "poster_url": "https://mediafiles.cineplex.com/Central/Film/Posters/61936_320_470.jpg",
+   "detail_url": "https://www.cineplex.com/movie/primetime",
+   "gta_theatres": [
+    "Cineplex Cinemas Winston Churchill & VIP",
+    "Cineplex Cinemas Yonge-Dundas and VIP"
+   ],
+   "gta_dates": [
+    "2026-11-05",
+    "2026-11-06",
+    "2026-11-07",
+    "2026-11-08",
+    "2026-11-09",
+    "2026-11-10",
+    "2026-11-11"
+   ],
+   "weeks_in_release": 6,
+   "hurry": true,
+   "rating_on": {
+    "rating": "14A",
+    "warnings": [
+     "Nudity",
+     "Coarse & sexual language",
+     "Photosensitivity Warning"
+    ]
+   },
+   "synopsis": "In 2006, To Catch a Predator host Chris Hansen sets out to make television history.",
+   "director": "Lance Oppenheim",
+   "starring": "Robert Pattison, Skyler Gisondo & Anna Faris",
+   "details_missing": false,
+   "verdict": {
+    "film_id": 61936,
+    "keep": true,
+    "rank": 10,
+    "category": "thriller",
+    "reason": "Lance Oppenheim 执导、帕丁森主演的《抓捕掠食者》主持人故事，可能是心理惊悚兼犯罪题材。"
+   },
+   "card": {
+    "tier": "must",
+    "strength": 4,
+    "category": "thriller",
+    "one_liner": "A24 出品、帕丁森主演的惊悚片，靠压迫的氛围推进，口碑不错，适合进影院看。",
+    "premise": "故事设在2006年，据称改编自真实事件，以虚构手法呈现主持人 Chris Hansen 在《To Catch a Predator》期间最黑暗的一年。他想把节目推进黄金档，在郊区诱捕屋里当面质问赴约的男子。",
+    "why_for_you": "最贴合你的“惊悚”类：A24 出品，靠氛围和不安感推进，而不是追车枪战。4:3 画幅带来的压迫感适合在大银幕上体验。另外有犯罪和真实事件的成分，也沾你的“犯罪”类。导演是纪录片出身，这是他的剧情长片处女作。",
+    "reception": "评论很多。烂番茄 86% 好评（261 篇影评，均分 7.3/10），Metacritic 68/100（54 位影评人，“普遍好评”）。入围威尼斯主竞赛单元，首映后掌声持续近八分钟，威尼斯获奖情况未查到。评论说它节奏像惊悚片，风格像最让人坐立不安的艺术恐怖片，帕丁森的表演获得一致称赞。",
+    "background": "导演 Lance Oppenheim 以纪录片出身，之前拍过《Some Kind of Heaven》和剧集《Ren Faire》。编剧 Ajon Singh，帕丁森也是制片人。出品方包括 A24、Icki Eneo Arlo、Range Media Partners、Square Peg。原作来源说法不一：一说是 Esquire 的文章，一说是 Luke Dittrich 的书。",
+    "caveats": "《洛杉矶时报》的 Matt Brennan 认为影片对原节目及其后果缺乏好奇，自己也沾上了原节目的低俗手法，而且只盯着 Hansen 一个人，主题因此受限。影评人对导演的执行和影片关于媒体奇观的论点看法不一。4:3 画幅的压迫感不适合想轻松看片的人。如果想看对“掠食者”题材的深入剖析，可能会觉得流于表面。另外，片单写主演有 Anna Faris，但调查到的卡司里没有她，选票前建议再确认。",
+    "skip_reason": null,
+    "evidence": "ample",
+    "title_zh": null,
+    "title_zh_source": null,
+    "scores": [
+     {
+      "name": "烂番茄",
+      "value": "86%（261 篇影评，均分 7.3/10）",
+      "source_url": "https://en.wikipedia.org/wiki/Primetime_(film)"
+     },
+     {
+      "name": "Metacritic",
+      "value": "68/100（54 位影评人）",
+      "source_url": "https://en.wikipedia.org/wiki/Primetime_(film)"
+     },
+     {
+      "name": "IMDb",
+      "value": "7.0",
+      "source_url": "https://dknetwork.draftkings.com/2026/09/24/primetime-movie-ratings-rotten-tomatoes-imdb-metacritic"
+     },
+     {
+      "name": "Letterboxd",
+      "value": "3.8/5",
+      "source_url": "https://dknetwork.draftkings.com/2026/09/24/primetime-movie-ratings-rotten-tomatoes-imdb-metacritic"
+     }
+    ],
+    "sources": [
+     {
+      "title": "Primetime (film) - Wikipedia",
+      "url": "https://en.wikipedia.org/wiki/Primetime_(film)"
+     },
+     {
+      "title": "Primetime (2026 film) - Wikipedia",
+      "url": "https://en.wikipedia.org/wiki/Primetime_(2026_film)"
+     },
+     {
+      "title": "DK Network：Primetime 评分汇总",
+      "url": "https://dknetwork.draftkings.com/2026/09/24/primetime-movie-ratings-rotten-tomatoes-imdb-metacritic"
+     },
+     {
+      "title": "Rotten Tomatoes：Primetime 首批影评",
+      "url": "https://editorial.rottentomatoes.com/article/primetime-first-reviews"
+     },
+     {
+      "title": "Deadline：Primetime 预告片",
+      "url": "https://deadline.com/2026/08/primetime-trailer-robert-pattinson-chris-hansen-a24-movie-1236921576"
+     },
+     {
+      "title": "The Hollywood Reporter：威尼斯首映",
+      "url": "https://www.hollywoodreporter.com/movies/movie-news/robert-pattinson-primetime-a24-movie-venice-film-festival-1236691614"
+     }
+    ],
+    "sources_dropped": 0,
+    "film_id": 61936
+   },
+   "review_error": null,
+   "flags": [],
+   "seen_before": false,
+   "outcome": "must",
+   "outcome_reason": "A24 出品、帕丁森主演的惊悚片，靠压迫的氛围推进，口碑不错，适合进影院看。"
+  },
+  {
+   "film_id": 61941,
+   "title": "Club Kid",
+   "film_url": "club-kid",
+   "versions": [
+    {
+     "film_id": 61941,
+     "name": "Club Kid",
+     "language": "English",
+     "subtitle": ""
+    }
+   ],
+   "status": "coming_soon",
+   "is_event": false,
+   "release_date": "2026-11-13",
+   "runtime": 126,
+   "genres": [
+    "Drama"
+   ],
+   "film_categories": [
+    "Drama",
+    "Film Presentation"
+   ],
+   "distributor": "ELEVATION PICTURES CORP.",
+   "poster_url": "https://mediafiles.cineplex.com/Central/Film/Posters/61941_320_470.jpg",
+   "detail_url": "https://www.cineplex.com/movie/club-kid",
+   "gta_theatres": [
+    "Cineplex Cinemas Varsity and VIP"
+   ],
+   "gta_dates": [
+    "2026-11-12"
+   ],
+   "weeks_in_release": null,
+   "hurry": false,
+   "rating_on": {
+    "rating": "14A",
+    "warnings": [
+     "Coarse Language",
+     "Sexually suggestive scenes",
+     "Drug Use"
+    ]
+   },
+   "synopsis": "A washed-up New York party promoter is forced to turn his life around when an unexpected visitor arrives.",
+   "director": "Jordan Firstman",
+   "starring": "Jordan Firstman, Cara Delevingne, Diego Calva, Kirby, Howell-Baptiste, Collen Camp",
+   "details_missing": false,
+   "verdict": {
+    "film_id": 61941,
+    "keep": false,
+    "rank": null,
+    "category": "outside",
+    "reason": "纽约派对推广人剧情片，不在口味内。"
+   },
+   "card": null,
+   "review_error": null,
+   "flags": [],
+   "seen_before": false,
+   "outcome": "skip",
+   "outcome_reason": "纽约派对推广人剧情片，不在口味内。"
+  },
+  {
+   "film_id": 62018,
+   "title": "Ghost Soldier",
+   "film_url": "ghost-soldier",
+   "versions": [
+    {
+     "film_id": 62018,
+     "name": "Ghost Soldier",
+     "language": "English",
+     "subtitle": ""
+    }
+   ],
+   "status": "coming_soon",
+   "is_event": false,
+   "release_date": "2026-11-11",
+   "runtime": 89,
+   "genres": [
+    "Action",
+    "Drama"
+   ],
+   "film_categories": [
+    "Action",
+    "Drama",
+    "Film Presentation"
+   ],
+   "distributor": "Sony Pictures Entertainment Canada Ltd.",
+   "poster_url": "https://mediafiles.cineplex.com/Central/Film/Posters/62018_320_470.jpg",
+   "detail_url": "https://www.cineplex.com/movie/ghost-soldier",
+   "gta_theatres": [
+    "Cineplex Cinemas Courtney Park",
+    "Cineplex Cinemas Empress Walk",
+    "Cineplex Cinemas Queensway and VIP",
+    "Cineplex Cinemas Vaughan",
+    "Cineplex Cinemas Winston Churchill & VIP",
+    "Cineplex Cinemas Yonge-Dundas and VIP",
+    "Cineplex Cinemas Yonge-Eglinton and VIP",
+    "Cineplex Cinemas Yorkdale",
+    "Cineplex Odeon Ajax Cinemas",
+    "Cineplex Odeon Eglinton Town Centre Cinemas",
+    "SilverCity Brampton Cinemas",
+    "SilverCity Richmond Hill Cinemas"
+   ],
+   "gta_dates": [
+    "2026-11-10",
+    "2026-11-11",
+    "2026-11-12"
+   ],
+   "weeks_in_release": null,
+   "hurry": false,
+   "rating_on": {
+    "rating": "PG",
+    "warnings": [
+     "Violence",
+     "Coarse Language"
+    ]
+   },
+   "synopsis": "In the action-thriller Ghost Soldier, Jim Caviezel stars as Henry “Fitz” Fitzgerald, a solitary man with a mysterious past, living a quiet life off the grid in his hometown. But when a powerful foreign corporation descends on his community determined to seize his and his neighbors’ land for a massive payday, Fitz takes action — he’s actually a former Special Forces soldier and advanced weapons developer. Armed with weapons no one has ever seen, a lifetime of lethal military training, and an unwavering code of justice, Fitz becomes the one thing his enemies never anticipated: a one-man war they can’t win.",
+   "director": "",
+   "starring": "Jim Caviezel",
+   "details_missing": false,
+   "verdict": {
+    "film_id": 62018,
+    "keep": false,
+    "rank": null,
+    "category": "outside",
+    "reason": "一人军队式动作片，不对口味。"
+   },
+   "card": null,
+   "review_error": null,
+   "flags": [],
+   "seen_before": false,
+   "outcome": "skip",
+   "outcome_reason": "一人军队式动作片，不对口味。"
+  },
+  {
+   "film_id": 62019,
+   "title": "Eh Din Roz Ni Aune",
+   "film_url": "eh-din-roz-ni-aune-punjabi-west",
+   "versions": [
+    {
+     "film_id": 62019,
+     "name": "Eh Din Roz Ni Aune (Punjabi w/e.s.t.)",
+     "language": "Punjabi",
+     "subtitle": "English"
+    }
+   ],
+   "status": "now_playing",
+   "is_event": false,
+   "release_date": "2026-10-09",
+   "runtime": 131,
+   "genres": [
+    "International"
+   ],
+   "film_categories": [
+    "International",
+    "Film Presentation"
+   ],
+   "distributor": "OMJEES CINE WORLD LTD",
+   "poster_url": "https://mediafiles.cineplex.com/Central/Film/Posters/62019_320_470.jpg",
+   "detail_url": "https://www.cineplex.com/movie/eh-din-roz-ni-aune-punjabi-west",
+   "gta_theatres": [
+    "SilverCity Brampton Cinemas"
+   ],
+   "gta_dates": [
+    "2026-11-05"
+   ],
+   "weeks_in_release": 4,
+   "hurry": true,
+   "rating_on": {
+    "rating": "PG",
+    "warnings": []
+   },
+   "synopsis": "In a fortunate encounter, carefree 25-year-old Prabh meets\r\nAavraj, a practical, successful 55-year-old businessman.\r\nTheir contrasting ideologies create a fun-filled officefamily\r\ndrama. Prabh’s mistakes and carefree nature\r\nchallenge Aavraj’s rigid personality, while secretary\r\nRajdeep becomes the bridge between them. As Prabh\r\nlearns practicality from Aavraj, Rajdeep discovers joy and\r\nemotional freedom through Prabh. With Rajdeep’s help,\r\nPrabh creates a fictional world to heal the\r\nmisunderstanding between Aavraj and his estranged\r\ndaughter. Their reunion restores Aavraj’s happiness and\r\nbrings him emotionally closer to Prabh. Touched by\r\nPrabh’s spirit, Aavraj finally supports his startup dream,\r\ncompleting their transformative journey.",
+   "director": "",
+   "starring": "",
+   "details_missing": false,
+   "verdict": {
+    "film_id": 62019,
+    "keep": false,
+    "rank": null,
+    "category": "outside",
+    "reason": "旁遮普语家庭喜剧，不在口味内。"
+   },
+   "card": null,
+   "review_error": null,
+   "flags": [],
+   "seen_before": false,
+   "outcome": "skip",
+   "outcome_reason": "旁遮普语家庭喜剧，不在口味内。"
+  },
+  {
+   "film_id": 62036,
+   "title": "Hadoota",
+   "film_url": "hadoota-arabic-west",
+   "versions": [
+    {
+     "film_id": 62036,
+     "name": "Hadoota (Arabic w/e.s.t.)",
+     "language": "Arabic",
+     "subtitle": "English"
+    }
+   ],
+   "status": "coming_soon",
+   "is_event": false,
+   "release_date": "2026-11-13",
+   "runtime": 100,
+   "genres": [
+    "Comedy",
+    "International"
+   ],
+   "film_categories": [
+    "Comedy",
+    "International",
+    "Film Presentation"
+   ],
+   "distributor": "Ceema Entertainment Inc.",
+   "poster_url": "https://mediafiles.cineplex.com/Central/Film/Posters/62036_320_470.jpg",
+   "detail_url": "https://www.cineplex.com/movie/hadoota-arabic-west",
+   "gta_theatres": [],
+   "gta_dates": [],
+   "weeks_in_release": null,
+   "hurry": false,
+   "rating_on": null,
+   "synopsis": "A flight attendant poses as a commercial captain to charm women. When he\nfalls in love with Habiba, he decides to settle down. Due to tight flight shifts, he grants his\nfather a power of attorney to execute the wedding contract—only to end up married to\nfour women simultaneously! When his father suffers temporary amnesia, Hesham\nembarks on a race against time to untangle the three extra marriages before Habiba\ndiscovers",
+   "director": "Mazen Ashraf",
+   "starring": "Ahmed Helmy, Amina Khalil, Mohamed Mamdouh Tyson",
+   "details_missing": false,
+   "verdict": {
+    "film_id": 62036,
+    "keep": false,
+    "rank": null,
+    "category": "outside",
+    "reason": "阿拉伯语婚姻喜剧，不在口味内。"
+   },
+   "card": null,
+   "review_error": null,
+   "flags": [],
+   "seen_before": false,
+   "outcome": "skip",
+   "outcome_reason": "阿拉伯语婚姻喜剧，不在口味内。"
+  },
+  {
+   "film_id": 62057,
+   "title": "& Sons",
+   "film_url": "sons",
+   "versions": [
+    {
+     "film_id": 62057,
+     "name": "& Sons",
+     "language": "English",
+     "subtitle": ""
+    }
+   ],
+   "status": "now_playing",
+   "is_event": false,
+   "release_date": "2026-10-30",
+   "runtime": 119,
+   "genres": [
+    "Drama"
+   ],
+   "film_categories": [
+    "Drama",
+    "Film Presentation"
+   ],
+   "distributor": "ELEVATION PICTURES CORP.",
+   "poster_url": "https://mediafiles.cineplex.com/Central/Film/Posters/62057_320_470.jpg",
+   "detail_url": "https://www.cineplex.com/movie/sons",
+   "gta_theatres": [
+    "Cineplex Cinemas Empress Walk"
+   ],
+   "gta_dates": [
+    "2026-11-05"
+   ],
+   "weeks_in_release": 1,
+   "hurry": false,
+   "rating_on": {
+    "rating": "PG",
+    "warnings": [
+     "Coarse Language"
+    ]
+   },
+   "synopsis": "A writer tries to reconnect with his sons. Based on the novel by David Gilbert.",
+   "director": "Pablo Trapero",
+   "starring": "Bill Nighy, George MacKay & Noah Jupe",
+   "details_missing": false,
+   "verdict": {
+    "film_id": 62057,
+    "keep": false,
+    "rank": null,
+    "category": "outside",
+    "reason": "父子家庭剧情片，不在口味内。"
+   },
+   "card": null,
+   "review_error": null,
+   "flags": [],
+   "seen_before": false,
+   "outcome": "skip",
+   "outcome_reason": "父子家庭剧情片，不在口味内。"
+  },
+  {
+   "film_id": 62064,
+   "title": "Always Yours, Never Mine",
+   "film_url": "always-yours-never-mine-tagalog-west",
+   "versions": [
+    {
+     "film_id": 62064,
+     "name": "Always Yours, Never Mine (Tagalog w/e.s.t.)",
+     "language": "Tagalog",
+     "subtitle": "English"
+    }
+   ],
+   "status": "now_playing",
+   "is_event": false,
+   "release_date": "2026-10-23",
+   "runtime": 112,
+   "genres": [
+    "International"
+   ],
+   "film_categories": [
+    "International",
+    "Film Presentation"
+   ],
+   "distributor": "ABS CBN Canada ULC",
+   "poster_url": "https://mediafiles.cineplex.com/Central/Film/Posters/62064_320_470.jpg",
+   "detail_url": "https://www.cineplex.com/movie/always-yours-never-mine-tagalog-west",
+   "gta_theatres": [
+    "Cineplex Odeon Ajax Cinemas",
+    "Cineplex Odeon Eglinton Town Centre Cinemas",
+    "Cineplex Odeon Morningside Cinemas",
+    "SilverCity Richmond Hill Cinemas"
+   ],
+   "gta_dates": [
+    "2026-11-05",
+    "2026-11-06",
+    "2026-11-07",
+    "2026-11-08",
+    "2026-11-09",
+    "2026-11-10",
+    "2026-11-11",
+    "2026-11-12"
+   ],
+   "weeks_in_release": 2,
+   "hurry": false,
+   "rating_on": {
+    "rating": "14A",
+    "warnings": []
+   },
+   "synopsis": "Across thirty years, several almosts, and timing that is never quite right, two people keep crossing paths – always on the verge of being together, but never quite making it. But when life finally offers them one last chance to rewrite their story, will they finally make the one choice they have spent a lifetime avoiding?",
+   "director": "",
+   "starring": "",
+   "details_missing": false,
+   "verdict": {
+    "film_id": 62064,
+    "keep": false,
+    "rank": null,
+    "category": "outside",
+    "reason": "他加禄语爱情片，不在口味内。"
+   },
+   "card": null,
+   "review_error": null,
+   "flags": [],
+   "seen_before": false,
+   "outcome": "skip",
+   "outcome_reason": "他加禄语爱情片，不在口味内。"
+  },
+  {
+   "film_id": 62085,
+   "title": "La Bola Negra",
+   "film_url": "la-bola-negra-spanish-west",
+   "versions": [
+    {
+     "film_id": 62085,
+     "name": "La Bola Negra (Spanish w/e.s.t.)",
+     "language": "Spanish",
+     "subtitle": "English"
+    }
+   ],
+   "status": "now_playing",
+   "is_event": false,
+   "release_date": "2026-10-23",
+   "runtime": 160,
+   "genres": [
+    "Drama"
+   ],
+   "film_categories": [
+    "Drama",
+    "Film Presentation"
+   ],
+   "distributor": "Equinoxe Films (7024177 Canada Inc.)",
+   "poster_url": "https://mediafiles.cineplex.com/Central/Film/Posters/62085_320_470.jpg",
+   "detail_url": "https://www.cineplex.com/movie/la-bola-negra-spanish-west",
+   "gta_theatres": [
+    "Cineplex Cinemas Queensway and VIP",
+    "Cineplex Cinemas Varsity and VIP",
+    "Cineplex Cinemas Yonge-Dundas and VIP",
+    "Cineplex Odeon Eglinton Town Centre Cinemas"
+   ],
+   "gta_dates": [
+    "2026-11-05",
+    "2026-11-06",
+    "2026-11-07",
+    "2026-11-08",
+    "2026-11-09",
+    "2026-11-10",
+    "2026-11-11",
+    "2026-11-12"
+   ],
+   "weeks_in_release": 2,
+   "hurry": false,
+   "rating_on": {
+    "rating": "14A",
+    "warnings": [
+     "Violence",
+     "Sexually suggestive scenes"
+    ]
+   },
+   "synopsis": "From Cannes-winning directors Javier Calvo and Javier Ambrossi — popularly known as Los Javis — La Bola Negra follows three generations of men across pivotal moments in Spanish history, bound by pain, desire, and love. Carlos (Milo Quifes) longs to belong in a fractured Spain. Sebastián (Guitarricadelafuente) finds connection across enemy lines. And Alberto (Carlos González) uncovers a long-buried family secret — one that finally gives voice to truths the past tried to erase. ",
+   "director": "Javier Calvo and Javier Ambrossi ",
+   "starring": "Guitarricadelafuente, Miguel Bernardeau, Carlos González, Milo Quifes, Lola Dueñas, Julio Torres, Penélope Cruz and Glenn Close",
+   "details_missing": false,
+   "verdict": {
+    "film_id": 62085,
+    "keep": false,
+    "rank": null,
+    "category": "political_historical",
+    "reason": "跨越西班牙历史的三代人故事，有历史色彩但偏情感剧，名额有限未入围。"
+   },
+   "card": null,
+   "review_error": null,
+   "flags": [],
+   "seen_before": false,
+   "outcome": "skip",
+   "outcome_reason": "跨越西班牙历史的三代人故事，有历史色彩但偏情感剧，名额有限未入围。"
+  },
+  {
+   "film_id": 62087,
+   "title": "Ramayana",
+   "film_url": "ramayana-english-dubbed",
+   "versions": [
+    {
+     "film_id": 62087,
+     "name": "Ramayana (English Dubbed)",
+     "language": "English (Dubbed)",
+     "subtitle": ""
+    },
+    {
+     "film_id": 62291,
+     "name": "Ramayana (Hindi w/e.s.t.)",
+     "language": "Hindi",
+     "subtitle": "English"
+    }
+   ],
+   "status": "now_playing",
+   "is_event": false,
+   "release_date": "2026-11-05",
+   "runtime": 165,
+   "genres": [
+    "International",
+    "Drama"
+   ],
+   "film_categories": [
+    "International",
+    "Drama",
+    "Film Presentation"
+   ],
+   "distributor": "Sony Pictures Entertainment Canada Ltd.",
+   "poster_url": "https://mediafiles.cineplex.com/Central/Film/Posters/62087_320_470.jpg",
+   "detail_url": "https://www.cineplex.com/movie/ramayana-english-dubbed",
+   "gta_theatres": [
+    "Cineplex Cinemas Courtney Park",
+    "Cineplex Cinemas Fairview Mall",
+    "Cineplex Cinemas Mississauga Square One",
+    "Cineplex Cinemas Queensway and VIP",
+    "Cineplex Cinemas Scarborough",
+    "Cineplex Cinemas Vaughan",
+    "Cineplex Cinemas Winston Churchill & VIP",
+    "Cineplex Cinemas Yonge-Dundas and VIP",
+    "Cineplex Cinemas Yorkdale",
+    "Cineplex Junxion Erin Mills",
+    "Cineplex Odeon Ajax Cinemas",
+    "Cineplex Odeon Eglinton Town Centre Cinemas",
+    "Cineplex Odeon Morningside Cinemas",
+    "Cineplex VIP Cinemas Don Mills (age restricted 19+)",
+    "Scotiabank Theatre Toronto",
+    "SilverCity Brampton Cinemas",
+    "SilverCity Richmond Hill Cinemas"
+   ],
+   "gta_dates": [
+    "2026-11-05",
+    "2026-11-06",
+    "2026-11-07",
+    "2026-11-08",
+    "2026-11-09",
+    "2026-11-10",
+    "2026-11-11",
+    "2026-11-12"
+   ],
+   "weeks_in_release": 1,
+   "hurry": false,
+   "rating_on": {
+    "rating": "PG",
+    "warnings": [
+     "Violence"
+    ]
+   },
+   "synopsis": "Based on the celebrated ancient epic known to billions, Namit Malhotra's Ramayana: Rise of a Legend tells the story of Rama, a prince bound by sacrifice; Ravana, an immortal king driven by vengeance; and the prophecy that binds their fates together. It stars Ranbir Kapoor, Yash and Sai Pallavi.\n\nThe film is produced by acclaimed filmmaker Namit Malhotra, whose Academy Award®-winning visual effects company DNEG has worked on films including The Odyssey, Dune, Interstellar, and Inception; directed by Nitesh Tiwari, whose film Dangal remains the highest-grossing Indian film worldwide; and scored by Academy Award® winners Hans Zimmer and A.R. Rahman. Namit Malhotra's Ramayana: Rise of a Legend will be released globally in theaters in time for Diwali on November 5.\n",
+   "director": "",
+   "starring": "",
+   "details_missing": false,
+   "verdict": {
+    "film_id": 62087,
+    "keep": false,
+    "rank": null,
+    "category": "outside",
+    "reason": "印度神话史诗大片，不在口味内。"
+   },
+   "card": null,
+   "review_error": null,
+   "flags": [],
+   "seen_before": false,
+   "outcome": "skip",
+   "outcome_reason": "印度神话史诗大片，不在口味内。"
+  },
+  {
+   "film_id": 62125,
+   "title": "Your Mother Your Mother Your Mother",
+   "film_url": "your-mother-your-mother-your-mother",
+   "versions": [
+    {
+     "film_id": 62125,
+     "name": "Your Mother Your Mother Your Mother",
+     "language": "English",
+     "subtitle": ""
+    }
+   ],
+   "status": "now_playing",
+   "is_event": false,
+   "release_date": "2026-10-09",
+   "runtime": 112,
+   "genres": [
+    "Drama"
+   ],
+   "film_categories": [
+    "Drama",
+    "Film Presentation"
+   ],
+   "distributor": "14051483 CANADA INC dba IMMINA FILMS",
+   "poster_url": "https://mediafiles.cineplex.com/Central/Film/Posters/62125_320_470.jpg",
+   "detail_url": "https://www.cineplex.com/movie/your-mother-your-mother-your-mother",
+   "gta_theatres": [
+    "Cineplex Cinemas Winston Churchill & VIP",
+    "Cineplex Cinemas Yonge-Dundas and VIP",
+    "Cineplex Odeon Eglinton Town Centre Cinemas",
+    "SilverCity Richmond Hill Cinemas"
+   ],
+   "gta_dates": [
+    "2026-11-05",
+    "2026-11-06",
+    "2026-11-07",
+    "2026-11-08",
+    "2026-11-09",
+    "2026-11-10",
+    "2026-11-11",
+    "2026-11-12"
+   ],
+   "weeks_in_release": 4,
+   "hurry": false,
+   "rating_on": {
+    "rating": "14A",
+    "warnings": [
+     "Violence",
+     "Coarse Language"
+    ]
+   },
+   "synopsis": "From writer-director Bassam Tariq, Your Mother Your Mother Your Mother stars Mahershala Ali as Latif, a devoutly religious hitman who struggles to balance work, faith and fatherhood. When his wife dies, he embarks on a desperate journey across Houston to protect his children, confronting the forces closing in around him - and the beliefs \nthreatening to unravel within",
+   "director": "Bassam Tariq",
+   "starring": "Mahershala Ali, John Cho, Abubakr Ali, Laith Nakli, Tramell Tillman, Tiffany Boone, Giancarlo Esposito, Adia",
+   "details_missing": false,
+   "verdict": {
+    "film_id": 62125,
+    "keep": true,
+    "rank": 15,
+    "category": "crime",
+    "reason": "Bassam Tariq 编导、马赫沙拉·阿里饰虔诚杀手，作者性犯罪片。"
+   },
+   "card": {
+    "tier": "ok",
+    "strength": 4,
+    "category": "outside",
+    "one_liner": "马赫沙拉·阿里饰演虔诚的穆斯林杀手，口碑很强，但是安静沉重的人物剧，不算你口味的核心。",
+    "premise": "Latif 是一名虔诚的穆斯林杀手。妻子去世后，他在休斯敦一边设法保护孩子，一边被步步逼近的势力追杀，同时内心的信仰也开始动摇。",
+    "why_for_you": "你的七类里它最接近“犯罪”，但评论说它远不是典型的犯罪片，更像围绕信仰与救赎的动作剧情片，所以在你的口味之外。因为口碑很强，我仍建议看。如果想要紧凑的犯罪类型片，要有心理准备，它节奏偏沉。另外它在多伦多电影节的 Special Presentation 单元首映，也算本地话题。",
+    "reception": "烂番茄影评人 96%（122 篇评论），观众 92%；Metacritic 83/100（31 篇评论），属于“universal acclaim”。评论数量不少，分数可信。Latif 与女儿 Fatiha 的父女戏是影评重点，女儿对父亲信仰和选择的追问被反复称赞。Screen Daily 称它既是灵魂拷问式的精神旅程，也是刀光血影的动作片。它在 TIFF 首映，但没查到获奖。",
+    "background": "导演兼编剧是 Bassam Tariq，这是他的第二部长片。首部长片《Mogul Mowgli》2020 年在柏林电影节首映，拿到 Critics Award。他原本执导漫威《Blade》，2022 年 9 月离开项目，这部片用上了阿里为《Blade》做的训练。导演的灵感来自妻子在第一个孩子出生后的一次健康危机，以及他在事业野心和做父亲之间的挣扎。出品方是 Orion Pictures 和 Two & Two Pictures，发行方是 Amazon MGM Studios。",
+    "caveats": "宣传像动作片，但多篇评论说它更偏安静的人物剧，动作场面不是重点。有评论说看完需要沉淀一阵子才消化得了。Metacritic 上有一条偏负面的评论（无法确认是哪位影评人），认为片子本可以更新鲜，但只是点到性与性别方面的禁忌，没有真正探讨。分级为 R，原因是暴力血腥、语言和部分性内容。",
+    "skip_reason": null,
+    "evidence": "ample",
+    "title_zh": null,
+    "title_zh_source": null,
+    "scores": [
+     {
+      "name": "烂番茄影评人",
+      "value": "96%（122 篇评论）",
+      "source_url": "https://www.rottentomatoes.com/m/your_mother_your_mother_your_mother"
+     },
+     {
+      "name": "烂番茄观众",
+      "value": "92%",
+      "source_url": "https://www.rottentomatoes.com/m/your_mother_your_mother_your_mother"
+     },
+     {
+      "name": "Metacritic",
+      "value": "83/100（31 篇评论）",
+      "source_url": "https://www.metacritic.com/movie/your-mother-your-mother-your-mother"
+     }
+    ],
+    "sources": [
+     {
+      "title": "Rotten Tomatoes",
+      "url": "https://www.rottentomatoes.com/m/your_mother_your_mother_your_mother"
+     },
+     {
+      "title": "Metacritic",
+      "url": "https://www.metacritic.com/movie/your-mother-your-mother-your-mother"
+     },
+     {
+      "title": "Screen Daily 影评",
+      "url": "https://www.screendaily.com/reviews/your-mother-your-mother-your-mother-review-mahershala-ali-is-outstanding-as-a-muslim-assassin-in-bassam-tariqs-audacious-follow-up-to-mogul-mowgli/5220364.article"
+     },
+     {
+      "title": "Deadline",
+      "url": "https://deadline.com/2025/02/mahershala-ali-your-mother-your-mother-your-mother-bassam-tariq-1236295945"
+     },
+     {
+      "title": "Wikipedia: Your Mother Your Mother Your Mother",
+      "url": "https://en.wikipedia.org/wiki/Your_Mother_Your_Mother_Your_Mother"
+     }
+    ],
+    "sources_dropped": 0,
+    "film_id": 62125
+   },
+   "review_error": null,
+   "flags": [],
+   "seen_before": true,
+   "outcome": "ok",
+   "outcome_reason": "马赫沙拉·阿里饰演虔诚的穆斯林杀手，口碑很强，但是安静沉重的人物剧，不算你口味的核心。"
+  },
+  {
+   "film_id": 62159,
+   "title": "Drishyam - The Conclusion",
+   "film_url": "drishyam-the-conclusion-hindi-west",
+   "versions": [
+    {
+     "film_id": 62159,
+     "name": "Drishyam - The Conclusion (Hindi w/e.s.t.)",
+     "language": "Hindi",
+     "subtitle": "English"
+    }
+   ],
+   "status": "now_playing",
+   "is_event": false,
+   "release_date": "2026-10-02",
+   "runtime": 150,
+   "genres": [
+    "Crime",
+    "International"
+   ],
+   "film_categories": [
+    "Crime",
+    "International",
+    "Film Presentation"
+   ],
+   "distributor": "ASIA MULTIMEDIA DISTRIBUTION INC. dba ZEE STUDIOS INTERNATIO",
+   "poster_url": "https://mediafiles.cineplex.com/Central/Film/Posters/62159_320_470.jpg",
+   "detail_url": "https://www.cineplex.com/movie/drishyam-the-conclusion-hindi-west",
+   "gta_theatres": [
+    "Cineplex Cinemas Courtney Park",
+    "Cineplex Cinemas Mississauga Square One",
+    "Cineplex Cinemas Scarborough",
+    "SilverCity Brampton Cinemas"
+   ],
+   "gta_dates": [
+    "2026-11-05",
+    "2026-11-06",
+    "2026-11-07",
+    "2026-11-08",
+    "2026-11-09",
+    "2026-11-10",
+    "2026-11-11",
+    "2026-11-12"
+   ],
+   "weeks_in_release": 5,
+   "hurry": false,
+   "rating_on": {
+    "rating": "PG",
+    "warnings": [
+     "Violence"
+    ]
+   },
+   "synopsis": "Follow the Salgaonkar family as they try to cover up a murder.",
+   "director": "Abhishek Pathak",
+   "starring": "Ajay Devgn, Shriya Sharan, Tabu, Jaideep Ahlawat, Prakash Raj",
+   "details_missing": false,
+   "verdict": {
+    "film_id": 62159,
+    "keep": false,
+    "rank": null,
+    "category": "crime",
+    "reason": "宝莱坞犯罪系列终章，偏商业，名额有限未入围。"
+   },
+   "card": null,
+   "review_error": null,
+   "flags": [],
+   "seen_before": false,
+   "outcome": "skip",
+   "outcome_reason": "宝莱坞犯罪系列终章，偏商业，名额有限未入围。"
+  },
+  {
+   "film_id": 62180,
+   "title": "Dive in Wonderland",
+   "film_url": "dive-in-wonderland-japanese-west",
+   "versions": [
+    {
+     "film_id": 62180,
+     "name": "Dive in Wonderland (Japanese w.e.s.t)",
+     "language": "Japanese",
+     "subtitle": "English"
+    }
+   ],
+   "status": "coming_soon",
+   "is_event": true,
+   "release_date": "2026-11-16",
+   "runtime": 97,
+   "genres": [
+    "Anime"
+   ],
+   "film_categories": [
+    "Anime",
+    "FRCE Feature Release",
+    "Event"
+   ],
+   "distributor": "Sony Pictures Entertainment Canada Ltd.",
+   "poster_url": "https://mediafiles.cineplex.com/Central/Film/Posters/62180_320_470.jpg",
+   "detail_url": "https://www.cineplex.com/movie/dive-in-wonderland-japanese-west",
+   "gta_theatres": [
+    "Cineplex Cinemas Vaughan",
+    "Cineplex Cinemas Winston Churchill & VIP",
+    "Cineplex Cinemas Yonge-Dundas and VIP",
+    "Cineplex Odeon Eglinton Town Centre Cinemas",
+    "SilverCity Richmond Hill Cinemas"
+   ],
+   "gta_dates": [
+    "2026-11-16"
+   ],
+   "weeks_in_release": null,
+   "hurry": false,
+   "rating_on": null,
+   "synopsis": "The world-famous classic Alice in Wonderland receives its first Japanese theatrical animated adaptation!\nRise Azumino is a university student who feels lost in her life. One day, guided by an invitation letter left behind by her late\ngrandmother, she enters “Wonderland”. She meets a girl named Alice there and they travel together.\nThe Queen of Hearts, the Mad Hatter, Cheshire Cat…the residents of Wonderland appear before Rise one after another\nand crazy commotion ensues! What kind of future will Rise choose in this crazy adventure with Alice?",
+   "director": "",
+   "starring": "",
+   "details_missing": false,
+   "verdict": {
+    "film_id": 62180,
+    "keep": true,
+    "rank": 1,
+    "category": "japanese",
+    "reason": "日本动画电影《爱丽丝》改编，限定放映场次少，需尽早提醒。"
+   },
+   "card": {
+    "tier": "ok",
+    "strength": 2,
+    "category": "japanese",
+    "one_liner": "P.A. Works 出品的日本动画，改编爱丽丝梦游仙境，属于你的日本电影类，但口碑平平，可看可不看。",
+    "premise": "大学生理世对人生感到迷茫。片方简介称她循着已故奶奶留下的邀请函进入仙境，在那里遇到一个叫爱丽丝的女孩，两人一起旅行，红心皇后、疯帽匠、柴郡猫等仙境居民也陆续登场。",
+    "why_for_you": "你想看日本真人和动画电影，这部属于这一类。但它是新片，不是《阿基拉》《攻壳机动队》那种经典修复重映，和科幻、惊悚、恐怖几类也不沾边。如果你不是 P.A. Works 的粉丝，不必急着抢票。片方把它列为活动场次，具体场次没查到，想看的话要自己留意排片。",
+    "reception": "评论很少，判断依据只有 ANN 一篇影评、Letterboxd 分数和零星观众短评，样本小。ANN 认为这部片有些地方讨喜，但平庸得不值得进影院，主旨是社会从众的危险以及不要埋没自己的怪癖。Letterboxd 3.04/5，832 个评分。烂番茄上 0 条影评、0 个观众评分，只有一条观众短评打了 7.5/10。Metacritic 和电影节入围、获奖情况都没查到。",
+    "background": "导演篠原俊哉，做过《NagiAsu》《白沙的 Aquatope》。编剧柿原优子，写过《Blue Box》。动画制作 P.A. Works，制作幹事是松竹和 TBS。本片已在英国影院限量上映过。多伦多的上映日期为 2026-11-16，日语配音，英文字幕，片长 97 分钟。",
+    "caveats": "ANN 说它常常有点沉闷，观众群像是低龄青少年；梦境画面很少让人记住，整体更像电视特别篇，不像影院级作品。一位烂番茄观众觉得节奏偏快，可以更慢一点。另有报道称理世是因求职不顺而迷茫，和片方简介的说法侧重点不同。",
+    "skip_reason": null,
+    "evidence": "thin",
+    "title_zh": "与爱丽丝梦游仙境 -Dive in Wonderland-",
+    "title_zh_source": "https://bangumi.tv/subject/533335",
+    "scores": [
+     {
+      "name": "Letterboxd",
+      "value": "3.04/5（832 个评分）",
+      "source_url": "https://letterboxd.com/film/alice-in-wonderland-dive-in-wonderland"
+     }
+    ],
+    "sources": [
+     {
+      "title": "ANN 影评",
+      "url": "https://www.animenewsnetwork.com/review/alice-in-wonderland/dive-in-wonderland/film/.233185"
+     },
+     {
+      "title": "烂番茄",
+      "url": "https://www.rottentomatoes.com/m/dive_in_wonderland"
+     },
+     {
+      "title": "Letterboxd",
+      "url": "https://letterboxd.com/film/alice-in-wonderland-dive-in-wonderland"
+     },
+     {
+      "title": "Bangumi 条目",
+      "url": "https://bangumi.tv/subject/533335"
+     },
+     {
+      "title": "巴哈姆特 GNN（台湾上映名）",
+      "url": "https://gnn.gamer.com.tw/detail.php?sn=299564"
+     }
+    ],
+    "sources_dropped": 0,
+    "film_id": 62180
+   },
+   "review_error": null,
+   "flags": [],
+   "seen_before": false,
+   "outcome": "ok",
+   "outcome_reason": "P.A. Works 出品的日本动画，改编爱丽丝梦游仙境，属于你的日本电影类，但口碑平平，可看可不看。"
+  },
+  {
+   "film_id": 62206,
+   "title": "You Can See Everything",
+   "film_url": "you-can-see-everything",
+   "versions": [
+    {
+     "film_id": 62206,
+     "name": "You Can See Everything",
+     "language": "English",
+     "subtitle": ""
+    }
+   ],
+   "status": "now_playing",
+   "is_event": false,
+   "release_date": "2026-10-16",
+   "runtime": 175,
+   "genres": [
+    "Documentary",
+    "Drama"
+   ],
+   "film_categories": [
+    "Documentary",
+    "Drama",
+    "Film Presentation"
+   ],
+   "distributor": "VVS FILMS",
+   "poster_url": "https://mediafiles.cineplex.com/Central/Film/Posters/62206_320_470.jpg",
+   "detail_url": "https://www.cineplex.com/movie/you-can-see-everything",
+   "gta_theatres": [
+    "Cineplex Cinemas Courtney Park",
+    "Cineplex Cinemas Empress Walk",
+    "Cineplex Cinemas Fairview Mall",
+    "Cineplex Cinemas Markham and VIP",
+    "Cineplex Cinemas Mississauga Square One",
+    "Cineplex Cinemas Pickering and VIP",
+    "Cineplex Cinemas Queensway and VIP",
+    "Cineplex Cinemas Scarborough",
+    "Cineplex Cinemas Varsity and VIP",
+    "Cineplex Cinemas Vaughan",
+    "Cineplex Cinemas Winston Churchill & VIP",
+    "Cineplex Cinemas Yonge-Dundas and VIP",
+    "Cineplex Cinemas Yonge-Eglinton and VIP",
+    "Cineplex Cinemas Yorkdale",
+    "Cineplex Junxion Erin Mills",
+    "Cineplex Odeon Ajax Cinemas",
+    "Cineplex Odeon Eglinton Town Centre Cinemas",
+    "Cineplex Odeon Morningside Cinemas",
+    "Cineplex VIP Cinemas Don Mills (age restricted 19+)",
+    "Scotiabank Theatre Toronto",
+    "SilverCity Brampton Cinemas",
+    "SilverCity Richmond Hill Cinemas"
+   ],
+   "gta_dates": [
+    "2026-11-05",
+    "2026-11-06",
+    "2026-11-07",
+    "2026-11-08",
+    "2026-11-09",
+    "2026-11-10",
+    "2026-11-11",
+    "2026-11-12"
+   ],
+   "weeks_in_release": 3,
+   "hurry": false,
+   "rating_on": {
+    "rating": "14A",
+    "warnings": []
+   },
+   "synopsis": "Thirty-four days before she’s sent to prison, notorious Silicon Valley founder Elizabeth Holmes invites a skeptical film crew to document her every move. What begins as an intimate portrait of an enigmatic felon becomes a mind-bending three-year journey into the abyss. From boundary-pushing directors Nathan Fielder and Lance Oppenheim comes YOU CAN SEE EVERYTHING.",
+   "director": "",
+   "starring": "",
+   "details_missing": false,
+   "verdict": {
+    "film_id": 62206,
+    "keep": true,
+    "rank": 14,
+    "category": "crime",
+    "reason": "Nathan Fielder与Oppenheim拍伊丽莎白·霍姆斯入狱前的纪录片，犯罪纪实，口碑潜力强。"
+   },
+   "card": {
+    "tier": "ok",
+    "strength": 4,
+    "category": "outside",
+    "one_liner": "霍姆斯入狱前34天的元纪录片，口碑近乎满分，但片长近三小时、风格偏实验，不在你的七类里。",
+    "premise": "伊丽莎白·霍姆斯入狱前34天，邀请尼森·菲尔德住进她和伴侣的家并开始拍摄。这是一部元纪录片，重点放在拍摄者与被拍者的关系上，质疑纪录片的客观性，也追问虚构的边界。它不是传统的 Theranos 调查片。",
+    "why_for_you": "它勉强沾一点“犯罪”的边，但实际是围绕一桩诈骗案的人物心理和拍摄伦理研究，不是线索推进式的破案片，所以我把它归在你的七类之外。口碑太强，值得告诉你。出品方有 A24，气质上和你喜欢的 A24 路线有些接近，但笔记没有说它是惊悚片。NYFF 称其摄影和声音设计出色，并用杜比全景声放映，影院观看有加成。如果你能接受实验性的风格，值得去影院看。",
+    "reception": "评论很多。按最新维基百科，烂番茄 96%（206 篇评论，均分 9.30/10），Metacritic 97（41 位影评人，“普遍好评”）。此前有报道称烂番茄一度是 100%，后来出现两篇负面评论。2026年9月6日在特柳赖德电影节秘密首映，之后上了纽约电影节。批评家选择纪录片奖和戈坦独立电影奖已提名，结果待定，未查到已获奖。",
+    "background": "导演是 Nathan Fielder（长片导演首作，代表作《The Rehearsal》《The Curse》）和 Lance Oppenheim（《Some Kind of Heaven》《Primetime》）。出品公司：A24、To Be Formed、Blow Out Productions。片长 175 分钟，发行方写的是 VVS FILMS。",
+    "caveats": "片长近三小时，有影评人对片长和菲尔德对待霍姆斯的方式有保留。《时代》杂志批评它“自鸣得意”，并认为客观性这个主题不言自明。《纽约客》的 Richard Brody 认为菲尔德的发现盖不过公众早已知道的事。一篇烂番茄负面评论认为菲尔德和霍姆斯一样善于操纵。Oppenheim 在 2026 年 10 月被指控为 2017 年的短片盗用素材，这是维基百科的记载。笔记没有查加拿大的发行安排。",
+    "skip_reason": null,
+    "evidence": "ample",
+    "title_zh": null,
+    "title_zh_source": null,
+    "scores": [
+     {
+      "name": "烂番茄",
+      "value": "96%（206 篇评论，均分 9.30/10）",
+      "source_url": "https://en.wikipedia.org/wiki/You_Can_See_Everything"
+     },
+     {
+      "name": "Metacritic",
+      "value": "97（41 位影评人）",
+      "source_url": "https://en.wikipedia.org/wiki/You_Can_See_Everything"
+     }
+    ],
+    "sources": [
+     {
+      "title": "维基百科：You Can See Everything",
+      "url": "https://en.wikipedia.org/wiki/You_Can_See_Everything"
+     },
+     {
+      "title": "维基百科：Lance Oppenheim",
+      "url": "https://en.wikipedia.org/wiki/Lance_Oppenheim"
+     },
+     {
+      "title": "Film at Lincoln Center（NYFF）",
+      "url": "https://www.filmlinc.org/nyff2026/daily/nathan-fielder-and-lance-oppenheims-you-can-see-everything-added-to-64th-new-york-film-festival-spotlight"
+     },
+     {
+      "title": "The Film Stage",
+      "url": "https://thefilmstage.com/nathan-fielder-and-lance-oppenheims-you-can-see-everything-added-to-nyff64-sets-october-16-release"
+     },
+     {
+      "title": "Deadline 影评",
+      "url": "https://deadline.com/2026/09/you-can-see-everything-review-elizabeth-holmes-documentary-1237070024"
+     },
+     {
+      "title": "Forbes：两篇负面评论",
+      "url": "https://www.forbes.com/sites/timlammers/2026/10/19/two-negative-reviews-prevent-you-can-see-everything-from-matching-rotten-tomatoes-documentary-record"
+     },
+     {
+      "title": "Yahoo 报道",
+      "url": "https://www.yahoo.com/entertainment/movies/article/you-can-see-everything-reviews-nathan-fielders-elizabeth-holmes-documentary-hits-99-on-rotten-tomatoes-as-it-opens-in-theaters-190715169.html"
+     },
+     {
+      "title": "NYFF 官方 X 帖子",
+      "url": "https://x.com/TheNYFF/status/2105453286790750484?lang=en"
+     }
+    ],
+    "sources_dropped": 0,
+    "film_id": 62206
+   },
+   "review_error": null,
+   "flags": [
+    "口味之外名额已满"
+   ],
+   "seen_before": false,
+   "outcome": "skip",
+   "outcome_reason": "口味之外名额已满"
+  },
+  {
+   "film_id": 62217,
+   "title": "Paddington 2 - Community Day",
+   "film_url": "paddington-2-community-day",
+   "versions": [
+    {
+     "film_id": 62217,
+     "name": "Paddington 2 - Community Day",
+     "language": "English",
+     "subtitle": ""
+    }
+   ],
+   "status": "coming_soon",
+   "is_event": false,
+   "release_date": "2026-11-14",
+   "runtime": 103,
+   "genres": [
+    "Family",
+    "Comedy"
+   ],
+   "film_categories": [
+    "Family",
+    "Comedy",
+    "Film Presentation"
+   ],
+   "distributor": "Warner Bros Entertainment Canada Inc",
+   "poster_url": "https://mediafiles.cineplex.com/Central/Film/Posters/62217_320_470.jpg",
+   "detail_url": "https://www.cineplex.com/movie/paddington-2-community-day",
+   "gta_theatres": [
+    "Cineplex Cinemas Courtney Park",
+    "Cineplex Cinemas Empress Walk",
+    "Cineplex Cinemas Fairview Mall",
+    "Cineplex Cinemas Markham and VIP",
+    "Cineplex Cinemas Mississauga Square One",
+    "Cineplex Cinemas Pickering and VIP",
+    "Cineplex Cinemas Queensway and VIP",
+    "Cineplex Cinemas Scarborough",
+    "Cineplex Cinemas Varsity and VIP",
+    "Cineplex Cinemas Vaughan",
+    "Cineplex Cinemas Winston Churchill & VIP",
+    "Cineplex Cinemas Yonge-Dundas and VIP",
+    "Cineplex Cinemas Yonge-Eglinton and VIP",
+    "Cineplex Cinemas Yorkdale",
+    "Cineplex Junxion Erin Mills",
+    "Cineplex Odeon Ajax Cinemas",
+    "Cineplex Odeon Eglinton Town Centre Cinemas",
+    "Cineplex Odeon Morningside Cinemas",
+    "Scotiabank Theatre Toronto",
+    "SilverCity Brampton Cinemas",
+    "SilverCity Richmond Hill Cinemas"
+   ],
+   "gta_dates": [
+    "2026-11-14"
+   ],
+   "weeks_in_release": null,
+   "hurry": false,
+   "rating_on": null,
+   "synopsis": "From producer David Heyman (HARRY POTTER, GRAVITY, FANTASTIC BEASTS AND WHERE TO FIND THEM). PADDINGTON 2 finds Paddington happily settled with the Brown family in Windsor Gardens, where he has become a popular member of the community, spreading joy and m",
+   "director": "",
+   "starring": "",
+   "details_missing": false,
+   "verdict": {
+    "film_id": 62217,
+    "keep": false,
+    "rank": null,
+    "category": "outside",
+    "reason": "帕丁顿2社区日重映，合家欢不在口味内。"
+   },
+   "card": null,
+   "review_error": null,
+   "flags": [],
+   "seen_before": false,
+   "outcome": "skip",
+   "outcome_reason": "帕丁顿2社区日重映，合家欢不在口味内。"
+  },
+  {
+   "film_id": 62219,
+   "title": "The Lego Movie - Community Day",
+   "film_url": "the-lego-movie-community-day",
+   "versions": [
+    {
+     "film_id": 62219,
+     "name": "The Lego Movie - Community Day",
+     "language": "English",
+     "subtitle": ""
+    }
+   ],
+   "status": "coming_soon",
+   "is_event": false,
+   "release_date": "2026-11-14",
+   "runtime": 101,
+   "genres": [
+    "Action",
+    "Comedy",
+    "Animation",
+    "Family"
+   ],
+   "film_categories": [
+    "Action",
+    "Comedy",
+    "Animation",
+    "Family",
+    "Film Presentation"
+   ],
+   "distributor": "Warner Bros Entertainment Canada Inc",
+   "poster_url": "https://mediafiles.cineplex.com/Central/Film/Posters/62219_320_470.jpg",
+   "detail_url": "https://www.cineplex.com/movie/the-lego-movie-community-day",
+   "gta_theatres": [
+    "Cineplex Cinemas Courtney Park",
+    "Cineplex Cinemas Empress Walk",
+    "Cineplex Cinemas Fairview Mall",
+    "Cineplex Cinemas Markham and VIP",
+    "Cineplex Cinemas Mississauga Square One",
+    "Cineplex Cinemas Pickering and VIP",
+    "Cineplex Cinemas Queensway and VIP",
+    "Cineplex Cinemas Scarborough",
+    "Cineplex Cinemas Varsity and VIP",
+    "Cineplex Cinemas Vaughan",
+    "Cineplex Cinemas Winston Churchill & VIP",
+    "Cineplex Cinemas Yonge-Dundas and VIP",
+    "Cineplex Cinemas Yonge-Eglinton and VIP",
+    "Cineplex Cinemas Yorkdale",
+    "Cineplex Junxion Erin Mills",
+    "Cineplex Odeon Ajax Cinemas",
+    "Cineplex Odeon Eglinton Town Centre Cinemas",
+    "Cineplex Odeon Morningside Cinemas",
+    "Scotiabank Theatre Toronto",
+    "SilverCity Brampton Cinemas",
+    "SilverCity Richmond Hill Cinemas"
+   ],
+   "gta_dates": [
+    "2026-11-14"
+   ],
+   "weeks_in_release": null,
+   "hurry": false,
+   "rating_on": null,
+   "synopsis": "",
+   "director": "",
+   "starring": "",
+   "details_missing": false,
+   "verdict": {
+    "film_id": 62219,
+    "keep": false,
+    "rank": null,
+    "category": "outside",
+    "reason": "乐高电影社区日重映，不对口味。"
+   },
+   "card": null,
+   "review_error": null,
+   "flags": [],
+   "seen_before": false,
+   "outcome": "skip",
+   "outcome_reason": "乐高电影社区日重映，不对口味。"
+  },
+  {
+   "film_id": 62221,
+   "title": "A Minecraft Movie - Community Day",
+   "film_url": "a-minecraft-movie-community-day",
+   "versions": [
+    {
+     "film_id": 62221,
+     "name": "A Minecraft Movie - Community Day",
+     "language": "English",
+     "subtitle": ""
+    }
+   ],
+   "status": "coming_soon",
+   "is_event": false,
+   "release_date": "2026-11-14",
+   "runtime": 101,
+   "genres": [
+    "Action",
+    "Adventure",
+    "Comedy",
+    "Family"
+   ],
+   "film_categories": [
+    "Action",
+    "Adventure",
+    "Comedy",
+    "Family",
+    "Film Presentation"
+   ],
+   "distributor": "Warner Bros Entertainment Canada Inc",
+   "poster_url": "https://mediafiles.cineplex.com/Central/Film/Posters/62221_320_470.jpg",
+   "detail_url": "https://www.cineplex.com/movie/a-minecraft-movie-community-day",
+   "gta_theatres": [
+    "Cineplex Cinemas Courtney Park",
+    "Cineplex Cinemas Empress Walk",
+    "Cineplex Cinemas Fairview Mall",
+    "Cineplex Cinemas Markham and VIP",
+    "Cineplex Cinemas Mississauga Square One",
+    "Cineplex Cinemas Pickering and VIP",
+    "Cineplex Cinemas Queensway and VIP",
+    "Cineplex Cinemas Scarborough",
+    "Cineplex Cinemas Varsity and VIP",
+    "Cineplex Cinemas Vaughan",
+    "Cineplex Cinemas Winston Churchill & VIP",
+    "Cineplex Cinemas Yonge-Dundas and VIP",
+    "Cineplex Cinemas Yonge-Eglinton and VIP",
+    "Cineplex Cinemas Yorkdale",
+    "Cineplex Junxion Erin Mills",
+    "Cineplex Odeon Ajax Cinemas",
+    "Cineplex Odeon Eglinton Town Centre Cinemas",
+    "Cineplex Odeon Morningside Cinemas",
+    "Scotiabank Theatre Toronto",
+    "SilverCity Brampton Cinemas",
+    "SilverCity Richmond Hill Cinemas"
+   ],
+   "gta_dates": [
+    "2026-11-14"
+   ],
+   "weeks_in_release": null,
+   "hurry": false,
+   "rating_on": null,
+   "synopsis": "",
+   "director": "",
+   "starring": "",
+   "details_missing": false,
+   "verdict": {
+    "film_id": 62221,
+    "keep": false,
+    "rank": null,
+    "category": "outside",
+    "reason": "我的世界电影社区日，不对口味。"
+   },
+   "card": null,
+   "review_error": null,
+   "flags": [],
+   "seen_before": false,
+   "outcome": "skip",
+   "outcome_reason": "我的世界电影社区日，不对口味。"
+  },
+  {
+   "film_id": 62223,
+   "title": "Tom & Jerry - Community Day",
+   "film_url": "tom-jerry-community-day",
+   "versions": [
+    {
+     "film_id": 62223,
+     "name": "Tom & Jerry - Community Day",
+     "language": "English",
+     "subtitle": ""
+    }
+   ],
+   "status": "coming_soon",
+   "is_event": false,
+   "release_date": "2026-11-14",
+   "runtime": 101,
+   "genres": [
+    "Animation",
+    "Family"
+   ],
+   "film_categories": [
+    "Animation",
+    "Family",
+    "Film Presentation"
+   ],
+   "distributor": "Warner Bros Entertainment Canada Inc",
+   "poster_url": "https://mediafiles.cineplex.com/Central/Film/Posters/62223_320_470.jpg",
+   "detail_url": "https://www.cineplex.com/movie/tom-jerry-community-day",
+   "gta_theatres": [
+    "Cineplex Cinemas Courtney Park",
+    "Cineplex Cinemas Empress Walk",
+    "Cineplex Cinemas Fairview Mall",
+    "Cineplex Cinemas Markham and VIP",
+    "Cineplex Cinemas Mississauga Square One",
+    "Cineplex Cinemas Pickering and VIP",
+    "Cineplex Cinemas Queensway and VIP",
+    "Cineplex Cinemas Scarborough",
+    "Cineplex Cinemas Varsity and VIP",
+    "Cineplex Cinemas Vaughan",
+    "Cineplex Cinemas Winston Churchill & VIP",
+    "Cineplex Cinemas Yonge-Dundas and VIP",
+    "Cineplex Cinemas Yonge-Eglinton and VIP",
+    "Cineplex Cinemas Yorkdale",
+    "Cineplex Junxion Erin Mills",
+    "Cineplex Odeon Ajax Cinemas",
+    "Cineplex Odeon Eglinton Town Centre Cinemas",
+    "Cineplex Odeon Morningside Cinemas",
+    "Scotiabank Theatre Toronto",
+    "SilverCity Brampton Cinemas",
+    "SilverCity Richmond Hill Cinemas"
+   ],
+   "gta_dates": [
+    "2026-11-14"
+   ],
+   "weeks_in_release": null,
+   "hurry": false,
+   "rating_on": null,
+   "synopsis": "One of the most beloved rivalries in history is reignited when Jerry moves into New York City's finest hotel on the eve of \"the wedding of the century,\" forcing the event's desperate planner to hire Tom to get rid of him, in director Tim Story's \"Tom and ",
+   "director": "",
+   "starring": "",
+   "details_missing": false,
+   "verdict": {
+    "film_id": 62223,
+    "keep": false,
+    "rank": null,
+    "category": "outside",
+    "reason": "猫和老鼠合家欢，不对口味。"
+   },
+   "card": null,
+   "review_error": null,
+   "flags": [],
+   "seen_before": false,
+   "outcome": "skip",
+   "outcome_reason": "猫和老鼠合家欢，不对口味。"
+  },
+  {
+   "film_id": 62255,
+   "title": "The Only Living Pickpocket in New York",
+   "film_url": "the-only-living-pickpocket-in-new-york",
+   "versions": [
+    {
+     "film_id": 62255,
+     "name": "The Only Living Pickpocket in New York",
+     "language": "English",
+     "subtitle": ""
+    }
+   ],
+   "status": "now_playing",
+   "is_event": false,
+   "release_date": "2026-10-30",
+   "runtime": 88,
+   "genres": [
+    "Drama",
+    "Mystery"
+   ],
+   "film_categories": [
+    "Drama",
+    "Mystery",
+    "Film Presentation"
+   ],
+   "distributor": "Mongrel Media",
+   "poster_url": "https://mediafiles.cineplex.com/Central/Film/Posters/62255_320_470.jpg",
+   "detail_url": "https://www.cineplex.com/movie/the-only-living-pickpocket-in-new-york",
+   "gta_theatres": [
+    "Cineplex Cinemas Courtney Park",
+    "Cineplex Cinemas Empress Walk",
+    "Cineplex Cinemas Queensway and VIP",
+    "Cineplex Cinemas Varsity and VIP",
+    "Cineplex Cinemas Vaughan",
+    "Cineplex Cinemas Winston Churchill & VIP",
+    "Cineplex Cinemas Yonge-Dundas and VIP",
+    "Cineplex Odeon Eglinton Town Centre Cinemas",
+    "Cineplex Odeon Morningside Cinemas",
+    "SilverCity Richmond Hill Cinemas"
+   ],
+   "gta_dates": [
+    "2026-11-05",
+    "2026-11-06",
+    "2026-11-07",
+    "2026-11-08",
+    "2026-11-09",
+    "2026-11-10",
+    "2026-11-11",
+    "2026-11-12"
+   ],
+   "weeks_in_release": 1,
+   "hurry": false,
+   "rating_on": {
+    "rating": "PG",
+    "warnings": [
+     "Coarse Language"
+    ]
+   },
+   "synopsis": "Harry Lehman (John Turturro) is an aging pickpocket who plies his trade with ever-diminishing returns in a drastically changed New York. Wallets stuffed with cash have been replaced by easily canceled credit cards, and Harry struggles to make ends meet as he cares for his disabled wife, Rosie. When he unwittingly purloins and fences a valuable USB stick, Harry finds himself in a race against time to return the loot or face the rage of a vengeful crime family.",
+   "director": "Noah Segan",
+   "starring": "John Turturro, Giancarlo Esposito, Will Price, Tatiana Maslany, Victoria Moroles, Steve Buscemi, Jamie Lee Curtis",
+   "details_missing": false,
+   "verdict": {
+    "film_id": 62255,
+    "keep": false,
+    "rank": null,
+    "category": "crime",
+    "reason": "老扒手卷入犯罪家族的小品犯罪片，可看但名额有限未入围。"
+   },
+   "card": null,
+   "review_error": null,
+   "flags": [],
+   "seen_before": false,
+   "outcome": "skip",
+   "outcome_reason": "老扒手卷入犯罪家族的小品犯罪片，可看但名额有限未入围。"
+  },
+  {
+   "film_id": 62269,
+   "title": "Paradise Lost",
+   "film_url": "paradise-lost-korean-west",
+   "versions": [
+    {
+     "film_id": 62269,
+     "name": "Paradise Lost (Korean w/e.s.t.)",
+     "language": "Korean",
+     "subtitle": "English"
+    }
+   ],
+   "status": "coming_soon",
+   "is_event": false,
+   "release_date": "2026-11-06",
+   "runtime": 101,
+   "genres": [
+    "Crime",
+    "International"
+   ],
+   "film_categories": [
+    "Crime",
+    "International",
+    "Film Presentation"
+   ],
+   "distributor": "WELL GO USA, INC.",
+   "poster_url": "https://mediafiles.cineplex.com/Central/Film/Posters/62269_320_470.jpg",
+   "detail_url": "https://www.cineplex.com/movie/paradise-lost-korean-west",
+   "gta_theatres": [
+    "Cineplex Cinemas Empress Walk",
+    "Cineplex Cinemas Yonge-Dundas and VIP"
+   ],
+   "gta_dates": [
+    "2026-11-06",
+    "2026-11-07",
+    "2026-11-08",
+    "2026-11-09",
+    "2026-11-10",
+    "2026-11-11",
+    "2026-11-12"
+   ],
+   "weeks_in_release": null,
+   "hurry": false,
+   "rating_on": {
+    "rating": "STC",
+    "warnings": []
+   },
+   "synopsis": "From acclaimed master of Korean thriller cinema Yeon Sang-ho comes a gripping psychological mystery. Nine years after her son vanished in a tragic bus kidnapping, grieving mother So-young copes using alternate reality technology. When her missing son suddenly returns as a cold adult stranger, her world fractures between the real, distant man and the virtual child who needs her. So-young is forced into a devastating choice between truth and illusion.",
+   "director": "Yeon Sang-ho",
+   "starring": "Kim Hyun-joo, Bae Hyeon-seong",
+   "details_missing": false,
+   "verdict": {
+    "film_id": 62269,
+    "keep": true,
+    "rank": 7,
+    "category": "thriller",
+    "reason": "延尚昊的心理悬疑，虚拟现实与失踪儿子回归，兼具科幻与惊悚。"
+   },
+   "card": {
+    "tier": "ok",
+    "strength": 3,
+    "category": "crime",
+    "one_liner": "延尚昊的心理悬疑片，母亲在虚拟儿子和归来的真儿子之间做选择，口碑两极，演技和氛围有人买账，后半段被批变成普通悬疑。",
+    "premise": "单亲妈妈昭英的儿子善宇，九年前在一起露营校车集体失踪事件中不见了。她靠AR眼镜和虚拟的儿子重新“相处”。第九年，真正的善宇以成年人的样子回来，冷漠而陌生，而虚拟的儿子却比以往更需要她。",
+    "why_for_you": "片子属于犯罪和惊悚的路子，走心理悬疑，符合你的口味，我把它归到犯罪类。它也带一点科幻，但只是小规模的“软科幻”，不是《沙丘》那种世界观宏大的片子。如果你想看金贤珠的表演和延尚昊的氛围营造，可以去影院。如果更看重剧本完成度，可以等流媒体。是否值得上大银幕，评论里没有专门的结论。",
+    "reception": "评论偏两极，整体中等，样本很少，以下判断基于这几篇评论。Metacritic 为 56，只有 5 篇评论，最高 80 分，说它阴郁、有时真的吓人，金贤珠表演出色；最低 40 分，Screen Daily 说它“awkward, frustratingly inert”。烂番茄目前只有 8 篇评论，Tomatometer 百分比未查到，RogerEbert.com 给 2/5，THN 给 4/5。TIFF 特别展映世界首映，四场全部售罄，也入选釜山电影节 Gala 单元，都是展映，获奖未查到。",
+    "background": "导演延尚昊，拍过《釜山行》和《地狱公使》，今年还有戛纳午夜场的《Colony》。片子改编自吴成恩2025年出版的小说《Black Inferno》。出品方是 Wowpoint，韩国发行为 CJ ENM，北美发行为 Well Go USA。据报道成本仅5亿韩元，属小成本。",
+    "caveats": "AI 的想法没有展开，IndieWire 说他回避了情感上的两难。后段变成普通悬疑，基调转变可能让部分观众不适。有评论认为结构越来越仓促，象征手法不含蓄。",
+    "skip_reason": null,
+    "evidence": "thin",
+    "title_zh": "樂園的孩子",
+    "title_zh_source": "https://www.atmovies.com.tw/movie/fpko43658893",
+    "scores": [
+     {
+      "name": "Metacritic",
+      "value": "56（5 篇评论）",
+      "source_url": "https://www.metacritic.com/movie/paradise-lost/critic-reviews"
+     }
+    ],
+    "sources": [
+     {
+      "title": "Metacritic 评论页",
+      "url": "https://www.metacritic.com/movie/paradise-lost/critic-reviews"
+     },
+     {
+      "title": "烂番茄",
+      "url": "https://www.rottentomatoes.com/m/paradise_lost_2026"
+     },
+     {
+      "title": "维基百科（电影节信息）",
+      "url": "https://en.wikipedia.org/wiki/Paradise_Lost_(2026_film)"
+     },
+     {
+      "title": "Asian Movie Pulse",
+      "url": "https://asianmoviepulse.com/2026/09/paradise-lost-2026"
+     },
+     {
+      "title": "Keith Loves Movies 影评",
+      "url": "https://keithlovesmovies.com/2026/10/21/paradise-lost-review-tiff-2026"
+     },
+     {
+      "title": "But Why Tho 影评",
+      "url": "https://butwhytho.net/2026/09/paradise-lost-review-yeon-sang-ho"
+     },
+     {
+      "title": "开眼电影（台湾片名）",
+      "url": "https://www.atmovies.com.tw/movie/fpko43658893"
+     }
+    ],
+    "sources_dropped": 0,
+    "film_id": 62269
+   },
+   "review_error": null,
+   "flags": [],
+   "seen_before": false,
+   "outcome": "ok",
+   "outcome_reason": "延尚昊的心理悬疑片，母亲在虚拟儿子和归来的真儿子之间做选择，口碑两极，演技和氛围有人买账，后半段被批变成普通悬疑。"
+  },
+  {
+   "film_id": 62270,
+   "title": "Go for Broke 2",
+   "film_url": "go-for-broke-2-mandarin-wchinese-and-est",
+   "versions": [
+    {
+     "film_id": 62270,
+     "name": "Go for Broke 2 (Mandarin w/Chinese and e.s.t.)",
+     "language": "Mandarin",
+     "subtitle": "English"
+    }
+   ],
+   "status": "now_playing",
+   "is_event": false,
+   "release_date": "2026-10-23",
+   "runtime": 132,
+   "genres": [
+    "Drama",
+    "International"
+   ],
+   "film_categories": [
+    "Drama",
+    "International",
+    "Film Presentation"
+   ],
+   "distributor": "CMC FILMS INC.",
+   "poster_url": "https://mediafiles.cineplex.com/Central/Film/Posters/62270_320_470.jpg",
+   "detail_url": "https://www.cineplex.com/movie/go-for-broke-2-mandarin-wchinese-and-est",
+   "gta_theatres": [
+    "Cineplex Cinemas Markham and VIP"
+   ],
+   "gta_dates": [
+    "2026-11-05"
+   ],
+   "weeks_in_release": 2,
+   "hurry": false,
+   "rating_on": {
+    "rating": "14A",
+    "warnings": [
+     "Violent Scenes"
+    ]
+   },
+   "synopsis": "Set in a foreign land where the powerful hold absolute control and treat human lives as disposable, a ruthless underground industry operates in the shadows. Xila (Isabella Leong) loses her child to this criminal network. In her grief, she meets Su Cheng (Wen Junhui), a young man whose sister suffered a similar fate. Bound by shared loss, the two strangers join forces to uncover the truth behind the crimes and seek revenge against the masterminds — Zuoman (Sammo Hung) and his son Zuoke (Bai Ke). As their plan unfolds, a conspiracy far darker than they imagined begins to surface. What follows is not merely a tale of vengeance, but a story of two people pushed to the brink, fighting for justice and, ultimately, for their own rebirth.",
+   "director": "Marc Ma Yuhe",
+   "starring": "Isabella Leong / Wen Junhui ",
+   "details_missing": false,
+   "verdict": {
+    "film_id": 62270,
+    "keep": true,
+    "rank": 6,
+    "category": "chinese",
+    "reason": "华语犯罪复仇片，梁洛施、洪金宝出演，中国电影兼犯罪。"
+   },
+   "card": {
+    "tier": "ok",
+    "strength": 2,
+    "category": "chinese",
+    "one_liner": "华语复仇动作片，打戏写实、演员有分量，但偏商业类型片，口碑中等且样本很少。",
+    "premise": "一名华裔女子失去独子，遇到妹妹同样遭难的年轻男子。两个陌生人联手追查幕后真相，线索指向一个金融大亨的家族。",
+    "why_for_you": "它是华语片，也是犯罪片，正好落在你的“中国电影”和“犯罪”两类里。看点是梁洛施和洪金宝的表演，以及近身肉搏和写实枪战。但它走的是商业类型片路线，不是你偏好的氛围型或作者型，所以只算可以看，不算重点。",
+    "reception": "评论很少，判断主要靠观众评分和一篇小站影评。烂番茄 0 条影评，Metacritic 没查到分数，电影节入围或获奖也没查到。豆瓣开分 6.7，是导演三部作品中最高，前作《重生》为 5.6，但这两个数字来自微博转载稿，不是豆瓣原页。kinoafisha 6.7（仅 10 票）和 TMDB 5.3（仅 3 票）样本太小，没有参考价值。英文影评只找到 Gazettely 一篇，夸梁洛施的表演有分量，也夸洪金宝用静态压迫感撑起反派。整体口碑中等偏上，海外评论几乎没有。",
+    "background": "导演是马浴柯（Marc Ma），拍过《怒潮》和《重生》。本片是 2024 年《重生》的续作。出品方包括有儒意电影、猫眼影业、华夏电影发行等。多伦多发行方是 CMC Films。",
+    "caveats": "暴力尺度大，国内标注“未成年人谨慎观看”。有影评人批评它拼贴感强，借鉴了《杀死比尔》《疾速追杀》等片，原创性有限，结局反转被说成画蛇添足。Gazettely 指出特效不稳，主角越来越刀枪不入，削弱了动作戏的冲击力。同一篇影评说，影片把香港式的剥削片风格放进一个不太可信的人造美国。英语对白也不均匀，梁洛施说得比周围几位演员自然得多。",
+    "skip_reason": null,
+    "evidence": "thin",
+    "title_zh": "重生2",
+    "title_zh_source": "https://zh.wikipedia.org/zh-hans/%E9%87%8D%E7%94%9F2",
+    "scores": [
+     {
+      "name": "豆瓣（微博转载稿）",
+      "value": "6.7",
+      "source_url": "https://weibo.com/2/detail/comos:nivqyim6091456"
+     },
+     {
+      "name": "kinoafisha（仅 10 票）",
+      "value": "6.7",
+      "source_url": "https://www.kinoafisha.info/en/movies/8388526"
+     },
+     {
+      "name": "TMDB（仅 3 票）",
+      "value": "5.3",
+      "source_url": "https://www.themoviedb.org/movie/1503023-2"
+     }
+    ],
+    "sources": [
+     {
+      "title": "Gazettely 影评",
+      "url": "https://gazettely.com/2026/10/entertainment/go-for-broke-2-review"
+     },
+     {
+      "title": "维基百科：重生2",
+      "url": "https://zh.wikipedia.org/zh-hans/%E9%87%8D%E7%94%9F2"
+     },
+     {
+      "title": "微博：豆瓣开分转载",
+      "url": "https://weibo.com/2/detail/comos:nivqyim6091456"
+     },
+     {
+      "title": "微博：前作《重生》评分转载",
+      "url": "https://weibo.com/2/detail/comos:niuzqsm5072697"
+     },
+     {
+      "title": "微博：影评人批评",
+      "url": "https://weibo.com/2/detail/comos:nivamwm8786412"
+     },
+     {
+      "title": "kinoafisha",
+      "url": "https://www.kinoafisha.info/en/movies/8388526"
+     },
+     {
+      "title": "TMDB",
+      "url": "https://www.themoviedb.org/movie/1503023-2"
+     },
+     {
+      "title": "烂番茄",
+      "url": "https://www.rottentomatoes.com/m/go_for_broke_2_2026"
+     },
+     {
+      "title": "Metacritic",
+      "url": "https://www.metacritic.com/movie/go-for-broke-2"
+     },
+     {
+      "title": "HK01 导演资料",
+      "url": "https://global.hk01.com/%E7%94%B5%E5%BD%B1/60403263/%E9%87%8D%E7%94%9F2-%E6%A2%81%E6%B4%9B%E6%96%BD%E5%8A%9B%E6%88%98%E6%B4%AA%E9%87%91%E5%AE%9D-%E4%BC%99%E5%AF%BC%E6%BC%94%E7%94%B7%E5%8F%8B%E9%A9%AC%E6%B5%B4%E6%9F%AF%E5%A4%8D%E4%BB%87%E6%9A%97%E9%BB%91%E5%8A%BF%E5%8A%9B"
+     },
+     {
+      "title": "网易：出品方信息",
+      "url": "https://www.163.com/dy/article/L796BK0F0517DNB8.html"
+     }
+    ],
+    "sources_dropped": 0,
+    "film_id": 62270
+   },
+   "review_error": null,
+   "flags": [],
+   "seen_before": true,
+   "outcome": "ok",
+   "outcome_reason": "华语复仇动作片，打戏写实、演员有分量，但偏商业类型片，口碑中等且样本很少。"
+  },
+  {
+   "film_id": 62271,
+   "title": "Mr. & Mrs. Pardon",
+   "film_url": "mr-mrs-pardon-mandarin-west",
+   "versions": [
+    {
+     "film_id": 62271,
+     "name": "Mr. & Mrs. Pardon (Mandarin w/e.s.t.)",
+     "language": "Mandarin",
+     "subtitle": "English"
+    }
+   ],
+   "status": "now_playing",
+   "is_event": false,
+   "release_date": "2026-10-16",
+   "runtime": 106,
+   "genres": [
+    "International",
+    "Comedy",
+    "Family"
+   ],
+   "film_categories": [
+    "International",
+    "Comedy",
+    "Family",
+    "Film Presentation"
+   ],
+   "distributor": "NIU VISION MEDIA LTD",
+   "poster_url": "https://mediafiles.cineplex.com/Central/Film/Posters/62271_320_470.jpg",
+   "detail_url": "https://www.cineplex.com/movie/mr-mrs-pardon-mandarin-west",
+   "gta_theatres": [
+    "Cineplex Cinemas Markham and VIP"
+   ],
+   "gta_dates": [
+    "2026-11-05",
+    "2026-11-06",
+    "2026-11-08",
+    "2026-11-09",
+    "2026-11-10",
+    "2026-11-11",
+    "2026-11-12"
+   ],
+   "weeks_in_release": 3,
+   "hurry": true,
+   "rating_on": {
+    "rating": "PG",
+    "warnings": []
+   },
+   "synopsis": "Centered around a middle-aged couple, Shen Mo (played by Xiao Shenyang) and Tian Yi (played by Chunyang Shen), the story follows the duo as they navigate the critical \"third seven-year itch\" of their marriage. Long-accumulated frustrations and disappointments—ignited by trivial daily friction—lead them to enter a 30-day divorce cooling-off period, forcing them to face a pivotal decision regarding the future of their union.\r\n\r\nJust as they finish submitting their divorce application, a sudden accident causes them to swap souls. Forced to step into each other's shoes, they must navigate vastly different professional worlds under each other's identities, giving rise to a series of hilarious and chaotic mishaps.\r\n",
+   "director": "Chunyang Shen",
+   "starring": "Xiao Shenyang, Chunyang Shen, Bing Jia, Yang Yu, Xiang Wei, Long Liang, Juncong Xu",
+   "details_missing": false,
+   "verdict": {
+    "film_id": 62271,
+    "keep": true,
+    "rank": 12,
+    "category": "chinese",
+    "reason": "华语灵魂互换喜剧，口味要求华语片都想看，入围交精评。"
+   },
+   "card": {
+    "tier": "ok",
+    "strength": 2,
+    "category": "chinese",
+    "one_liner": "小沈阳与沈春阳真夫妻出演的灵魂互换喜剧，大众向、套路老，豆瓣6.4，购票平台却破9分。",
+    "premise": "沈默和尤天意是结婚多年的中年夫妻。两人递交离婚申请后进入30天冷静期，随后意外灵魂互换，被迫顶着对方的身份上班、生活。",
+    "why_for_you": "属于你说的“华语片都想看”这一类，有英文字幕，所以算在口味之内。但它是面向大众的合家欢喜剧，没有作者性，也没有大银幕视听上的卖点。想看真夫妻的喜剧默契、不介意老套设定，可以去；更看重创作表达的话，放过也不可惜。",
+    "reception": "评论很少，几乎只有观众评分和自媒体转述，判断依据是豆瓣、购票平台分数和零星微博评分（6.7、7.0），这些来源多是新浪、微博的聚合文章，可靠性一般。豆瓣6.4分，超过1.3万人评价；猫眼、淘票票均破9分。豆瓣和购票平台分差大，有分析认为影迷嫌它套路旧，普通观众吃生活共鸣这一套。烂番茄、Metacritic 未查到，电影节入围或获奖也未查到。票房方面，上映三天破1亿元。",
+    "background": "导演沈春阳非科班出身，此前以小品演员和影视配角闻名，这是她的导演处女作，编剧/监制是马多。小沈阳零片酬出演。小沈阳与沈春阳是现实夫妻，集结二十余位喜剧演员，被网友称为“把春晚搬到银幕上”。片名谐音自《史密斯夫妇》。多伦多发行方是 NIU VISION MEDIA。国内上映日期有9月30日和10月1日两种说法，待核实。",
+    "caveats": "有观点认为情节老套、节奏把控不足，喜剧段落像小品集锦甚至短视频拼接。影迷批评剧本套路陈旧、结构松散。Letterboxd 上有人说只有中段互换后的工作戏好笑，头尾像夫妻俩的私人纪录片。",
+    "skip_reason": null,
+    "evidence": "thin",
+    "title_zh": "什么意思夫妇",
+    "title_zh_source": "https://weibo.com/2/detail/comos:nitvpri7304774",
+    "scores": [
+     {
+      "name": "豆瓣",
+      "value": "6.4（1.3万+人评价）",
+      "source_url": "https://weibo.com/2/detail/comos:niuptaz7467530"
+     }
+    ],
+    "sources": [
+     {
+      "title": "微博：中文片名",
+      "url": "https://weibo.com/2/detail/comos:nitvpri7304774"
+     },
+     {
+      "title": "微博：豆瓣评分",
+      "url": "https://weibo.com/2/detail/comos:niuptaz7467530"
+     },
+     {
+      "title": "搜狐：猫眼、淘票票评分",
+      "url": "https://www.sohu.com/a/1084473847_122094388"
+     },
+     {
+      "title": "新浪娱乐：微博零星评分",
+      "url": "https://ent.sina.cn/2026-10-02/detail-initwenx5439318.d.html?vt=4"
+     },
+     {
+      "title": "新浪：上映三天票房破亿",
+      "url": "https://k.sina.cn/article_7879923021_1d5ae154d06801mkpq.html"
+     },
+     {
+      "title": "Letterboxd 影片页",
+      "url": "https://letterboxd.com/film/mr-mrs-pardon"
+     },
+     {
+      "title": "Music of Our Desire 转载页",
+      "url": "https://events.musicofourdesire.com/movie/mr-mrs-pardon-2026"
+     }
+    ],
+    "sources_dropped": 0,
+    "film_id": 62271
+   },
+   "review_error": null,
+   "flags": [],
+   "seen_before": true,
+   "outcome": "ok",
+   "outcome_reason": "小沈阳与沈春阳真夫妻出演的灵魂互换喜剧，大众向、套路老，豆瓣6.4，购票平台却破9分。"
+  },
+  {
+   "film_id": 62292,
+   "title": "Ramayana (Hindi w/e.s.t.) - An IMAX 3D Experience",
+   "film_url": "imax3dest-ramayana-hindi-west-the-imax",
+   "versions": [
+    {
+     "film_id": 62292,
+     "name": "Ramayana (Hindi w/e.s.t.) - An IMAX 3D Experience",
+     "language": "Hindi",
+     "subtitle": "English"
+    }
+   ],
+   "status": "now_playing",
+   "is_event": false,
+   "release_date": "2026-11-05",
+   "runtime": 195,
+   "genres": [
+    "International",
+    "Drama"
+   ],
+   "film_categories": [
+    "International",
+    "Drama",
+    "Film Presentation"
+   ],
+   "distributor": "Sony Pictures Entertainment Canada Ltd.",
+   "poster_url": "https://mediafiles.cineplex.com/Central/Film/Posters/62292_320_470.jpg",
+   "detail_url": "https://www.cineplex.com/movie/imax3dest-ramayana-hindi-west-the-imax",
+   "gta_theatres": [
+    "Cineplex Cinemas Courtney Park",
+    "Cineplex Cinemas Yonge-Dundas and VIP"
+   ],
+   "gta_dates": [
+    "2026-11-05",
+    "2026-11-06",
+    "2026-11-07",
+    "2026-11-08",
+    "2026-11-09",
+    "2026-11-10",
+    "2026-11-11",
+    "2026-11-12"
+   ],
+   "weeks_in_release": 1,
+   "hurry": false,
+   "rating_on": {
+    "rating": "PG",
+    "warnings": [
+     "Violence"
+    ]
+   },
+   "synopsis": "Based on the celebrated ancient epic known to billions, Namit Malhotra's Ramayana: Rise of a Legend tells the story of Rama, a prince bound by sacrifice; Ravana, an immortal king driven by vengeance; and the prophecy that binds their fates together. It stars Ranbir Kapoor, Yash and Sai Pallavi.\n\nThe film is produced by acclaimed filmmaker Namit Malhotra, whose Academy Award®-winning visual effects company DNEG has worked on films including The Odyssey, Dune, Interstellar, and Inception; directed by Nitesh Tiwari, whose film Dangal remains the highest-grossing Indian film worldwide; and scored by Academy Award® winners Hans Zimmer and A.R. Rahman. Namit Malhotra's Ramayana: Rise of a Legend will be released globally in theaters in time for Diwali on November 5.\n",
+   "director": "",
+   "starring": "",
+   "details_missing": false,
+   "verdict": {
+    "film_id": 62292,
+    "keep": false,
+    "rank": null,
+    "category": "outside",
+    "reason": "印度神话史诗IMAX 3D版，不在口味内。"
+   },
+   "card": null,
+   "review_error": null,
+   "flags": [],
+   "seen_before": false,
+   "outcome": "skip",
+   "outcome_reason": "印度神话史诗IMAX 3D版，不在口味内。"
+  },
+  {
+   "film_id": 62311,
+   "title": "Smash & Grab: The Rebel Lens of Mike Jones",
+   "film_url": "smash-grab-the-rebel-lens-of-mike-jones",
+   "versions": [
+    {
+     "film_id": 62311,
+     "name": "Smash & Grab: The Rebel Lens of Mike Jones",
+     "language": "English",
+     "subtitle": ""
+    }
+   ],
+   "status": "coming_soon",
+   "is_event": false,
+   "release_date": "2026-11-14",
+   "runtime": 86,
+   "genres": [
+    "Documentary"
+   ],
+   "film_categories": [
+    "Documentary",
+    "Film Presentation"
+   ],
+   "distributor": "Office National Du Film   ",
+   "poster_url": "https://mediafiles.cineplex.com/Central/Film/Posters/62311_320_470.jpg",
+   "detail_url": "https://www.cineplex.com/movie/smash-grab-the-rebel-lens-of-mike-jones",
+   "gta_theatres": [],
+   "gta_dates": [],
+   "weeks_in_release": null,
+   "hurry": false,
+   "rating_on": null,
+   "synopsis": "With little more than a 16-mm camera and a bedrock love of place, renegade filmmaker Mike Jones broke the trail for Newfoundland’s cultural renaissance. Through never-before-seen footage of the comedic chaos that was CODCO, Smash & Grab: The Rebel Lens of Mike Jones summons this chapter of Canada’s hilarious history in a joyful journey of rediscovery featuring Mary Walsh, Cathy Jones, Rick Mercer and more.",
+   "director": "Mike Jones",
+   "starring": "Mary Walsh, Cathy Jones, Rick Mercer",
+   "details_missing": false,
+   "verdict": {
+    "film_id": 62311,
+    "keep": false,
+    "rank": null,
+    "category": "outside",
+    "reason": "纽芬兰喜剧团体纪录片，不在口味内。"
+   },
+   "card": null,
+   "review_error": null,
+   "flags": [],
+   "seen_before": false,
+   "outcome": "skip",
+   "outcome_reason": "纽芬兰喜剧团体纪录片，不在口味内。"
+  },
+  {
+   "film_id": 62338,
+   "title": "Everest: The Other Side",
+   "film_url": "everest-the-other-side",
+   "versions": [
+    {
+     "film_id": 62338,
+     "name": "Everest: The Other Side",
+     "language": "English",
+     "subtitle": ""
+    }
+   ],
+   "status": "now_playing",
+   "is_event": false,
+   "release_date": "2026-10-30",
+   "runtime": 117,
+   "genres": [
+    "Adventure"
+   ],
+   "film_categories": [
+    "Adventure",
+    "Film Presentation"
+   ],
+   "distributor": "The Walt Disney Company (CANADA) LTD",
+   "poster_url": "https://mediafiles.cineplex.com/Central/Film/Posters/62338_320_470.jpg",
+   "detail_url": "https://www.cineplex.com/movie/everest-the-other-side",
+   "gta_theatres": [
+    "Cineplex Cinemas Fairview Mall",
+    "Cineplex Cinemas Mississauga Square One",
+    "Cineplex Cinemas Queensway and VIP",
+    "Cineplex Cinemas Vaughan",
+    "Cineplex Cinemas Winston Churchill & VIP",
+    "Cineplex Odeon Eglinton Town Centre Cinemas",
+    "Scotiabank Theatre Toronto"
+   ],
+   "gta_dates": [
+    "2026-11-05",
+    "2026-11-06",
+    "2026-11-07",
+    "2026-11-08",
+    "2026-11-09",
+    "2026-11-10",
+    "2026-11-11",
+    "2026-11-12"
+   ],
+   "weeks_in_release": 1,
+   "hurry": false,
+   "rating_on": {
+    "rating": "PG",
+    "warnings": [
+     "Not Recommended for Young Children",
+     "Mature Subject Matter"
+    ]
+   },
+   "synopsis": "",
+   "director": "Elizabeth Chai Vasarhelyi, Jimmy Chin",
+   "starring": "",
+   "details_missing": false,
+   "verdict": {
+    "film_id": 62338,
+    "keep": false,
+    "rank": null,
+    "category": "outside",
+    "reason": "珠峰登山纪录片，不在口味七类内。"
+   },
+   "card": null,
+   "review_error": null,
+   "flags": [],
+   "seen_before": false,
+   "outcome": "skip",
+   "outcome_reason": "珠峰登山纪录片，不在口味七类内。"
+  },
+  {
+   "film_id": 62341,
+   "title": "Patakka Guddiyan",
+   "film_url": "patakka-guddiyan-punjabi-west",
+   "versions": [
+    {
+     "film_id": 62341,
+     "name": "Patakka Guddiyan (Punjabi w/e.s.t.)",
+     "language": "Punjabi",
+     "subtitle": "English"
+    }
+   ],
+   "status": "now_playing",
+   "is_event": false,
+   "release_date": "2026-10-30",
+   "runtime": 127,
+   "genres": [
+    "International"
+   ],
+   "film_categories": [
+    "International",
+    "Film Presentation"
+   ],
+   "distributor": "RISING STAR ENTERTAINMENT INC.,",
+   "poster_url": "https://mediafiles.cineplex.com/Central/Film/Posters/62341_320_470.jpg",
+   "detail_url": "https://www.cineplex.com/movie/patakka-guddiyan-punjabi-west",
+   "gta_theatres": [
+    "Cineplex Cinemas Courtney Park",
+    "Cineplex Cinemas Scarborough",
+    "Cineplex Cinemas Vaughan",
+    "SilverCity Brampton Cinemas"
+   ],
+   "gta_dates": [
+    "2026-11-05"
+   ],
+   "weeks_in_release": 1,
+   "hurry": false,
+   "rating_on": {
+    "rating": "PG",
+    "warnings": [
+     "Violence"
+    ]
+   },
+   "synopsis": "\"Patakka Guddiyan\", is a laugh-out-loud family dramedy with a twist, centred around the bond between twin sisters “Roohi” and “Mahi”. Roohi, a simple girl, is the complete opposite of Mahi, who is sharp, daring, and mischievous. As the story progresses, layers of suspense and drama unfold, drawing the audience into an emotional rollercoaster. The movie keeps viewers deeply engaged, while also keeping them on edge with unexpected twists that heighten both the intrigue and the emotional intensity.",
+   "director": "",
+   "starring": "",
+   "details_missing": false,
+   "verdict": {
+    "film_id": 62341,
+    "keep": false,
+    "rank": null,
+    "category": "outside",
+    "reason": "旁遮普语家庭喜剧，不在口味内。"
+   },
+   "card": null,
+   "review_error": null,
+   "flags": [],
+   "seen_before": false,
+   "outcome": "skip",
+   "outcome_reason": "旁遮普语家庭喜剧，不在口味内。"
+  },
+  {
+   "film_id": 62342,
+   "title": "Traces of Justice",
+   "film_url": "traces-of-justice-mandarin-wchinese-and-est",
+   "versions": [
+    {
+     "film_id": 62342,
+     "name": "Traces of Justice (Mandarin w/Chinese and e.s.t.)",
+     "language": "Mandarin",
+     "subtitle": "English"
+    }
+   ],
+   "status": "coming_soon",
+   "is_event": false,
+   "release_date": "2026-11-13",
+   "runtime": 140,
+   "genres": [
+    "Crime",
+    "Drama",
+    "International"
+   ],
+   "film_categories": [
+    "Crime",
+    "Drama",
+    "International",
+    "Film Presentation"
+   ],
+   "distributor": "CMC FILMS INC.",
+   "poster_url": "",
+   "detail_url": "https://www.cineplex.com/movie/traces-of-justice-mandarin-wchinese-and-est",
+   "gta_theatres": [],
+   "gta_dates": [],
+   "weeks_in_release": null,
+   "hurry": false,
+   "rating_on": {
+    "rating": "STC",
+    "warnings": []
+   },
+   "synopsis": "Inspired by the extraordinary true story of Cui Daozhi, one of the pioneers of forensic investigation in China. Over six decades, he helped advance forensic science through his groundbreaking research into trace evidence and worked on numerous major and high-profile criminal cases. Having conducted more than 7,000 forensic examinations, he became known as the “Sherlock Holmes” of China’s criminal investigation field, renowned for uncovering decisive clues from the smallest traces.",
+   "director": "CHEN SICHENG",
+   "starring": "ZHANG YI/MA LI/CHEN MINGHAO/KARRY WANG/FAN CHENGCHENG/CHEN FEIYU/LI XUEJIAN",
+   "details_missing": false,
+   "verdict": {
+    "film_id": 62342,
+    "keep": true,
+    "rank": 5,
+    "category": "chinese",
+    "reason": "张译、马丽主演，中国法医崔道植真实故事改编的犯罪片。"
+   },
+   "card": {
+    "tier": "ok",
+    "strength": 3,
+    "category": "chinese",
+    "one_liner": "根据真实痕迹检验专家改编的华语犯罪片，物证分析为主，但专业影评缺位，观众口碑分化，建议降低预期。",
+    "premise": "主角是痕迹检验专家崔寻，原型是崔道植。影片不走动作警匪路线，重点放在物证分析上，串联1971年冰城案、1983年特大杀人抢劫案、1998年公交车爆炸案、2016年系列强奸杀人案四起真实大案。张译饰崔寻，马丽饰法医，陈明昊饰老刑警。",
+    "why_for_you": "它同时属于你想看的华语片和犯罪片，主要归入华语片，片长140分钟，走的是物证分析路线而不是追车枪战。但它不是氛围型惊悚，如果你想要A24式的心理压迫感，这片给不了。四案是单元式结构，不是一条连续的悬疑主线。",
+    "reception": "专业影评几乎没有：烂番茄0条影评，观众评分不足50个；Metacritic还没有影评人评论；电影节入围或获奖未查到。以下判断依据来自观众评价，不是专业影评。豆瓣开分6.8，2万多人评价；猫眼9.6分，两边分化明显。Letterboxd用户评价两极，有人夸制作精良，有人嫌宣传味重。票房方面，国庆档周末登顶中国内地票房，三天收2.089亿元。",
+    "background": "导演陈思诚，代表作是《唐人街探案》系列，这是他第一次把在世人物拍成长片。出品方说法不一：Variety写的是New Classics Pictures，另一来源写制片方为As One Pictures。多伦多发行方是CMC Films。",
+    "caveats": "有豆瓣长评给5.5分，认为全片过于平淡，人物动机停留在标签上。另一条豆瓣评论说140分钟装不下三四个大案，人物扁平，压轴的公交车案推理寡淡。Letterboxd上有观众说片子只给结果、不展示过程，作为推理片缺少悬念。多条评论对第三案的同性角色处理不满。也有评论认为影片克制、细节扎实。",
+    "skip_reason": null,
+    "evidence": "thin",
+    "title_zh": "神探之痕迹",
+    "title_zh_source": "https://www.wikidata.org/wiki/Q141610937",
+    "scores": [
+     {
+      "name": "豆瓣开分",
+      "value": "6.8",
+      "source_url": "https://weibo.com/2/detail/comos:nitzerr5753730"
+     },
+     {
+      "name": "猫眼",
+      "value": "9.6",
+      "source_url": "https://k.sina.cn/article_7879776356_1d5abd864068016rtg.html"
+     }
+    ],
+    "sources": [
+     {
+      "title": "烂番茄 Traces of Justice",
+      "url": "https://www.rottentomatoes.com/m/traces_of_justice"
+     },
+     {
+      "title": "Atom Tickets 影片页",
+      "url": "https://www.atomtickets.com/movies/traces-of-justice/426383"
+     },
+     {
+      "title": "微博：豆瓣开分",
+      "url": "https://weibo.com/2/detail/comos:nitzerr5753730"
+     },
+     {
+      "title": "新浪：豆瓣与猫眼评分分化",
+      "url": "https://k.sina.cn/article_7879776356_1d5abd864068016rtg.html"
+     },
+     {
+      "title": "Variety：国庆档票房",
+      "url": "https://variety.com/2026/film/box-office/china-box-office-traces-of-justice-national-day-1236898842"
+     },
+     {
+      "title": "豆瓣长评（5.5分，过于平淡）",
+      "url": "https://movie.douban.com/review/17842473"
+     },
+     {
+      "title": "豆瓣评论（篇幅不够、人物扁平）",
+      "url": "https://movie.douban.com/review/17837179"
+     },
+     {
+      "title": "豆瓣评论（克制、细节扎实）",
+      "url": "https://movie.douban.com/review/17837880"
+     },
+     {
+      "title": "Wikidata 中文片名",
+      "url": "https://www.wikidata.org/wiki/Q141610937"
+     },
+     {
+      "title": "Cineamo 影片页",
+      "url": "https://www.cineamo.com/en-US/movies/traces-of-justice"
+     }
+    ],
+    "sources_dropped": 0,
+    "film_id": 62342
+   },
+   "review_error": null,
+   "flags": [],
+   "seen_before": false,
+   "outcome": "ok",
+   "outcome_reason": "根据真实痕迹检验专家改编的华语犯罪片，物证分析为主，但专业影评缺位，观众口碑分化，建议降低预期。"
+  },
+  {
+   "film_id": 62343,
+   "title": "Pee Mak",
+   "film_url": "pee-mak-filipino-west",
+   "versions": [
+    {
+     "film_id": 62343,
+     "name": "Pee Mak (Filipino w/e.s.t.)",
+     "language": "Filipino",
+     "subtitle": "English"
+    }
+   ],
+   "status": "now_playing",
+   "is_event": false,
+   "release_date": "2026-10-30",
+   "runtime": 113,
+   "genres": [
+    "International",
+    "Comedy",
+    "Horror"
+   ],
+   "film_categories": [
+    "International",
+    "Comedy",
+    "Horror",
+    "Film Presentation"
+   ],
+   "distributor": "VIVA COMMUNICATIONS USA, INC",
+   "poster_url": "https://mediafiles.cineplex.com/Central/Film/Posters/62343_320_470.jpg",
+   "detail_url": "https://www.cineplex.com/movie/pee-mak-filipino-west",
+   "gta_theatres": [
+    "Cineplex Cinemas Scarborough",
+    "Cineplex Odeon Ajax Cinemas"
+   ],
+   "gta_dates": [
+    "2026-11-05",
+    "2026-11-06",
+    "2026-11-07",
+    "2026-11-08",
+    "2026-11-09",
+    "2026-11-10",
+    "2026-11-11",
+    "2026-11-12"
+   ],
+   "weeks_in_release": 1,
+   "hurry": false,
+   "rating_on": {
+    "rating": "PG",
+    "warnings": [
+     "Viewer discretion advised"
+    ]
+   },
+   "synopsis": "Mak, a soldier returning home from war, invites four of his comrades to meet his wife and newborn child. However, suspicion soon grows among his friends as they uncover a terrifying secret: Mak’s family is no longer among the living.",
+   "director": "Victor Villanueva",
+   "starring": "Wilbert Ross, Bea Binene, Vandolph, Jairus Aquino, TJ Valderrama, Gian Bernardino",
+   "details_missing": false,
+   "verdict": {
+    "film_id": 62343,
+    "keep": false,
+    "rank": null,
+    "category": "horror",
+    "reason": "菲律宾版泰国鬼妻喜剧翻拍，喜剧恐怖不对口味。"
+   },
+   "card": null,
+   "review_error": null,
+   "flags": [],
+   "seen_before": false,
+   "outcome": "skip",
+   "outcome_reason": "菲律宾版泰国鬼妻喜剧翻拍，喜剧恐怖不对口味。"
+  },
+  {
+   "film_id": 62345,
+   "title": "Falling",
+   "film_url": "falling-2026",
+   "versions": [
+    {
+     "film_id": 62345,
+     "name": "Falling",
+     "language": "English",
+     "subtitle": ""
+    }
+   ],
+   "status": "coming_soon",
+   "is_event": false,
+   "release_date": "2026-11-06",
+   "runtime": 107,
+   "genres": [
+    "Drama",
+    "Romance"
+   ],
+   "film_categories": [
+    "Drama",
+    "Romance",
+    "Film Presentation"
+   ],
+   "distributor": "A71 RELEASING INC. (Vortex Media)",
+   "poster_url": "https://mediafiles.cineplex.com/Central/Film/Posters/62345_320_470.jpg",
+   "detail_url": "https://www.cineplex.com/movie/falling-2026",
+   "gta_theatres": [
+    "Cineplex Cinemas Yonge-Dundas and VIP"
+   ],
+   "gta_dates": [
+    "2026-11-06",
+    "2026-11-08",
+    "2026-11-09"
+   ],
+   "weeks_in_release": null,
+   "hurry": false,
+   "rating_on": {
+    "rating": "14A",
+    "warnings": [
+     "Coarse & sexual language"
+    ]
+   },
+   "synopsis": "Jack is a witty but commitment-phobic boy who gets caught in a love triangle when he falls in love with Jillian, unaware that his best friend Johnny also harbors feelings for her.",
+   "director": "Colin Krisel, James Krisel",
+   "starring": "KJ Apa, Isabel May, Archie Renaux, Emma Laird",
+   "details_missing": false,
+   "verdict": {
+    "film_id": 62345,
+    "keep": false,
+    "rank": null,
+    "category": "outside",
+    "reason": "青春三角恋，不在口味内。"
+   },
+   "card": null,
+   "review_error": null,
+   "flags": [],
+   "seen_before": false,
+   "outcome": "skip",
+   "outcome_reason": "青春三角恋，不在口味内。"
+  },
+  {
+   "film_id": 62347,
+   "title": "Coyote vs ACME - Family Favourites",
+   "film_url": "coyote-vs-acme-family-favourites",
+   "versions": [
+    {
+     "film_id": 62347,
+     "name": "Coyote vs ACME - Family Favourites",
+     "language": "English",
+     "subtitle": ""
+    }
+   ],
+   "status": "coming_soon",
+   "is_event": false,
+   "release_date": "2026-11-07",
+   "runtime": 103,
+   "genres": [
+    "Action",
+    "Adventure",
+    "Animation",
+    "Comedy"
+   ],
+   "film_categories": [
+    "Action",
+    "Adventure",
+    "Animation",
+    "Comedy",
+    "Film Presentation"
+   ],
+   "distributor": "VVS FILMS",
+   "poster_url": "https://mediafiles.cineplex.com/Central/Film/Posters/62347_320_470.jpg",
+   "detail_url": "https://www.cineplex.com/movie/coyote-vs-acme-family-favourites",
+   "gta_theatres": [
+    "Cineplex Cinemas Empress Walk",
+    "Cineplex Cinemas Fairview Mall",
+    "Cineplex Cinemas Markham and VIP",
+    "Cineplex Cinemas Mississauga Square One",
+    "Cineplex Cinemas Pickering and VIP",
+    "Cineplex Cinemas Queensway and VIP",
+    "Cineplex Cinemas Scarborough",
+    "Cineplex Cinemas Vaughan",
+    "Cineplex Cinemas Winston Churchill & VIP",
+    "Cineplex Cinemas Yonge-Eglinton and VIP",
+    "Cineplex Cinemas Yorkdale",
+    "Cineplex Junxion Erin Mills",
+    "Cineplex Odeon Ajax Cinemas",
+    "Cineplex Odeon Eglinton Town Centre Cinemas",
+    "SilverCity Brampton Cinemas",
+    "SilverCity Richmond Hill Cinemas"
+   ],
+   "gta_dates": [
+    "2026-11-07",
+    "2026-11-08"
+   ],
+   "weeks_in_release": null,
+   "hurry": false,
+   "rating_on": null,
+   "synopsis": "",
+   "director": "",
+   "starring": "",
+   "details_missing": false,
+   "verdict": {
+    "film_id": 62347,
+    "keep": false,
+    "rank": null,
+    "category": "outside",
+    "reason": "华纳卡通合家欢，不对口味。"
+   },
+   "card": null,
+   "review_error": null,
+   "flags": [],
+   "seen_before": false,
+   "outcome": "skip",
+   "outcome_reason": "华纳卡通合家欢，不对口味。"
+  },
+  {
+   "film_id": 62358,
+   "title": "Dune: Part One & Dune: Part Two Double Feature – The IMAX Experience®",
+   "film_url": "dune-part-one-dune-part-two-double-feature",
+   "versions": [
+    {
+     "film_id": 62358,
+     "name": "Dune: Part One & Dune: Part Two Double Feature – The IMAX Experience®",
+     "language": "English",
+     "subtitle": ""
+    }
+   ],
+   "status": "coming_soon",
+   "is_event": false,
+   "release_date": "2026-11-13",
+   "runtime": 332,
+   "genres": [
+    "Adventure"
+   ],
+   "film_categories": [
+    "Adventure",
+    "Film Presentation"
+   ],
+   "distributor": "Warner Bros Entertainment Canada Inc",
+   "poster_url": "https://mediafiles.cineplex.com/Central/Film/Posters/62358_320_470.jpg",
+   "detail_url": "https://www.cineplex.com/movie/dune-part-one-dune-part-two-double-feature",
+   "gta_theatres": [
+    "Cineplex Cinemas Vaughan",
+    "Cineplex Cinemas Winston Churchill & VIP",
+    "Cineplex Cinemas Yonge-Dundas and VIP",
+    "Cineplex Cinemas Yonge-Eglinton and VIP",
+    "Cineplex Odeon Eglinton Town Centre Cinemas"
+   ],
+   "gta_dates": [
+    "2026-11-13"
+   ],
+   "weeks_in_release": null,
+   "hurry": false,
+   "rating_on": null,
+   "synopsis": "",
+   "director": "",
+   "starring": "",
+   "details_missing": false,
+   "verdict": {
+    "film_id": 62358,
+    "keep": true,
+    "rank": 4,
+    "category": "scifi",
+    "reason": "《沙丘》一二部IMAX连映，正是口味标杆。"
+   },
+   "card": {
+    "tier": "must",
+    "strength": 5,
+    "category": "scifi",
+    "one_liner": "《沙丘》两部连映，约5.5小时IMAX，是你口味里最核心的一类，值得专门安排时间去看。",
+    "premise": "同一部小说的前后两半连着放。第一部是小说的前半部，第二部讲保罗要向哈肯尼家族和姐妹会复仇，为此得让弗雷曼人相信他是救世主。",
+    "why_for_you": "这就是你说的“像《沙丘》那样”的科幻：有完整的世界观，有导演 Denis Villeneuve 自己的表达，又是为大银幕做的。第一部拿了摄影、剪辑、配乐、视效、美术、音效等6项奥斯卡，第二部拿了最佳音效和最佳视觉效果，视听口碑扎实。两部连着看，前半部“未完成感”的问题也能解决。你在多伦多，第一部还拿过 TIFF Ebert Director Award。",
+    "reception": "第一部烂番茄83%，Metacritic 74；第二部 Metacritic 79（基于62篇影评），烂番茄各来源不一，有的写92%（466篇以上），早期报道为97%。第一部拿下6项奥斯卡，第二部获最佳音效和最佳视觉效果。",
+    "background": "导演 Denis Villeneuve，拍过《Incendies》《Arrival》《Sicario》《Prisoners》《Blade Runner 2049》。出品方 Legendary Pictures，发行方是 Warner Bros Entertainment Canada。第三部《Dune: Part Three》定于2026年12月18日上映，这次连映的时间点离它很近，但没查到官方是否有关联。院线资料里导演和简介为空，没有官方简介。",
+    "caveats": "片长332分钟，约5.5小时，是否含中场休息没查到。第二部结尾有影评说有点乱；编剧方面，影评人称赞世界观和表演，但对剧本有争议；Metacritic 上有原著粉说第二部改写原著不可原谅。节奏偏慢，5.5小时的体力消耗要考虑，这条是调查者的判断，没有来源。",
+    "skip_reason": null,
+    "evidence": "ample",
+    "title_zh": null,
+    "title_zh_source": null,
+    "scores": [
+     {
+      "name": "烂番茄（第一部）",
+      "value": "83%",
+      "source_url": "https://rottentomatoes.com/m/dune_2021"
+     },
+     {
+      "name": "Metacritic（第一部）",
+      "value": "74",
+      "source_url": "https://www.metacritic.com/pictures/every-denis-villeneuve-movie-ranked-worst-to-best"
+     },
+     {
+      "name": "Metacritic（第二部）",
+      "value": "79（基于62篇影评）",
+      "source_url": "https://www.metacritic.com/movie/dune-part-two"
+     },
+     {
+      "name": "烂番茄（第二部）",
+      "value": "92%（466篇以上）",
+      "source_url": "https://thescreenreport.com/reviews/dune-part-two-review"
+     }
+    ],
+    "sources": [
+     {
+      "title": "烂番茄：Dune（2021）",
+      "url": "https://rottentomatoes.com/m/dune_2021"
+     },
+     {
+      "title": "Metacritic：Denis Villeneuve 作品排名",
+      "url": "https://www.metacritic.com/pictures/every-denis-villeneuve-movie-ranked-worst-to-best"
+     },
+     {
+      "title": "Metacritic：Dune: Part Two",
+      "url": "https://www.metacritic.com/movie/dune-part-two"
+     },
+     {
+      "title": "The Screen Report：Dune: Part Two 影评",
+      "url": "https://thescreenreport.com/reviews/dune-part-two-review"
+     },
+     {
+      "title": "The Hollywood Reporter：第一部奥斯卡获奖",
+      "url": "https://www.hollywoodreporter.com/movies/movie-news/dune-movie-oscar-wins-1235118386"
+     },
+     {
+      "title": "CBR：第二部奥斯卡获奖",
+      "url": "https://www.cbr.com/dune-part-two-nabs-2-major-oscars-wins-in-a-row"
+     },
+     {
+      "title": "维基百科：Denis Villeneuve 获奖与提名",
+      "url": "https://en.wikipedia.org/wiki/List_of_awards_and_nominations_received_by_Denis_Villeneuve"
+     },
+     {
+      "title": "维基百科：Dune: Part Two",
+      "url": "https://en.wikipedia.org/wiki/Dune:_Part_Two"
+     },
+     {
+      "title": "World of Reel：第二部影评",
+      "url": "https://www.worldofreel.com/blog/2024/2/21/jsws6i7p4x6k6kwff7glfjfvsnx0yf"
+     },
+     {
+      "title": "Edward Douglas：Villeneuve 访谈",
+      "url": "https://edwarddouglas.substack.com/p/dune-part-two-director-denis-villeneuve"
+     }
+    ],
+    "sources_dropped": 0,
+    "film_id": 62358
+   },
+   "review_error": null,
+   "flags": [],
+   "seen_before": false,
+   "outcome": "must",
+   "outcome_reason": "《沙丘》两部连映，约5.5小时IMAX，是你口味里最核心的一类，值得专门安排时间去看。"
+  },
+  {
+   "film_id": 62359,
+   "title": "Dune: Part One Reissue (2026) – The IMAX Experience®",
+   "film_url": "dune-part-one-reissue-2026-the-imax-experienc",
+   "versions": [
+    {
+     "film_id": 62359,
+     "name": "Dune: Part One Reissue (2026) – The IMAX Experience®",
+     "language": "English",
+     "subtitle": ""
+    }
+   ],
+   "status": "coming_soon",
+   "is_event": false,
+   "release_date": "2026-11-14",
+   "runtime": 166,
+   "genres": [
+    "Action",
+    "Adventure",
+    "Drama"
+   ],
+   "film_categories": [
+    "Action",
+    "Adventure",
+    "Drama",
+    "Film Presentation"
+   ],
+   "distributor": "Warner Bros Entertainment Canada Inc",
+   "poster_url": "https://mediafiles.cineplex.com/Central/Film/Posters/62359_320_470.jpg",
+   "detail_url": "https://www.cineplex.com/movie/dune-part-one-reissue-2026-the-imax-experienc",
+   "gta_theatres": [],
+   "gta_dates": [],
+   "weeks_in_release": null,
+   "hurry": false,
+   "rating_on": null,
+   "synopsis": "",
+   "director": "",
+   "starring": "",
+   "details_missing": false,
+   "verdict": {
+    "film_id": 62359,
+    "keep": false,
+    "rank": null,
+    "category": "scifi",
+    "reason": "沙丘第一部IMAX重映，已被连映场覆盖，为控制名额未单独入围。"
+   },
+   "card": null,
+   "review_error": null,
+   "flags": [],
+   "seen_before": false,
+   "outcome": "skip",
+   "outcome_reason": "沙丘第一部IMAX重映，已被连映场覆盖，为控制名额未单独入围。"
+  },
+  {
+   "film_id": 62360,
+   "title": "Dune: Part Two Reissue (2026) – The IMAX Experience®",
+   "film_url": "dune-part-two-reissue-2026-the-imax-experienc",
+   "versions": [
+    {
+     "film_id": 62360,
+     "name": "Dune: Part Two Reissue (2026) – The IMAX Experience®",
+     "language": "English",
+     "subtitle": ""
+    }
+   ],
+   "status": "coming_soon",
+   "is_event": false,
+   "release_date": "2026-11-14",
+   "runtime": 177,
+   "genres": [
+    "Action",
+    "Adventure",
+    "Science Fiction"
+   ],
+   "film_categories": [
+    "Action",
+    "Adventure",
+    "Science Fiction",
+    "Film Presentation"
+   ],
+   "distributor": "Warner Bros Entertainment Canada Inc",
+   "poster_url": "https://mediafiles.cineplex.com/Central/Film/Posters/62360_320_470.jpg",
+   "detail_url": "https://www.cineplex.com/movie/dune-part-two-reissue-2026-the-imax-experienc",
+   "gta_theatres": [],
+   "gta_dates": [],
+   "weeks_in_release": null,
+   "hurry": false,
+   "rating_on": null,
+   "synopsis": "",
+   "director": "",
+   "starring": "",
+   "details_missing": false,
+   "verdict": {
+    "film_id": 62360,
+    "keep": true,
+    "rank": 3,
+    "category": "scifi",
+    "reason": "《沙丘2》IMAX重映，口味标杆科幻大银幕体验。"
+   },
+   "card": {
+    "tier": "must",
+    "strength": 5,
+    "category": "scifi",
+    "one_liner": "《沙丘：第二部》IMAX 重映，口味核心的科幻大片，值得进影院重看或补看。",
+    "premise": "保罗·亚崔迪与契妮和弗雷曼人结盟，向毁灭他家族的阴谋者复仇。要对哈克南家族和姐妹会复仇，他就得说服数百万弗雷曼人相信他是救世主。本片直接接着第一部，没看过的话建议先补。",
+    "why_for_you": "属于你最想看的第 1 类科幻，有完整的世界观，导演丹尼斯·维伦纽瓦有自己的表达，视觉效果拿过奖，适合在大银幕上看。你点名喜欢《沙丘》系列，这次是 IMAX 重映。",
+    "reception": "评论很多，判断基于大量评分而非少数样本。烂番茄影评人好评率 92%（超过 465 篇评论），观众爆米花指数 95%；Metacritic 80 分（40 篇评论，为早期数字）。烂番茄评语是“视觉震撼，叙事宏大”。奥斯卡六项提名，拿下最佳音效和最佳视觉效果两项；BAFTA 最佳视觉效果获奖。",
+    "background": "导演丹尼斯·维伦纽瓦，加拿大出生，前作有《边境杀手》《降临》《银翼杀手2049》。出品方为华纳兄弟与传奇影业。",
+    "caveats": "有评论认为书里有些老套桥段被后来的科幻片模仿太多，新鲜感打折。IMDb 上有观众说全程投入，但不会称它为杰作，该页面还把它概括为视觉出色但有分歧。片长偏长：多个来源写约 2 小时 46 分，而你给的资料是 177 分钟，差出的 11 分钟没查到原因。这次重映的具体宣传内容也没查到。",
+    "skip_reason": null,
+    "evidence": "ample",
+    "title_zh": "沙丘2",
+    "title_zh_source": "https://m.douban.com/personage/27234071",
+    "scores": [
+     {
+      "name": "烂番茄影评人好评率",
+      "value": "92%（超过465篇评论）",
+      "source_url": "https://thescreenreport.com/reviews/dune-part-two-review"
+     },
+     {
+      "name": "烂番茄观众爆米花指数",
+      "value": "95%",
+      "source_url": "https://thescreenreport.com/reviews/dune-part-two-review"
+     },
+     {
+      "name": "Metacritic",
+      "value": "80分（40篇评论，早期数字）",
+      "source_url": "https://icon-era.com/threads/dune-part-two-review-thread.9899"
+     }
+    ],
+    "sources": [
+     {
+      "title": "烂番茄：沙丘：第二部",
+      "url": "https://www.rottentomatoes.com/m/Dune_Part_Two"
+     },
+     {
+      "title": "The Screen Report 影评",
+      "url": "https://thescreenreport.com/reviews/dune-part-two-review"
+     },
+     {
+      "title": "icon-era 评论帖",
+      "url": "https://icon-era.com/threads/dune-part-two-review-thread.9899"
+     },
+     {
+      "title": "World of Reel 博客",
+      "url": "https://www.worldofreel.com/blog/2024/2/21/jsws6i7p4x6k6kwff7glfjfvsnx0yf"
+     },
+     {
+      "title": "雅虎新闻：奥斯卡获奖情况",
+      "url": "https://uk.news.yahoo.com/many-oscars-did-dune-part-042039118.html"
+     },
+     {
+      "title": "DNEG：颁奖季",
+      "url": "https://www.dneg.com/news/awards-season-2025"
+     },
+     {
+      "title": "IMDb 影片页",
+      "url": "https://www.imdb.com:443/title/tt15239678"
+     },
+     {
+      "title": "北京日报客户端报道",
+      "url": "https://news.bjd.com.cn/2024/03/15/10721408.shtml"
+     },
+     {
+      "title": "维基百科：丹尼斯·维伦纽瓦",
+      "url": "https://zh.wikipedia.org/zh-cn/%E4%B8%B9%E5%B0%BC%E6%96%AF%C2%B7%E7%BB%B4%E5%8B%92%E5%BC%97"
+     },
+     {
+      "title": "Variety 澳洲站",
+      "url": "https://au.variety.com/2022/film/news/dune-2-filming-full-cast-synopsis-4372"
+     },
+     {
+      "title": "豆瓣",
+      "url": "https://m.douban.com/personage/27234071"
+     },
+     {
+      "title": "ELLE China",
+      "url": "https://www.ellechina.com/celeb/a60222912/dune"
+     }
+    ],
+    "sources_dropped": 0,
+    "film_id": 62360
+   },
+   "review_error": null,
+   "flags": [],
+   "seen_before": false,
+   "outcome": "must",
+   "outcome_reason": "《沙丘：第二部》IMAX 重映，口味核心的科幻大片，值得进影院重看或补看。"
+  },
+  {
+   "film_id": 62361,
+   "title": "Monday Surprise Premieres",
+   "film_url": "monday-surprise-premieres",
+   "versions": [
+    {
+     "film_id": 62361,
+     "name": "Monday Surprise Premieres",
+     "language": "English",
+     "subtitle": ""
+    }
+   ],
+   "status": "coming_soon",
+   "is_event": false,
+   "release_date": "2026-11-09",
+   "runtime": 133,
+   "genres": [
+    "Mystery"
+   ],
+   "film_categories": [
+    "Mystery",
+    "Film Presentation"
+   ],
+   "distributor": "ELEVATION PICTURES CORP.",
+   "poster_url": "https://mediafiles.cineplex.com/Central/Film/Posters/62361_320_470.jpg",
+   "detail_url": "https://www.cineplex.com/movie/monday-surprise-premieres",
+   "gta_theatres": [
+    "Cineplex Cinemas Courtney Park",
+    "Cineplex Cinemas Queensway and VIP",
+    "Cineplex Cinemas Vaughan",
+    "Cineplex Cinemas Winston Churchill & VIP",
+    "Cineplex Odeon Eglinton Town Centre Cinemas",
+    "Scotiabank Theatre Toronto",
+    "SilverCity Richmond Hill Cinemas"
+   ],
+   "gta_dates": [
+    "2026-11-09"
+   ],
+   "weeks_in_release": null,
+   "hurry": false,
+   "rating_on": {
+    "rating": "PG",
+    "warnings": [
+     "Coarse Language"
+    ]
+   },
+   "synopsis": "WHAT THE FILM?! We’re flipping the script with an advanced screening of an unreleased movie. No title. No trailer. No spoilers. Just you, a seat, and the chance to be first to see what everyone’s gonna be talking about next. The only clue? It’s brand new! ",
+   "director": "",
+   "starring": "",
+   "details_missing": false,
+   "verdict": {
+    "film_id": 62361,
+    "keep": false,
+    "rank": null,
+    "category": "outside",
+    "reason": "神秘首映无片名信息，无法判断。"
+   },
+   "card": null,
+   "review_error": null,
+   "flags": [],
+   "seen_before": false,
+   "outcome": "skip",
+   "outcome_reason": "神秘首映无片名信息，无法判断。"
+  },
+  {
+   "film_id": 62376,
+   "title": "Queen at Sea",
+   "film_url": "queen-at-sea",
+   "versions": [
+    {
+     "film_id": 62376,
+     "name": "Queen at Sea",
+     "language": "English",
+     "subtitle": ""
+    }
+   ],
+   "status": "coming_soon",
+   "is_event": false,
+   "release_date": "2026-11-06",
+   "runtime": 121,
+   "genres": [
+    "Drama",
+    "Thriller"
+   ],
+   "film_categories": [
+    "Drama",
+    "Thriller",
+    "Film Presentation"
+   ],
+   "distributor": "A71 RELEASING INC. (Vortex Media)",
+   "poster_url": "https://mediafiles.cineplex.com/Central/Film/Posters/62376_320_470.jpg",
+   "detail_url": "https://www.cineplex.com/movie/queen-at-sea",
+   "gta_theatres": [
+    "Cineplex Cinemas Varsity and VIP"
+   ],
+   "gta_dates": [
+    "2026-11-06",
+    "2026-11-07",
+    "2026-11-08",
+    "2026-11-09",
+    "2026-11-10",
+    "2026-11-11"
+   ],
+   "weeks_in_release": null,
+   "hurry": false,
+   "rating_on": null,
+   "synopsis": "As dementia erodes a woman's ability to communicate her inner life, her husband and daughter struggle to act in her best interest, navigating love and the fragile boundaries between care, protection, and autonomy.",
+   "director": "Lance Hammer",
+   "starring": "Juliette Binoche, Tom Courtenay, Anna Calder-Marshall, Steven Cree, Florence Hunt ",
+   "details_missing": false,
+   "verdict": {
+    "film_id": 62376,
+    "keep": false,
+    "rank": null,
+    "category": "outside",
+    "reason": "失智症家庭剧，标惊悚但实为家庭剧情。"
+   },
+   "card": null,
+   "review_error": null,
+   "flags": [],
+   "seen_before": false,
+   "outcome": "skip",
+   "outcome_reason": "失智症家庭剧，标惊悚但实为家庭剧情。"
+  },
+  {
+   "film_id": 62382,
+   "title": "Drummer Boy",
+   "film_url": "drummer-boy",
+   "versions": [
+    {
+     "film_id": 62382,
+     "name": "Drummer Boy",
+     "language": "English",
+     "subtitle": ""
+    }
+   ],
+   "status": "coming_soon",
+   "is_event": false,
+   "release_date": "2026-11-06",
+   "runtime": 129,
+   "genres": [
+    "Musical",
+    "Music"
+   ],
+   "film_categories": [
+    "Musical",
+    "Music",
+    "Film Presentation"
+   ],
+   "distributor": "Angel Studios, Inc.",
+   "poster_url": "https://mediafiles.cineplex.com/Central/Film/Posters/62382_320_470.jpg",
+   "detail_url": "https://www.cineplex.com/movie/drummer-boy",
+   "gta_theatres": [
+    "Cineplex Cinemas Vaughan",
+    "Cineplex Cinemas Winston Churchill & VIP",
+    "Cineplex Odeon Ajax Cinemas",
+    "SilverCity Brampton Cinemas"
+   ],
+   "gta_dates": [
+    "2026-11-06",
+    "2026-11-07",
+    "2026-11-08",
+    "2026-11-09",
+    "2026-11-10",
+    "2026-11-11",
+    "2026-11-12"
+   ],
+   "weeks_in_release": null,
+   "hurry": false,
+   "rating_on": {
+    "rating": "PG",
+    "warnings": []
+   },
+   "synopsis": "As America’s fight for independence begins, a young drummer boy, an enslaved woman, and a divided family each search for freedom in a world built to deny it. With music carrying hope through battle and loss, Drummer Boy turns the Revolution into a deeply human story of faith, forgiveness, and the belief that no person is born to live in chains or be forgotten.",
+   "director": "Ben Smallbone, Joel David Smallbone, Richard L. Ramsey",
+   "starring": "Lucas Leach, Joel David Smallbone, India Brown, Beth Easdown",
+   "details_missing": false,
+   "verdict": {
+    "film_id": 62382,
+    "keep": false,
+    "rank": null,
+    "category": "political_historical",
+    "reason": "美国独立战争信仰音乐剧，偏宗教宣教风格，未入围。"
+   },
+   "card": null,
+   "review_error": null,
+   "flags": [],
+   "seen_before": false,
+   "outcome": "skip",
+   "outcome_reason": "美国独立战争信仰音乐剧，偏宗教宣教风格，未入围。"
+  },
+  {
+   "film_id": 62393,
+   "title": "Remember",
+   "film_url": "remember-filipino-west",
+   "versions": [
+    {
+     "film_id": 62393,
+     "name": "Remember (Filipino w/e.s.t.)",
+     "language": "Filipino",
+     "subtitle": "English"
+    }
+   ],
+   "status": "coming_soon",
+   "is_event": false,
+   "release_date": "2026-11-13",
+   "runtime": 111,
+   "genres": [
+    "International",
+    "Drama",
+    "Family"
+   ],
+   "film_categories": [
+    "International",
+    "Drama",
+    "Family",
+    "Film Presentation"
+   ],
+   "distributor": "ABS CBN Canada ULC",
+   "poster_url": "https://mediafiles.cineplex.com/Central/Film/Posters/62393_320_470.jpg",
+   "detail_url": "https://www.cineplex.com/movie/remember-filipino-west",
+   "gta_theatres": [],
+   "gta_dates": [],
+   "weeks_in_release": null,
+   "hurry": false,
+   "rating_on": {
+    "rating": "PG",
+    "warnings": []
+   },
+   "synopsis": "When their dying child only remembers the happy times they were together,\r\nan estranged couple on the brink of separation reunites in Quebec and\r\npretends to be happily married in front of their daughter while looking for a\r\nmiracle to save her life – a journey that reminds them of the power of faith,\r\nforgiveness and family.",
+   "director": "Mae Cruz-Alviar",
+   "starring": "Marian Rivera, Dingdong Dantes, Zia Grace",
+   "details_missing": false,
+   "verdict": {
+    "film_id": 62393,
+    "keep": false,
+    "rank": null,
+    "category": "outside",
+    "reason": "菲律宾家庭催泪剧，不在口味内。"
+   },
+   "card": null,
+   "review_error": null,
+   "flags": [],
+   "seen_before": false,
+   "outcome": "skip",
+   "outcome_reason": "菲律宾家庭催泪剧，不在口味内。"
+  },
+  {
+   "film_id": 62395,
+   "title": "Rocky - 50th Anniversary",
+   "film_url": "rocky-50th-anniversary",
+   "versions": [
+    {
+     "film_id": 62395,
+     "name": "Rocky - 50th Anniversary",
+     "language": "English",
+     "subtitle": ""
+    }
+   ],
+   "status": "coming_soon",
+   "is_event": false,
+   "release_date": "2026-11-13",
+   "runtime": 120,
+   "genres": [
+    "Classic",
+    "Drama",
+    "Sport"
+   ],
+   "film_categories": [
+    "Classic",
+    "Drama",
+    "Sport",
+    "Film Presentation"
+   ],
+   "distributor": "Park Circus Limited",
+   "poster_url": "https://mediafiles.cineplex.com/Central/Film/Posters/62395_320_470.jpg",
+   "detail_url": "https://www.cineplex.com/movie/rocky-50th-anniversary",
+   "gta_theatres": [],
+   "gta_dates": [],
+   "weeks_in_release": null,
+   "hurry": false,
+   "rating_on": null,
+   "synopsis": "",
+   "director": "John G. Avildsen",
+   "starring": "Sylvester Stallone",
+   "details_missing": false,
+   "verdict": {
+    "film_id": 62395,
+    "keep": false,
+    "rank": null,
+    "category": "outside",
+    "reason": "洛奇50周年重映，经典但不在口味七类内。"
+   },
+   "card": null,
+   "review_error": null,
+   "flags": [],
+   "seen_before": false,
+   "outcome": "skip",
+   "outcome_reason": "洛奇50周年重映，经典但不在口味七类内。"
+  }
+ ],
+ "filtered_events": [
+  {
+   "film_id": 61543,
+   "name": "HEATED RIVALRY - MARATHON",
+   "categories": [
+    "Television Event"
+   ]
+  },
+  {
+   "film_id": 62248,
+   "name": "Stray Kids World Tour RUN IT LIVE VIEWING",
+   "categories": [
+    "Concert"
+   ]
+  },
+  {
+   "film_id": 61929,
+   "name": "Golden Boy - National Theatre Live",
+   "categories": [
+    "Stage",
+    "Stage Performance"
+   ]
+  },
+  {
+   "film_id": 62088,
+   "name": "Doctor Who: The Satan Pit",
+   "categories": [
+    "Television Event"
+   ]
+  },
+  {
+   "film_id": 61734,
+   "name": "Carmen Encore (Bizet) - French w/e.s.t. – Metropolitan Opera",
+   "categories": [
+    "Opera"
+   ]
+  },
+  {
+   "film_id": 62123,
+   "name": "Rammstein - Live in Mexico City (German)",
+   "categories": [
+    "Concert"
+   ]
+  },
+  {
+   "film_id": 62186,
+   "name": "Festive Fun with Peppa Cinema Experience",
+   "categories": [
+    "Television Event"
+   ]
+  },
+  {
+   "film_id": 61969,
+   "name": "GIANT - The Play",
+   "categories": [
+    "Stage",
+    "Stage Performance"
+   ]
+  },
+  {
+   "film_id": 62053,
+   "name": "André Rieu's 2026 Christmas Concert: Let it Snow",
+   "categories": [
+    "Concert"
+   ]
+  },
+  {
+   "film_id": 62054,
+   "name": "Concert De Noël 2026 D'André Rieu : Let It Snow",
+   "categories": [
+    "Concert"
+   ]
+  },
+  {
+   "film_id": 62313,
+   "name": "The Royal Ballet: The Nutcracker",
+   "categories": [
+    "Stage Performance"
+   ]
+  },
+  {
+   "film_id": 61540,
+   "name": "HEATED RIVALRY - EPISODES 1 & 2",
+   "categories": [
+    "Television Event"
+   ]
+  },
+  {
+   "film_id": 61541,
+   "name": "HEATED RIVALRY - EPISODES 3 & 4",
+   "categories": [
+    "Television Event"
+   ]
+  },
+  {
+   "film_id": 61542,
+   "name": "HEATED RIVALRY - EPISODES 5 & 6",
+   "categories": [
+    "Television Event"
+   ]
+  },
+  {
+   "film_id": 61727,
+   "name": "Macbeth (Verdi) Italian w/e.s.t. ENCORE – Metropolitan Opera",
+   "categories": [
+    "Opera"
+   ]
+  },
+  {
+   "film_id": 61739,
+   "name": "Samson et Dalila (Saint-Saëns) - French w/e.s.t. - Metropolitan Opera",
+   "categories": [
+    "Opera"
+   ]
+  },
+  {
+   "film_id": 61738,
+   "name": "Samson et Dalila (Saint-Saëns) French w/e.s.t. ENCORE - Metropolitan Opera",
+   "categories": [
+    "Opera"
+   ]
+  },
+  {
+   "film_id": 61741,
+   "name": "The Magic Flute Encore (Mozart) English w/e.s.t  - Metropolitan Opera",
+   "categories": [
+    "Opera"
+   ]
+  },
+  {
+   "film_id": 61763,
+   "name": "La Fanciulla del West (Puccini) Italian w/e.s.t. - Metropolitan Opera",
+   "categories": [
+    "Opera"
+   ]
+  },
+  {
+   "film_id": 61743,
+   "name": "La Fanciulla del West (Puccini) Italian w/e.s.t. ENCORE - Metropolitan Opera",
+   "categories": [
+    "Opera"
+   ]
+  },
+  {
+   "film_id": 61746,
+   "name": "Silent Night (Kevin Puts) English w/e.s.t. – Metropolitan Opera",
+   "categories": [
+    "Opera"
+   ]
+  },
+  {
+   "film_id": 61747,
+   "name": "Silent Night (Kevin Puts) English w/e.s.t. ENCORE – Metropolitan Opera",
+   "categories": [
+    "Opera"
+   ]
+  },
+  {
+   "film_id": 62315,
+   "name": "The Royal Ballet: Alice's Adventures in Wonderland",
+   "categories": [
+    "Stage Performance"
+   ]
+  },
+  {
+   "film_id": 61750,
+   "name": "Manon (Massenet) French w/e.s.t. – Metropolitan Opera",
+   "categories": [
+    "Opera"
+   ]
+  },
+  {
+   "film_id": 61751,
+   "name": "Manon (Massenet) French w/e.s.t. ENCORE - Metropolitan Opera",
+   "categories": [
+    "Opera"
+   ]
+  },
+  {
+   "film_id": 61754,
+   "name": "Otello (Verdi) Italian w/e.s.t. - Metropolitan Opera",
+   "categories": [
+    "Opera"
+   ]
+  },
+  {
+   "film_id": 61755,
+   "name": "Otello (Verdi) Italian w/e.s.t. ENCORE – Metropolitan Opera",
+   "categories": [
+    "Opera"
+   ]
+  },
+  {
+   "film_id": 61759,
+   "name": "Tosca Encore (Puccini) Italian w/e.s.t. - Metropolitan Opera",
+   "categories": [
+    "Opera"
+   ]
+  },
+  {
+   "film_id": 62316,
+   "name": "The Royal Ballet: Swan Lake",
+   "categories": [
+    "Stage Performance"
+   ]
+  },
+  {
+   "film_id": 61760,
+   "name": "Parsifal (Wagner) German w/e.s.t. – Metropolitan Opera",
+   "categories": [
+    "Opera"
+   ]
+  },
+  {
+   "film_id": 61761,
+   "name": "Parsifal (Wagner) German w/e.s.t. ENCORE – Metropolitan Opera",
+   "categories": [
+    "Opera"
+   ]
+  },
+  {
+   "film_id": 62374,
+   "name": "BTS WORLD TOUR 'ARIRANG' IN JAKARTA: LIVE VIEWING",
+   "categories": [
+    "Concert"
+   ]
+  },
+  {
+   "film_id": 62249,
+   "name": "Andrew Lloyd Webber’s Starlight Express - Live On Stage",
+   "categories": [
+    "Stage",
+    "Stage Performance"
+   ]
+  },
+  {
+   "film_id": 62373,
+   "name": "BTS WORLD TOUR 'ARIRANG' IN KAOHSIUNG: LIVE VIEWING",
+   "categories": [
+    "Concert"
+   ]
+  },
+  {
+   "film_id": 61851,
+   "name": "Fallen Angels by Noël Coward",
+   "categories": [
+    "Stage Performance"
+   ]
+  },
+  {
+   "film_id": 62396,
+   "name": "Prince 3121 Las Vegas Live",
+   "categories": [
+    "Concert"
+   ]
+  },
+  {
+   "film_id": 62379,
+   "name": "Hay Fever - National Theatre Live",
+   "categories": [
+    "Stage",
+    "Stage Performance"
+   ]
+  },
+  {
+   "film_id": 62380,
+   "name": "The Motive and the Cue - National Theatre Live ENCORE",
+   "categories": [
+    "Stage",
+    "Stage Performance"
+   ]
+  }
+ ],
+ "orphan_ids": [
+  23046,
+  33602
+ ],
+ "watched_showing": [
+  {
+   "film_id": 62164,
+   "title": "Ken Russell's The Devils",
+   "status": "now_playing",
+   "release_date": "2026-10-16",
+   "weeks_in_release": 3,
+   "detail_url": "https://www.cineplex.com/movie/ken-russells-the-devils",
+   "version_ids": [
+    62164
+   ]
+  },
+  {
+   "film_id": 62163,
+   "title": "Once Upon a Time in the Middle East",
+   "status": "now_playing",
+   "release_date": "2026-10-09",
+   "weeks_in_release": 4,
+   "detail_url": "https://www.cineplex.com/movie/once-upon-a-time-in-the-middle-east-mandarin-wchinese-and-est",
+   "version_ids": [
+    62163
+   ]
+  },
+  {
+   "film_id": 37885,
+   "title": "Resident Evil",
+   "status": "now_playing",
+   "release_date": "2026-09-18",
+   "weeks_in_release": 7,
+   "detail_url": "https://www.cineplex.com/movie/resident-evil-2026",
+   "version_ids": [
+    37885
+   ]
+  }
+ ],
+ "usage": {
+  "calls": 31,
+  "input_tokens": 968480,
+  "output_tokens": 63758,
+  "searches": 40,
+  "estimated_token_cost_usd": 2.6743,
+  "estimated_search_cost_usd": 0.4,
+  "estimated_cost_usd": 3.0743
+ },
+ "counts": {
+  "must": 4,
+  "ok": 8,
+  "skip": 49,
+  "review_failed": 0
+ }
+}
